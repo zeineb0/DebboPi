@@ -10,5 +10,6 @@ package com.esprit.entities;
  * @author Zeineb_yahiaoui
  */
 public class Categorie {
-    
+    int bb ;
+    String tt;
 }
