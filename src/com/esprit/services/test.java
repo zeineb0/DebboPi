@@ -5,10 +5,17 @@
  */
 package com.esprit.services;
 
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author Zeineb_yahiaoui
  */
-public interface test {
+public interface test <E> {
+      void ajouter(E e) throws SQLException;
+    boolean delete(E e) throws SQLException;
+    boolean update(E e) throws SQLException;
+    List<E> readAll() throws SQLException;
     
 }
