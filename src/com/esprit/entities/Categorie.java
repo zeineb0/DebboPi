@@ -16,4 +16,9 @@ public class Categorie {
     int bbbx;
     String tt;
     int fff; 
+    
+    public Categorie ()
+    {
+        
+    }
 }
