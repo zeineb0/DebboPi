@@ -13,6 +13,7 @@ public class Categorie {
     int bb ;
     int bbm ;
     int bbmf ;
-    
+    int bbbx;
     String tt;
+    int fff; 
 }
