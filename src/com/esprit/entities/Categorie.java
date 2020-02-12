@@ -11,5 +11,7 @@ package com.esprit.entities;
  */
 public class Categorie {
     int bb ;
+    int bbm ;
+    
     String tt;
 }
