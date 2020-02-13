@@ -83,6 +83,11 @@ public class Location {
     public void setFK_id_fournisseur(int FK_id_fournisseur) {
         this.FK_id_fournisseur = FK_id_fournisseur;
     }
+
+    @Override
+    public String toString() {
+        return "Location{" + "id_location=" + id_location + ", date_location=" + date_location + ", prix_location=" + prix_location + ", FK_id_entrepot=" + FK_id_entrepot + ", FK_id_client=" + FK_id_client + ", FK_id_fournisseur=" + FK_id_fournisseur + '}';
+    }
     
 
     
