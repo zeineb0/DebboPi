@@ -48,8 +48,8 @@ public class ServiceLivraison implements IService<Livraison> {
      PreparedStatement pre=con.prepareStatement("DELETE FROM `livraison` WHERE `livraison`.`id_livraison` = ?");
      pre.setInt(1, nb);
      pre.executeUpdate();
-       boolean x=true;
-       return x;
+        return false;
+   
         
     }
     @Override
