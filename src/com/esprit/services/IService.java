@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface IService<L> {
     void ajouter(L l) throws SQLException;
-    boolean delete(L l) throws SQLException;
+    boolean delete(int nb) throws SQLException;
     boolean update(L l) throws SQLException;
     List<L> readAll() throws SQLException;
 }
