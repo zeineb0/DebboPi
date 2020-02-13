@@ -11,21 +11,24 @@ package com.esprit.entities;
  */
 public class Entrepot {
     int id_entrepot;
+    String nom_entrepot;
     String adresse_entrepot;
     int num_fiscale;
-    int id_max;
+    int quantite_max;
 
-    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int id_max) {
+    public Entrepot(int id_entrepot,String nom_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max) {
         this.id_entrepot = id_entrepot;
+        this.nom_entrepot = nom_entrepot;
         this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
-        this.id_max = id_max;
+        this.quantite_max = quantite_max;
     }
 
-    public Entrepot(String adresse_entrepot, int num_fiscale, int id_max) {
-        this.adresse_entrepot = adresse_entrepot;
+    public Entrepot(String nom_entrepot, String adresse_entrepot, int num_fiscale, int id_max) {
+        this.nom_entrepot = nom_entrepot;
+         this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
-        this.id_max = id_max;
+        this.quantite_max = quantite_max;
     }
 
     public int getId_entrepot() {
@@ -40,8 +43,8 @@ public class Entrepot {
         return num_fiscale;
     }
 
-    public int getId_max() {
-        return id_max;
+    public int getQuantite_max() {
+        return quantite_max;
     }
 
     public void setId_entrepot(int id_entrepot) {
@@ -56,15 +59,26 @@ public class Entrepot {
         this.num_fiscale = num_fiscale;
     }
 
-    public void setId_max(int id_max) {
-        this.id_max = id_max;
+    public void setQuantite_max(int quantite_max) {
+        this.quantite_max = quantite_max;
     }
+
+    public String getNom_entrepot() {
+        return nom_entrepot;
+    }
+
+    public void setNom_entrepot(String nom_entrepot) {
+        this.nom_entrepot = nom_entrepot;
+    }
+    
 
     @Override
     public String toString() {
-        return "Entrepot{" + "id_entrepot=" + id_entrepot + ", adresse_entrepot=" + adresse_entrepot + ", num_fiscale=" + num_fiscale + ", id_max=" + id_max + '}';
+        return "Entrepot{" + "id_entrepot=" + id_entrepot + ", nom_entrepot=" + nom_entrepot + ", adresse_entrepot=" + adresse_entrepot + ", num_fiscale=" + num_fiscale + ", quantite_max=" + quantite_max + '}';
     }
 
+ 
+    
    
     
 }
