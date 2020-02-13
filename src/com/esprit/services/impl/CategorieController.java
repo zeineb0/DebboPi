@@ -55,24 +55,58 @@ Connection conn = DataSource.getInstance().getConnection();
     @Override
     public void ajouterProduit(Categorie c) throws SQLException {
 
-String req = "INSERT INTO `categories`(`id_categorie`, `nom`) VALUES (?,?)";
-
-    }
+        String req = "INSERT INTO `categories`( `nom`) VALUES (?,?)";
+        ps=conn.prepareStatement(req);
+        try{
+        ps.setString(1,c.getNom());
+        ps.execute();}
+        catch (SQLException ex)
+        {}    }
 
     @Override
     public void supprimerProduit(Categorie c) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+        String req= "DELETE FROM `categories` WHERE `id_categorie`=?";
+        ps=conn.prepareStatement(req);
+        try{
+        ps.setInt(1,c.getId());
+        ps.execute();}
+        catch (SQLException ex)
+        {}    }
+        
+
+    
 
     @Override
     public Categorie consulterProduit(Categorie c) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String req="SELECT * FROM `categories` WHERE `id_categorie`=?";
+        ps=conn.prepareStatement(req);
+        try{
+        ps.setInt(1,c.getId());
+        ps.execute();}
+        catch (SQLException ex)
+        {}    
+    return c;
     }
 
     @Override
     public Categorie modiferProduit(Categorie c) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        String req = "UPDATE `categories` SET `id_categorie`=?,`nom`=? WHERE 1";
+        ps=conn.prepareStatement(req);
+        try{
+        ps.setInt(1,c.getId());
+        ps.setString(2,c.getNom());
+        ps.execute();}
+        catch (SQLException ex)
+        {}    
+    return c;
+                
+                
+                
+                
+                
+                
+                }
     
     
 }
