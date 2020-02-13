@@ -5,6 +5,10 @@
  */
 package com.esprit.test;
 
+import com.esprit.entities.Livraison;
+import com.esprit.services.impl.ServiceLivraison;
+import java.sql.SQLException;
+import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,7 +35,18 @@ public class esprit extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        
+         ServiceLivraison ser = new ServiceLivraison();
+        Livraison l1 = new Livraison("125464","545","164",1,2,"azaz");
+                try {
+//  
+            ser.ajouter(l1);
+            List<Livraison> list = ser.readAll();
+            System.out.println(list);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
     }
     
 }
