@@ -67,8 +67,10 @@ public class Livraison {
 
     @Override
     public String toString() {
-        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+        return "Livraison{" + "id_livraison=" + id_livraison + ", date_livraison=" + date_livraison + ", adresse_livraison=" + adresse_livraison + ", etat_livraison=" + etat_livraison + ", longitude_dest=" + longitude_dest + ", altitude_dest=" + altitude_dest + ", acceptation=" + acceptation + ", FK_id_commande=" + FK_id_commande + ", FK_id_user=" + FK_id_user + '}';
     }
+
+
 
     public String getAdresse_livraison() {
         return adresse_livraison;
