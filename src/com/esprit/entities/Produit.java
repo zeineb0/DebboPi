@@ -11,4 +11,5 @@ package com.esprit.entities;
  */
 public class Produit {
     private int id;
+    private int cin ;
 }
