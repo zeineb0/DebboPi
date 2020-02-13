@@ -9,7 +9,6 @@ import com.esprit.entities.Livraison;
 import com.esprit.services.IService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +30,7 @@ public class ServiceLivraison implements IService<Livraison> {
     @Override
     public void ajouter(Livraison l) throws SQLException
     {
-    PreparedStatement pre=con.prepareStatement("INSERT INTO `livraison` (`date_livraison`, `adresse_livraison`, `etat_livraison`, `longitude_dest`, `altitude_dest` , `acceptation`) VALUES (?,?,?,?,?,?);");
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `livraison` (`date_livraison`, `adresse_livraison`, `etat_livraison`, `longitude_dest`, `altitude_dest`, `acceptation`, `FK_id_commande`, `FK_id_user`) VALUES (?,?,?,?,?,?,?,?);");
     
     pre.setString(1, l.getDate_livraison());
     pre.setString(2, l.getAdresse_livraison());
@@ -39,11 +38,16 @@ public class ServiceLivraison implements IService<Livraison> {
     pre.setFloat(4, l.getLongitude_dest());
     pre.setFloat(5, l.getAltitude_dest());
     pre.setString(6, l.getAcceptation());
+    pre.setInt(7, 1);
+    pre.setInt(8, 5);
     pre.executeUpdate();
     }
     @Override
-    public boolean delete(Livraison l) throws SQLException
+    public boolean delete(int nb) throws SQLException
     {
+     PreparedStatement pre=con.prepareStatement("DELETE FROM `livraison` WHERE `livraison`.`id_livraison` = ?");
+     pre.setInt(1, nb);
+     pre.executeUpdate();
        boolean x=true;
        return x;
         
@@ -71,8 +75,8 @@ public class ServiceLivraison implements IService<Livraison> {
                float longitude=rs.getFloat(5);
                float altitude=rs.getFloat(6);
                String acc=rs.getString(7);
-               int fk1=rs.getInt(7);
-               int fk2=rs.getInt(8);
+               int fk1=rs.getInt(8);
+               int fk2=rs.getInt(9);
                Livraison l=new Livraison(id,date, adr, etat, longitude,altitude,acc,fk1,fk2);
      arr.add(l);
      }
