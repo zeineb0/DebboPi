@@ -37,11 +37,13 @@ public class esprit extends Application {
     public static void main(String[] args) {
         
          ServiceLivraison ser = new ServiceLivraison();
-        Livraison l1 = new Livraison("125464","545","164",1,2,"azaz");
+        Livraison l1 = new Livraison("125464","545","164",1,2,"aze");
                 try {
 //  
-            ser.ajouter(l1);
+            // ser.ajouter(l1);
+            
             List<Livraison> list = ser.readAll();
+            ser.delete(6);
             System.out.println(list);
         } catch (SQLException ex) {
             System.out.println(ex);
