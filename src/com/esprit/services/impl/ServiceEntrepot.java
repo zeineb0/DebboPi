@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class ServiceEntrepot implements IService<Entrepot> {
 
-    private Connection con;
+    private final Connection con;
     private Statement ste;
     
     public ServiceEntrepot() {
@@ -33,17 +33,25 @@ public class ServiceEntrepot implements IService<Entrepot> {
     
     @Override
     public void ajouter(Entrepot e) throws SQLException {
-    PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` ( `nom_entrepot`, `adresse_entrepot`, `num_fiscale`, `quantite_max`) VALUES ( ?, ?, ? ,?);");
-    pre.setString(1, e.getNom_entrepot());
-    pre.setString(2, e.getAdresse_entrepot());
-    pre.setInt(3, e.getNum_fiscale());
-    pre.setInt(4, e.getQuantite_max());
-    pre.executeUpdate();
+        
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`) VALUES ( ?, ?, ?, ?, ?);");
+    pre.setString(1, e.getAdresse_entrepot());
+    pre.setInt(2, e.getNum_fiscale());
+    pre.setInt(3, e.getQuantite_max());
+    pre.setString(4, e.getEtat());
+    pre.setString(5, e.getEntreprise());
+    pre.executeUpdate(); 
+    
     }
 
     @Override
-    public boolean delete(Entrepot e) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(int nb) throws SQLException {
+       PreparedStatement pre = con.prepareStatement("DELETE FROM `entrepot` WHERE `id_entrepot`= ?");
+       pre.setInt(1, nb);
+       pre.executeUpdate();
+        return false;
+       
+
     }
 
     @Override
