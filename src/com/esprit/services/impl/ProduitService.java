@@ -5,12 +5,12 @@
  */
 package com.esprit.services.impl;
 
-import com.esprit.services.test;
+import com.esprit.services.IProduitService;
 
 /**
  *
  * @author Zeineb_yahiaoui
  */
-public class testImlp implements test{
+public class ProduitService implements IProduitService{
     
 }
