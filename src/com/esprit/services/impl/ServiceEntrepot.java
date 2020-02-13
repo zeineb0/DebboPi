@@ -12,8 +12,10 @@ import com.esprit.services.IService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,19 +51,48 @@ public class ServiceEntrepot implements IService<Entrepot> {
        PreparedStatement pre = con.prepareStatement("DELETE FROM `entrepot` WHERE `id_entrepot`= ?");
        pre.setInt(1, nb);
        pre.executeUpdate();
+       
         return false;
        
 
     }
-
+    
     @Override
-    public boolean update(Entrepot e) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Entrepot e) throws SQLException {
+    try {
+            PreparedStatement ps=con.prepareStatement("UPDATE `entrepot` SET `adresse`=?,`num_fiscale`=?,`quantite_max`=?,`etat`=?,`entreprise`=? WHERE `id_entrepot`=?;");
+           
+            ps.setString(1, e.getAdresse_entrepot());
+            ps.setInt(2, e.getNum_fiscale());
+            ps.setInt(3,  e.getQuantite_max());
+            ps.setString(4, e.getEtat());
+            ps.setString(5, e.getEntreprise());
+            ps.setInt(6, e.getId_entrepot());
+            ps.executeUpdate();
+            System.out.println(e.getId_entrepot()+ " updated.");
+            
+        } catch (SQLException ex) {
+               
+        }
     }
 
     @Override
     public List<Entrepot> readAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    List<Entrepot> entrepots=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select * from entrepot");
+     while (rs.next()) {                
+               int id_entrepot=rs.getInt(1);
+               String adresse_entrepot=rs.getString(2);
+               int num_fiscale=rs.getInt(3);
+               int quantite_max=rs.getInt(4);
+               String etat=rs.getString(5);
+               String entreprise=rs.getString(6);
+               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise);
+     entrepots.add(e);
+     }
+    return entrepots;
     }
-    
+
+   
 }
