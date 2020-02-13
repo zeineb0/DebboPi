@@ -5,6 +5,12 @@
  */
 package Users;
 import java.util.Date;
+import com.esprit.utilities.DataSource;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -123,5 +129,31 @@ public class Utilisateur {
               "Email :"+this.getEmail()+"\n"+"Disponibilité :"+this.getDisponibilite();
               
   }
+  
+    public ResultSet afficherDonneesUser() throws SQLException{
+     String url = "jdbc:mysql://localhost:3306/debbov1";
+     String username = "root";
+     String pword = "";
+     Connection con;
+
+      con = (Connection) DriverManager.getConnection(url, username, pword);
+      String req="SELECT * FROM `utilisateur` WHERE id_user="+this.getId();
+      Statement st=con.createStatement();
+      ResultSet rst = st.executeQuery(req);
+    return rst;
+}
     
+     public void supprimerUser() throws SQLException{
+         String url = "jdbc:mysql://localhost:3306/debbov1";
+     String username = "root";
+     String pword = "";
+     Connection con;
+
+      con = (Connection) DriverManager.getConnection(url, username, pword);
+      String req="DELETE * FROM `utilisateur` WHERE id_user="+this.getId();
+      Statement st=con.createStatement();
+      st.executeUpdate(req);
+     }
+  
+  
 }
