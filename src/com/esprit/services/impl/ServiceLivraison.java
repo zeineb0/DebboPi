@@ -55,7 +55,15 @@ public class ServiceLivraison implements IService<Livraison> {
     @Override
     public boolean update(Livraison l) throws SQLException
     {
-           boolean x=true;
+        PreparedStatement pre=con.prepareStatement("UPDATE `livraison` SET `date_livraison` = ?, `adresse_livraison` = ?, `etat_livraison` = ?, `longitude_dest` = ?, `altitude_dest` = ?, `acceptation` = ? WHERE `livraison`.`id_livraison` = ?;");
+           pre.setString(1, l.getDate_livraison());
+           pre.setString(2, l.getAdresse_livraison());
+           pre.setString(3, l.getEtat_livraison());
+           pre.setFloat(4, l.getLongitude_dest());
+           pre.setFloat(5, l.getAltitude_dest());
+           
+        
+        boolean x=true;
        return x;
         
     }
