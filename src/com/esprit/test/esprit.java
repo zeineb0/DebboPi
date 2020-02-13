@@ -7,6 +7,7 @@
 package com.esprit.test;
 
 import com.esprit.entities.Entrepot;
+import com.esprit.services.impl.ServiceEntrepot;
 import com.esprit.services.impl.testImlp;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -39,12 +40,12 @@ public class esprit /*extends Application*/ {
     public static void main(String[] args) {
 //        launch(args);
         
-         testImlp ent = new testImlp();
+        ServiceEntrepot entrepot = new ServiceEntrepot();
         
          Entrepot e1 = new Entrepot("Delice", "Ariana", 15236,500000);
         
         try {
-            ent.ajouter(e1);
+            entrepot.ajouter(e1);
         } catch (SQLException ex) {
             Logger.getLogger(esprit.class.getName()).log(Level.SEVERE, null, ex);
         }
