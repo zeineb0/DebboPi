@@ -9,6 +9,7 @@ package com.esprit.test;
 import com.esprit.entities.Entrepot;
 import com.esprit.services.impl.ServiceEntrepot;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -39,11 +40,14 @@ public class esprit extends Application {
     public static void main(String[] args) throws SQLException {
 //        launch(args);
         ServiceEntrepot ent = new ServiceEntrepot();
-        Entrepot e1 = new Entrepot("Tunis", 520, 522,"libre", "delice");
+        Entrepot e1 = new Entrepot(11,"Tunis", 57, 82,"libre", "delice");
         
-        ent.ajouter(e1);
-        ent.delete(8);
-                
+        //ent.ajouter(e1);
+       
+        //ent.delete(8);
+        ent.update(e1);
+         List<Entrepot> entrepots = ent.readAll();
+        System.out.println(entrepots);
         
         
     }
