@@ -28,7 +28,18 @@ private int id;
         this.promotion = promotion;
         this.categorie = categorie;
     }
+    public Produit( String nom, double prix, double quantite, double reserve, boolean promotion, Categorie categorie) {
+        this.nom = nom;
+        this.prix = prix;
+        this.quantite = quantite;
+        this.reserve = reserve;
+        this.promotion = promotion;
+        this.categorie = categorie;
+    }
 
+    public Produit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public int getId() {
         return id;
     }

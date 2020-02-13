@@ -6,6 +6,8 @@
 package com.esprit.services;
 
 import com.esprit.entities.Categorie;
+import com.esprit.entities.Produit;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -13,6 +15,10 @@ import java.util.List;
  * @author Zeineb_yahiaoui
  */
 public interface ICategorieService {
+        public void ajouterProduit(Categorie c)throws SQLException;
+    public void supprimerProduit(Categorie c) throws SQLException;
+    public Categorie consulterProduit(Categorie c)throws SQLException;
+    public Categorie modiferProduit(Categorie c)throws SQLException;
         public List<Categorie> listCategorie();
 
 }

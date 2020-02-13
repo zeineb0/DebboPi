@@ -6,6 +6,7 @@
 package com.esprit.services.impl;
 
 import com.esprit.entities.Categorie;
+import com.esprit.entities.Produit;
 import com.esprit.services.ICategorieService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
@@ -40,10 +41,6 @@ Connection conn = DataSource.getInstance().getConnection();
                    Categorie c =new Categorie();
                    c.setId(rs.getInt("id"));
                    c.setNom(rs.getString("nom"));
-                   
-                   
-                   
-                  
                    categories.add(c);
                }
             
@@ -51,10 +48,30 @@ Connection conn = DataSource.getInstance().getConnection();
         } catch (SQLException ex) {
             Logger.getLogger(CategorieController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-        
         return categories;
 
+    }
+
+    @Override
+    public void ajouterProduit(Categorie c) throws SQLException {
+
+String req = "INSERT INTO `categories`(`id_categorie`, `nom`) VALUES (?,?)";
+
+    }
+
+    @Override
+    public void supprimerProduit(Categorie c) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Categorie consulterProduit(Categorie c) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Categorie modiferProduit(Categorie c) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

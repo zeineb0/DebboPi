@@ -7,6 +7,7 @@ package com.esprit.services;
 
 import com.esprit.entities.Categorie;
 import com.esprit.entities.Produit;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -14,10 +15,10 @@ import java.util.List;
  * @author Zeineb_yahiaoui
  */
 public interface IProduitService {
-     public int ajouterProduit(Produit produit);
-    public int supprimerProduit(Produit produit);
-    public Produit consulterProduit(Produit produit);
-    public Produit modiferProduit(Produit produit);
-    public List<Produit> listeProduit();
-    public List<Produit> listeProduitPourUneCategorie(Categorie categorie );
+     public int ajouterProduit(Produit produit)throws SQLException;
+    public int supprimerProduit(Produit produit) throws SQLException;
+    public Produit consulterProduit(Produit produit)throws SQLException;
+    public Produit modiferProduit(Produit produit)throws SQLException;
+    public List<Produit> listeProduit()throws SQLException;
+    public List<Produit> listeProduitPourUneCategorie(Categorie categorie )throws SQLException;
 }
