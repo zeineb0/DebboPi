@@ -11,26 +11,32 @@ package com.esprit.entities;
  */
 public class Entrepot {
     int id_entrepot;
-    String nom_entrepot;
     String adresse_entrepot;
     int num_fiscale;
     int quantite_max;
+    String etat;
+    String entreprise;
 
-    public Entrepot(int id_entrepot,String nom_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max) {
+    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, String etat, String entreprise) {
         this.id_entrepot = id_entrepot;
-        this.nom_entrepot = nom_entrepot;
         this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
         this.quantite_max = quantite_max;
+        this.etat = etat;
+        this.entreprise = entreprise;
     }
 
-    public Entrepot(String nom_entrepot, String adresse_entrepot, int num_fiscale, int id_max) {
-        this.nom_entrepot = nom_entrepot;
-         this.adresse_entrepot = adresse_entrepot;
+    public Entrepot(String adresse_entrepot, int num_fiscale, int quantite_max, String etat, String entreprise) {
+        this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
         this.quantite_max = quantite_max;
+        this.etat = etat;
+        this.entreprise = entreprise;
     }
 
+   
+
+    
     public int getId_entrepot() {
         return id_entrepot;
     }
@@ -63,20 +69,53 @@ public class Entrepot {
         this.quantite_max = quantite_max;
     }
 
-    public String getNom_entrepot() {
-        return nom_entrepot;
+    public String getEntreprise() {
+        return entreprise;
     }
 
-    public void setNom_entrepot(String nom_entrepot) {
-        this.nom_entrepot = nom_entrepot;
+    public String getEtat() {
+        return etat;
     }
-    
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
 
     @Override
     public String toString() {
-        return "Entrepot{" + "id_entrepot=" + id_entrepot + ", nom_entrepot=" + nom_entrepot + ", adresse_entrepot=" + adresse_entrepot + ", num_fiscale=" + num_fiscale + ", quantite_max=" + quantite_max + '}';
+        return "Entrepot{" + "id_entrepot=" + id_entrepot + ", adresse_entrepot=" + adresse_entrepot + ", num_fiscale=" + num_fiscale + ", quantite_max=" + quantite_max + ", etat=" + etat + ", entreprise=" + entreprise + '}';
     }
 
+   
+
+    public void setEntreprise(String entreprise) {
+        this.entreprise = entreprise;
+    }
+
+  
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Entrepot other = (Entrepot) obj;
+        if (this.num_fiscale != other.num_fiscale) {
+            return false;
+        }
+        return true;
+    }
+
+ 
+    
+
+    
  
     
    
