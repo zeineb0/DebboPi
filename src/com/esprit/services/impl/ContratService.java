@@ -5,6 +5,7 @@
  */
 package com.esprit.services.impl;
 
+import com.esprit.IServices.IContratService;
 import com.esprit.entities.Contrat;
 import com.esprit.entities.ContratDetail;
 import com.esprit.entities.Entrepot;
@@ -24,10 +25,11 @@ import java.util.logging.Logger;
  *
  * @author Dell
  */
-public class ContratService {
+public class ContratService implements IContratService {
     
     
     
+    @Override
     public void ajouterContrat (Contrat contrat,Utilisateur user,Entrepot entrepot) 
     {
         
@@ -52,6 +54,7 @@ public class ContratService {
     
     
     
+    @Override
     public void supprimerContrat (Contrat contrat)
     {
         try {
@@ -65,6 +68,7 @@ public class ContratService {
     }
     
     
+    @Override
     public void modifierContrat(Contrat contrat)
     {
         try {
@@ -84,6 +88,7 @@ public class ContratService {
     
     
     
+    @Override
     public List<ContratDetail> afficherContrat()
     {
        
@@ -125,6 +130,7 @@ public class ContratService {
     
     
     
+    @Override
      public void modifierEtatLivraison(Livraison livraison,String nouveau_etat)
     {
         try {
@@ -143,6 +149,7 @@ public class ContratService {
     }
      
      
+    @Override
      public List<Utilisateur> afficherTransporteurLibre()
     {
        
@@ -181,6 +188,7 @@ public class ContratService {
      
      
      
+    @Override
     public void accepterLivraison(Livraison livraison)
     {
         try {
@@ -198,6 +206,7 @@ public class ContratService {
         }
     }
     
+    @Override
     public void refuserLivraison(Livraison livraison)
     {
         try {
@@ -216,6 +225,7 @@ public class ContratService {
     }
     
     
+    @Override
      public List<Livraison> afficherLivraison(Utilisateur u)
     {
        
