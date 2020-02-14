@@ -5,9 +5,15 @@
  */
 package com.esprit.test;
 
+import com.esprit.entities.Contrat;
+import com.esprit.entities.ContratDetail;
+import com.esprit.entities.Entrepot;
+import com.esprit.entities.Livraison;
 import com.esprit.entities.Utilisateur;
-import com.esprit.services.impl.UtilisateurImpl;
+import com.esprit.services.impl.ContratService;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -38,15 +44,49 @@ public class esprit /*extends Application*/ {
     public static void main(String[] args) {
 //        launch(args);
         
-        UtilisateurImpl serviceUser = new UtilisateurImpl();
+        ContratService contrat_service = new ContratService();
         
-        Utilisateur user1 = new Utilisateur(1, "07478897", "akacha", "farouk", "transporteur");
+        Entrepot entrepot1 = new Entrepot();
+        entrepot1.setId_entrepot(1);
+        Utilisateur transporteur1 = new Utilisateur();
+        transporteur1.setId(1);
         
-        try {
-            serviceUser.ajouter(user1);
-        } catch (SQLException ex) {
-            Logger.getLogger(esprit.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Contrat contrat = new Contrat(3, new java.sql.Date(116, 2, 20), new java.sql.Date(118, 2, 20), 1, 1);
+        
+        contrat_service.ajouterContrat(contrat, transporteur1, entrepot1);
+        
+//        contrat_service.supprimerContrat(contrat);
+
+//        contrat_service.modifierContrat(contrat);
+
+                 List<Contrat> contrat_list = new ArrayList<>();
+                 List<ContratDetail> contrat_detail =new ArrayList<>();
+
+         // contrat_list=contrat_service.afficherContrat();
+                  contrat_list.stream().forEach(System.out::println);
+          
+                  List<Livraison> livraison_list = new ArrayList<>();
+                  livraison_list=contrat_service.afficherLivraison(transporteur1);
+                  System.out.println("#########################");
+//                  livraison_list.stream().forEach(System.out::println);
+//                  
+//                  contrat_detail=contrat_service.afficherContrat();
+//                  contrat_detail.stream().forEach(System.out::println);
+                  
+                  
+                  
+                  Livraison livraison = new Livraison();
+                  livraison.setId_livraison(1);
+                  
+                 // contrat_service.accepterLivraison(livraison);
+                  contrat_service.refuserLivraison(livraison);
+                  
+                  
+                  
+                  
+                  
+                  
+
         
     }
     
