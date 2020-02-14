@@ -18,19 +18,19 @@ import java.sql.SQLException;
 public class DataSource {
     
     private static DataSource data;
-    private String url = "jdbc:mysql://localhost:3306/wedevdb";
+    private String url = "jdbc:mysql://localhost:3306/debbo";
     private String username = "root";
     private String pasword = "";
     private Connection con;
 
     private DataSource() {
         try {
-            con = (Connection) DriverManager.getConnection(url, username, pasword);
-            System.out.println("Class DataSource : connexion etablie");
+            con = (Connection)DriverManager.getConnection(url, username, pasword);
+            System.out.println("connexion etablie");
 
         } catch (SQLException e) {
 
-            System.out.println("Class DataSource :  Erreur de Connexion ");
+            System.out.println("Erreur de Connexion ");
             System.out.println(e);
         }
     }
