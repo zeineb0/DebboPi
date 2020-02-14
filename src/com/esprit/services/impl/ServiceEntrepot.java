@@ -47,12 +47,12 @@ public class ServiceEntrepot implements IService<Entrepot> {
     }
 
     @Override
-    public boolean delete(int nb) throws SQLException {
+    public void delete(int nb) throws SQLException {
        PreparedStatement pre = con.prepareStatement("DELETE FROM `entrepot` WHERE `id_entrepot`= ?");
        pre.setInt(1, nb);
        pre.executeUpdate();
-       
-        return false;
+       System.out.println( "l'entrepot qui a l'id :" +nb + " est supprimé.");
+
        
 
     }
