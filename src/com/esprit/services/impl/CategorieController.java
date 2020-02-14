@@ -31,7 +31,7 @@ Connection conn = DataSource.getInstance().getConnection();
     @Override
     public List<Categorie> listCategorie() {
         List<Categorie> categories = new ArrayList<>();
-        String req = "SELECT * FROM `categorie` WHERE 1";
+        String req = "SELECT * FROM `categories` WHERE 1";
         
         try {
             ps = conn.prepareStatement(req);
@@ -39,15 +39,14 @@ Connection conn = DataSource.getInstance().getConnection();
                while (rs.next()) 
                {
                    Categorie c =new Categorie();
-                   c.setId(rs.getInt("id"));
+                   c.setId(rs.getInt("id_categorie"));
                    c.setNom(rs.getString("nom"));
                    categories.add(c);
                }
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(CategorieController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            System.out.println("erreur");        }
         return categories;
 
     }
@@ -105,7 +104,7 @@ Connection conn = DataSource.getInstance().getConnection();
         {}    
     return c;
                 
-                
+    
                 
                 
                 

@@ -113,7 +113,7 @@ public class ProduitController implements IProduitService{
     }
 
     @Override
-    public List<Produit> listeProduit() throws SQLException{
+    public List<Produit> listeProduit() {
         List<Produit> produits = new ArrayList<>();
         String req = "SELECT * FROM `produit` WHERE 1";
         try {
@@ -135,7 +135,7 @@ public class ProduitController implements IProduitService{
                     * Jointure Fk_Produit_Categorie
                     */
                    
-                   String req2 = "SELECT * FROM `categorie` WHERE `id_produit`=?";
+                   String req2 = "SELECT * FROM `categories` WHERE `id_categorie`=?";
                 PreparedStatement ps2 = conn.prepareStatement(req2);
                 
                 ps2.setInt(1, rs.getInt("FK_id_categorie"));
@@ -151,14 +151,14 @@ public class ProduitController implements IProduitService{
                    produits.add(p);
                }
         } catch (SQLException ex) {
-            Logger.getLogger(ProduitController.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("erreur ");
         }
-        System.out.println("aaaaa"+produits);
+        //System.out.println(produits);
         return produits;
     }
 
     @Override
-    public List<Produit> listeProduitPourUneCategorie(Categorie categorie) throws SQLException{
+    public List<Produit> listeProduitPourUneCategorie(Categorie categorie) {
     List<Produit> produits = new ArrayList<>();
         String req = "SELECT * FROM `produit` WHERE `FK_id_categorie`=?";
         try {
@@ -178,8 +178,7 @@ public class ProduitController implements IProduitService{
                    produits.add(p);
                }
                } catch (SQLException ex) {
-            Logger.getLogger(ProduitController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            System.out.println("erreur");        }
            return produits;
     }
 
@@ -192,7 +191,7 @@ public class ProduitController implements IProduitService{
                 + "`reserve`=?,"
                 + "`promotion`=?,"
                 + "`FK_id_categorie`=?"
-                + " WHERE `id`=?";    
+                + " WHERE `id_produit`=?";    
           try {
             ps = conn.prepareStatement(req);
             ps.setString(1,produit.getNom());

@@ -29,32 +29,48 @@ public class esprit extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-
+        // instance catégorie
         Categorie c1=new Categorie();
         c1.setNom("informatique");
         CategorieController categorieController=new CategorieController();
+        //ajout 
 //        categorieController.ajouterCategorie(c1);
-        c1.setId(2);
+        //c1.setId(2);
+        //instance produit
         ProduitController produitController=new ProduitController();
-//
 //        Produit p1 = new Produit("lait", 1.2, 20,10 , false,null);
 //        Produit p2 = new Produit("yaghort", 1.4, 20,10 , false,null);
 //        Produit p3 = new Produit("yt", 1.4, 20,10 , false,null);
-Produit p1=new Produit();
-p1.setNom("ordinateur");
-p1.setPrix(2000);
-p1.setPromotion(false);
-p1.setQuantite(100);
-p1.setReserve(4);
-p1.setCategorie(c1);
 
+        Produit p1=new Produit();
+        p1.setNom("ordinateur");
+        p1.setPrix(2000);
+        p1.setPromotion(false);
+        p1.setQuantite(100);
+        p1.setReserve(4);
+        p1.setCategorie(c1);
+        // modifier
+        
+        p1.setId(3);
+        p1.setNom("no");
+      produitController.modiferProduit(p1);
 //        produitController.ajouterProduit(p1);
 
-p1.setId(20);
-Produit p=produitController.consulterProduit(p1);
+        //consulter
+        p1.setId(3);
+        Produit p=produitController.consulterProduit(p1);
         System.out.println(p);
-
-        
+//        affichage de la liste
+System.out.println("la liste des produits");
+        List<Produit> list = produitController.listeProduit();
+        System.out.println(list.toString());
+//      afficher la liste des produits pour une catégorie
+        System.out.println("la liste des produits pour une catégorie");
+//       p1.setCategorie(c1);
+       c1.setId(1);
+       
+        List<Produit> list1 = produitController.listeProduitPourUneCategorie(c1);
+        System.out.println(list1.toString());
         
         
   
