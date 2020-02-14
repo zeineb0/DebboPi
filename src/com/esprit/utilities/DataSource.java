@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class DataSource {
     
     private static DataSource data;
-    private String url = "jdbc:mysql://localhost:3306/debbo";
+    private String url = "jdbc:mysql://localhost:3306/debo_base";
     private String username = "root";
     private String pasword = "";
     private Connection con;
