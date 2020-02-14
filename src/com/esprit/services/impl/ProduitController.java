@@ -29,7 +29,8 @@ public class ProduitController implements IProduitService{
     private PreparedStatement ps;
 
     @Override
-    public int ajouterProduit(Produit produit) throws SQLException {
+    public int ajouterProduit(Produit produit)  {
+        System.out.println(produit);
         String req = "INSERT INTO `produit`("
                 + "`nom`,"
                 + " `prix`,"
@@ -38,6 +39,7 @@ public class ProduitController implements IProduitService{
                 + " `promotion`,"
                 + " `FK_id_categorie`)"
                 + " VALUES (?,?,?,?,?,?)";
+      
         try {
             ps = conn.prepareStatement(req);
             ps.setString(1,produit.getNom());
@@ -47,16 +49,18 @@ public class ProduitController implements IProduitService{
             ps.setBoolean(5,produit.isPromotion());
             ps.setInt(6,produit.getCategorie().getId());
             ps.execute();
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
+            System.out.println("Produit non ajouté");
             System.out.println(ex.getMessage());
         }
+           
+      
         return 0;
         
     }
 
     @Override
-    public int supprimerProduit(Produit produit) throws SQLException{
+    public int supprimerProduit(Produit produit) {
         
         
         String req="DELETE FROM `produit` WHERE `id_produit`=?";
@@ -74,19 +78,38 @@ public class ProduitController implements IProduitService{
     }
 
     @Override
-    public Produit consulterProduit(Produit produit) throws SQLException{
+    public Produit consulterProduit(Produit produit){
+        Produit p=new Produit();
         String req= "SELECT * FROM `produit` WHERE `id_produit`=?";
         try {
-        
         ps=conn.prepareStatement(req);
         ps.setInt(1,produit.getId());
-        ps.execute();
+        rs=ps.executeQuery();
+        
+         while (rs.next()) 
+               {
+                   
+                  
+                   p.setId(rs.getInt("id_produit"));
+                   p.setNom(rs.getString("nom"));
+                   p.setPrix(rs.getDouble("prix"));
+                   p.setQuantite(rs.getDouble("quantite"));
+                   p.setReserve(rs.getDouble("reserve"));
+                   p.setPromotion(rs.getBoolean("promotion"));
+                   
+               }
+             return p;
+         
+        
         }
         
+        
         catch (SQLException ex) {
-            Logger.getLogger(ProduitController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Produit introuvable");
+            return null;
         }
-        return produit;
+       
+    
     }
 
     @Override
