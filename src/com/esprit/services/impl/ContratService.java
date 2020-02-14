@@ -226,7 +226,7 @@ public class ContratService implements IContratService {
     
     
     @Override
-     public List<Livraison> afficherLivraison(Utilisateur u)
+     public List<Livraison> afficherLivraisonParTransporteur(Utilisateur u)
     {
        
         List<Livraison> livraison_list = new ArrayList<>();
