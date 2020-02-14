@@ -61,6 +61,8 @@ public class ServiceLivraison implements IService<Livraison> {
            pre.setString(3, l.getEtat_livraison());
            pre.setFloat(4, l.getLongitude_dest());
            pre.setFloat(5, l.getAltitude_dest());
+           pre.setString(6, l.getAcceptation());
+           pre.setInt(7, l.getId_livraison());
            
         
         boolean x=true;
@@ -91,4 +93,70 @@ public class ServiceLivraison implements IService<Livraison> {
     return arr;
     }
 
+    @Override
+    public List<Livraison> readLivree() throws SQLException{
+    List<Livraison> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select * from Livraison WHERE `etat_livraison` = 'livree'");
+     while (rs.next()) {                
+               int id=rs.getInt(1);
+               String date=rs.getString(2);
+               String adr=rs.getString(3);
+               String etat=rs.getString(4);
+               float longitude=rs.getFloat(5);
+               float altitude=rs.getFloat(6);
+               String acc=rs.getString(7);
+               int fk1=rs.getInt(8);
+               int fk2=rs.getInt(9);
+               Livraison l=new Livraison(id,date, adr, etat, longitude,altitude,acc,fk1,fk2);
+     arr.add(l);
+        
+    }
+    
+    return arr;
+}
+    public List<Livraison> readAnnulle() throws SQLException{
+    List<Livraison> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select * from Livraison WHERE `etat_livraison` = 'annulle'");
+     while (rs.next()) {                
+               int id=rs.getInt(1);
+               String date=rs.getString(2);
+               String adr=rs.getString(3);
+               String etat=rs.getString(4);
+               float longitude=rs.getFloat(5);
+               float altitude=rs.getFloat(6);
+               String acc=rs.getString(7);
+               int fk1=rs.getInt(8);
+               int fk2=rs.getInt(9);
+               Livraison l=new Livraison(id,date, adr, etat, longitude,altitude,acc,fk1,fk2);
+     arr.add(l);
+        
+    }
+    
+    return arr;
+}
+    
+        public List<Livraison> readNonLivree() throws SQLException{
+    List<Livraison> arr=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("select * from Livraison WHERE `etat_livraison` = 'NonLivree'");
+     while (rs.next()) {                
+               int id=rs.getInt(1);
+               String date=rs.getString(2);
+               String adr=rs.getString(3);
+               String etat=rs.getString(4);
+               float longitude=rs.getFloat(5);
+               float altitude=rs.getFloat(6);
+               String acc=rs.getString(7);
+               int fk1=rs.getInt(8);
+               int fk2=rs.getInt(9);
+               Livraison l=new Livraison(id,date, adr, etat, longitude,altitude,acc,fk1,fk2);
+     arr.add(l);
+        
+    }
+    
+    return arr;
+}
+    
 }
