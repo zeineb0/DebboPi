@@ -16,7 +16,7 @@ public class Categorie {
     
     private int id;
     private String nom;
-    //une categorie peut avoire plusieurs produits
+    //une categorie peut avoir plusieurs produits
     private List<Produit> listProduit =new ArrayList<>();
 
     public Categorie(int id, String nom) {
@@ -24,13 +24,10 @@ public class Categorie {
         this.nom = nom;
     }
 
-    public Categorie() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Categorie(String nom) {
+        this.nom=nom;
     }
-
-    public Categorie(String produit_laitiers) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public Categorie(){}
 
     public int getId() {
         return id;

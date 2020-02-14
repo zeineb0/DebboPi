@@ -53,18 +53,22 @@ Connection conn = DataSource.getInstance().getConnection();
     }
 
     @Override
-    public void ajouterProduit(Categorie c) throws SQLException {
+    public void ajouterCategorie(Categorie c)  {
 
-        String req = "INSERT INTO `categories`( `nom`) VALUES (?,?)";
+        String req = "INSERT INTO `categories`( `nom`) VALUES (?)";
+    try {
         ps=conn.prepareStatement(req);
-        try{
-        ps.setString(1,c.getNom());
-        ps.execute();}
-        catch (SQLException ex)
-        {}    }
+         ps.setString(1,c.getNom());
+        ps.execute();
+    } catch (SQLException ex) {
+        Logger.getLogger(CategorieController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+     
+  }
+ 
 
     @Override
-    public void supprimerProduit(Categorie c) throws SQLException {
+    public void supprimerCategorie(Categorie c) throws SQLException {
 
         String req= "DELETE FROM `categories` WHERE `id_categorie`=?";
         ps=conn.prepareStatement(req);
@@ -78,19 +82,19 @@ Connection conn = DataSource.getInstance().getConnection();
     
 
     @Override
-    public Categorie consulterProduit(Categorie c) throws SQLException {
+    public Categorie consulterCategorie(Categorie c) throws SQLException {
         String req="SELECT * FROM `categories` WHERE `id_categorie`=?";
         ps=conn.prepareStatement(req);
         try{
         ps.setInt(1,c.getId());
         ps.execute();}
         catch (SQLException ex)
-        {}    
+        {System.out.println(ex.getMessage());}    
     return c;
     }
 
     @Override
-    public Categorie modiferProduit(Categorie c) throws SQLException {
+    public Categorie modiferCategorie(Categorie c) throws SQLException {
         String req = "UPDATE `categories` SET `id_categorie`=?,`nom`=? WHERE 1";
         ps=conn.prepareStatement(req);
         try{
