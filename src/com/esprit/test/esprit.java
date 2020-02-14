@@ -66,7 +66,7 @@ public class esprit /*extends Application*/ {
                   contrat_list.stream().forEach(System.out::println);
           
                   List<Livraison> livraison_list = new ArrayList<>();
-                  livraison_list=contrat_service.afficherLivraison(transporteur1);
+                  livraison_list=contrat_service.afficherLivraisonParTransporteur(transporteur1);
                   System.out.println("#########################");
 //                  livraison_list.stream().forEach(System.out::println);
 //                  
