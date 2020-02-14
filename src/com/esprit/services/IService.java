@@ -18,4 +18,7 @@ public interface IService<L> {
     boolean delete(int nb) throws SQLException;
     boolean update(L l) throws SQLException;
     List<L> readAll() throws SQLException;
+    List<L> readLivree() throws SQLException;
+    List<L> readAnnulle() throws SQLException;
+    List<L> readNonLivree() throws SQLException;
 }
