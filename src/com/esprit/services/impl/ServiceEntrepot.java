@@ -35,7 +35,7 @@ public class ServiceEntrepot implements IService<Entrepot> {
     
     @Override
     public void ajouter(Entrepot e) throws SQLException {
-        
+    try{    
     PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`) VALUES ( ?, ?, ?, ?, ?);");
     pre.setString(1, e.getAdresse_entrepot());
     pre.setInt(2, e.getNum_fiscale());
@@ -43,16 +43,23 @@ public class ServiceEntrepot implements IService<Entrepot> {
     pre.setString(4, e.getEtat());
     pre.setString(5, e.getEntreprise());
     pre.executeUpdate(); 
-    
+    }
+    catch(SQLException ex)
+    {System.out.println("com.esprit.services.impl.ServiceEntrepot.ajouter()");
+    }
     }
 
     @Override
     public void delete(int nb) throws SQLException {
+     try{
        PreparedStatement pre = con.prepareStatement("DELETE FROM `entrepot` WHERE `id_entrepot`= ?");
        pre.setInt(1, nb);
        pre.executeUpdate();
        System.out.println( "l'entrepot qui a l'id :" +nb + " est supprimé.");
-
+     }
+     catch(SQLException ex)
+     {System.out.println("com.esprit.services.impl.ServiceEntrepot.delete()");
+     }
        
 
     }
@@ -72,7 +79,7 @@ public class ServiceEntrepot implements IService<Entrepot> {
             System.out.println(e.getId_entrepot()+ " updated.");
             
         } catch (SQLException ex) {
-               
+               System.out.println("com.esprit.services.impl.ServiceEntrepot.update()");
         }
     }
 
