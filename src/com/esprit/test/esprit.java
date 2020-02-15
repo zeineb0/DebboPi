@@ -42,13 +42,14 @@ public class esprit extends Application {
      */
     public static void main(String[] args) throws SQLException {
 //        launch(args);
+try{
 //        ServiceEntrepot ent = new ServiceEntrepot();
         ServiceLocation loc = new ServiceLocation();
         
 //        Entrepot e1 = new Entrepot(11,"Tunis", 57, 82,"libre", "delice");
         Location l1 = new Location(Date.valueOf("2020-02-02"), 120, 11, 1);
 //        loc.ajouter(l1);
-        //ent.ajouter(e1);
+        //ent.ajouter(e1);4
           //loc.delete(5);
         //ent.delete(8);
 //        ent.update(e1);
@@ -56,7 +57,10 @@ public class esprit extends Application {
 //        System.out.println(entrepots);
         List<Location> locations = loc.readAll();
         System.out.println(locations);
-        
+}
+catch(SQLException ex)
+{System.out.println("com.esprit.test.esprit.main()");
+}
     }
     
 }
