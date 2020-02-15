@@ -31,6 +31,7 @@ public class ServiceLocation implements IServiceLocation<Location>{
     }
     @Override
     public void ajouter(Location l) throws SQLException {
+    try{
     PreparedStatement pre=con.prepareStatement("INSERT INTO `location` (`id_location`, `date_location`, `prix_location`, `FK_id_entrepot`, `FK_id_user`)  VALUES ( ?, ?, ?, ?, ?);");
     pre.setInt(1, l.getId_location());
     pre.setDate(2, l.getDate_location());
@@ -39,14 +40,23 @@ public class ServiceLocation implements IServiceLocation<Location>{
     pre.setInt(5, l.getFK_id_user());
     pre.executeUpdate(); 
     }
+    catch(SQLException ex)
+    {System.out.println("com.esprit.services.impl.ServiceLocation.ajouter()");
+    }
+    }
 
     @Override
     public void delete(int nb) throws SQLException {
-    PreparedStatement pre = con.prepareStatement("DELETE FROM `location` WHERE `id_location`= ?");
+    try{
+        PreparedStatement pre = con.prepareStatement("DELETE FROM `location` WHERE `id_location`= ?");
        pre.setInt(1, nb);
        pre.executeUpdate();
        System.out.println( nb + " deleted.");
-
+    }
+    catch(SQLException ex)
+    {
+        System.out.println("com.esprit.services.impl.ServiceLocation.delete()");
+    }
        
        
     }
@@ -65,7 +75,7 @@ try {
             System.out.println("la loc num"+ l.getId_location()+ " updated.");
             
         } catch (SQLException ex) {
-               
+        System.out.println("com.esprit.services.impl.ServiceLocation.update()");      
         }
     }
 
