@@ -24,6 +24,7 @@ public class Utilisateur {
     private int cin;
     private Date dn;
     private String role;
+    private int tel;
     private int longtitude_user;
     private int altitude_user;
     private String email;
@@ -32,7 +33,12 @@ public class Utilisateur {
 
     public Utilisateur() {
     }
-
+    
+      String url = "jdbc:mysql://localhost:3306/debbov1";
+     String username = "root";
+     String pword = "";
+     Connection con;
+    
     public String getRole() {
         return role;
     }
@@ -44,6 +50,15 @@ public class Utilisateur {
     public int getLongtitude_user() {
         return longtitude_user;
     }
+
+    public int getTel() {
+        return tel;
+    }
+
+    public void setTel(int tel) {
+        this.tel = tel;
+    }
+    
 
     public void setLongtitude_user(int longtitude_user) {
         this.longtitude_user = longtitude_user;
@@ -131,29 +146,53 @@ public class Utilisateur {
   }
   
     public ResultSet afficherDonneesUser() throws SQLException{
-     String url = "jdbc:mysql://localhost:3306/debbov1";
-     String username = "root";
-     String pword = "";
-     Connection con;
 
       con = (Connection) DriverManager.getConnection(url, username, pword);
-      String req="SELECT * FROM `utilisateur` WHERE id_user="+this.getId();
+      String req="SELECT * FROM `utilisateur` WHERE `utilisateur`.`id_user` = "+this.getId();
       Statement st=con.createStatement();
       ResultSet rst = st.executeQuery(req);
     return rst;
 }
     
      public void supprimerUser() throws SQLException{
-         String url = "jdbc:mysql://localhost:3306/debbov1";
-     String username = "root";
-     String pword = "";
-     Connection con;
 
       con = (Connection) DriverManager.getConnection(url, username, pword);
-      String req="DELETE * FROM `utilisateur` WHERE id_user="+this.getId();
+      String req="DELETE FROM `utilisateur` WHERE `utilisateur`.`id_user` = "+this.getId();
+         System.out.println(req);
       Statement st=con.createStatement();
       st.executeUpdate(req);
+      
+      
      }
   
+     public void ajouterAuBd() throws SQLException {
+         con = (Connection) DriverManager.getConnection(url, username, pword);
+         String req="INSERT INTO `utilisateur` (`id_user`, `nom`, `prenom`, `cin`, `date`, `role`, `tel`, `longitude_user`, `altitude_user`, `email`, `password`, `disponniblite`, `nbr_maxComm`, `FK_id_produit`) VALUES "
+                 + "(NULL, '"+this.getNom()+" '"+this.getPrenom()+"', '"+this.getCin()+"', '"+this.getDn()+"', '"+this.getRole()+"', '"+this.getTel()+"', '"+this.getLongtitude_user()+"', '"+this.getAltitude_user()+"', '"+this.getEmail()+"', '"+this.getPassword()+"', '"+this.getDisponibilite()+"', NULL, '')";
+         Statement st=con.createStatement();
+            st.executeUpdate(req);
+         
+     } 
+     
+       public void changerMdp(String amdp,String nmdp) throws SQLException{
+           con = (Connection) DriverManager.getConnection(url, username, pword);
+       if (this.getPassword().equals("amdp")){
+           this.setPassword(nmdp);
+           String req="UPDATE `utilisateur` SET `password`="+nmdp+" WHERE `utilisateur`.`id_user` = "+this.getId();
+           
+           
+           System.out.println("Password changed succesfully !");
+       }
+       else System.out.println("old password is uncorrect , please try again !");
+    }
+     
+     
+     
+     
+     
+     
+     
+     
+   
   
 }
