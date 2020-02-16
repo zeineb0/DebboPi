@@ -7,6 +7,7 @@
 package com.esprit.test;
 
 import com.esprit.entities.Entrepot;
+import com.esprit.entities.Etat;
 import com.esprit.entities.Location;
 import com.esprit.services.impl.ServiceEntrepot;
 import com.esprit.services.impl.ServiceLocation;
@@ -43,20 +44,25 @@ public class esprit extends Application {
     public static void main(String[] args) throws SQLException {
 //        launch(args);
 try{
-//        ServiceEntrepot ent = new ServiceEntrepot();
+           ServiceEntrepot ent = new ServiceEntrepot();
         ServiceLocation loc = new ServiceLocation();
         
-//        Entrepot e1 = new Entrepot(11,"Tunis", 57, 82,"libre", "delice");
-        Location l1 = new Location(Date.valueOf("2020-02-02"), 120, 11, 1);
+       Entrepot e1 = new Entrepot(14,"Tunis", 67, 92,Etat.libre, "delice");
+       Entrepot e2 = new Entrepot(15,"Tunis", 57, 82,Etat.loué, "delice");
+
+////        Location l1 = new Location(Date.valueOf("2020-02-02"), 120, 11, 1);
 //        loc.ajouter(l1);
-        //ent.ajouter(e1);4
+        //ent.ajouter(e1);
+      //  ent.ajouter(e2);
           //loc.delete(5);
         //ent.delete(8);
 //        ent.update(e1);
-//         List<Entrepot> entrepots = ent.readAll();
-//        System.out.println(entrepots);
-        List<Location> locations = loc.readAll();
-        System.out.println(locations);
+        List<Entrepot> entrepots = ent.readAll();
+        System.out.println(entrepots);
+//        List<Location> locations = loc.readAll();
+//            List<Location> locations3 = loc.trierLocationParDateCroissant();
+
+ //       System.out.println(locations3);
 }
 catch(SQLException ex)
 {System.out.println("com.esprit.test.esprit.main()");
