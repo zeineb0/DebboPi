@@ -5,15 +5,17 @@
  */
 package com.esprit.services;
 
+import com.esprit.entities.MouvementStock;
+
 /**
  *
  * @author Zeineb_yahiaoui
  */
 public interface IMouvementService {
  
-    public void ajouterMouvement ();
-    public void modifierMouvement ();
-    public void supprimerMouvement ();
-    public void consulterMouvement ();
+    public void ajouterMouvement (MouvementStock m);
+    public void modifierMouvement (MouvementStock m);
+    public void supprimerMouvement (MouvementStock m);
+    public void consulterMouvement (String nature);
 
 }

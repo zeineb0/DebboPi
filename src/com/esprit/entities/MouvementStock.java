@@ -34,6 +34,9 @@ public class MouvementStock {
         this.dateMouv = dateMouv;
     }
 
+    public MouvementStock() {
+    }
+    
     public int getId() {
         return id;
     }
