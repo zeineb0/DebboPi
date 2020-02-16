@@ -92,13 +92,47 @@ try {
                int FK_id_user = rs.getInt(5);
                
                
-               
+             
                
     Location l = new Location(id_location, date_location, prix_location, FK_id_entrepot, FK_id_user);
     locations.add(l);
      }
     return locations;
     }
+   public List<Location> trierLocationParPrixCroissant() throws SQLException{
+   List<Location> locations2 =new ArrayList<>();
+   ste= con.createStatement();
+   ResultSet rs = ste.executeQuery("SELECT * FROM location ORDER BY`prix_location`ASC");
+   while (rs.next())
+   {           int id_location=rs.getInt(1);
+               Date date_location = rs.getDate(2);
+               double prix_location = rs.getDouble(3);
+               int FK_id_entrepot = rs.getInt(4);
+               int FK_id_user = rs.getInt(5);
+               
+    Location l = new Location(id_location, date_location, prix_location, FK_id_entrepot, FK_id_user);
+    locations2.add(l);
+}
+     return locations2;  
+}
+   
+public List<Location> trierLocationParDateCroissant() throws SQLException{
+   List<Location> locations3 =new ArrayList<>();
+   ste= con.createStatement();
+   ResultSet rs = ste.executeQuery("SELECT * FROM location ORDER BY`date_location`ASC");
+   while (rs.next())
+   {           int id_location=rs.getInt(1);
+               Date date_location = rs.getDate(2);
+               double prix_location = rs.getDouble(3);
+               int FK_id_entrepot = rs.getInt(4);
+               int FK_id_user = rs.getInt(5);
+               
+    Location l = new Location(id_location, date_location, prix_location, FK_id_entrepot, FK_id_user);
+    locations3.add(l);
+}
+     return locations3;
+              
+ 
     
-    
+}
 }
