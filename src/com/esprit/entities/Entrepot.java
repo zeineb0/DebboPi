@@ -14,10 +14,10 @@ public class Entrepot {
     String adresse_entrepot;
     int num_fiscale;
     int quantite_max;
-    String etat;
+    Etat etat;
     String entreprise;
 
-    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, String etat, String entreprise) {
+    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, Etat etat, String entreprise) {
         this.id_entrepot = id_entrepot;
         this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
@@ -26,7 +26,7 @@ public class Entrepot {
         this.entreprise = entreprise;
     }
 
-    public Entrepot(String adresse_entrepot, int num_fiscale, int quantite_max, String etat, String entreprise) {
+    public Entrepot(String adresse_entrepot, int num_fiscale, int quantite_max, Etat etat, String entreprise) {
         this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
         this.quantite_max = quantite_max;
@@ -73,11 +73,11 @@ public class Entrepot {
         return entreprise;
     }
 
-    public String getEtat() {
+    public Etat getEtat() {
         return etat;
     }
 
-    public void setEtat(String etat) {
+    public void setEtat(Etat etat) {
         this.etat = etat;
     }
 
