@@ -8,6 +8,7 @@ package com.esprit.services.impl;
 
 
 import com.esprit.entities.Entrepot;
+import com.esprit.entities.Etat;
 import com.esprit.services.IService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
@@ -40,7 +41,7 @@ public class ServiceEntrepot implements IService<Entrepot> {
     pre.setString(1, e.getAdresse_entrepot());
     pre.setInt(2, e.getNum_fiscale());
     pre.setInt(3, e.getQuantite_max());
-    pre.setString(4, e.getEtat());
+    pre.setObject(4, e.getEtat());
     pre.setString(5, e.getEntreprise());
     pre.executeUpdate(); 
     }
@@ -72,7 +73,7 @@ public class ServiceEntrepot implements IService<Entrepot> {
             ps.setString(1, e.getAdresse_entrepot());
             ps.setInt(2, e.getNum_fiscale());
             ps.setInt(3,  e.getQuantite_max());
-            ps.setString(4, e.getEtat());
+            ps.setObject(4, e.getEtat());
             ps.setString(5, e.getEntreprise());
             ps.setInt(6, e.getId_entrepot());
             ps.executeUpdate();
@@ -93,7 +94,7 @@ public class ServiceEntrepot implements IService<Entrepot> {
                String adresse_entrepot=rs.getString(2);
                int num_fiscale=rs.getInt(3);
                int quantite_max=rs.getInt(4);
-               String etat=rs.getString(5);
+               Etat etat = rs.getObject(5);
                String entreprise=rs.getString(6);
                Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise);
      entrepots.add(e);
