@@ -17,6 +17,7 @@ public class MouvementStock {
     private Produit p;
     private Categorie c;
     private Date dateMouv;
+    
 
     public MouvementStock(int id, String natureDuStock, Produit p, Categorie c, Date dateMouv) {
         this.id = id;
@@ -77,13 +78,6 @@ public class MouvementStock {
     public String toString() {
         return "MouvementStock{" + "id=" + id + ", natureDuStock=" + natureDuStock + ", p=" + p + ", c=" + c + ", dateMouv=" + dateMouv + '}';
     }
-    
-    
-    
-    
-
-    
-    
     
     
 }
