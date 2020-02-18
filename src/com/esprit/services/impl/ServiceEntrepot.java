@@ -37,12 +37,13 @@ public class ServiceEntrepot implements IService<Entrepot> {
     @Override
     public void ajouter(Entrepot e) throws SQLException {
     try{    
-    PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`) VALUES ( ?, ?, ?, ?, ?);");
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`,`fk_id_user`) VALUES ( ?, ?, ?, ?, ?,?);");
     pre.setString(1, e.getAdresse_entrepot());
     pre.setInt(2, e.getNum_fiscale());
     pre.setInt(3, e.getQuantite_max());
     pre.setObject(4, e.getEtat());
     pre.setString(5, e.getEntreprise());
+    pre.setInt(5, e.getFk_id_fournisseur());
     pre.executeUpdate(); 
     }
     catch(SQLException ex)
@@ -68,14 +69,15 @@ public class ServiceEntrepot implements IService<Entrepot> {
     @Override
     public void update(Entrepot e) throws SQLException {
     try {
-            PreparedStatement ps=con.prepareStatement("UPDATE `entrepot` SET `adresse`=?,`num_fiscale`=?,`quantite_max`=?,`etat`=?,`entreprise`=? WHERE `id_entrepot`=?;");
+            PreparedStatement ps=con.prepareStatement("UPDATE `entrepot` SET `adresse`=?,`num_fiscale`=?,`quantite_max`=?,`etat`=?,`entreprise`=? ,`fk_id_user`=? WHERE `id_entrepot`=?;");
            
             ps.setString(1, e.getAdresse_entrepot());
             ps.setInt(2, e.getNum_fiscale());
             ps.setInt(3,  e.getQuantite_max());
             ps.setObject(4, e.getEtat());
             ps.setString(5, e.getEntreprise());
-            ps.setInt(6, e.getId_entrepot());
+            ps.setInt(6, e.getFk_id_fournisseur());
+            ps.setInt(7, e.getId_entrepot());
             ps.executeUpdate();
             System.out.println(e.getId_entrepot()+ " updated.");
             
@@ -94,9 +96,9 @@ public class ServiceEntrepot implements IService<Entrepot> {
                String adresse_entrepot=rs.getString(2);
                int num_fiscale=rs.getInt(3);
                int quantite_max=rs.getInt(4);
-               Etat etat = rs.getObject(5);
+               Etat etat = (Etat) rs.getObject(5);
                String entreprise=rs.getString(6);
-               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise);
+               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise, num_fiscale);
      entrepots.add(e);
      }
     return entrepots;
