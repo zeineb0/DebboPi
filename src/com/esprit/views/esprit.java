@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.esprit.test;
+package com.esprit.views;
 
 import com.esprit.entities.Livraison;
 import com.esprit.services.impl.ServiceLivraison;
