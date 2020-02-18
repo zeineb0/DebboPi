@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.esprit.test;
+package com.esprit.views;
 
 import com.esprit.entities.Contrat;
 import com.esprit.entities.ContratDetail;
@@ -26,23 +26,11 @@ import javafx.stage.Stage;
  *
  * @author Zeineb_yahiaoui
  */
-public class esprit /*extends Application*/ {
+public class esprit extends Application {
     
-//    @Override
-//    public void start(Stage stage) throws Exception {
-//        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-//        
-//        Scene scene = new Scene(root);
-//        
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-//
-//    /**
-//     * @param args the command line arguments
-//     */
-    public static void main(String[] args) {
-//        launch(args);
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         ContratService contrat_service = new ContratService();
         
@@ -87,6 +75,19 @@ public class esprit /*extends Application*/ {
                   
                   
 
+        
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+     launch(args);
         
     }
     
