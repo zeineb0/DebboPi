@@ -13,20 +13,23 @@ import java.sql.Date;
  */
 public class Location {
     int id_location;
-    Date date_location;
+    Date date_deb_location;
+    Date date_fin_location;
     double prix_location;
     int FK_id_entrepot;
     int FK_id_user;
 
-    public Location(int id_location, Date date_location, double prix_location, int FK_id_entrepot, int FK_id_user) {
+    public Location(int id_location, Date date_deb_location,Date date_fin_location, double prix_location, int FK_id_entrepot, int FK_id_user) {
         this.id_location = id_location;
-        this.date_location = date_location;
+        this.date_deb_location= date_deb_location;
+        this.date_deb_location = date_fin_location;
         this.prix_location = prix_location;
         this.FK_id_entrepot = FK_id_entrepot;
         this.FK_id_user = FK_id_user;
     }
-    public Location(Date date_location, double prix_location, int FK_id_entrepot, int FK_id_user) {
-        this.date_location = date_location;
+    public Location(Date date_deb_location,Date date_fin_location,double prix_location, int FK_id_entrepot, int FK_id_user) {
+        this.date_deb_location = date_deb_location;
+        this.date_fin_location = date_fin_location;
         this.prix_location = prix_location;
         this.FK_id_entrepot = FK_id_entrepot;
         this.FK_id_user = FK_id_user;
@@ -40,12 +43,20 @@ public class Location {
         this.id_location = id_location;
     }
 
-    public Date getDate_location() {
-        return date_location;
+    public Date getDate_deb_location() {
+        return date_deb_location;
     }
 
-    public void setDate_location(Date date_location) {
-        this.date_location = date_location;
+    public void setDate_deb_location(Date date_deb_location) {
+        this.date_deb_location = date_deb_location;
+    }
+
+    public Date getDate_fin_location() {
+        return date_fin_location;
+    }
+
+    public void setDate_fin_location(Date date_fin_location) {
+        this.date_fin_location = date_fin_location;
     }
 
     public double getPrix_location() {
@@ -74,8 +85,9 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location{" + "id_location=" + id_location + ", date_location=" + date_location + ", prix_location=" + prix_location + ", FK_id_entrepot=" + FK_id_entrepot + ", FK_id_user=" + FK_id_user + '}';
+        return "Location{" + "id_location=" + id_location + ", date_deb_location=" + date_deb_location + ", date_fin_location=" + date_fin_location + ", prix_location=" + prix_location + ", FK_id_entrepot=" + FK_id_entrepot + ", FK_id_user=" + FK_id_user + '}';
     }
-    
+
+ 
     
 }
