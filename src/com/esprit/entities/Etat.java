@@ -23,6 +23,18 @@ public enum  Etat {
                 return libre;
         }
     }
+
+    public static Etat getÀ_louer() {
+        return à_louer;
+    }
+
+    public static Etat getLoué() {
+        return loué;
+    }
+
+    public static Etat getLibre() {
+        return libre;
+    }
     
     
 }
