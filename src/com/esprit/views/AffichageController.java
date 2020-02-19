@@ -11,8 +11,11 @@ import com.esprit.utilities.DataSource;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -35,7 +38,7 @@ public class AffichageController implements Initializable {
     @FXML
     private TableView<Livraison> tableaff;
     @FXML
-    private TableColumn<Livraison, String> id;
+    private TableColumn<Livraison, Integer> id;
     @FXML
     private TableColumn<Livraison, String> date;
     @FXML
@@ -43,15 +46,15 @@ public class AffichageController implements Initializable {
     @FXML
     private TableColumn<Livraison, Integer> etat;
     @FXML
-    private TableColumn<Livraison, Integer> longitude;
+    private TableColumn<Livraison, Float> longitude;
     @FXML
-    private TableColumn<Livraison, String> laltitude;
+    private TableColumn<Livraison, Float> laltitude;
     @FXML
-    private TableColumn<Livraison, String> acceptation;
+    private TableColumn<Livraison, String> acc;
     @FXML
-    private TableColumn<Livraison, String> nbc;
+    private TableColumn<Livraison, Integer> nbc;
     @FXML
-    private TableColumn<Livraison, String> nbu;
+    private TableColumn<Livraison, Integer> nbu;
     @FXML
     private TextField filterbox;
     private Statement ste;
@@ -61,23 +64,32 @@ public class AffichageController implements Initializable {
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Connection con = DataSource.getInstance().getConnection();
-        ste=con.createStatement();
-        ResultSet rs=ste.executeQuery("select * from Livraison");        
-        id.setCellValueFactory(new PropertyValueFactory<>("id_livraison"));      
-        date.setCellValueFactory(new PropertyValueFactory<>("date_livraison"));  
-        adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_livraison"));   
-        etat.setCellValueFactory(new PropertyValueFactory<>("etat_livraison"));  
-        longitude.setCellValueFactory(new PropertyValueFactory<>("longitude_dest"));  
-        laltitude.setCellValueFactory(new PropertyValueFactory<>("altitude_dest"));  
-        acceptation.setCellValueFactory(new PropertyValueFactory<>("acceptation"));
-        nbc.setCellValueFactory(new PropertyValueFactory<>("FK_id_commande"));
-        nbu.setCellValueFactory(new PropertyValueFactory<>("FK_id_user"));
-        
-        
-
-        tableaff.setItems(datalist);
-
+        try {
+            Connection con = DataSource.getInstance().getConnection();
+            ResultSet res = con.createStatement().executeQuery("select * from livraison");
+                while(res.next()){
+                    datalist.add(new Livraison(res.getInt("id_livraison"),res.getString("date_livraison"),
+                            res.getString("adresse_livraison"),res.getString("etat_livraison"),
+                            res.getFloat("longitude_dest"),res.getFloat("altitude_dest"),res.getString("acceptation"),
+                            res.getInt("FK_id_commande"),res.getInt("FK_id_user")
+                    ));
+                }
+            
+            
+            id.setCellValueFactory(new PropertyValueFactory<>("id_livraison"));
+            date.setCellValueFactory(new PropertyValueFactory<>("date_livraison"));
+            adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_livraison"));
+            etat.setCellValueFactory(new PropertyValueFactory<>("etat_livraison"));
+            longitude.setCellValueFactory(new PropertyValueFactory<>("longitude_dest"));
+            laltitude.setCellValueFactory(new PropertyValueFactory<>("altitude_dest"));
+            acc.setCellValueFactory(new PropertyValueFactory<>("acceptation"));
+            nbc.setCellValueFactory(new PropertyValueFactory<>("FK_id_commande"));
+            nbu.setCellValueFactory(new PropertyValueFactory<>("FK_id_user"));
+            
+            
+            
+            tableaff.setItems(datalist);
+            
 //        datalist.addAll(liv1,liv2,liv3);
 //        FilteredList<Livraison> filteredData = new FilteredList<>(datalist, b -> true);
 //        		// 2. Set the filter Predicate whenever the filter changes.
@@ -99,7 +111,7 @@ public class AffichageController implements Initializable {
 //				    	 return false; // Does not match.
 //			});
 //		});
-//        
+//
 //        		// 3. Wrap the FilteredList in a SortedList. 
 //		SortedList<Livraison> sortedData = new SortedList<>(filteredData);
 //		
@@ -109,6 +121,9 @@ public class AffichageController implements Initializable {
 //		
 //		// 5. Add sorted (and filtered) data to the table.
 //		tableaff.setItems(sortedData);
+        } catch (SQLException ex) {
+            Logger.getLogger(AffichageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
    }
 
     
