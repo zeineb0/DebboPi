@@ -41,7 +41,7 @@ public class esprit extends Application {
         
         Contrat contrat = new Contrat(3, new java.sql.Date(116, 2, 20), new java.sql.Date(118, 2, 20), 1, 1);
         
-        contrat_service.ajouterContrat(contrat, transporteur1, entrepot1);
+      //  contrat_service.ajouterContrat(contrat, transporteur1, entrepot1);
         
 //        contrat_service.supprimerContrat(contrat);
 
@@ -51,24 +51,25 @@ public class esprit extends Application {
                  List<ContratDetail> contrat_detail =new ArrayList<>();
 
          // contrat_list=contrat_service.afficherContrat();
-                  contrat_list.stream().forEach(System.out::println);
+               //   contrat_list.stream().forEach(System.out::println);
           
-                  List<Livraison> livraison_list = new ArrayList<>();
-                  livraison_list=contrat_service.afficherLivraisonParTransporteur(transporteur1);
-                  System.out.println("#########################");
-//                  livraison_list.stream().forEach(System.out::println);
+              //    List<Livraison> livraison_list = new ArrayList<>();
+                 // livraison_list=contrat_service.afficherLivraisonParTransporteur(transporteur1);
+           //       System.out.println("#########################");
+             //     livraison_list.stream().forEach(System.out::println);
+                  System.out.println("****");
 //                  
 //                  contrat_detail=contrat_service.afficherContrat();
 //                  contrat_detail.stream().forEach(System.out::println);
                   
                   
                   
-                  Livraison livraison = new Livraison();
-                  livraison.setId_livraison(1);
+               //   Livraison livraison = new Livraison();
+                //  livraison.setId_livraison(1);
                   
                  // contrat_service.accepterLivraison(livraison);
                 //  contrat_service.accepterLivraison(livraison);
-                  contrat_service.modifierEtatLivraison(livraison, "livrée");
+                  //contrat_service.modifierEtatLivraison(livraison, "livrée");
                   
                   
                   

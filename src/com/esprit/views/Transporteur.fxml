@@ -5,11 +5,11 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.TransporteurController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.TransporteurController">
    <children>
       <Button fx:id="liv" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnClickLivraison" text="Liste des livraisons" />
       <Button fx:id="cnt" layoutX="12.0" layoutY="305.0" mnemonicParsing="false" onAction="#OnClickContrat" prefHeight="31.0" prefWidth="139.0" text="Contrat" />
@@ -32,8 +32,18 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView fx:id="LivraisonTable" layoutX="174.0" layoutY="40.0" prefHeight="560.0" prefWidth="626.0" />
       <Label layoutX="12.0" layoutY="62.0" prefHeight="53.0" prefWidth="139.0" text="   Welcome Farouk" textAlignment="CENTER" />
       <Button fx:id="pr" layoutX="12.0" layoutY="199.0" mnemonicParsing="false" onAction="#OnClickProfile" prefHeight="31.0" prefWidth="139.0" text="Profile" />
+      <TableView fx:id="LivraisonTable" layoutX="172.0" layoutY="38.0" prefHeight="760.0" prefWidth="907.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="67.0" text="Id" />
+          <TableColumn fx:id="date_livraison" prefWidth="141.0" text="Date livraison" />
+            <TableColumn fx:id="adresse_livraison" prefWidth="148.0" text="Adresse livraison" />
+            <TableColumn fx:id="etat_livraison" prefWidth="143.0" text="Etat livraison" />
+            <TableColumn fx:id="acceptation" prefWidth="127.0" text="Acceptation" />
+            <TableColumn fx:id="FK_id_commande" prefWidth="129.0" text="Commande" />
+            <TableColumn fx:id="FK_id_user" prefWidth="150.0" text="Transporteur" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
