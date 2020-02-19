@@ -67,8 +67,8 @@ public class esprit extends Application {
                   livraison.setId_livraison(1);
                   
                  // contrat_service.accepterLivraison(livraison);
-                  contrat_service.refuserLivraison(livraison);
-                  
+                //  contrat_service.accepterLivraison(livraison);
+                  contrat_service.modifierEtatLivraison(livraison, "livrée");
                   
                   
                   
