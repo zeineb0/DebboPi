@@ -33,7 +33,7 @@ public class AjouterEntrepotController implements Initializable {
     private ComboBox<String> cbN;
     private TextField txten ;
     ServiceEntrepot serviceEntrepot=new ServiceEntrepot();
-    private ObservableList <String> list=FXCollections.observableArrayList("libre","loué","à louer");
+    private final ObservableList <String> list=FXCollections.observableArrayList("libre","loué","à louer");
 
 
     private boolean verif(){
@@ -62,8 +62,7 @@ try{
         e.setNum_fiscale(num_fiscale);
         e.setQuantite_max(quantite);
         e.setEntreprise(entreprise);
-        String c=cbN.getValue();
-        e.setEtat(c);
+        e.setEtat(cbN.getValue());
       
         serviceEntrepot.ajouter(e);
             
