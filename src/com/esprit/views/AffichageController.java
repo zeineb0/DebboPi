@@ -90,37 +90,36 @@ public class AffichageController implements Initializable {
             
             tableaff.setItems(datalist);
             
-//        datalist.addAll(liv1,liv2,liv3);
-//        FilteredList<Livraison> filteredData = new FilteredList<>(datalist, b -> true);
-//        		// 2. Set the filter Predicate whenever the filter changes.
-//		filterbox.textProperty().addListener((observable, oldValue, newValue) -> {
-//			filteredData.setPredicate(livraison -> {
-//				// If filter text is empty, display all persons				
-//				if (newValue == null || newValue.isEmpty()) {
-//					return true;
-//				}
-//                                				// Compare first name and last name of every person with filter text.
-//				String lowerCaseFilter = newValue.toLowerCase();
-//				
-//				if (livraison.getDate_livraison().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
-//					return true; // Filter matches first name.
-//				} else if (livraison.getAdresse_livraison().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-//					return true; // Filter matches last name.
-//				}
-//				     else  
-//				    	 return false; // Does not match.
-//			});
-//		});
-//
-//        		// 3. Wrap the FilteredList in a SortedList. 
-//		SortedList<Livraison> sortedData = new SortedList<>(filteredData);
-//		
-//		// 4. Bind the SortedList comparator to the TableView comparator.
-//		// 	  Otherwise, sorting the TableView would have no effect.
-//		sortedData.comparatorProperty().bind(tableaff.comparatorProperty());
-//		
-//		// 5. Add sorted (and filtered) data to the table.
-//		tableaff.setItems(sortedData);
+        FilteredList<Livraison> filteredData = new FilteredList<>(datalist, b -> true);
+        		// 2. Set the filter Predicate whenever the filter changes.
+		filterbox.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(livraison -> {
+				// If filter text is empty, display all persons				
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+                                				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (livraison.getDate_livraison().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (livraison.getAdresse_livraison().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}
+				     else  
+				    	 return false; // Does not match.
+			});
+		});
+
+        		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<Livraison> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(tableaff.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		tableaff.setItems(sortedData);
         } catch (SQLException ex) {
             Logger.getLogger(AffichageController.class.getName()).log(Level.SEVERE, null, ex);
         }
