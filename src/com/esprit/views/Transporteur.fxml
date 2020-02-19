@@ -13,7 +13,7 @@
    <children>
       <Button fx:id="liv" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnClickLivraison" text="Liste des livraisons" />
       <Button fx:id="cnt" layoutX="12.0" layoutY="305.0" mnemonicParsing="false" onAction="#OnClickContrat" prefHeight="31.0" prefWidth="139.0" text="Contrat" />
-      <MenuBar prefHeight="39.0" prefWidth="800.0">
+      <MenuBar prefHeight="39.0" prefWidth="1080.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>

@@ -15,7 +15,7 @@ public class Livraison {
     
     private int id_livraison;
     private Date date;
-    private String adresse_livaison,etat_livraison,acceptation;
+    private String adresse_livraison,etat_livraison,acceptation;
     private int id_commande,id_user;
 
     public Livraison() {
@@ -26,7 +26,7 @@ public class Livraison {
     public Livraison(int id_livraison, Date date, String adresse_livaison, String etat_livraison, String acceptation, int id_commande, int id_user) {
         this.id_livraison = id_livraison;
         this.date = date;
-        this.adresse_livaison = adresse_livaison;
+        this.adresse_livraison = adresse_livaison;
         this.etat_livraison = etat_livraison;
         this.acceptation = acceptation;
         this.id_commande = id_commande;
@@ -41,7 +41,7 @@ public class Livraison {
         this.id_livraison = id_livraison;
     }
 
-    public Date getDate() {
+    public Date getDate_livraison() {
         return date;
     }
 
@@ -49,12 +49,12 @@ public class Livraison {
         this.date = date;
     }
 
-    public String getAdresse_livaison() {
-        return adresse_livaison;
+    public String getAdresse_livraison() {
+        return adresse_livraison;
     }
 
     public void setAdresse_livaison(String adresse_livaison) {
-        this.adresse_livaison = adresse_livaison;
+        this.adresse_livraison = adresse_livaison;
     }
 
     public String getEtat_livraison() {
@@ -73,7 +73,7 @@ public class Livraison {
         this.acceptation = acceptation;
     }
 
-    public int getId_commande() {
+    public int getFK_id_commande() {
         return id_commande;
     }
 
@@ -81,7 +81,7 @@ public class Livraison {
         this.id_commande = id_commande;
     }
 
-    public int getId_user() {
+    public int getFK_id_user() {
         return id_user;
     }
 
@@ -91,7 +91,7 @@ public class Livraison {
 
     @Override
     public String toString() {
-        return "Livraison{" + "id_livraison=" + id_livraison + ", date=" + date + ", adresse_livaison=" + adresse_livaison + ", etat_livraison=" + etat_livraison + ", acceptation=" + acceptation + ", id_commande=" + id_commande + ", id_user=" + id_user + '}';
+        return "Livraison{" + "id_livraison=" + id_livraison + ", date=" + date + ", adresse_livaison=" + adresse_livraison + ", etat_livraison=" + etat_livraison + ", acceptation=" + acceptation + ", id_commande=" + id_commande + ", id_user=" + id_user + '}';
     }
     
     
