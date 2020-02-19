@@ -5,13 +5,20 @@
  */
 package com.esprit.views;
 
+import com.esprit.services.impl.ServiceLivraison;
+import com.esprit.utilities.DataSource;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 
@@ -34,6 +41,8 @@ public class StatistiquesController implements Initializable {
     private Button btn;
     @FXML
     private ChoiceBox<String> typech;
+    @FXML
+    private BarChart<String,Integer> barchart;
     
     
     @Override
@@ -53,10 +62,41 @@ public class StatistiquesController implements Initializable {
         String axeyValue =axey.getValue();
         if (typechValue.equals("BarChart"))
         {
+            String req ="select date_livraison,longitude_dest from livraison order by date_livraison";
+            XYChart.Series<String,Integer> series = new XYChart.Series<>();
+            try {
+            Connection con = DataSource.getInstance().getConnection();
+            ResultSet res = con.createStatement().executeQuery(req);
+            while (res.next()){
+                series.getData().add(new XYChart.Data<>(res.getString(1),res.getInt(2)));
+            }
+                barchart.getData().add(series);
+                barchart.setVisible(true);
+                
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            
+            
+            
+            
+            
             
         }
 
         
+        
+        
+        
+        
+        
+        
+        
     }
+  
+    
+    
+    
+    
     
 }
