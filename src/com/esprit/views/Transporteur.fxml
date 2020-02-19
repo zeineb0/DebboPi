@@ -11,8 +11,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.TransporteurController">
    <children>
-      <Button fx:id="liv" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnClickLivraison" text="Liste des livraisons" />
-      <Button fx:id="cnt" layoutX="12.0" layoutY="305.0" mnemonicParsing="false" onAction="#OnClickContrat" prefHeight="31.0" prefWidth="139.0" text="Contrat" />
+      <Button fx:id="liv" layoutX="12.0" layoutY="310.0" mnemonicParsing="false" onAction="#OnClickLivraison" prefHeight="39.0" prefWidth="139.0" text="Vos livraisons" />
+      <Button fx:id="cnt" layoutX="10.0" layoutY="446.0" mnemonicParsing="false" onAction="#OnClickContrat" prefHeight="39.0" prefWidth="146.0" text="Contrat" />
       <MenuBar prefHeight="39.0" prefWidth="1080.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -33,7 +33,7 @@
         </menus>
       </MenuBar>
       <Label layoutX="12.0" layoutY="62.0" prefHeight="53.0" prefWidth="139.0" text="   Welcome Farouk" textAlignment="CENTER" />
-      <Button fx:id="pr" layoutX="12.0" layoutY="199.0" mnemonicParsing="false" onAction="#OnClickProfile" prefHeight="31.0" prefWidth="139.0" text="Profile" />
+      <Button fx:id="pr" layoutX="12.0" layoutY="163.0" mnemonicParsing="false" onAction="#OnClickProfile" prefHeight="31.0" prefWidth="139.0" text="Profile" />
       <TableView fx:id="LivraisonTable" layoutX="172.0" layoutY="38.0" prefHeight="760.0" prefWidth="907.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="67.0" text="Id" />
@@ -45,5 +45,6 @@
             <TableColumn fx:id="FK_id_user" prefWidth="150.0" text="Transporteur" />
         </columns>
       </TableView>
+      <Button fx:id="list_liv" layoutX="9.0" layoutY="379.0" mnemonicParsing="false" onAction="#OnClickListeLivraison" prefHeight="39.0" prefWidth="146.0" text="Liste des livraisons" />
    </children>
 </AnchorPane>
