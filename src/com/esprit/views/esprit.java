@@ -30,7 +30,7 @@ public class esprit extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Transporteur.fxml"));
         
         ContratService contrat_service = new ContratService();
         

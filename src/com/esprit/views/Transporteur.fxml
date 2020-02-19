@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.TransporteurController">
+   <children>
+      <Button fx:id="liv" layoutX="10.0" layoutY="253.0" mnemonicParsing="false" onAction="#OnClickLivraison" text="Liste des livraisons" />
+      <Button fx:id="cnt" layoutX="12.0" layoutY="305.0" mnemonicParsing="false" onAction="#OnClickContrat" prefHeight="31.0" prefWidth="139.0" text="Contrat" />
+      <MenuBar prefHeight="39.0" prefWidth="800.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TableView fx:id="LivraisonTable" layoutX="174.0" layoutY="40.0" prefHeight="560.0" prefWidth="626.0" />
+      <Label layoutX="12.0" layoutY="62.0" prefHeight="53.0" prefWidth="139.0" text="   Welcome Farouk" textAlignment="CENTER" />
+      <Button fx:id="pr" layoutX="12.0" layoutY="199.0" mnemonicParsing="false" onAction="#OnClickProfile" prefHeight="31.0" prefWidth="139.0" text="Profile" />
+   </children>
+</AnchorPane>
