@@ -24,18 +24,12 @@ public class esprit extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene); 
-        stage.setTitle("Home");
-        stage.show();
-               
-       
+  
         
          try{
-        ServiceEntrepot ent = new ServiceEntrepot();
-        ServiceLocation loc = new ServiceLocation();
-        Entrepot e1 = new Entrepot( "ariana",130, 520,"Libre", "delice", 5);
+//        ServiceEntrepot ent = new ServiceEntrepot();
+//        ServiceLocation loc = new ServiceLocation();
+//        Entrepot e1 = new Entrepot( "ariana",130, 520,"Libre", "delice", 5);
 
 ////        Location l1 = new Location(Date.valueOf("2020-02-02"), 120, 11, 1);
 //        loc.ajouter(l1);
