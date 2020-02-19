@@ -14,11 +14,11 @@ public class Entrepot {
     String adresse_entrepot;
     int num_fiscale;
     int quantite_max;
-    Etat etat;
+    String etat;
     String entreprise;
     int fk_id_fournisseur;
 
-    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, Etat etat, String entreprise,int fk_id_fournisseur) {
+    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, String etat, String entreprise,int fk_id_fournisseur) {
         this.id_entrepot = id_entrepot;
         this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
@@ -28,7 +28,7 @@ public class Entrepot {
         this.fk_id_fournisseur= fk_id_fournisseur;
     }
 
-    public Entrepot(String adresse_entrepot, int num_fiscale, int quantite_max, Etat etat, String entreprise, int fk_id_fournisseur) {
+    public Entrepot(String adresse_entrepot, int num_fiscale, int quantite_max, String etat, String entreprise, int fk_id_fournisseur) {
         this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
         this.quantite_max = quantite_max;
@@ -36,6 +36,10 @@ public class Entrepot {
         this.entreprise = entreprise;
         this.fk_id_fournisseur= fk_id_fournisseur;
 
+    }
+
+    public Entrepot() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    
@@ -77,11 +81,11 @@ public class Entrepot {
         return entreprise;
     }
 
-    public Etat getEtat() {
+    public String getEtat() {
         return etat;
     }
 
-    public void setEtat(Etat etat) {
+    public void setEtat(String etat) {
         this.etat = etat;
     }
 
@@ -122,6 +126,10 @@ public class Entrepot {
             return false;
         }
         return true;
+    }
+
+    public void getEntreprise(String entreprise) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
  
