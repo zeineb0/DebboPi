@@ -15,10 +15,10 @@ import java.util.List;
  * @author Zeineb_yahiaoui
  */
 public interface IProduitService {
-     public int ajouterProduit(Produit produit)throws SQLException;
-    public int supprimerProduit(Produit produit) throws SQLException;
-    public Produit consulterProduit(Produit produit)throws SQLException;
+     public void ajouterProduit(Produit produit)throws SQLException;
+    public void supprimerProduit(String nom) throws SQLException;
+    public void consulterProduit(String nom)throws SQLException;
     public Produit modiferProduit(Produit produit)throws SQLException;
     public List<Produit> listeProduit()throws SQLException;
-    public List<Produit> listeProduitPourUneCategorie(Categorie categorie )throws SQLException;
+    // tri par prix
 }

@@ -29,8 +29,7 @@ public class ProduitController implements IProduitService{
     private PreparedStatement ps;
 
     @Override
-    public int ajouterProduit(Produit produit)  {
-        System.out.println(produit);
+    public void ajouterProduit(Produit produit)  {
         String req = "INSERT INTO `produit`("
                 + "`nom`,"
                 + " `prix`,"
@@ -49,41 +48,40 @@ public class ProduitController implements IProduitService{
             ps.setBoolean(5,produit.isPromotion());
             ps.setInt(6,produit.getCategorie().getId());
             ps.execute();
+            System.out.println("produit ajouté");
+            
         } catch (SQLException ex) {
             System.out.println("Produit non ajouté");
             System.out.println(ex.getMessage());
         }
-           
-      
-        return 0;
-        
+                
     }
 
     @Override
-    public int supprimerProduit(Produit produit) {
+    public void supprimerProduit(String nom) {
         
         
-        String req="DELETE FROM `produit` WHERE `id_produit`=?";
         try {
+                    String req="DELETE FROM `produit` WHERE `nom`=?" ;
+
             ps = conn.prepareStatement(req);
-            ps.setInt(1, produit.getId());
+            ps.setString(1, nom);
             ps.execute();
-             
+             System.out.println("suppression validée");
             
         } catch (SQLException ex) {
-            Logger.getLogger(ProduitController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur de suppression");
         }
         
-        return 0;
     }
 
     @Override
-    public Produit consulterProduit(Produit produit){
+    public void consulterProduit(String nom){
         Produit p=new Produit();
-        String req= "SELECT * FROM `produit` WHERE `id_produit`=?";
+        String req= "SELECT * FROM `produit` WHERE `nom`=?";
         try {
         ps=conn.prepareStatement(req);
-        ps.setInt(1,produit.getId());
+        ps.setString(1,nom);
         rs=ps.executeQuery();
         
          while (rs.next()) 
@@ -96,19 +94,15 @@ public class ProduitController implements IProduitService{
                    p.setQuantite(rs.getDouble("quantite"));
                    p.setReserve(rs.getDouble("reserve"));
                    p.setPromotion(rs.getBoolean("promotion"));
-                   
+                   System.out.println(p);
                }
-             return p;
-         
-        
-        }
-        
-        
-        catch (SQLException ex) {
-            System.out.println("Produit introuvable");
-            return null;
         }
        
+        catch (SQLException ex) {
+            System.out.println("Produit introuvable");
+        }
+             
+
     
     }
 
@@ -157,30 +151,8 @@ public class ProduitController implements IProduitService{
         return produits;
     }
 
-    @Override
-    public List<Produit> listeProduitPourUneCategorie(Categorie categorie) {
-    List<Produit> produits = new ArrayList<>();
-        String req = "SELECT * FROM `produit` WHERE `FK_id_categorie`=?";
-        try {
-            ps = conn.prepareStatement(req);
-            ps.setInt(1, categorie.getId());
-             rs = ps.executeQuery();
-               while (rs.next()) 
-               {
-                   Produit p=new Produit();
-                   p.setId(rs.getInt("id_produit"));
-                   p.setNom(rs.getString("nom"));
-                   p.setPrix(rs.getDouble("prix"));
-                   p.setQuantite(rs.getDouble("quantite"));
-                   p.setReserve(rs.getDouble("reserve"));
-                   p.setPromotion(rs.getBoolean("promotion"));
-                   p.setCategorie(categorie);
-                   produits.add(p);
-               }
-               } catch (SQLException ex) {
-            System.out.println("erreur");        }
-           return produits;
-    }
+   
+   
 
     @Override
     public Produit modiferProduit(Produit produit) throws SQLException {
@@ -202,8 +174,9 @@ public class ProduitController implements IProduitService{
             ps.setInt(6,produit.getCategorie().getId());
             ps.setInt(7,produit.getId());
             ps.execute();
+              System.out.println("produit modifié");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("erreur de modification");
         }
         
     return produit;
