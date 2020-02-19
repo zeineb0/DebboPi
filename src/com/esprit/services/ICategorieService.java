@@ -15,10 +15,12 @@ import java.util.List;
  * @author Zeineb_yahiaoui
  */
 public interface ICategorieService {
-        public void ajouterCategorie(Categorie c)throws SQLException;
-    public void supprimerCategorie(Categorie c) throws SQLException;
-    public Categorie consulterCategorie(Categorie c)throws SQLException;
-    public Categorie modiferCategorie(Categorie c)throws SQLException;
+        public void ajouterCategorie(Categorie c);
+    public void supprimerCategorie(String nom) ;
+    public void consulterCategorie(String nom);
+    public Categorie modiferCategorie(Categorie c);
         public List<Categorie> listCategorie();
+            public List<Produit> listeProduitPourUneCategorie(Categorie categorie )throws SQLException;
+
 
 }

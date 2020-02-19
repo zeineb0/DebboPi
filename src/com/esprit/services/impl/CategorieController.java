@@ -44,7 +44,8 @@ Connection conn = DataSource.getInstance().getConnection();
                    categories.add(c);
                }
             
-            
+                               System.out.println(categories.toString());
+
         } catch (SQLException ex) {
             System.out.println("erreur");        }
         return categories;
@@ -67,49 +68,95 @@ Connection conn = DataSource.getInstance().getConnection();
  
 
     @Override
-    public void supprimerCategorie(Categorie c) throws SQLException {
+    public void supprimerCategorie(String nom) {
 
-        String req= "DELETE FROM `categories` WHERE `id_categorie`=?";
-        ps=conn.prepareStatement(req);
+        String req= "DELETE FROM `categories` WHERE `nom`=?";
+    
         try{
-        ps.setInt(1,c.getId());
-        ps.execute();}
+                    ps=conn.prepareStatement(req);
+
+        ps.setString(1,nom);
+        ps.execute();
+        
+            System.out.println("catégorie supprimée");
+        }
         catch (SQLException ex)
-        {}    }
+        {
+            System.out.println("erreur de suppression");
+        }    }
         
 
     
 
     @Override
-    public Categorie consulterCategorie(Categorie c) throws SQLException {
-        String req="SELECT * FROM `categories` WHERE `id_categorie`=?";
-        ps=conn.prepareStatement(req);
+    public void consulterCategorie(String nom) {
+                    Categorie c = new Categorie();
+
+        String req="SELECT * FROM `categories` WHERE `nom` like ?";
         try{
-        ps.setInt(1,c.getId());
-        ps.execute();}
+                    ps=conn.prepareStatement(req);
+
+        ps.setString(1,nom);
+        ps.execute();
+        rs=ps.executeQuery();
+            while (rs.next()) {
+               
+                c.setId(rs.getInt("id_categorie"));
+                   c.setNom(rs.getString("nom"));
+                
+            }
+            System.out.println(c);
+        }
         catch (SQLException ex)
-        {System.out.println(ex.getMessage());}    
-    return c;
+        {System.out.println("catégorie introuvable");}    
+    
     }
 
     @Override
-    public Categorie modiferCategorie(Categorie c) throws SQLException {
-        String req = "UPDATE `categories` SET `id_categorie`=?,`nom`=? WHERE 1";
-        ps=conn.prepareStatement(req);
+    public Categorie modiferCategorie(Categorie c) {
+        String req = "UPDATE `categories` SET `nom`=? WHERE `id_categorie`=?";
         try{
-        ps.setInt(1,c.getId());
-        ps.setString(2,c.getNom());
-        ps.execute();}
+                    ps=conn.prepareStatement(req);
+
+        ps.setInt(2,c.getId());
+        ps.setString(1,c.getNom());
+        
+        ps.execute();
+        
+            System.out.println("catégorie modifiée");
+        }
         catch (SQLException ex)
-        {}    
+        {
+            System.out.println("erreur de modification");
+        }    
     return c;
                 
     
-                
-                
-                
-                
                 }
+    @Override
+     public List<Produit> listeProduitPourUneCategorie(Categorie categorie) {
+    List<Produit> produits = new ArrayList<>();
+        String req = "SELECT * FROM `produit` WHERE `FK_id_categorie`=?";
+        try {
+            ps = conn.prepareStatement(req);
+            ps.setInt(1, categorie.getId());
+             rs = ps.executeQuery();
+               while (rs.next()) 
+               {
+                   Produit p=new Produit();
+                   p.setId(rs.getInt("id_produit"));
+                   p.setNom(rs.getString("nom"));
+                   p.setPrix(rs.getDouble("prix"));
+                   p.setQuantite(rs.getDouble("quantite"));
+                   p.setReserve(rs.getDouble("reserve"));
+                   p.setPromotion(rs.getBoolean("promotion"));
+                   p.setCategorie(categorie);
+                   produits.add(p);
+               }
+               } catch (SQLException ex) {
+            System.out.println("erreur");        }
+           return produits;
+    }
     
     
 }
