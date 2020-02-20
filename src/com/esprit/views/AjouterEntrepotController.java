@@ -32,7 +32,6 @@ import javafx.stage.Stage;
  * @author asus
  */
 public class AjouterEntrepotController implements Initializable {
-
     @FXML
     private TextField entrep;
     @FXML
@@ -44,6 +43,9 @@ public class AjouterEntrepotController implements Initializable {
     @FXML
     private ComboBox<String> etat;
 ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
+    @FXML
+    private TextField prix;
+   
 
     /**
      * Initializes the controller class.
@@ -65,12 +67,15 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
         String ad = adresse.getText();
         int num_fiscale = Integer.parseInt(numfisc.getText());
         int quantite = Integer.parseInt(quanmax.getText());
+               Double pr=Double.parseDouble(prix.getText());
+
         String entreprise = entrep.getText();
         Entrepot e = new Entrepot();
         e.setAdresse_entrepot(ad);
         e.setNum_fiscale(num_fiscale);
         e.setQuantite_max(quantite);
         e.setEtat(etat.getValue());
+        e.setPrix_location(pr);
         e.setEntreprise(entreprise);
       
            
