@@ -6,8 +6,12 @@
 package com.esprit.views;
 
 import com.esprit.entities.Entrepot;
+import com.esprit.services.impl.ServiceEntrepot;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,10 +19,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import com.esprit.services.impl.ServiceEntrepot;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * FXML Controller class
@@ -27,47 +27,54 @@ import java.util.List;
  */
 public class AjouterEntrepotController implements Initializable {
 
-    private TextField txtadd;
-    private TextField txtnum;
-    private TextField txtquan;
-    private ComboBox<String> cbN;
-    private TextField txten ;
-    ServiceEntrepot serviceEntrepot=new ServiceEntrepot();
-    private final ObservableList <String> list=FXCollections.observableArrayList("libre","loué","à louer");
+    @FXML
+    private TextField entrep;
+    @FXML
+    private TextField quanmax;
+    @FXML
+    private TextField adresse;
+    @FXML
+    private TextField numfisc;
+    @FXML
+    private ComboBox<String> etat;
+ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
 
-
-    private boolean verif(){
-        if (cbN.getValue() != null) {
-            return true;
-        }
-        return false;
-    }
-    
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        ObservableList<String> list;
+        try {
+            list= FXCollections.observableArrayList("libre","loué","à louer");
+            etat.setItems(list);
+        } catch (Exception ex) {
+            System.out.println("com.esprit.views.AjouterEntrepotController.initialize()");
+        }
+    }    
 
-        cbN.setItems(list);
-               
-    }  
     @FXML
-    private void onClick(ActionEvent event) throws SQLException {
-try{
-        String adresse = txtadd.getText();
-        int num_fiscale = Integer.valueOf(txtnum.getText());
-        int quantite = Integer.valueOf(txtquan.getText());
-        String entreprise = txten.getText();
-        Entrepot e =new Entrepot();
-        e.setAdresse_entrepot(adresse);
+    private void onClick(ActionEvent event) {
+        try{
+        String ad = adresse.getText();
+        int num_fiscale = Integer.parseInt(numfisc.getText());
+        int quantite = Integer.parseInt(quanmax.getText());
+        String entreprise = entrep.getText();
+        Entrepot e = new Entrepot();
+        e.setAdresse_entrepot(ad);
         e.setNum_fiscale(num_fiscale);
         e.setQuantite_max(quantite);
+        e.setEtat(etat.getValue());
         e.setEntreprise(entreprise);
-        e.setEtat(cbN.getValue());
       
+           
         serviceEntrepot.ajouter(e);
+            } catch (SQLException ex) {
+                System.out.println("com.esprit.views.AjouterEntrepotController.onClick()");;
+            }
             
-}
-catch(Exception ex)
-{System.out.println("com.esprit.views.AjouterEntrepotController.onClick()");}
+        }
+        
+        
     }
-}
+    
