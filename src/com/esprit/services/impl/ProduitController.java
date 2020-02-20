@@ -31,13 +31,14 @@ public class ProduitController implements IProduitService{
 
     @Override
     public void ajouterProduit(Produit produit)  {
+        System.out.println(produit);
         String req = "INSERT INTO `produit`("
                 + "`nom`,"
                 + " `prix`,"
                 + " `quantite`,"
                 + " `reserve`,"
-                + " `FK_id_categorie`)"
-                + "`FK_id_entrepot`"
+                + " `FK_id_categorie`,"
+                + "`FK_id_entrepot`)"
                 + " VALUES (?,?,?,?,?,?)";
       
         try {
@@ -52,6 +53,7 @@ public class ProduitController implements IProduitService{
             System.out.println("produit ajouté");
             
         } catch (SQLException ex) {
+            System.out.println(req);
             System.out.println("Produit non ajouté");
         }
                 
@@ -184,8 +186,8 @@ public class ProduitController implements IProduitService{
                 + "`prix`=?,"
                 + "`quantite`=?,"
                 + "`reserve`=?,"
-                + "`FK_id_categorie`=?"
-                + "`FK_id_entrepot`"
+                + "`FK_id_categorie`=?,"
+                + "`FK_id_entrepot`=?"
 
                 + " WHERE `id_produit`=?";    
           try {
@@ -196,9 +198,11 @@ public class ProduitController implements IProduitService{
             ps.setDouble(4,produit.getReserve());
             ps.setInt(5,produit.getCategorie().getId());
             ps.setInt(6,produit.getEntrepot().getId_entrepot());
+            ps.setInt(7,produit.getId());
             ps.execute();
               System.out.println("produit modifié");
         } catch (SQLException ex) {
+            
             System.out.println("erreur de modification");
         }
         
