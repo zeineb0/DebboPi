@@ -66,23 +66,43 @@ public class ServiceEntrepot implements IService<Entrepot> {
     }
     
     @Override
-    public void update(Entrepot e) throws SQLException {
-    try {
-            PreparedStatement ps=con.prepareStatement("UPDATE `entrepot` SET `adresse`=?,`num_fiscale`=?,`quantite_max`=?,`etat`=?,`entreprise`=? ,`fk_id_user`=? WHERE `id_entrepot`=?;");
-           
+    public int update(Entrepot e) throws SQLException {
+    int st=0;
+        try {
+            PreparedStatement ps=con.prepareStatement("UPDATE `entrepot` SET `adresse`=?,`num_fiscale`=?,`quantite_max`=?,`etat`=?,`entreprise`=?  WHERE `id_entrepot`=?;");
             ps.setString(1, e.getAdresse_entrepot());
             ps.setInt(2, e.getNum_fiscale());
             ps.setInt(3,  e.getQuantite_max());
             ps.setString(4, e.getEtat());
             ps.setString(5, e.getEntreprise());
-            ps.setInt(6, e.getFk_id_fournisseur());
-            ps.setInt(7, e.getId_entrepot());
-            ps.executeUpdate();
-            System.out.println(e.getId_entrepot()+ " updated.");
-            
+            ps.setInt(6, e.getId_entrepot());
+            st = ps.executeUpdate();
+            System.out.println("entrepot"+e.getId_entrepot());
         } catch (SQLException ex) {
                System.out.println("com.esprit.services.impl.ServiceEntrepot.update()");
         }
+        return st;
+    }
+    public Entrepot getEntrepotId(int id) throws SQLException
+    { Entrepot e = new Entrepot();
+        try {
+           PreparedStatement ps=con.prepareStatement("select * from entrepot WHERE `id_entrepot`=?;");
+           ps.setInt(1, id);
+           ResultSet rs=ps.executeQuery();
+           while(rs.next())
+           {e.setId_entrepot(rs.getInt(1));
+            e.setAdresse_entrepot(rs.getString(2));
+            e.setNum_fiscale(rs.getInt(3));
+            e.setQuantite_max(rs.getInt(4));
+            e.setEtat(rs.getString(5));
+            e.setEntreprise(rs.getString(6));
+            
+           }
+           
+           }
+        catch (SQLException ex) {
+               System.out.println("com.esprit.services.impl.ServiceEntrepot.getEntrepotId()");}
+       return e;        
     }
 
     @Override
