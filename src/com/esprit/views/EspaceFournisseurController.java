@@ -36,7 +36,7 @@ public class EspaceFournisseurController implements Initializable {
     /**
      * Initializes the controller class.
      */
- @FXML
+    @FXML
     private TableView<Entrepot> table;
     @FXML
     private TableColumn<Entrepot, Integer> Ide;
@@ -80,50 +80,42 @@ public class EspaceFournisseurController implements Initializable {
     
             }
 
-    @FXML
+@FXML
     private void onClick(ActionEvent event) throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
+         Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
 
-        Scene scene = new Scene(root);
-        Stage primaryStage = new Stage();
-        primaryStage.setTitle("Ajouter entrepot");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+           Scene ListeE = new Scene(liste);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(ListeE);
+        window.show();
     }  
     @FXML
     private void onClick1(ActionEvent event) throws IOException {
          
         Parent liste = FXMLLoader.load(getClass().getResource("supprimerEntrepot.fxml"));
-        Scene ListeE = new Scene(liste);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(ListeE);
-        window.show();
-//        Parent root = FXMLLoader.load(getClass().getResource("supprimerEntrepot.fxml"));
-//
-//        Scene scene = new Scene(root);
-//        Stage primaryStage = new Stage();
-//        primaryStage.setTitle("Supprimer entrepot");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-    }   
-    @FXML
-    private void onClick2(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("modifierEntrepot.fxml"));
-
-        Scene scene = new Scene(root);
-        Stage primaryStage = new Stage();
-        primaryStage.setTitle("Modifier entrepot");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    private void onClick3(ActionEvent event) throws IOException {
-        Parent liste = FXMLLoader.load(getClass().getResource("afficherEntrepot.fxml"));
-        Scene ListeE = new Scene(liste);
+           Scene ListeE = new Scene(liste);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(ListeE);
         window.show();
         
+    }   
+    @FXML
+    private void onClick2(ActionEvent event) throws IOException {
+        Parent liste = FXMLLoader.load(getClass().getResource("modifierEntrepot.fxml"));
+          Scene ListeE = new Scene(liste);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(ListeE);
+        window.show();
+    }
+
+    @FXML
+    private void onClick3(ActionEvent event) throws IOException {
+        Parent liste = FXMLLoader.load(getClass().getResource("espaceFournisseur.fxml"));
+        Scene ListeE = new Scene(liste);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(ListeE);
+        window.show();
+    }
 //        Parent root = FXMLLoader.load(getClass().getResource("afficherEntrepot.fxml"));
 //
 //        Scene scene = new Scene(root);
@@ -131,7 +123,9 @@ public class EspaceFournisseurController implements Initializable {
 //        primaryStage.setTitle("Liste des entrepots");
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
-    }
+   
+
+    
 
     }
     
