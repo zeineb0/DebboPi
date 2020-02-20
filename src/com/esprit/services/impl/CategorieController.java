@@ -149,7 +149,6 @@ Connection conn = DataSource.getInstance().getConnection();
                    p.setPrix(rs.getDouble("prix"));
                    p.setQuantite(rs.getDouble("quantite"));
                    p.setReserve(rs.getDouble("reserve"));
-                   p.setPromotion(rs.getBoolean("promotion"));
                    p.setCategorie(categorie);
                    produits.add(p);
                }
