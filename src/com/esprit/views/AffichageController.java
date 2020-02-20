@@ -132,16 +132,27 @@ public class AffichageController implements Initializable {
    }
 
     private void addButtonToTable() {
-        TableColumn<Livraison, Void> colBtn = new TableColumn("Modification");
+        TableColumn<Livraison, Void> colBtn = new TableColumn("Details");
 
         Callback<TableColumn<Livraison, Void>, TableCell<Livraison, Void>> cellFactory = new Callback<TableColumn<Livraison, Void>, TableCell<Livraison, Void>>() {
             public TableCell<Livraison, Void> call(final TableColumn<Livraison, Void> param) {
                 final TableCell<Livraison, Void> cell = new TableCell<Livraison, Void>() {
 
-                    private final Button btn = new Button("Modifier");
+                    private final Button btn = new Button("Supprimer");
 
                     {
-                        
+                            btn.setOnAction((ActionEvent event) -> {
+                            ServiceLivraison ser = new ServiceLivraison();
+                                String nb =id.getText();
+                                int i = Integer.parseInt(nb);
+
+                                try {
+                                    ser.delete(i);
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(AffichageController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                        });
+ 
 
                     }
 
