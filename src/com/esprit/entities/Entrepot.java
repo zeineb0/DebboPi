@@ -41,6 +41,15 @@ public class Entrepot {
     public Entrepot() {
     }
 
+    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, String etat, String entreprise) {
+   this.id_entrepot = id_entrepot;
+        this.adresse_entrepot = adresse_entrepot;
+        this.num_fiscale = num_fiscale;
+        this.quantite_max = quantite_max;
+        this.etat = etat;
+        this.entreprise = entreprise;
+    }
+
    
      public int getId_entrepot() {
         return id_entrepot;
