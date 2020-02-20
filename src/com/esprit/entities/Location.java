@@ -15,22 +15,22 @@ public class Location {
     int id_location;
     Date date_deb_location;
     Date date_fin_location;
-    double prix_location;
+    double fk_prix_location;
     int FK_id_entrepot;
     int FK_id_user;
 
-    public Location(int id_location, Date date_deb_location,Date date_fin_location, double prix_location, int FK_id_entrepot, int FK_id_user) {
+    public Location(int id_location, Date date_deb_location,Date date_fin_location, double fk_prix_location, int FK_id_entrepot, int FK_id_user) {
         this.id_location = id_location;
         this.date_deb_location= date_deb_location;
         this.date_deb_location = date_fin_location;
-        this.prix_location = prix_location;
+        this.fk_prix_location = fk_prix_location;
         this.FK_id_entrepot = FK_id_entrepot;
         this.FK_id_user = FK_id_user;
     }
-    public Location(Date date_deb_location,Date date_fin_location,double prix_location, int FK_id_entrepot, int FK_id_user) {
+    public Location(Date date_deb_location,Date date_fin_location,double fk_prix_location, int FK_id_entrepot, int FK_id_user) {
         this.date_deb_location = date_deb_location;
         this.date_fin_location = date_fin_location;
-        this.prix_location = prix_location;
+        this.fk_prix_location = fk_prix_location;
         this.FK_id_entrepot = FK_id_entrepot;
         this.FK_id_user = FK_id_user;
     }
@@ -60,11 +60,11 @@ public class Location {
     }
 
     public double getPrix_location() {
-        return prix_location;
+        return fk_prix_location;
     }
 
-    public void setPrix_location(double prix_location) {
-        this.prix_location = prix_location;
+    public void setPrix_location(double fk_prix_location) {
+        this.fk_prix_location = fk_prix_location;
     }
 
     public int getFK_id_entrepot() {
@@ -83,11 +83,12 @@ public class Location {
         this.FK_id_user = FK_id_user;
     }
 
+
     @Override
     public String toString() {
-        return "Location{" + "id_location=" + id_location + ", date_deb_location=" + date_deb_location + ", date_fin_location=" + date_fin_location + ", prix_location=" + prix_location + ", FK_id_entrepot=" + FK_id_entrepot + ", FK_id_user=" + FK_id_user + '}';
+        return "Location{" + "id_location=" + id_location + ", date_deb_location=" + date_deb_location + ", date_fin_location=" + date_fin_location + ", fk_prix_location=" + fk_prix_location + ", FK_id_entrepot=" + FK_id_entrepot + ", FK_id_user=" + FK_id_user + '}';
     }
-
+    
  
     
 }
