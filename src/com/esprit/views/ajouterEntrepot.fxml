@@ -14,41 +14,41 @@
             <Font size="35.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="482.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Entreprise">
+      <Label layoutX="100.0" layoutY="430.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Prix location">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="entrep" layoutX="314.0" layoutY="482.0" prefHeight="30.0" prefWidth="200.0" />
-      <Label layoutX="100.0" layoutY="427.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Etat">
+      <TextField fx:id="prix" layoutX="314.0" layoutY="431.0" prefHeight="30.0" prefWidth="200.0" />
+      <Label layoutX="100.0" layoutY="382.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Etat">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="quanmax" layoutX="315.0" layoutY="366.0" prefHeight="30.0" prefWidth="200.0" />
-      <Label layoutX="100.0" layoutY="366.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Quantite max">
+      <TextField fx:id="quanmax" layoutX="315.0" layoutY="330.0" prefHeight="30.0" prefWidth="200.0" />
+      <Label layoutX="100.0" layoutY="330.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Quantite max">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="256.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Adresse entrepot">
+      <Label layoutX="100.0" layoutY="220.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Adresse entrepot">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="adresse" layoutX="315.0" layoutY="257.0" prefHeight="30.0" prefWidth="200.0" />
-      <Label layoutX="100.0" layoutY="310.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Numero fiscale">
+      <TextField fx:id="adresse" layoutX="315.0" layoutY="221.0" prefHeight="30.0" prefWidth="200.0" />
+      <Label layoutX="100.0" layoutY="274.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Numero fiscale">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="numfisc" layoutX="315.0" layoutY="311.0" prefHeight="30.0" prefWidth="200.0" />
+      <TextField fx:id="numfisc" layoutX="315.0" layoutY="275.0" prefHeight="30.0" prefWidth="200.0" />
       <Button layoutX="189.0" layoutY="524.0" mnemonicParsing="false" onAction="#ajouterEntrepot" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: CD5C5C;" text="Ajouter entrepot">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <ComboBox fx:id="etat" layoutX="315.0" layoutY="427.0" prefHeight="30.0" prefWidth="200.0" />
+      <ComboBox fx:id="etat" layoutX="315.0" layoutY="383.0" prefHeight="30.0" prefWidth="200.0" />
       <AnchorPane prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: B22222;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick3" prefHeight="40.0" prefWidth="180.0" text="Afficher Entrepot" />
@@ -57,5 +57,11 @@
             <Button layoutX="593.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="180.0" text="Modifier Entrepot" />
          </children>
       </AnchorPane>
+      <Label layoutX="100.0" layoutY="476.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Entreprise">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="entrep" layoutX="314.0" layoutY="477.0" prefHeight="30.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
