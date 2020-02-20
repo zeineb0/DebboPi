@@ -53,7 +53,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="id" editable="false" layoutX="319.0" layoutY="166.0" prefHeight="30.0" prefWidth="200.0" />
+      <TextField fx:id="id" layoutX="319.0" layoutY="166.0" prefHeight="30.0" prefWidth="200.0" />
       <Button layoutX="541.0" layoutY="161.0" mnemonicParsing="false" onAction="#getEntrepot" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: CD5C5C;" text="Trouver Entrepot">
          <font>
             <Font size="18.0" />
@@ -64,10 +64,10 @@
          <children>
             <ToolBar layoutX="-367.0" layoutY="25.0" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: B22222;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <items>
+                  <Button mnemonicParsing="false" onAction="#onClick3" prefHeight="40.0" prefWidth="180.0" text="Afficher Entrepot " />
                   <Button mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="180.0" text="Ajouter Entrepot" />
                   <Button mnemonicParsing="false" onAction="#onClick1" prefHeight="40.0" prefWidth="180.0" text="Supprimer Entreport" />
                   <Button mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="180.0" text="Modifier Entrepot" />
-                  <Button mnemonicParsing="false" onAction="#onClick3" prefHeight="40.0" prefWidth="180.0" text="Afficher Entrepot " />
                </items>
             </ToolBar>
          </children>
