@@ -13,9 +13,10 @@
    <top>
       <ToolBar prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: B22222;" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="200.0" text="Ajouter Entrepot" />
-            <Button mnemonicParsing="false" onAction="#onClick1" prefHeight="40.0" prefWidth="200.0" text="Supprimer Entreport" />
-            <Button mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="200.0" text="Modifier Entrepot" />
+            <Button mnemonicParsing="false" onAction="#onClick3" prefHeight="40.0" prefWidth="180.0" text="Afficher Entrepot" />
+          <Button mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="180.0" text="Ajouter Entrepot" />
+            <Button mnemonicParsing="false" onAction="#onClick1" prefHeight="40.0" prefWidth="180.0" text="Supprimer Entreport" />
+            <Button mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="180.0" text="Modifier Entrepot" />
         </items>
       </ToolBar>
    </top>
