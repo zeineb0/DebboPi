@@ -52,6 +52,8 @@ public class EspaceFournisseurController implements Initializable {
     private TableColumn<Entrepot, String> entrep;
     ObservableList<Entrepot> datalist;
     ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
+    @FXML
+    private TableColumn<Entrepot, Double> prix;
 
     //public Observablelist<Entrepot> data= FXCollections.observableArrayList();
     /**
@@ -68,7 +70,7 @@ public class EspaceFournisseurController implements Initializable {
             num.setCellValueFactory(new PropertyValueFactory<>("num_fiscale"));
             quant.setCellValueFactory(new PropertyValueFactory<>("quantite_max"));
             etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
-
+            prix.setCellValueFactory(new PropertyValueFactory<>("prix_location"));
             entrep.setCellValueFactory(new PropertyValueFactory<>("entreprise"));
             
             table.setItems(datalist);
