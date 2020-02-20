@@ -40,6 +40,26 @@ public class EspaceFournisseurController implements Initializable {
         primaryStage.setTitle("Ajouter Article");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }  
+    @FXML
+    private void onClick1(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("supprimerEntrepot.fxml"));
+
+        Scene scene = new Scene(root);
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Ajouter Article");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }   
+    @FXML
+    private void onClick2(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("modifierEntrepot.fxml"));
+
+        Scene scene = new Scene(root);
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Ajouter Article");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     }
