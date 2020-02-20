@@ -117,8 +117,8 @@ public class ServiceEntrepot implements IService<Entrepot> {
                int quantite_max=rs.getInt(4);
                String etat = rs.getString(5);
                String entreprise=rs.getString(6);
-               int fk_id_fournisseur=rs.getInt(7);
-               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise, fk_id_fournisseur);
+               //int fk_id_fournisseur=rs.getInt(7);
+               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise);
      entrepots.add(e);
      }
     return entrepots;
