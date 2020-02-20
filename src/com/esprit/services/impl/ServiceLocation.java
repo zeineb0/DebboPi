@@ -5,6 +5,7 @@
  */
 package com.esprit.services.impl;
 
+import com.esprit.entities.Entrepot;
 import com.esprit.entities.Location;
 import com.esprit.services.IServiceLocation;
 import com.esprit.utilities.DataSource;
@@ -80,7 +81,26 @@ try {
         System.out.println("com.esprit.services.impl.ServiceLocation.update()");      
         }
     }
+    public List<Entrepot> readAL() throws SQLException {
+    List<Entrepot> entrepot=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("SELECT * FROM `entrepot` WHERE `etat`=\"à louer\"");
+     while (rs.next()) {                
+               int id_entrepot=rs.getInt(1);
+               String adresse_entrepot=rs.getString(2);
+               int num_fiscale=rs.getInt(3);
+               int quantite_max=rs.getInt(4);
+               String etat = rs.getString(5);
+               String entreprise=rs.getString(6);
+               double fk_prix_location=rs.getDouble(7);
+               int fk_id_fournisseur=rs.getInt(8);
+               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise, fk_prix_location, fk_id_fournisseur);
+     entrepot.add(e);
+     }
+    return entrepot;
+    }
 
+   
     @Override
     public List<Location> readAll() throws SQLException {
     List<Location> locations=new ArrayList<>();
