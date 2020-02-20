@@ -36,13 +36,14 @@ public class ServiceEntrepot implements IService<Entrepot> {
     @Override
     public void ajouter(Entrepot e) throws SQLException {
     try{    
-    PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`,`fk_id_user`) VALUES ( ?, ?, ?, ?, ?,?);");
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`,`prix_location`,`fk_id_user`) VALUES ( ?, ?, ?, ?, ?,?,?);");
     pre.setString(1, e.getAdresse_entrepot());
     pre.setInt(2, e.getNum_fiscale());
     pre.setInt(3, e.getQuantite_max());
     pre.setString(4, e.getEtat());
     pre.setString(5, e.getEntreprise());
-    pre.setInt(6, e.getFk_id_fournisseur());
+    pre.setDouble(6, e.getPrix_location());
+    pre.setInt(7, e.getFk_id_fournisseur());
     pre.executeUpdate(); 
     }
     catch(SQLException ex)
@@ -109,17 +110,19 @@ public class ServiceEntrepot implements IService<Entrepot> {
     public List<Entrepot> readAll() throws SQLException {
     List<Entrepot> entrepots=new ArrayList<>();
     ste=con.createStatement();
-    ResultSet rs=ste.executeQuery("select * from entrepot");
+    ResultSet rs=ste.executeQuery("select * from entrepot ");
      while (rs.next()) {                
                int id_entrepot=rs.getInt(1);
                String adresse_entrepot=rs.getString(2);
                int num_fiscale=rs.getInt(3);
                int quantite_max=rs.getInt(4);
                String etat = rs.getString(5);
-               String entreprise=rs.getString(6);
-               //int fk_id_fournisseur=rs.getInt(7);
-               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise);
+               Double prix_location=rs.getDouble(6);
+               String entreprise=rs.getString(7);
+               //int fk_id_fournisseur=rs.getInt(8);
+               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, prix_location, entreprise);
      entrepots.add(e);
+        
      }
     return entrepots;
     }
