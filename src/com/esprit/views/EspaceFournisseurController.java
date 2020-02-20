@@ -8,16 +8,12 @@ package com.esprit.views;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
@@ -27,32 +23,25 @@ import javafx.stage.Stage;
  */
 public class EspaceFournisseurController implements Initializable {
 
-  
-
-    
-   
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
 
     @FXML
-    private void onClick(ActionEvent event) {
-        
-        
-        try {
-        Parent root = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
-       
-                 
-        } catch (IOException ex) {
-            System.out.println("com.esprit.views.EspaceFournisseurController.onClick()");
-        }
-        
-             
+    private void onClick(ActionEvent event) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
+
+        Scene scene = new Scene(root);
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Ajouter Article");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
-   
+    }
     
-    
-    
-}
+
