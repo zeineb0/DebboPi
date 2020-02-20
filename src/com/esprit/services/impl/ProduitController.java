@@ -6,6 +6,7 @@
 package com.esprit.services.impl;
 
 import com.esprit.entities.Categorie;
+import com.esprit.entities.Entrepot;
 import com.esprit.entities.Produit;
 import com.esprit.services.IProduitService;
 import com.esprit.utilities.DataSource;
@@ -35,8 +36,8 @@ public class ProduitController implements IProduitService{
                 + " `prix`,"
                 + " `quantite`,"
                 + " `reserve`,"
-                + " `promotion`,"
                 + " `FK_id_categorie`)"
+                + "`FK_id_entrepot`"
                 + " VALUES (?,?,?,?,?,?)";
       
         try {
@@ -45,14 +46,13 @@ public class ProduitController implements IProduitService{
             ps.setDouble(2,produit.getPrix());
             ps.setDouble(3,produit.getQuantite());
             ps.setDouble(4,produit.getReserve());
-            ps.setBoolean(5,produit.isPromotion());
-            ps.setInt(6,produit.getCategorie().getId());
+            ps.setInt(5,produit.getCategorie().getId());
+            ps.setInt(6,produit.getEntrepot().getId_entrepot());
             ps.execute();
             System.out.println("produit ajouté");
             
         } catch (SQLException ex) {
             System.out.println("Produit non ajouté");
-            System.out.println(ex.getMessage());
         }
                 
     }
@@ -93,7 +93,6 @@ public class ProduitController implements IProduitService{
                    p.setPrix(rs.getDouble("prix"));
                    p.setQuantite(rs.getDouble("quantite"));
                    p.setReserve(rs.getDouble("reserve"));
-                   p.setPromotion(rs.getBoolean("promotion"));
                    System.out.println(p);
                }
         }
@@ -122,7 +121,6 @@ public class ProduitController implements IProduitService{
                    p.setPrix(rs.getDouble("prix"));
                    p.setQuantite(rs.getDouble("quantite"));
                    p.setReserve(rs.getDouble("reserve"));
-                   p.setPromotion(rs.getBoolean("promotion"));
                    
                   
                    /**
@@ -142,12 +140,37 @@ public class ProduitController implements IProduitService{
                    //affecter la categorie au produit
                    p.setCategorie(c);
                      //ajouter le produit dans la liste 
-                   produits.add(p);
+                    
+                   String req3 = "SELECT `entreprise` FROM `entrepot` WHERE `id_entrepot`=?";
+                                   PreparedStatement ps3 = conn.prepareStatement(req3);
+                                   
+                                   ps3.setInt(1,rs.getInt("FK_id_entrepot"));
+                                   ResultSet rs3 = ps3.executeQuery();
+                                   Entrepot e = new Entrepot();
+                                   while(rs3.next()){
+                                   
+                                   e.setId_entrepot(rs3.getInt("id_entrepot"));
+
+                                   e.setAdresse_entrepot(rs3.getString("adresse_entrepot"));
+                                   e.setNum_fiscale(rs3.getInt("num_fiscale"));
+                                   e.setQuantite_max(rs3.getInt("quantite_max"));
+                                   e.setEtat(rs3.getString("etat"));
+                                   e.setEntreprise(rs3.getString("entreprise"));
+                                   
+                                   }
+                                   p.setEntrepot(e);
+                                   
+
+                                      produits.add(p);
+
+                   
+                   
+                   
                }
         } catch (SQLException ex) {
             System.err.println("erreur ");
         }
-        //System.out.println(produits);
+        System.out.println(produits);
         return produits;
     }
 
@@ -155,14 +178,15 @@ public class ProduitController implements IProduitService{
    
 
     @Override
-    public Produit modiferProduit(Produit produit) throws SQLException {
+    public Produit modiferProduit(Produit produit)  {
         String req = "UPDATE `produit` SET "
                 + "`nom`=?,"
                 + "`prix`=?,"
                 + "`quantite`=?,"
                 + "`reserve`=?,"
-                + "`promotion`=?,"
                 + "`FK_id_categorie`=?"
+                + "`FK_id_entrepot`"
+
                 + " WHERE `id_produit`=?";    
           try {
             ps = conn.prepareStatement(req);
@@ -170,9 +194,8 @@ public class ProduitController implements IProduitService{
             ps.setDouble(2,produit.getPrix());
             ps.setDouble(3,produit.getQuantite());
             ps.setDouble(4,produit.getReserve());
-            ps.setBoolean(5,produit.isPromotion());
-            ps.setInt(6,produit.getCategorie().getId());
-            ps.setInt(7,produit.getId());
+            ps.setInt(5,produit.getCategorie().getId());
+            ps.setInt(6,produit.getEntrepot().getId_entrepot());
             ps.execute();
               System.out.println("produit modifié");
         } catch (SQLException ex) {
