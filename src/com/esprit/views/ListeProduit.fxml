@@ -16,12 +16,12 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <TableView fx:id="table" layoutX="87.0" layoutY="225.0" prefHeight="200.0" prefWidth="300.0">
+      <TableView fx:id="table" layoutX="87.0" layoutY="225.0" prefHeight="200.0" prefWidth="421.0">
         <columns>
-          <TableColumn fx:id="clNom" prefWidth="75.0" text="nom" />
-          <TableColumn fx:id="clPrix" prefWidth="75.0" text="prix" />
-            <TableColumn fx:id="clQte" prefWidth="75.0" text="quantité" />
-            <TableColumn fx:id="clReserve" prefWidth="75.0" text="réservé" />
+          <TableColumn fx:id="clNom" prefWidth="119.0" text="nom" />
+          <TableColumn fx:id="clPrix" prefWidth="92.0" text="prix" />
+            <TableColumn fx:id="clQte" prefWidth="108.0" text="quantité" />
+            <TableColumn fx:id="clReserve" prefWidth="101.0" text="réservé" />
         </columns>
       </TableView>
       <Button fx:id="btn1" layoutX="339.0" layoutY="465.0" mnemonicParsing="false" onAction="#onClickModif" text="Modifier" />

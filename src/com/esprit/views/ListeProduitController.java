@@ -87,6 +87,8 @@ public class ListeProduitController implements Initializable {
         // TODO
         categories= categorieController.listCategorie();
        entrepots=entrepotController.readAll();
+               produits=produitController.listeProduit();
+
         ObservableList observableList=FXCollections.observableArrayList(categories);
         ObservableList observableList1=FXCollections.observableArrayList(entrepots);
         cmbC.setItems(observableList);
@@ -94,11 +96,10 @@ public class ListeProduitController implements Initializable {
         
                 reverseButton(true);
                 
-         clNom.setCellValueFactory(new PropertyValueFactory<>("Nom"));
-                 //setCellValueFactory(new PropertyValueFactory("nom"));
-//         clPrix.setCellValueFactory(new PropertyValueFactory("prix"));
-//         clQte.setCellValueFactory(new PropertyValueFactory("quantite"));
-//         clReserve.setCellValueFactory(new PropertyValueFactory("reserve"));
+         clNom.setCellValueFactory(new PropertyValueFactory("Nom"));
+         clPrix.setCellValueFactory(new PropertyValueFactory("prix"));
+         clQte.setCellValueFactory(new PropertyValueFactory("quantite"));
+         clReserve.setCellValueFactory(new PropertyValueFactory("reserve"));
          table.getItems().addAll(produits);
          
          
@@ -113,7 +114,8 @@ public class ListeProduitController implements Initializable {
                   txt.setText(ProduitSelectionner.getNom());
                   txt1.setText(String.valueOf(ProduitSelectionner.getPrix()));
                   txt2.setText(String.valueOf(ProduitSelectionner.getQuantite()));
-                  System.out.println(ProduitSelectionner.getCategorie());
+                  txt3.setText(String.valueOf(ProduitSelectionner.getReserve()));
+                  //System.out.println(ProduitSelectionner.getCategorie());
                   cmbC.setValue(ProduitSelectionner.getCategorie());
               }
              
@@ -137,10 +139,12 @@ public class ListeProduitController implements Initializable {
 
     @FXML
     private void onClickModif(ActionEvent event) {
+        
         ProduitSelectionner.setNom(txt.getText());
        ProduitSelectionner.setPrix(Double.parseDouble(txt1.getText()));
        ProduitSelectionner.setQuantite(Double.parseDouble(txt2.getText()));
-        System.out.println(ProduitSelectionner);
+       ProduitSelectionner.setQuantite(Double.parseDouble(txt3.getText()));
+        //System.out.println(ProduitSelectionner);
        produitController.modiferProduit(ProduitSelectionner);
        
        /**
