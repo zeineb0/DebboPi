@@ -1,18 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.EspaceFournisseurController">
    <top>
       <ToolBar prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: B22222;" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="180.0" text="Ajouter Entrepot" />
-            <Button mnemonicParsing="false" onAction="#onClick1" prefHeight="40.0" prefWidth="180.0" text="Supprimer Entreport" />
-            <Button mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="180.0" text="Modifier Entrepot" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Afficher Entrepot " />
+          <Button mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="200.0" text="Ajouter Entrepot" />
+            <Button mnemonicParsing="false" onAction="#onClick1" prefHeight="40.0" prefWidth="200.0" text="Supprimer Entreport" />
+            <Button mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="200.0" text="Modifier Entrepot" />
         </items>
       </ToolBar>
    </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane id="AnchorPane" layoutY="-20.0" prefHeight="500.0" prefWidth="800.0">
+               <children>
+                  <Label layoutX="51.0" layoutY="45.0" prefHeight="51.0" prefWidth="330.0" style="-fx-background-color: ;" text="Liste des Entrepots" textFill="FIREBRICK">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="table" layoutX="51.0" layoutY="107.0" prefHeight="442.0" prefWidth="649.0">
+                     <columns>
+                        <TableColumn fx:id="Ide" prefWidth="82.0" text="Id Entrepot" />
+                        <TableColumn fx:id="adre" prefWidth="112.0" text="Adresse Entrepot" />
+                        <TableColumn fx:id="num" prefWidth="111.0" text="Numero fiscale" />
+                        <TableColumn fx:id="quant" minWidth="0.0" prefWidth="136.0" text="Quantité max" />
+                        <TableColumn fx:id="etat" prefWidth="86.0" text="Etat" />
+                        <TableColumn fx:id="entrep" prefWidth="121.0" text="Entreprise" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>
