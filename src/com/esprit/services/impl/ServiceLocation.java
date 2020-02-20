@@ -92,9 +92,9 @@ try {
                int quantite_max=rs.getInt(4);
                String etat = rs.getString(5);
                String entreprise=rs.getString(6);
-               double fk_prix_location=rs.getDouble(7);
+               double prix_location=rs.getDouble(7);
                int fk_id_fournisseur=rs.getInt(8);
-               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise, fk_prix_location, fk_id_fournisseur);
+               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat,  prix_location,entreprise, fk_id_fournisseur);
      entrepot.add(e);
      }
     return entrepot;
