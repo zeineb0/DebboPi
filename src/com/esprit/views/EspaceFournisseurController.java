@@ -117,7 +117,6 @@ public class EspaceFournisseurController implements Initializable {
         primaryStage.show();
     }
 
-    @FXML
     private void onClick3(ActionEvent event) throws IOException {
         Parent liste = FXMLLoader.load(getClass().getResource("afficherEntrepot.fxml"));
         Scene ListeE = new Scene(liste);
