@@ -42,9 +42,7 @@ public class Entrepot {
     }
 
    
-
-    
-    public int getId_entrepot() {
+     public int getId_entrepot() {
         return id_entrepot;
     }
 
@@ -127,9 +125,10 @@ public class Entrepot {
         return true;
     }
 
-    public void getEntreprise(String entreprise) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+
+
+    
 
  
     
