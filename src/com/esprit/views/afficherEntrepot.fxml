@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.AfficherEntrepotController">
+   <children>
+      <Label layoutX="51.0" layoutY="45.0" prefHeight="51.0" prefWidth="330.0" style="-fx-background-color: ;" text="Liste des Entrepots" textFill="FIREBRICK">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="51.0" layoutY="123.0" prefHeight="442.0" prefWidth="649.0">
+        <columns>
+          <TableColumn fx:id="Ide" prefWidth="82.0" text="Id Entrepot" />
+          <TableColumn fx:id="adre" prefWidth="112.0" text="Adresse Entrepot" />
+            <TableColumn fx:id="num" prefWidth="111.0" text="Numero fiscale" />
+            <TableColumn fx:id="quant" minWidth="0.0" prefWidth="136.0" text="Quantité max" />
+            <TableColumn fx:id="etat" prefWidth="86.0" text="Etat" />
+            <TableColumn fx:id="entrep" prefWidth="121.0" text="Entreprise" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
