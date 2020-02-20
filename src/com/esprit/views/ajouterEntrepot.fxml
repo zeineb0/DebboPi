@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.AjouterEntrepotController">
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.AjouterEntrepotController">
    <children>
       <Label layoutX="156.0" layoutY="70.0" prefHeight="51.0" prefWidth="330.0" style="-fx-background-color: ;" text="Ajouter Entrepot" textFill="FIREBRICK">
          <font>
@@ -19,13 +19,13 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField layoutX="314.0" layoutY="400.0" prefHeight="30.0" prefWidth="200.0" />
+      <TextField fx:id="entrep" layoutX="314.0" layoutY="400.0" prefHeight="30.0" prefWidth="200.0" />
       <Label layoutX="100.0" layoutY="345.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Etat">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField layoutX="315.0" layoutY="284.0" prefHeight="30.0" prefWidth="200.0" />
+      <TextField fx:id="quanmax" layoutX="315.0" layoutY="284.0" prefHeight="30.0" prefWidth="200.0" />
       <Label layoutX="100.0" layoutY="284.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Quantite max">
          <font>
             <Font size="22.0" />
@@ -36,18 +36,18 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField layoutX="315.0" layoutY="175.0" prefHeight="30.0" prefWidth="200.0" />
+      <TextField fx:id="adresse" layoutX="315.0" layoutY="175.0" prefHeight="30.0" prefWidth="200.0" />
       <Label layoutX="100.0" layoutY="228.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Numero fiscale">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField layoutX="315.0" layoutY="229.0" prefHeight="30.0" prefWidth="200.0" />
-      <Button layoutX="221.0" layoutY="470.0" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: CD5C5C;" text="Valider modification">
+      <TextField fx:id="numfisc" layoutX="315.0" layoutY="229.0" prefHeight="30.0" prefWidth="200.0" />
+      <Button layoutX="189.0" layoutY="442.0" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: CD5C5C;" text="Ajouter entrepot">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <ComboBox layoutX="315.0" layoutY="345.0" prefHeight="30.0" prefWidth="200.0" />
+      <ComboBox fx:id="etat" layoutX="315.0" layoutY="345.0" prefHeight="30.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
