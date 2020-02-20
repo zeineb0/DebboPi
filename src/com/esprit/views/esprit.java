@@ -29,31 +29,31 @@ public class esprit extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        // instance catégorie
-        Categorie c1=new Categorie();
-        c1.setNom("informatique1");
-        CategorieController categorieController=new CategorieController();
-        //ajout 
-//        categorieController.ajouterCategorie(c1);
-        
-//        c1.setNom("infoooooooo");
-//        c1.setId(4);
-//        categorieController.modiferCategorie(c1);
-//                categorieController.consulterCategorie("infoooooooo");
-//                categorieController.supprimerCategorie("informatique1");
-                    List<Categorie> liste = categorieController.listCategorie();
-        //c1.setId(2);
-        //instance produit
-        
+//        // instance catégorie
+//        Categorie c1=new Categorie();
+//        c1.setNom("informatique1");
+//        CategorieController categorieController=new CategorieController();
+//        //ajout 
+////        categorieController.ajouterCategorie(c1);
+//        
+////        c1.setNom("infoooooooo");
+////        c1.setId(4);
+////        categorieController.modiferCategorie(c1);
+////                categorieController.consulterCategorie("infoooooooo");
+////                categorieController.supprimerCategorie("informatique1");
+//                    List<Categorie> liste = categorieController.listCategorie();
+//        //c1.setId(2);
+//        //instance produit
+//        
         ProduitController produitController=new ProduitController();
-           
-       // c1.setId(1);
-       Produit p1 = new Produit("lait", 1.2, 20,10 , false,c1);
-        produitController.consulterProduit("noooo");
-               produitController.supprimerProduit("lait");
-//        Produit p2 = new Produit("yaghort", 1.4, 20,10 , false,null);
-//        Produit p3 = new Produit("yt", 1.4, 20,10 , false,null);
-        produitController.ajouterProduit(p1);
+           produitController.listeProduit();
+//       // c1.setId(1);
+//       Produit p1 = new Produit("lait", 1.2, 20,10 , false,c1);
+//        produitController.consulterProduit("noooo");
+//               produitController.supprimerProduit("lait");
+////        Produit p2 = new Produit("yaghort", 1.4, 20,10 , false,null);
+////        Produit p3 = new Produit("yt", 1.4, 20,10 , false,null);
+//        produitController.ajouterProduit(p1);
 //        p1.setId(2);
 //        produitController.supprimerProduit(p1);
         
@@ -89,13 +89,12 @@ public class esprit extends Application {
         
         
   
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ListeProduit.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
-               
         
         
     }
