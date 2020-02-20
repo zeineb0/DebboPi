@@ -6,9 +6,11 @@
 package com.esprit.views;
 
 import com.esprit.entities.Categorie;
+import com.esprit.entities.Entrepot;
 import com.esprit.entities.Produit;
 import com.esprit.services.ICategorieService;
 import com.esprit.services.impl.CategorieController;
+import com.esprit.services.impl.EntrepotController;
 import com.esprit.services.impl.ProduitController;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
@@ -45,8 +47,11 @@ public class esprit extends Application {
 //        //c1.setId(2);
 //        //instance produit
 //        
-        ProduitController produitController=new ProduitController();
-           produitController.listeProduit();
+//        ProduitController produitController=new ProduitController();
+//           produitController.listeProduit();
+//           EntrepotController entrepotController=new EntrepotController();
+//           List<Entrepot> entrepots = entrepotController.readAll();
+//           System.out.println(entrepots);
 //       // c1.setId(1);
 //       Produit p1 = new Produit("lait", 1.2, 20,10 , false,c1);
 //        produitController.consulterProduit("noooo");
