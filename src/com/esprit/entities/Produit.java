@@ -15,29 +15,20 @@ private int id;
     private double prix;
     private double quantite;
     private double reserve;
-    private boolean promotion;
     //un produit posséde une catégorie
     private Categorie categorie;
+    private Entrepot entrepot;
 
-    public Produit(int id, String nom, double prix, double quantite, double reserve, boolean promotion, Categorie categorie) {
-        this.id = id;
-        this.nom = nom;
-        this.prix = prix;
-        this.quantite = quantite;
-        this.reserve = reserve;
-        this.promotion = promotion;
-        this.categorie = categorie;
-    }
-    public Produit( String nom, double prix, double quantite, double reserve, boolean promotion, Categorie categorie) {
-        this.nom = nom;
-        this.prix = prix;
-        this.quantite = quantite;
-        this.reserve = reserve;
-        this.promotion = promotion;
-        this.categorie = categorie;
-    }
 
     public Produit() {
+    }
+
+    public Entrepot getEntrepot() {
+        return entrepot;
+    }
+
+    public void setEntrepot(Entrepot entrepot) {
+        this.entrepot = entrepot;
     }
 
    
@@ -60,10 +51,6 @@ private int id;
 
     public double getReserve() {
         return reserve;
-    }
-
-    public boolean isPromotion() {
-        return promotion;
     }
 
     public Categorie getCategorie() {
@@ -90,18 +77,16 @@ private int id;
         this.reserve = reserve;
     }
 
-    public void setPromotion(boolean promotion) {
-        this.promotion = promotion;
-    }
-
+   
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }
 
     @Override
     public String toString() {
-        return "Produit{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", quantite=" + quantite + ", reserve=" + reserve + ", promotion=" + promotion + ", categorie=" + categorie + '}';
+        return "Produit{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", quantite=" + quantite + ", reserve=" + reserve + ", categorie=" + categorie + ", entrepot=" + entrepot + '}';
     }
+
     
     
 
