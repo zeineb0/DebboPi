@@ -16,17 +16,24 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -85,10 +92,9 @@ public class AffichageController implements Initializable {
             acc.setCellValueFactory(new PropertyValueFactory<>("acceptation"));
             nbc.setCellValueFactory(new PropertyValueFactory<>("FK_id_commande"));
             nbu.setCellValueFactory(new PropertyValueFactory<>("FK_id_user"));
-            
-            
-            
+            addButtonToTable();
             tableaff.setItems(datalist);
+            
             
         FilteredList<Livraison> filteredData = new FilteredList<>(datalist, b -> true);
         		// 2. Set the filter Predicate whenever the filter changes.
@@ -125,7 +131,39 @@ public class AffichageController implements Initializable {
         }
    }
 
-    
- 
+    private void addButtonToTable() {
+        TableColumn<Livraison, Void> colBtn = new TableColumn("Modification");
+
+        Callback<TableColumn<Livraison, Void>, TableCell<Livraison, Void>> cellFactory = new Callback<TableColumn<Livraison, Void>, TableCell<Livraison, Void>>() {
+            public TableCell<Livraison, Void> call(final TableColumn<Livraison, Void> param) {
+                final TableCell<Livraison, Void> cell = new TableCell<Livraison, Void>() {
+
+                    private final Button btn = new Button("Modifier");
+
+                    {
+
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colBtn.setCellFactory(cellFactory);
+
+        tableaff.getColumns().add(colBtn);
+
+    }
+
+        
     
 }
