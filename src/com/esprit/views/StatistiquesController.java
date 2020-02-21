@@ -184,11 +184,7 @@ public class StatistiquesController implements Initializable {
         
         
         
-        
-        
-        
-        
-        
+          
     
     }
     
