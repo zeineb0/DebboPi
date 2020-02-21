@@ -67,7 +67,7 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
         String ad = adresse.getText();
         int num_fiscale = Integer.parseInt(numfisc.getText());
         int quantite = Integer.parseInt(quanmax.getText());
-               Double pr=Double.parseDouble(prix.getText());
+        Double pr=Double.parseDouble(prix.getText());
 
         String entreprise = entrep.getText();
         Entrepot e = new Entrepot();
