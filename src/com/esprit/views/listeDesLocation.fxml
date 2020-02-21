@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ListeDesLocationController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <Label layoutX="18.0" layoutY="34.0" prefHeight="51.0" prefWidth="425.0" style="-fx-background-color: ;" text="Liste des locations" textFill="FIREBRICK">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+            <TableView fx:id="table" layoutX="7.0" layoutY="85.0" prefHeight="247.0" prefWidth="621.0">
+               <columns>
+                  <TableColumn fx:id="Ide" prefWidth="82.0" text="Id Location" />
+                  <TableColumn fx:id="dateDeb" prefWidth="124.0" text="Date debut location" />
+                  <TableColumn fx:id="dateFin" prefWidth="113.0" text="Date fin location" />
+                  <TableColumn fx:id="prix" minWidth="0.0" prefWidth="95.0" text="Prix location" />
+                  <TableColumn fx:id="quan" prefWidth="97.0" text="Quatite max" />
+                  <TableColumn fx:id="adr" prefWidth="108.0" text="adresse entrepot" />
+               </columns>
+            </TableView>
+            <TextField fx:id="prix1" layoutX="272.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" />
+            <Label layoutX="101.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="prix">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="101.0" layoutY="348.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="Date debut location">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="101.0" layoutY="386.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="Date fin location">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="206.0" layoutY="547.0" mnemonicParsing="false" onAction="#modifierLocation" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Modifier location">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <DatePicker fx:id="datDeb" layoutX="273.0" layoutY="351.0" />
+            <DatePicker fx:id="datFin" layoutX="273.0" layoutY="389.0" />
+            <TextField fx:id="idEnt" layoutX="272.0" layoutY="467.0" prefHeight="30.0" prefWidth="150.0" />
+            <Label layoutX="101.0" layoutY="467.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="Id location">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="erreur" layoutX="454.0" layoutY="370.0" prefHeight="25.0" prefWidth="84.0" text="Verifie la date " textFill="#e30000" underline="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Button layoutX="400.0" layoutY="547.0" mnemonicParsing="false" onAction="#supprimerLocation" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Supprimer location">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
