@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.esprit.views;
 
 import com.esprit.entities.Livraison;
@@ -45,8 +40,8 @@ public class AffichageController implements Initializable {
     @FXML
     private TableView<Livraison> tableaff;
     @FXML
-    private TableColumn<Livraison, Integer> id;
-    @FXML
+//    private TableColumn<Livraison, Integer> id;
+//    @FXML
     private TableColumn<Livraison, String> date;
     @FXML
     private TableColumn<Livraison, String> adresse;
@@ -65,6 +60,7 @@ public class AffichageController implements Initializable {
     @FXML
     private TextField filterbox;
     private Statement ste;
+    ServiceLivraison ser=new ServiceLivraison();
     
    private final ObservableList<Livraison> datalist = FXCollections.observableArrayList();
    
@@ -83,7 +79,7 @@ public class AffichageController implements Initializable {
                 }
             
             
-            id.setCellValueFactory(new PropertyValueFactory<>("id_livraison"));
+//            id.setCellValueFactory(new PropertyValueFactory<>("id_livraison"));
             date.setCellValueFactory(new PropertyValueFactory<>("date_livraison"));
             adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_livraison"));
             etat.setCellValueFactory(new PropertyValueFactory<>("etat_livraison"));
@@ -97,37 +93,36 @@ public class AffichageController implements Initializable {
             
             
         FilteredList<Livraison> filteredData = new FilteredList<>(datalist, b -> true);
-        		// 2. Set the filter Predicate whenever the filter changes.
+        		// tbadél l predicate te3 l filtre selon tabdil l filtre
 		filterbox.textProperty().addListener((observable, oldValue, newValue) -> {
 			filteredData.setPredicate(livraison -> {
-				// If filter text is empty, display all persons				
+				// ken l filtre (searchbox) feragh n'affichi kol chay			
 				if (newValue == null || newValue.isEmpty()) {
 					return true;
 				}
-                                				// Compare first name and last name of every person with filter text.
+                                // n9arén l predicate beli éna ktébtou selon date w etat
 				String lowerCaseFilter = newValue.toLowerCase();
 				
 				if (livraison.getDate_livraison().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
-					return true; // Filter matches first name.
-				} else if (livraison.getAdresse_livraison().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-					return true; // Filter matches last name.
+					return true; 
+				} else if (livraison.getEtat_livraison().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true;
 				}
 				     else  
-				    	 return false; // Does not match.
+				    	 return false; 
 			});
 		});
 
-        		// 3. Wrap the FilteredList in a SortedList. 
+        		// n7ot FilteredList f SortedList. 
 		SortedList<Livraison> sortedData = new SortedList<>(filteredData);
 		
-		// 4. Bind the SortedList comparator to the TableView comparator.
-		// 	  Otherwise, sorting the TableView would have no effect.
+		// n9arén e sortedlist b tableview
 		sortedData.comparatorProperty().bind(tableaff.comparatorProperty());
 		
-		// 5. Add sorted (and filtered) data to the table.
+		//n'ajouti tawa sortedlist l héya resultat te3 l filtre f tableview mte3i
 		tableaff.setItems(sortedData);
         } catch (SQLException ex) {
-            Logger.getLogger(AffichageController.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
         }
    }
 
@@ -142,14 +137,11 @@ public class AffichageController implements Initializable {
 
                     {
                             btn.setOnAction((ActionEvent event) -> {
-                            ServiceLivraison ser = new ServiceLivraison();
-                                String nb =id.getText();
-                                int i = Integer.parseInt(nb);
-
+                                int data = getTableView().getItems().get(getIndex()).getId_livraison();
                                 try {
-                                    ser.delete(i);
+                                       ser.delete(data);
+                                       
                                 } catch (SQLException ex) {
-                                    Logger.getLogger(AffichageController.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                         });
  
