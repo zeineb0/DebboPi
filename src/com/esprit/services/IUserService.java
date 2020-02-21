@@ -9,6 +9,9 @@ package com.esprit.services;
  *
  * @author Zeineb_yahiaoui
  */
-public interface test {
+public interface IUserService {
     
+    
+    
+  
 }

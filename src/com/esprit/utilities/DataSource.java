@@ -18,12 +18,12 @@ import java.sql.SQLException;
 public class DataSource {
     
     private static DataSource data;
-    private String url = "jdbc:mysql://localhost:3306/wedevdb";
+    private String url = "jdbc:mysql://localhost:3306/debbov1";
     private String username = "root";
     private String pasword = "";
     private Connection con;
 
-    private DataSource() {
+    public DataSource() {
         try {
             con = (Connection) DriverManager.getConnection(url, username, pasword);
             System.out.println("Class DataSource : connexion etablie");
@@ -34,7 +34,18 @@ public class DataSource {
             System.out.println(e);
         }
     }
-
+  
+    public static Connection conDB() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/debbov1", "root", "");
+            return con ;
+        } catch (Exception ex) {
+           return null;
+        }
+        
+    }
+    
     public Connection getConnection() {
         return con;
 
