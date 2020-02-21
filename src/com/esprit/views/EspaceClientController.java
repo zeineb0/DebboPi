@@ -9,21 +9,32 @@ import com.esprit.entities.Entrepot;
 import com.esprit.entities.Location;
 import com.esprit.services.impl.ServiceEntrepot;
 import com.esprit.services.impl.ServiceLocation;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -50,21 +61,27 @@ public class EspaceClientController implements Initializable {
     ObservableList<Entrepot> datalist;
     ServiceLocation serviceLocation = new ServiceLocation();
 private Entrepot EntrepotSelectionner = new Entrepot();
- public int id;
+ public int idA;
  public double pri;
     @FXML
     private TableColumn<Entrepot, Double> prix;
     @FXML
-    private TextField entrep1;
+    private DatePicker dateDeb;
     @FXML
-    private TextField quanmax;
+    private DatePicker dateFin;
     @FXML
+    private TextField idEnt;
+    @FXML
+    private Label erreur;
+    @FXML
+    private TextField prix1;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+                 erreur.setVisible(false);
+
          try {
             ArrayList<Entrepot> entrepots = (ArrayList<Entrepot>) serviceLocation.readAL();
                 
@@ -89,36 +106,50 @@ private Entrepot EntrepotSelectionner = new Entrepot();
         //pour modifier un produit il faut faire deux click
               if (event.getClickCount() == 2) {
                   EntrepotSelectionner=table.getItems().get(table.getSelectionModel().getSelectedIndex());
-                  id=EntrepotSelectionner.getId_entrepot();
+                  idA=EntrepotSelectionner.getId_entrepot();
                   pri=EntrepotSelectionner.getPrix_location();
-                  System.out.println(id);
+                  String id = Double.toString(idA);
+                  idEnt.setText(id);
+                  String p = Double.toString(pri);
+                  prix1.setText(p);
               }
                     });
 
          
     }    
-
+  
     @FXML
     private void ajouterLocation(ActionEvent event) {
         
-//        try{
-//        String ad = adresse.getText();
-//            Date date = Integer.parseInt(date.getText());
-//        int quantite = Integer.parseInt(quanmax.getText());
-//        String entreprise = entrep.getText();
-//        Location l =new Location(date_deb_location, date_fin_location, pri, quantite, id);
-//        e.setAdresse_entrepot(ad);
-//        e.setNum_fiscale(num_fiscale);
-//        e.setQuantite_max(quantite);
-//      
-//        e.setEntreprise(entreprise);
-//      
-//           
-//        serviceEntrepot.ajouter(e);
-//            } catch (SQLException ex) {
-//                System.out.println("com.esprit.views.AjouterEntrepotController.onClick()");;
-//            }
-//            
+
+        try {
+        Date date1 = Date.valueOf(dateDeb.getValue());
+        Date date2 = Date.valueOf(dateFin.getValue());
+
+         
+            Location l =new Location();
+            if(date1.before(date2))
+            { l.setDate_deb_location(date1);
+              l.setDate_fin_location(date2);}
+             else
+            {erreur.setVisible(true);}
+         l.setPrix_location(pri);
+         l.setFK_id_entrepot(idA);
+        serviceLocation.ajouter(l);
+       
+     } catch (SQLException ex) {
+         System.out.println("com.esprit.views.EspaceClientController.ajouterLocation()");     }
+    }
+
+    @FXML
+    private void listerLocation(ActionEvent event) throws IOException {
+        Parent list = FXMLLoader.load(getClass().getResource("listeDesLocation.fxml"));
+        Scene listE= new Scene(list);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(listE);
+        window.show();
+
+
     }
     
 }
