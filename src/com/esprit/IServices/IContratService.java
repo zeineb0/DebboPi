@@ -22,7 +22,8 @@ public interface IContratService {
     public void supprimerContrat (Contrat contrat);
     public void modifierContrat(Contrat contrat);
     public List<ContratDetail> afficherContrat();
-    public void modifierEtatLivraison(Livraison livraison,String nouveau_etat);
+    public List<ContratDetail> afficherContratTransporteur(Utilisateur user);
+    public void modifierEtatLivraison(Livraison livraison);
     public List<Utilisateur> afficherTransporteurLibre();
     public void accepterLivraison(Livraison livraison);
     public void refuserLivraison(Livraison livraison);

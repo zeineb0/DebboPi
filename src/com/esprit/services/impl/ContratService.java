@@ -130,20 +130,57 @@ public class ContratService implements IContratService {
         return contrat_list;
     }
     
+     public List<ContratDetail> afficherContratTransporteur(Utilisateur user)
+     {
+          List<ContratDetail> contrat_list = new ArrayList<>();
+       
+       
+        try {
+            String req="SELECT date_deb , date_fin , u.id_user, u.nom , u.prenom , e.id_entrepot , e.entreprise FROM `contrat` c INNER JOIN utilisateur u on u.id_user=c.FK_id_user INNER JOIN entrepot e on c.FK_id_entrepot=e.id_entrepot where c.FK_id_user='"+user.getId()+"'";
+            Statement s=DataSource.getInstance().getConnection().createStatement();
+            ResultSet rs=s.executeQuery(req);
+            while(rs.next())
+            {
+                
+            ContratDetail contrat_detail = new ContratDetail();
+            //contrat_detail.setId_contrat(rs.getInt("id_contrat"));
+            
+            contrat_detail.setDate_debut(rs.getDate("date_deb"));
+            contrat_detail.setDate_fin(rs.getDate("date_fin"));
+            contrat_detail.setId_user(rs.getInt("id_user"));
+            contrat_detail.setNom(rs.getString("nom"));
+            contrat_detail.setPrenom(rs.getString("prenom"));
+            contrat_detail.setId_entrepot(rs.getInt("id_entrepot"));
+            contrat_detail.setEntreprise(rs.getString("entreprise"));
+            
+            
+            
+            
+            
+                contrat_list.add(contrat_detail);
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contrat_list;
+         
+         
+     }
     
     
     
     
     
     @Override
-     public void modifierEtatLivraison(Livraison livraison,String nouveau_etat)
+     public void modifierEtatLivraison(Livraison livraison)
     {
         try {
 
             String req="UPDATE livraison SET etat_livraison = ? WHERE livraison.`id_livraison` = ?";
             PreparedStatement ps= DataSource.getInstance().getConnection().prepareStatement(req);
             
-            ps.setString(1,nouveau_etat);
+            ps.setString(1,"livrée");
             ps.setInt(2,livraison.getId_livraison());
             
 
