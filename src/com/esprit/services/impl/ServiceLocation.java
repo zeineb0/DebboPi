@@ -33,7 +33,7 @@ public class ServiceLocation implements IServiceLocation<Location>{
     @Override
     public void ajouter(Location l) throws SQLException {
     try{
-    PreparedStatement pre=con.prepareStatement("INSERT INTO `location` (`id_location`, `date_deb_location`,`date_fin_location`, `prix_location`, `FK_id_entrepot`, `FK_id_user`)  VALUES ( ?, ?, ?, ?, ?);");
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `location` (`id_location`, `date_deb_location`,`date_fin_location`, `prix_location`, `FK_id_entrepot`, `FK_id_user`)  VALUES ( ?, ?, ?,?, ?, ?);");
     pre.setInt(1, l.getId_location());
     pre.setDate(2, l.getDate_deb_location());
     pre.setDate(3, l.getDate_fin_location());
@@ -91,8 +91,9 @@ try {
                int num_fiscale=rs.getInt(3);
                int quantite_max=rs.getInt(4);
                String etat = rs.getString(5);
-               String entreprise=rs.getString(6);
-               double prix_location=rs.getDouble(7);
+                 double prix_location=rs.getDouble(6);
+               String entreprise=rs.getString(7);
+             
                int fk_id_fournisseur=rs.getInt(8);
                Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat,  prix_location,entreprise, fk_id_fournisseur);
      entrepot.add(e);
