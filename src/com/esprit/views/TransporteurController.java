@@ -43,8 +43,6 @@ public class TransporteurController implements Initializable {
     @FXML
     private Button cnt;
     @FXML
-    private Button pr;
-    @FXML
     private TableView<Livraison> LivraisonTable;
    
     @FXML
@@ -110,9 +108,6 @@ public class TransporteurController implements Initializable {
         
     }
 
-    @FXML
-    private void OnClickProfile(ActionEvent event) {
-    }
 
     @FXML
     private void OnClickListeLivraison(ActionEvent event) throws IOException {

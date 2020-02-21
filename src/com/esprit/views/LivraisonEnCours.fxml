@@ -33,8 +33,7 @@
          </menus>
       </MenuBar>
       <Label layoutX="22.0" layoutY="72.0" prefHeight="53.0" prefWidth="139.0" text="   Welcome Ahmed" textAlignment="CENTER" />
-      <Button fx:id="pr" layoutX="22.0" layoutY="173.0" mnemonicParsing="false" onAction="#OnClickProfile" prefHeight="31.0" prefWidth="139.0" text="Profile" />
-      <TableView fx:id="LivraisonEncoursTable" layoutX="182.0" layoutY="39.0" prefHeight="634.0" prefWidth="826.0">
+      <TableView fx:id="LivraisonEncoursTable" layoutX="182.0" layoutY="39.0" prefHeight="634.0" prefWidth="858.0">
          <columns>
             <TableColumn fx:id="date_livraison" prefWidth="125.0" text="Date livraison" />
             <TableColumn fx:id="adresse_livraison" prefWidth="141.0" text="Adresse livraison" />
@@ -42,7 +41,7 @@
             <TableColumn fx:id="acceptation" prefWidth="111.0" text="Acceptation" />
             <TableColumn fx:id="FK_id_commande" prefWidth="111.0" text="Commande" />
             <TableColumn fx:id="FK_id_user" prefWidth="133.0" text="Transporteur" />
-            <TableColumn fx:id="colBtn" prefWidth="90.0" />
+            <TableColumn fx:id="colBtn" prefWidth="161.0" />
          </columns>
       </TableView>
       <Button fx:id="list_liv" layoutX="19.0" layoutY="389.0" mnemonicParsing="false" onAction="#OnClickListeLivraison" prefHeight="39.0" prefWidth="146.0" text="Livraison en cours" />

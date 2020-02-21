@@ -41,8 +41,6 @@ public class LivraisonEnCoursController implements Initializable {
     private Button liv;
     @FXML
     private Button cnt;
-    @FXML
-    private Button pr;
     
    
     @FXML
@@ -105,15 +103,35 @@ public class LivraisonEnCoursController implements Initializable {
             public TableCell<Livraison, Void> call(final TableColumn<Livraison, Void> param) {
                 final TableCell<Livraison, Void> cell = new TableCell<Livraison, Void>() {
 
-                    private final Button btn = new Button("Modifier");
+                    private final Button btn = new Button("Modifier l'etat");
 
                     {
                             btn.setOnAction((ActionEvent event) -> {
                             Livraison data = getTableView().getItems().get(getIndex());
                             System.out.println("selectedData: " + data);
                             contrat_service.modifierEtatLivraison(data);
+                            LivraisonEncoursTable.getItems().clear();
+                            Utilisateur transporteur1 = new Utilisateur();
+        transporteur1.setId(1);
+        ArrayList<Livraison> list_livraison=(ArrayList<Livraison>) contrat_service.afficherLivraisonParTransporteurNonLivree(transporteur1);
+         
+         data_list = FXCollections.observableArrayList(list_livraison);
+         
+        
+         date_livraison.setCellValueFactory(new PropertyValueFactory<>("date_livraison"));
+         adresse_livraison.setCellValueFactory(new PropertyValueFactory<>("adresse_livraison"));
+         etat_livraison.setCellValueFactory(new PropertyValueFactory<>("etat_livraison"));
+         acceptation.setCellValueFactory(new PropertyValueFactory<>("acceptation"));
+         FK_id_commande.setCellValueFactory(new PropertyValueFactory<>("FK_id_commande"));
+         FK_id_user.setCellValueFactory(new PropertyValueFactory<>("FK_id_user"));
+         addButtonToTable();
+         LivraisonEncoursTable.setItems(data_list);
+         
+                            
+                            
                         });
  
+                            
 
                     }
 
@@ -155,9 +173,6 @@ public class LivraisonEnCoursController implements Initializable {
         window.show();
     }
 
-    @FXML
-    private void OnClickProfile(ActionEvent event) {
-    }
 
     @FXML
     private void OnClickListeLivraison(ActionEvent event) {

@@ -39,8 +39,6 @@ public class ContratListeController implements Initializable {
     @FXML
     private Button cnt;
     @FXML
-    private Button pr;
-    @FXML
     private Button liv;
     @FXML
     private TableColumn<ContratDetail, Date> date_debut;
@@ -89,9 +87,6 @@ public class ContratListeController implements Initializable {
     private void OnClickContrat(ActionEvent event) {
     }
 
-    @FXML
-    private void OnClickProfile(ActionEvent event) {
-    }
 
     @FXML
     private void OnClickLivraison(ActionEvent event) throws IOException {

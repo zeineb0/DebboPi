@@ -40,7 +40,7 @@ public class esprit extends Application {
         Utilisateur transporteur1 = new Utilisateur();
         transporteur1.setId(1);
         
-        Contrat contrat = new Contrat(3, new java.sql.Date(116, 2, 20), new java.sql.Date(118, 2, 20), 1, 1);
+        //Contrat contrat = new Contrat( new java.sql.Date(116, 2, 20), new java.sql.Date(118, 2, 20), 1, 1);
         
       //  contrat_service.ajouterContrat(contrat, transporteur1, entrepot1);
         

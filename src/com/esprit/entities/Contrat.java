@@ -22,7 +22,7 @@ public class Contrat {
     
     
 
-    public Contrat(int id, Date date_debut, Date date_fin, int id_user, int id_entrepot) {
+    public Contrat(Date date_debut, Date date_fin, int id_user, int id_entrepot) {
         
         this.date_debut = date_debut;
         this.date_fin = date_fin;
