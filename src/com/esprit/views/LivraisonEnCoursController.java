@@ -137,7 +137,7 @@ public class LivraisonEnCoursController implements Initializable {
 
     @FXML
     private void OnClickLivraison(ActionEvent event) throws IOException {
-         Parent livraison = FXMLLoader.load(getClass().getResource("Transporteur.fxml"));
+        Parent livraison = FXMLLoader.load(getClass().getResource("Transporteur.fxml"));
         Scene livraisonV= new Scene(livraison);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(livraisonV);
