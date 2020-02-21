@@ -35,6 +35,9 @@ public class Location {
         this.FK_id_user = FK_id_user;
     }
 
+    public Location() {
+    }
+
     public int getId_location() {
         return id_location;
     }
