@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +35,7 @@ import javafx.util.Callback;
  *
  * @author Dell
  */
-public class TransporteurController implements Initializable {
+public class LivraisonEnCoursController implements Initializable {
 
     @FXML
     private Button liv;
@@ -44,8 +43,7 @@ public class TransporteurController implements Initializable {
     private Button cnt;
     @FXML
     private Button pr;
-    @FXML
-    private TableView<Livraison> LivraisonTable;
+    
    
     @FXML
     private TableColumn<Livraison, Date> date_livraison;
@@ -60,44 +58,90 @@ public class TransporteurController implements Initializable {
     @FXML
     private TableColumn<Livraison, Integer> FK_id_user;
     
-      ObservableList<Livraison> data_list ;
+    private TableColumn<?, ?> btn;
     @FXML
     private Button list_liv;
-    TableColumn<Livraison, Void> colBtn;
-   
+    
+    ObservableList<Livraison> data_list ;
+    @FXML
+    private TableView<Livraison> LivraisonEncoursTable;
+    @FXML
+    private TableColumn<Livraison, Void> colBtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        
-         ContratService contrat_service = new ContratService();
+        ContratService contrat_service = new ContratService();
         
         Utilisateur transporteur1 = new Utilisateur();
         transporteur1.setId(1);
-        ArrayList<Livraison> list_livraison=(ArrayList<Livraison>) contrat_service.afficherLivraisonParTransporteurLivree(transporteur1);
+        ArrayList<Livraison> list_livraison=(ArrayList<Livraison>) contrat_service.afficherLivraisonParTransporteurNonLivree(transporteur1);
          
          data_list = FXCollections.observableArrayList(list_livraison);
          
-      
+        
          date_livraison.setCellValueFactory(new PropertyValueFactory<>("date_livraison"));
          adresse_livraison.setCellValueFactory(new PropertyValueFactory<>("adresse_livraison"));
          etat_livraison.setCellValueFactory(new PropertyValueFactory<>("etat_livraison"));
          acceptation.setCellValueFactory(new PropertyValueFactory<>("acceptation"));
          FK_id_commande.setCellValueFactory(new PropertyValueFactory<>("FK_id_commande"));
          FK_id_user.setCellValueFactory(new PropertyValueFactory<>("FK_id_user"));
+         addButtonToTable();
+         LivraisonEncoursTable.setItems(data_list);
          
-         LivraisonTable.setItems(data_list);
+         
+         
+         
     }
-        
-         
-        
+    
+    
+    private void addButtonToTable() {
+       
+
+        Callback<TableColumn<Livraison, Void>, TableCell<Livraison, Void>> cellFactory = new Callback<TableColumn<Livraison, Void>, TableCell<Livraison, Void>>() {
+            public TableCell<Livraison, Void> call(final TableColumn<Livraison, Void> param) {
+                final TableCell<Livraison, Void> cell = new TableCell<Livraison, Void>() {
+
+                    private final Button btn = new Button("Modifier");
+
+                    {
+                            btn.setOnAction((ActionEvent event) -> {
+                            Livraison data = getTableView().getItems().get(getIndex());
+                            System.out.println("selectedData: " + data);
+                        });
+ 
+
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colBtn.setCellFactory(cellFactory);
+
+       // LivraisonTable.getColumns().add(colBtn);
+
+    }
 
     @FXML
-    private void OnClickLivraison(ActionEvent event) {
+    private void OnClickLivraison(ActionEvent event) throws IOException {
+         Parent livraison = FXMLLoader.load(getClass().getResource("Transporteur.fxml"));
+        Scene livraisonV= new Scene(livraison);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(livraisonV);
+        window.show();
     }
 
     @FXML
@@ -107,7 +151,6 @@ public class TransporteurController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(contratV);
         window.show();
-        
     }
 
     @FXML
@@ -115,13 +158,7 @@ public class TransporteurController implements Initializable {
     }
 
     @FXML
-    private void OnClickListeLivraison(ActionEvent event) throws IOException {
-        
-        Parent LivEnCours = FXMLLoader.load(getClass().getResource("LivraisonEnCours.fxml"));
-        Scene LivEnCoursV= new Scene(LivEnCours);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(LivEnCoursV);
-        window.show();
+    private void OnClickListeLivraison(ActionEvent event) {
     }
     
 }

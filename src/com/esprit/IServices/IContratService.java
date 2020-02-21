@@ -26,6 +26,8 @@ public interface IContratService {
     public List<Utilisateur> afficherTransporteurLibre();
     public void accepterLivraison(Livraison livraison);
     public void refuserLivraison(Livraison livraison);
-    public List<Livraison> afficherLivraisonParTransporteur(Utilisateur u);
+    public List<Livraison> afficherLivraisonParTransporteurNonLivree(Utilisateur u);
+    public List<Livraison> afficherLivraisonParTransporteurLivree(Utilisateur u);
+    
     
 }

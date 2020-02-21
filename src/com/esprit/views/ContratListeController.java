@@ -46,8 +46,6 @@ public class ContratListeController implements Initializable {
     @FXML
     private TableColumn<ContratDetail, Date> date_fin;
     @FXML
-    private TableColumn<ContratDetail, Integer> id_contrat;
-    @FXML
     private TableColumn<ContratDetail, String> nom;
     @FXML
     private TableColumn<ContratDetail, String> prenom;
@@ -71,7 +69,7 @@ public class ContratListeController implements Initializable {
         ArrayList<ContratDetail> liste_contrat=(ArrayList<ContratDetail>) contrat_service.afficherContrat();
         data_list = FXCollections.observableArrayList(liste_contrat);
         
-        id_contrat.setCellValueFactory(new PropertyValueFactory<>("id_contrat"));
+        
         date_debut.setCellValueFactory(new PropertyValueFactory<>("date_deb"));
         date_fin.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
         nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -101,7 +99,13 @@ public class ContratListeController implements Initializable {
     }
 
     @FXML
-    private void OnClickListeLivraison(ActionEvent event) {
+    private void OnClickListeLivraison(ActionEvent event) throws IOException {
+         
+        Parent LivEnCours = FXMLLoader.load(getClass().getResource("LivraisonEnCours.fxml"));
+        Scene LivEnCoursV= new Scene(LivEnCours);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(LivEnCoursV);
+        window.show();
     }
     
 }

@@ -45,7 +45,7 @@ public class ContratDetail {
         this.id_entrepot = id_entrepot;
     }
 
-    public Date getDate_debut() {
+    public Date getDate_deb() {
         return date_debut;
     }
 

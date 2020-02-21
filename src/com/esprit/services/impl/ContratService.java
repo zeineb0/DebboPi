@@ -36,6 +36,8 @@ public class ContratService implements IContratService {
             String req="INSERT INTO `debo_base`.`contrat` (`date_deb`, `date_fin`, `FK_id_user`, `FK_id_entrepot`) VALUES (?, ?, ?, ?);";
             PreparedStatement ps;
         try {
+            
+            
             ps = DataSource.getInstance().getConnection().prepareStatement(req);
             ps.setDate(1,contrat.getDate_debut() );
             ps.setDate(2,contrat.getDate_fin());
@@ -96,14 +98,15 @@ public class ContratService implements IContratService {
        
        
         try {
-            String req="SELECT id_contrat, date_deb , date_fin , u.id_user, u.nom , u.prenom , e.id_entrepot , e.entreprise FROM `contrat` c INNER JOIN utilisateur u on u.id_user=c.FK_id_user INNER JOIN entrepot e on c.FK_id_entrepot=e.id_entrepot";
+            String req="SELECT  date_deb , date_fin , u.id_user, u.nom , u.prenom , e.id_entrepot , e.entreprise FROM `contrat` c INNER JOIN utilisateur u on u.id_user=c.FK_id_user INNER JOIN entrepot e on c.FK_id_entrepot=e.id_entrepot";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
             while(rs.next())
             {
                 
             ContratDetail contrat_detail = new ContratDetail();
-            contrat_detail.setId_contrat(rs.getInt("id_contrat"));
+            //contrat_detail.setId_contrat(rs.getInt("id_contrat"));
+            
             contrat_detail.setDate_debut(rs.getDate("date_deb"));
             contrat_detail.setDate_fin(rs.getDate("date_fin"));
             contrat_detail.setId_user(rs.getInt("id_user"));
@@ -226,14 +229,14 @@ public class ContratService implements IContratService {
     
     
     @Override
-     public List<Livraison> afficherLivraisonParTransporteur(Utilisateur u)
+     public List<Livraison> afficherLivraisonParTransporteurNonLivree(Utilisateur u)
     {
        
         List<Livraison> livraison_list = new ArrayList<>();
        
        
         try {
-            String req="SELECT * FROM livraison where FK_id_user='"+u.getId()+"'";
+            String req="SELECT * FROM livraison where FK_id_user='"+u.getId()+"' and etat_livraison=\"non livrée\" ";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
             while(rs.next())
@@ -256,6 +259,41 @@ public class ContratService implements IContratService {
         }
         return livraison_list;
     }
+     
+     
+     
+     
+     public List<Livraison> afficherLivraisonParTransporteurLivree(Utilisateur u)
+    {
+       
+        List<Livraison> livraison_list = new ArrayList<>();
+       
+       
+        try {
+            String req="SELECT * FROM livraison where FK_id_user='"+u.getId()+"' and etat_livraison=\"livrée\"";
+            Statement s=DataSource.getInstance().getConnection().createStatement();
+            ResultSet rs=s.executeQuery(req);
+            while(rs.next())
+            {
+                
+            Livraison livraison = new Livraison();
+            livraison.setId_livraison(rs.getInt("id_livraison"));
+            livraison.setDate(rs.getDate("date_livraison"));
+            livraison.setAdresse_livaison(rs.getString("adresse_livraison"));
+            livraison.setEtat_livraison(rs.getString("etat_livraison"));
+            livraison.setAcceptation(rs.getString("acceptation"));
+            livraison.setId_commande(rs.getInt("FK_id_commande"));
+            livraison.setId_user(rs.getInt("FK_id_user"));
+                   
+                   livraison_list.add(livraison);
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return livraison_list;
+    }
+     
         
     }
     
