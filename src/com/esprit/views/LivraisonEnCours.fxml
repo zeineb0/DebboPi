@@ -9,8 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1080.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.esprit.views.LivraisonEnCoursController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.LivraisonEnCoursController">
    <children>
       <Button fx:id="liv" layoutX="22.0" layoutY="320.0" mnemonicParsing="false" onAction="#OnClickLivraison" prefHeight="39.0" prefWidth="139.0" text="Vos livraisons" />
       <Button fx:id="cnt" layoutX="20.0" layoutY="456.0" mnemonicParsing="false" onAction="#OnClickContrat" prefHeight="39.0" prefWidth="146.0" text="Contrat" />
@@ -33,7 +32,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Label layoutX="22.0" layoutY="72.0" prefHeight="53.0" prefWidth="139.0" text="   Welcome Farouk" textAlignment="CENTER" />
+      <Label layoutX="22.0" layoutY="72.0" prefHeight="53.0" prefWidth="139.0" text="   Welcome Ahmed" textAlignment="CENTER" />
       <Button fx:id="pr" layoutX="22.0" layoutY="173.0" mnemonicParsing="false" onAction="#OnClickProfile" prefHeight="31.0" prefWidth="139.0" text="Profile" />
       <TableView fx:id="LivraisonEncoursTable" layoutX="182.0" layoutY="39.0" prefHeight="634.0" prefWidth="826.0">
          <columns>

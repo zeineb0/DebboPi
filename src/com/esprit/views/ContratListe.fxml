@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ContratListeController">
    <children>
-      <Label layoutX="22.0" layoutY="72.0" prefHeight="53.0" prefWidth="139.0" text="   Welcome Farouk" textAlignment="CENTER" />
+      <Label layoutX="22.0" layoutY="72.0" prefHeight="53.0" prefWidth="139.0" text="   Welcome Ahmed" textAlignment="CENTER" />
       <Button fx:id="cnt" layoutX="13.0" layoutY="467.0" mnemonicParsing="false" onAction="#OnClickContrat" prefHeight="39.0" prefWidth="139.0" text="Contrat" />
       <Button fx:id="pr" layoutX="14.0" layoutY="178.0" mnemonicParsing="false" onAction="#OnClickProfile" prefHeight="31.0" prefWidth="139.0" text="Profile" />
       <Button fx:id="liv" layoutX="12.0" layoutY="334.0" mnemonicParsing="false" onAction="#OnClickLivraison" prefHeight="39.0" prefWidth="143.0" text="Vos livraisons" />
