@@ -14,20 +14,14 @@ import java.sql.Date;
 public class ContratDetail {
     
     
-    private int id_contrat,id_user,id_entrepot;
+    private int id_user,id_entrepot;
     private Date date_debut,date_fin;
     private String nom,prenom,entreprise;
 
     public ContratDetail() {
     }
 
-    public int getId_contrat() {
-        return id_contrat;
-    }
-
-    public void setId_contrat(int id_contrat) {
-        this.id_contrat = id_contrat;
-    }
+   
 
     public int getId_user() {
         return id_user;
@@ -87,7 +81,7 @@ public class ContratDetail {
 
     @Override
     public String toString() {
-        return "ContratDetail{" + "id_contrat=" + id_contrat + ", id_user=" + id_user + ", id_entrepot=" + id_entrepot + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", nom=" + nom + ", prenom=" + prenom + ", entreprise=" + entreprise + '}';
+        return "ContratDetail{" +  ", id_user=" + id_user + ", id_entrepot=" + id_entrepot + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", nom=" + nom + ", prenom=" + prenom + ", entreprise=" + entreprise + '}';
     }
     
     

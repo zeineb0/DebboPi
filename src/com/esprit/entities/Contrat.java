@@ -13,7 +13,6 @@ import java.sql.Date;
  */
 public class Contrat {
     
-    private int id;
     private Date date_debut,date_fin;
     private int id_user;
     private int id_entrepot;
@@ -24,20 +23,14 @@ public class Contrat {
     
 
     public Contrat(int id, Date date_debut, Date date_fin, int id_user, int id_entrepot) {
-        this.id = id;
+        
         this.date_debut = date_debut;
         this.date_fin = date_fin;
         this.id_user = id_user;
         this.id_entrepot = id_entrepot;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+  
 
     public Date getDate_debut() {
         return date_debut;
@@ -73,7 +66,7 @@ public class Contrat {
 
     @Override
     public String toString() {
-        return "Contrat{" + "id=" + id + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", id_user=" + id_user + ", id_entrepot=" + id_entrepot + '}';
+        return "Contrat{" + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", id_user=" + id_user + ", id_entrepot=" + id_entrepot + '}';
     }
     
     

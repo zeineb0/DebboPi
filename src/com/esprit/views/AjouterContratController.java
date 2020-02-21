@@ -47,7 +47,7 @@ public class AjouterContratController implements Initializable {
     @FXML
     private void onClickGestion(ActionEvent event) throws IOException {
         
-          Parent gestion_contrat = FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
+        Parent gestion_contrat = FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
         Scene gestionCV= new Scene(gestion_contrat);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(gestionCV);

@@ -60,9 +60,10 @@ public class ContratService implements IContratService {
     public void supprimerContrat (Contrat contrat)
     {
         try {
-            String req="DELETE FROM contrat WHERE id_contrat=?";
+            String req="DELETE FROM contrat WHERE id_user=? and id_entrepot=?";
             PreparedStatement ps=DataSource.getInstance().getConnection().prepareStatement(req);
-            ps.setInt(1,contrat.getId());
+            ps.setInt(1,contrat.getId_user());
+            ps.setInt(2,contrat.getId_entrepot());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,12 +76,13 @@ public class ContratService implements IContratService {
     {
         try {
 
-            String req="UPDATE contrat SET date_deb = ?, date_fin = ? WHERE contrat.`id_contrat` = ?";
+            String req="UPDATE contrat SET date_deb = ?, date_fin = ? WHERE contrat.`id_user` = ? and contrat.`id_entrepot` = ?";
             PreparedStatement ps= DataSource.getInstance().getConnection().prepareStatement(req);
             
             ps.setDate(1,contrat.getDate_debut());
             ps.setDate(2,contrat.getDate_fin());
-            ps.setInt(3,contrat.getId());
+            ps.setInt(3,contrat.getId_user());
+            ps.setInt(4,contrat.getId_entrepot());
 
             ps.executeUpdate();
         } catch (SQLException ex) {
