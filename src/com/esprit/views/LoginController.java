@@ -61,6 +61,7 @@ public class LoginController implements Initializable {
 
     PreparedStatement ps = null;
     ResultSet rs = null;
+    String roleee="";
 
     private String login() throws SQLException {
 
@@ -82,7 +83,9 @@ public class LoginController implements Initializable {
             check.setText("Wrong Email/password");
             return "Error";
         } else {
-            //showDialog("Logging Successful", null, "Successful");
+           
+            roleee=rs.getString("role");
+            
             check.setTextFill(Color.GREEN);
             check.setText("Logging Succesfull..Redirecting..");
             return "Success";
@@ -91,20 +94,15 @@ public class LoginController implements Initializable {
 
     }
 
-    /*  private void showDialog(String info, String header, String title) {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText(info);
-        alert.setHeaderText(header);
-        alert.showAndWait();
-
-    }*/
     @FXML
     private void handleButtonAction(MouseEvent event) throws SQLException {
         if (event.getSource() == btnLogin) {
 
             //LOGIN HERE
             if (login().equals("Success")) {
+                
+                
+                if (roleee.equals("admin")) {
                 try {
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -116,6 +114,21 @@ public class LoginController implements Initializable {
 
                 } catch (IOException ex) {
                     System.err.print(ex.getMessage());
+                }
+                }
+                if (roleee.equals("client")){
+                    try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeClient.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException ex) {
+                    System.err.print(ex.getMessage());
+                }
                 }
 
             }
