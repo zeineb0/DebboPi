@@ -67,13 +67,14 @@ public class LivraisonEnCoursController implements Initializable {
     private TableView<Livraison> LivraisonEncoursTable;
     @FXML
     private TableColumn<Livraison, Void> colBtn;
+    private ContratService contrat_service;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ContratService contrat_service = new ContratService();
+         contrat_service = new ContratService();
         
         Utilisateur transporteur1 = new Utilisateur();
         transporteur1.setId(1);
@@ -110,6 +111,7 @@ public class LivraisonEnCoursController implements Initializable {
                             btn.setOnAction((ActionEvent event) -> {
                             Livraison data = getTableView().getItems().get(getIndex());
                             System.out.println("selectedData: " + data);
+                            contrat_service.modifierEtatLivraison(data);
                         });
  
 
