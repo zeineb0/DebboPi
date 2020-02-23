@@ -17,7 +17,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +57,8 @@ public class AjouterContratController implements Initializable {
     
     private ContratService contrat_service;
     
+    private int id, id2;
+    
     
     
 
@@ -67,6 +72,7 @@ public class AjouterContratController implements Initializable {
 
     @FXML
     private void onClickAdd(ActionEvent event) throws SQLException {
+        contrat_service = new ContratService();
         
         Date date1 = Date.valueOf(dateDeb.getValue());
         Date date2 = Date.valueOf(dateFin.getValue());
@@ -79,61 +85,55 @@ public class AjouterContratController implements Initializable {
         contrat_detail.setEntreprise(entreprise.getText());
         
         System.out.println(contrat_detail);
-        
-        String req = "select * from utilisateur where nom = ? and prenom = ?";
-        
-        String name=nom.getText();
-        String last_name = prenom.getText();
-        
-        PreparedStatement ps= DataSource.getInstance().getConnection().prepareStatement(req);   
-        
-        ps.setString(1, name);
-        ps.setString(2, last_name);
-        
-        ResultSet rs=ps.executeQuery();
+        try
+        {
+            String req = "select id_user , nom , prenom  from utilisateur where nom ='"+nom.getText()+"' and prenom ='"+prenom.getText()+"' ";
+            Statement s=DataSource.getInstance().getConnection().createStatement();
+            ResultSet rs=s.executeQuery(req);
 
+            while(rs.next())
+                 {
+                    id = rs.getInt("id_user");
+                    System.out.println(id);
         
+//         Utilisateur user = new Utilisateur();
+//        user.setId(rs.getInt("id_user"));
+//        user.setNom(rs.getString("nom"));
+//        user.setPrenom(rs.getString("prenom"));
+//        
+//        System.out.println(user);
         
-        int id = rs.getInt("id_user");
-         
+                 }
+        }   catch (SQLException ex) {
+            Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        String req2 = "select * from entrepot where entreprise=?";
-        
-        String entreprise_name=entreprise.getText();
-        PreparedStatement ps2= DataSource.getInstance().getConnection().prepareStatement(req2); 
-        ps.setString(1, entreprise_name);
-        ResultSet rs2=ps2.executeQuery();
-        
-        int id2 = rs2.getInt("id_entrepot");
-        
-        Contrat contrat = new Contrat(date1, date2, id, id2);
+        try
+        {
+            String req2 = "select id_entrepot from entrepot where entreprise='"+entreprise.getText()+"'";
+            Statement s=DataSource.getInstance().getConnection().createStatement();
+            ResultSet rs2=s.executeQuery(req2);
+            
+            while (rs2.next())
+            {
+                id2 = rs2.getInt("id_entrepot");
+                System.out.println(id2);
+            }
+            
+        }catch(SQLException ex)
+        {
+            Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+
+        Contrat contrat = new Contrat(date1, date2);
         Utilisateur user = new Utilisateur();
         user.setId(id);
         Entrepot entrepot = new Entrepot();
         entrepot.setId_entrepot(id2);
         contrat_service.ajouterContrat(contrat, user, entrepot);
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-         
-        
-        
-        
+ 
         
     }
 
