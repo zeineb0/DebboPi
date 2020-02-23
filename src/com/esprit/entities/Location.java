@@ -1,0 +1,97 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.esprit.entities;
+
+import java.sql.Date;
+
+/**
+ *
+ * @author asus
+ */
+public class Location {
+    int id_location;
+    Date date_deb_location;
+    Date date_fin_location;
+    double fk_prix_location;
+    int FK_id_entrepot;
+    int FK_id_user;
+
+    public Location(int id_location, Date date_deb_location,Date date_fin_location, double fk_prix_location, int FK_id_entrepot, int FK_id_user) {
+        this.id_location = id_location;
+        this.date_deb_location= date_deb_location;
+        this.date_deb_location = date_fin_location;
+        this.fk_prix_location = fk_prix_location;
+        this.FK_id_entrepot = FK_id_entrepot;
+        this.FK_id_user = FK_id_user;
+    }
+    public Location(Date date_deb_location,Date date_fin_location,double fk_prix_location, int FK_id_entrepot, int FK_id_user) {
+        this.date_deb_location = date_deb_location;
+        this.date_fin_location = date_fin_location;
+        this.fk_prix_location = fk_prix_location;
+        this.FK_id_entrepot = FK_id_entrepot;
+        this.FK_id_user = FK_id_user;
+    }
+
+    public Location() {
+    }
+
+    public int getId_location() {
+        return id_location;
+    }
+
+    public void setId_location(int id_location) {
+        this.id_location = id_location;
+    }
+
+    public Date getDate_deb_location() {
+        return date_deb_location;
+    }
+
+    public void setDate_deb_location(Date date_deb_location) {
+        this.date_deb_location = date_deb_location;
+    }
+
+    public Date getDate_fin_location() {
+        return date_fin_location;
+    }
+
+    public void setDate_fin_location(Date date_fin_location) {
+        this.date_fin_location = date_fin_location;
+    }
+
+    public double getPrix_location() {
+        return fk_prix_location;
+    }
+
+    public void setPrix_location(double fk_prix_location) {
+        this.fk_prix_location = fk_prix_location;
+    }
+
+    public int getFK_id_entrepot() {
+        return FK_id_entrepot;
+    }
+
+    public void setFK_id_entrepot(int FK_id_entrepot) {
+        this.FK_id_entrepot = FK_id_entrepot;
+    }
+
+    public int getFK_id_user() {
+        return FK_id_user;
+    }
+
+    public void setFK_id_user(int FK_id_user) {
+        this.FK_id_user = FK_id_user;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Location{" + "id_location=" + id_location + ", date_deb_location=" + date_deb_location + ", date_fin_location=" + date_fin_location + ", fk_prix_location=" + fk_prix_location + ", FK_id_entrepot=" + FK_id_entrepot + ", FK_id_user=" + FK_id_user + '}';
+    }
+    
+ 
+    
+}
