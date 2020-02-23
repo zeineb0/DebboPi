@@ -103,15 +103,15 @@ public class AjouterProduitController implements Initializable {
         if (verif()){
         String nom = txt.getText();
         Double prix = Double.parseDouble(txt1.getText());
-        Double qte = Double.parseDouble(txt2.getText());
-        Double reserve = Double.parseDouble(txt3.getText());
+        Integer ref = Integer.parseInt(txt2.getText());
+        String marque = txt3.getText();
         
          Produit p=new Produit();
          
-        p.setNom(nom);
+        p.setLibelle(nom);
         p.setPrix(prix);
-        p.setQuantite(qte);
-        p.setReserve(reserve);
+        p.setReference(ref);
+        p.setMarque(marque);
         Categorie c=cmb.getValue();
         p.setCategorie(c);
         Entrepot e = cmb1.getValue();
