@@ -5,7 +5,9 @@
  */
 package com.esprit.views;
 
+import com.esprit.entities.Location;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,19 +25,19 @@ import javafx.scene.control.TextField;
 public class ListeDesLocationController implements Initializable {
 
     @FXML
-    private TableView<?> table;
+    private TableView<Location> table;
     @FXML
-    private TableColumn<?, ?> Ide;
+    private TableColumn<Location, Integer> Ide;
     @FXML
-    private TableColumn<?, ?> dateDeb;
+    private TableColumn<Location, Date> dateDeb;
     @FXML
-    private TableColumn<?, ?> dateFin;
+    private TableColumn<Location, Date> dateFin;
     @FXML
-    private TableColumn<?, ?> prix;
+    private TableColumn<Location,Double> prix;
     @FXML
-    private TableColumn<?, ?> quan;
+    private TableColumn<Location, Integer> quan;
     @FXML
-    private TableColumn<?, ?> adr;
+    private TableColumn<Location, String> adr;
     @FXML
     private TextField prix1;
     @FXML
