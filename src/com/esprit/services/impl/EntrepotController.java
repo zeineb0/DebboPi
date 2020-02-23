@@ -75,10 +75,11 @@ public class EntrepotController implements IEntrepotService{
     }
     @Override
     public List<Entrepot> readAll() {
+        List<Entrepot> entrepots =new ArrayList<>();
      try {
-         List<Entrepot> entrepots=new ArrayList<>();
+         
          ste=conn.createStatement();
-         ResultSet rs=ste.executeQuery("select * from entrepot");
+         ResultSet rs=ste.executeQuery("select * from `entrepot`");
          while (rs.next()) {
              int id_entrepot=rs.getInt(1);
              String adresse_entrepot=rs.getString(2);
@@ -90,11 +91,12 @@ public class EntrepotController implements IEntrepotService{
              Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise, fk_id_fournisseur);
              entrepots.add(e);
          }
-         return entrepots;
+        
      } catch (SQLException ex) {
-         Logger.getLogger(EntrepotController.class.getName()).log(Level.SEVERE, null, ex);
+     
+         System.out.println("erreur");
      }
-     return null;
-    
+        System.out.println("***********"+entrepots);
+     return entrepots;
    
 }}
