@@ -37,6 +37,7 @@ public class UserService implements IUserService{
          
      }
   
+    @Override
       public void changerMdp(User u ,String amdp,String nmdp) throws SQLException{
            
        if (u.getPassword().equals("amdp")){
@@ -49,6 +50,7 @@ public class UserService implements IUserService{
        else System.out.println("old password is uncorrect , please try again !");
     }
   
+    @Override
            public void supprimerUser(User u) throws SQLException{
 
       

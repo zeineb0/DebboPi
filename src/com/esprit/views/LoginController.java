@@ -42,7 +42,7 @@ public class LoginController implements Initializable {
     @FXML
     private Label forgetpw;
     @FXML
-    private Label signin;
+    private Label register;
     @FXML
     private Label check;
 
@@ -103,6 +103,7 @@ public class LoginController implements Initializable {
                 
                 
                 if (roleee.equals("admin")) {
+                
                 try {
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -114,9 +115,8 @@ public class LoginController implements Initializable {
 
                 } catch (IOException ex) {
                     System.err.print(ex.getMessage());
-                }
-                }
-                if (roleee.equals("client")){
+                } }
+                else {
                     try {
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -133,6 +133,24 @@ public class LoginController implements Initializable {
 
             }
         }
+        if (event.getSource() == register) {
+            
+            try {
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.close();
+                
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Register.fxml")));
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
+        }
+        
+        
+        
 
     }
 

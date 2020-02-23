@@ -4,19 +4,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #582900;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.LoginController">
      <children>
+      <ImageView fitHeight="500.0" fitWidth="669.0">
+         <image>
+            <Image url="@../../../../../../../Desktop/87166934_483716869202401_896212980067205120_n.jpg" />
+         </image>
+      </ImageView>
       <AnchorPane layoutX="369.0" prefHeight="500.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <TextField fx:id="email" layoutX="60.0" layoutY="113.0" prefHeight="26.0" prefWidth="214.0" promptText="Email" />
             <PasswordField fx:id="password" layoutX="60.0" layoutY="171.0" prefHeight="26.0" prefWidth="208.0" promptText="Password" />
             <Button fx:id="btnLogin" layoutX="60.0" layoutY="268.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="33.0" prefWidth="208.0" style="-fx-background-color: #582900;" text="LOGIN" textAlignment="CENTER" textFill="#f5ebeb" />
             <Label fx:id="forgetpw" alignment="CENTER" layoutX="60.0" layoutY="317.0" prefHeight="12.0" prefWidth="200.0" text="Forgot password ?" textAlignment="CENTER" />
-            <Label fx:id="signin" alignment="CENTER" layoutX="60.0" layoutY="378.0" prefHeight="26.0" prefWidth="208.0" text="Don't have an account ? SIGN UP">
+            <Label fx:id="register" alignment="CENTER" layoutX="60.0" layoutY="378.0" onMouseClicked="#handleButtonAction" prefHeight="26.0" prefWidth="208.0" text="Don't have an account ? Register now">
             </Label>
             <Label fx:id="check" layoutX="57.0" layoutY="217.0" prefHeight="26.0" prefWidth="214.0" />
+            <ImageView fitHeight="70.0" fitWidth="76.0" layoutX="112.0" layoutY="25.0">
+               <image>
+                  <Image url="@../../../../../../../Desktop/83913586_793136547871997_1473366231422599168_n.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
