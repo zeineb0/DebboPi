@@ -57,10 +57,10 @@ public class ContratService implements IContratService {
     
     
     @Override
-    public void supprimerContrat (Contrat contrat)
+    public void supprimerContrat (ContratDetail contrat)
     {
         try {
-            String req="DELETE FROM contrat WHERE id_user=? and id_entrepot=?";
+            String req="DELETE FROM contrat WHERE FK_id_user=? and FK_id_entrepot=?";
             PreparedStatement ps=DataSource.getInstance().getConnection().prepareStatement(req);
             ps.setInt(1,contrat.getId_user());
             ps.setInt(2,contrat.getId_entrepot());
