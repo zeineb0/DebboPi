@@ -15,7 +15,7 @@
         <items>
             <Button mnemonicParsing="false" onAction="#onClick3" prefHeight="40.0" prefWidth="180.0" text="Afficher Entrepot" />
           <Button mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="180.0" text="Ajouter Entrepot" />
-            <Button mnemonicParsing="false" onAction="#onClick1" prefHeight="40.0" prefWidth="180.0" text="Supprimer Entreport" />
+            <Button fx:id="supp" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Supprimer Entreport" />
             <Button mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="180.0" text="Modifier Entrepot" />
         </items>
       </ToolBar>
@@ -30,9 +30,8 @@
                         <Font size="35.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="table" layoutX="51.0" layoutY="107.0" prefHeight="442.0" prefWidth="711.0">
+                  <TableView fx:id="table" layoutX="51.0" layoutY="107.0" prefHeight="442.0" prefWidth="629.0">
                      <columns>
-                        <TableColumn fx:id="Ide" prefWidth="82.0" text="Id Entrepot" />
                         <TableColumn fx:id="adre" prefWidth="112.0" text="Adresse Entrepot" />
                         <TableColumn fx:id="num" prefWidth="111.0" text="Numero fiscale" />
                         <TableColumn fx:id="quant" minWidth="0.0" prefWidth="103.0" text="Quantité max" />
