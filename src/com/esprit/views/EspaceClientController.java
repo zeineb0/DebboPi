@@ -13,6 +13,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
@@ -34,6 +38,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -102,7 +107,7 @@ private Entrepot EntrepotSelectionner = new Entrepot();
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
          
-          table.setOnMouseClicked(event->{
+          table.setOnMouseClicked((MouseEvent event)->{
         //pour modifier un produit il faut faire deux click
             if (event.getClickCount() == 2) {
                 EntrepotSelectionner=table.getItems().get(table.getSelectionModel().getSelectedIndex());
@@ -111,8 +116,8 @@ private Entrepot EntrepotSelectionner = new Entrepot();
                 String id = Double.toString(idA);
                 idEnt.setText(id);
                 Date date1 = Date.valueOf(dateDeb.getValue());
-                Date date2 = Date.valueOf(dateFin.getValue());  
-                    if(SystemClockFactory.getDatetime().before(date1).before(date2))
+                Date date2 = Date.valueOf(dateFin.getValue());
+                if(date1.before(date2))
                         {String p = serviceLocation.calculPrix(pri,date1, date2 ).toString();
                         prix1.setText(p);
                         }
