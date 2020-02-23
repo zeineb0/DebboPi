@@ -1,53 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?><!-- You may freely edit this file. See commented blocks below for --><!-- some examples of how to customize the build. --><!-- (If you delete it and reopen the project it will be recreated.) --><!-- By default, only the Clean and Build commands use this build script. --><project name="DebboPi" default="default" basedir="." xmlns:fx="javafx:com.sun.javafx.tools.ant">
-    <description>Builds, tests, and runs the project DebboPi.</description>
-    <import file="nbproject/build-impl.xml"/>
-    <!--
-
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
-    before and after some main targets. Those of them relevant for JavaFX project are: 
-
-      -pre-init:                 called before initialization of project properties
-      -post-init:                called after initialization of project properties
-      -pre-compile:              called before javac compilation
-      -post-compile:             called after javac compilation
-      -pre-compile-test:         called before javac compilation of JUnit tests
-      -post-compile-test:        called after javac compilation of JUnit tests
-      -pre-jfx-jar:              called before FX SDK specific <fx:jar> task
-      -post-jfx-jar:             called after FX SDK specific <fx:jar> task
-      -pre-jfx-deploy:           called before FX SDK specific <fx:deploy> task
-      -post-jfx-deploy:          called after FX SDK specific <fx:deploy> task
-      -pre-jfx-native:           called just after -pre-jfx-deploy if <fx:deploy> runs in native packaging mode
-      -post-jfx-native:          called just after -post-jfx-deploy if <fx:deploy> runs in native packaging mode
-      -post-clean:               called after cleaning build products
-
-    (Targets beginning with '-' are not intended to be called on their own.)
-
-    Example of inserting a HTML postprocessor after javaFX SDK deployment:
-
-        <target name="-post-jfx-deploy">
-            <basename property="jfx.deployment.base" file="${jfx.deployment.jar}" suffix=".jar"/>
-            <property name="jfx.deployment.html" location="${jfx.deployment.dir}${file.separator}${jfx.deployment.base}.html"/>
+<? xml version = " 1.0 " encoding = " UTF-8 " ?> <! - Vous pouvez éditer librement ce fichier. Voir les blocs commentés ci-dessous pour -> <! - quelques exemples de personnalisation de la construction. -> <! - (Si vous le supprimez et rouvrez le projet, il sera recréé.) -> <! - Par défaut, seules les commandes Clean et Build utilisent ce script de build. -> < project  name = " DebboPi "  default = " default " "  xmlns : fx = " javafx: com.sun.javafx.tools.ant " >
+    < description > Construit, teste et exécute le projet DebboPi. </ description >
+    < import  file = " nbproject / build-impl.xml " />
+    <! -
+    Il existe plusieurs cibles qui sont par défaut vides et qui peuvent être 
+    utilisé pour l'exécution de vos tâches. Ces cibles sont généralement exécutées
+    avant et après certains objectifs principaux. Ceux d'entre eux pertinents pour le projet JavaFX sont:
+      -pre-init: appelé avant l'initialisation des propriétés du projet
+      -post-init: appelé après l'initialisation des propriétés du projet
+      -pre-compile: appelé avant la compilation javac
+      -post-compile: appelé après la compilation javac
+      -pre-compile-test: appelé avant la compilation javac des tests JUnit
+      -post-compile-test: appelé après la compilation javac des tests JUnit
+      -pre-jfx-jar: appelé avant la tâche <fx: jar> spécifique au SDK FX
+      -post-jfx-jar: appelé après la tâche <fx: jar> spécifique au SDK FX
+      -pre-jfx-deploy: appelé avant la tâche <fx: deploy> spécifique au SDK FX
+      -post-jfx-deploy: appelé après la tâche <fx: deploy> spécifique au FX SDK
+      -pre-jfx-native: appelé juste après -pre-jfx-deploy si <fx: deploy> s'exécute en mode d'empaquetage natif
+      -post-jfx-native: appelé juste après -post-jfx-deploy si <fx: deploy> s'exécute en mode d'empaquetage natif
+      -post-clean: appelé après le nettoyage des produits de construction
+    (Les cibles commençant par «-» ne sont pas censées être appelées seules.)
+    Exemple d'insertion d'un postprocesseur HTML après le déploiement du SDK javaFX:
+        <target name = "- post-jfx-deploy">
+            <basename property = "jfx.deployment.base" file = "$ {jfx.deployment.jar}" suffix = ". jar" />
+            <property name = "jfx.deployment.html" location = "$ {jfx.deployment.dir} $ {file.separator} $ {jfx.deployment.base} .html" />
             <custompostprocess>
-                <fileset dir="${jfx.deployment.html}"/>
+                <fileset dir = "$ {jfx.deployment.html}" />
             </custompostprocess>
         </target>
-
-    Example of calling an Ant task from JavaFX SDK. Note that access to JavaFX SDK Ant tasks must be
-    initialized; to ensure this is done add the dependence on -check-jfx-sdk-version target:
-
-        <target name="-post-jfx-jar" depends="-check-jfx-sdk-version">
-            <echo message="Calling jar task from JavaFX SDK"/>
-            <fx:jar ...>
+    Exemple d'appel d'une tâche Ant à partir du SDK JavaFX. Notez que l'accès aux tâches JavaFX SDK Ant doit être
+    initialisé; pour vous assurer que cela est fait, ajoutez la dépendance à la cible -check-jfx-sdk-version:
+        <target name = "- post-jfx-jar" depend = "- check-jfx-sdk-version">
+            <echo message = "Appel de la tâche jar à partir du SDK JavaFX" />
+            <fx: jar ...>
                 ...
-            </fx:jar>
+            </ fx: jar>
         </target>
-
-    For more details about JavaFX SDK Ant tasks go to
+    Pour plus d'informations sur les tâches JavaFX SDK Ant, accédez à
     http://docs.oracle.com/javafx/2/deployment/jfxpub-deployment.htm
-
-    For list of available properties check the files
-    nbproject/build-impl.xml and nbproject/jfx-impl.xml.
-
-    -->
-</project>
+    Pour la liste des propriétés disponibles, vérifiez les fichiers
+    nbproject / build-impl.xml et nbproject / jfx-impl.xml.
+    ->
+</ projet >
