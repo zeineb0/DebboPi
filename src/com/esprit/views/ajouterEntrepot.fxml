@@ -52,9 +52,8 @@
       <AnchorPane prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: B22222;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick3" prefHeight="40.0" prefWidth="180.0" text="Afficher Entrepot" />
-            <Button layoutX="209.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="180.0" text="Ajouter Entrepot" />
-            <Button layoutX="400.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick1" prefHeight="40.0" prefWidth="180.0" text="Supprimer Entreport" />
-            <Button layoutX="593.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="180.0" text="Modifier Entrepot" />
+            <Button layoutX="206.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="180.0" text="Ajouter Entrepot" />
+            <Button layoutX="399.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="180.0" text="Modifier Entrepot" />
          </children>
       </AnchorPane>
       <Label layoutX="100.0" layoutY="476.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Entreprise">
