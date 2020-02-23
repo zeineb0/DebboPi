@@ -14,29 +14,16 @@ import java.sql.Date;
 public class MouvementStock {
     private int id;
     private String natureDuStock;
-    private Produit p;
-    private Categorie c;
     private Date dateMouv;
+    private int quantite;
+      private Produit p;
+    private Categorie c;
+    private Entrepot e;
     
-
-    public MouvementStock(int id, String natureDuStock, Produit p, Categorie c, Date dateMouv) {
-        this.id = id;
-        this.natureDuStock = natureDuStock;
-        this.p = p;
-        this.c = c;
-        this.dateMouv = dateMouv;
-    }
-
-    public MouvementStock(String natureDuStock, Produit p, Categorie c, Date dateMouv) {
-        this.natureDuStock = natureDuStock;
-        this.p = p;
-        this.c = c;
-        this.dateMouv = dateMouv;
-    }
-
+    
     public MouvementStock() {
     }
-    
+
     public int getId() {
         return id;
     }
@@ -55,6 +42,10 @@ public class MouvementStock {
 
     public Date getDateMouv() {
         return dateMouv;
+    }
+
+    public int getQuantite() {
+        return quantite;
     }
 
     public void setId(int id) {
@@ -77,10 +68,23 @@ public class MouvementStock {
         this.dateMouv = dateMouv;
     }
 
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    public Entrepot getE() {
+        return e;
+    }
+
+    public void setE(Entrepot e) {
+        this.e = e;
+    }
+
     @Override
     public String toString() {
-        return "MouvementStock{" + "id=" + id + ", natureDuStock=" + natureDuStock + ", p=" + p + ", c=" + c + ", dateMouv=" + dateMouv + '}';
+        return "MouvementStock{" + "id=" + id + ", natureDuStock=" + natureDuStock + ", p=" + p + ", c=" + c + ", e=" + e + ", dateMouv=" + dateMouv + ", quantite=" + quantite + '}';
     }
+
     
     
 }
