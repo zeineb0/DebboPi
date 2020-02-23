@@ -62,7 +62,11 @@ public class GestionContratController implements Initializable {
     @FXML
     private Button cancel;
     
+    private int indexContratSelectionner;
+    
     private ContratDetail Contrat_selectionne = new ContratDetail();
+    ContratService contrat_service= new ContratService();
+    
 
 
     /**
@@ -72,7 +76,7 @@ public class GestionContratController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         
-        ContratService contrat_service = new ContratService();
+        
         ArrayList<ContratDetail> liste_contrat=(ArrayList<ContratDetail>) contrat_service.afficherContrat();
         
         data_list = FXCollections.observableArrayList(liste_contrat);
@@ -95,6 +99,7 @@ public class GestionContratController implements Initializable {
                  // reverseButton(false);
                   
                   Contrat_selectionne =  ContratTable.getItems().get(ContratTable.getSelectionModel().getSelectedIndex());
+                  indexContratSelectionner=ContratTable.getSelectionModel().getSelectedIndex();
                   
                   System.out.println(Contrat_selectionne);
               //    dateD.setValue(Contrat_selectionne.getDate_deb());
@@ -128,6 +133,12 @@ public class GestionContratController implements Initializable {
 
     @FXML
     private void onClickDelete(ActionEvent event) {
+        
+        contrat_service.supprimerContrat(Contrat_selectionne);
+        ContratTable.getItems().remove(indexContratSelectionner);
+        
+        
+        
     }
 
     @FXML
