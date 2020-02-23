@@ -47,8 +47,8 @@ public class esprit extends Application {
 //        //c1.setId(2);
 //        //instance produit
 //        
-//        ProduitController produitController=new ProduitController();
-//           produitController.listeProduit();
+        ProduitController produitController=new ProduitController();
+           produitController.listeProduit();
 //           EntrepotController entrepotController=new EntrepotController();
 //           List<Entrepot> entrepots = entrepotController.readAll();
 //           System.out.println(entrepots);
@@ -93,7 +93,10 @@ public class esprit extends Application {
 //        System.out.println(list1.toString());
         
         
-  
+//  EntrepotController entrepotController = new EntrepotController();
+//  List<Entrepot> entrepots = entrepotController.readAll();
+//        System.out.println(entrepots);
+        
         Parent root = FXMLLoader.load(getClass().getResource("ListeProduit.fxml"));
         
         Scene scene = new Scene(root);
@@ -110,7 +113,7 @@ public class esprit extends Application {
     public static void main(String[] args) {
        launch(args);
        
-
     }
+    
     
 }
