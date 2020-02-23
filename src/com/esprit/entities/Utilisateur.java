@@ -26,6 +26,12 @@ public class Utilisateur {
 
     public Utilisateur() {
     }
+
+    public Utilisateur(int id, String nom, String prenom) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
     
     
     
