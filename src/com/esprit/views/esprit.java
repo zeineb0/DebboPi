@@ -25,7 +25,7 @@ public class esprit extends Application {
     @Override
     public void start(Stage stage) throws Exception {
   
-       Parent root = FXMLLoader.load(getClass().getResource("espaceClient.fxml"));
+       Parent root = FXMLLoader.load(getClass().getResource("espaceFournisseur.fxml"));
         
        Scene scene = new Scene(root);
         stage.setTitle("Entrepot");
@@ -33,6 +33,7 @@ public class esprit extends Application {
         stage.show();
         
          try{
+             
 //        ServiceEntrepot ent = new ServiceEntrepot();
 //        ServiceLocation loc = new ServiceLocation();
 //        Entrepot e1 = new Entrepot( "ariana",130, 520,"Libre", "delice", 5);
