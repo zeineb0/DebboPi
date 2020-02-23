@@ -9,35 +9,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ListeProduitController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ListeProduitController">
    <children>
       <Label layoutX="294.0" layoutY="48.0" prefHeight="70.0" prefWidth="413.0" text="Liste des produits" textFill="#d30d0d">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <TableView fx:id="table" layoutX="87.0" layoutY="225.0" prefHeight="200.0" prefWidth="421.0">
+      <TableView fx:id="table" layoutX="27.0" layoutY="225.0" prefHeight="200.0" prefWidth="421.0">
         <columns>
-          <TableColumn fx:id="clNom" prefWidth="119.0" text="nom" />
-          <TableColumn fx:id="clPrix" prefWidth="92.0" text="prix" />
-            <TableColumn fx:id="clQte" prefWidth="108.0" text="quantité" />
-            <TableColumn fx:id="clReserve" prefWidth="101.0" text="réservé" />
+          <TableColumn fx:id="clLib" prefWidth="119.0" text="LIBELLE" />
+          <TableColumn fx:id="clPrix" prefWidth="92.0" text="PRIX" />
+            <TableColumn fx:id="clRef" prefWidth="108.0" text="REFERENCE" />
+            <TableColumn fx:id="clMarque" prefWidth="101.0" text="MARQUE" />
         </columns>
       </TableView>
-      <Button fx:id="btn1" layoutX="339.0" layoutY="465.0" mnemonicParsing="false" onAction="#onClickModif" text="Modifier" />
-      <Button fx:id="btn3" layoutX="595.0" layoutY="465.0" mnemonicParsing="false" onAction="#onClickAnnul" text="Annuler" />
-      <Button fx:id="btn2" layoutX="468.0" layoutY="465.0" mnemonicParsing="false" onAction="#onClickSupp" text="Supprimer" />
-      <ComboBox fx:id="cmbE" layoutX="219.0" layoutY="152.0" prefHeight="31.0" prefWidth="250.0" promptText="veuillez choisir un entrepot" />
-      <ComboBox fx:id="cmbC" layoutX="674.0" layoutY="152.0" prefHeight="31.0" prefWidth="264.0" promptText="veuillez choisir une catégorie" />
-      <Label layoutX="87.0" layoutY="157.0" text="Entrepot" />
-      <Label layoutX="540.0" layoutY="157.0" text="Catégorie" />
-      <TextField fx:id="txt" layoutX="685.0" layoutY="219.0" prefHeight="31.0" prefWidth="187.0" />
-      <TextField fx:id="txt1" layoutX="685.0" layoutY="269.0" />
-      <TextField fx:id="txt2" layoutX="685.0" layoutY="320.0" />
-      <TextField fx:id="txt3" layoutX="685.0" layoutY="368.0" />
-      <Label layoutX="597.0" layoutY="224.0" text="nom" />
-      <Label layoutX="600.0" layoutY="274.0" text="prix" />
-      <Label layoutX="585.0" layoutY="325.0" text="quantité" />
-      <Label layoutX="589.0" layoutY="373.0" text="reserve" />
+      <Button fx:id="btn1" layoutX="335.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickModif" text="Modifier" />
+      <Button fx:id="btn3" layoutX="591.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickAnnul" text="Annuler" />
+      <Button fx:id="btn2" layoutX="464.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickSupp" text="Supprimer" />
+      <ComboBox fx:id="cmbC" layoutX="558.0" layoutY="163.0" prefHeight="31.0" prefWidth="207.0" promptText="veuillez choisir une catégorie" />
+       <ComboBox fx:id="cmbE" layoutX="142.0" layoutY="163.0" prefHeight="31.0" prefWidth="248.0" promptText="veuillez " />
+
+      <Label layoutX="27.0" layoutY="168.0" text="ENTREPOT" />
+      <Label layoutX="465.0" layoutY="168.0" text="CATEGORIE" />
+      <TextField fx:id="txt" layoutX="568.0" layoutY="225.0" prefHeight="31.0" prefWidth="187.0" />
+      <TextField fx:id="txt1" layoutX="568.0" layoutY="275.0" />
+      <TextField fx:id="txt2" layoutX="568.0" layoutY="326.0" />
+      <TextField fx:id="txt3" layoutX="568.0" layoutY="374.0" />
+      <Label fx:id="lib" layoutX="480.0" layoutY="230.0" text="LIBELLE" />
+      <Label fx:id="prix" layoutX="483.0" layoutY="280.0" text="PRIX" />
+      <Label fx:id="ref" layoutX="468.0" layoutY="331.0" text="REFERENCE" />
+      <Label fx:id="mar" layoutX="472.0" layoutY="379.0" text="MARQUE" />
+      <Button fx:id="btnAj" layoutX="205.0" layoutY="483.0" mnemonicParsing="false" text="Ajouter" />
    </children>
 </AnchorPane>

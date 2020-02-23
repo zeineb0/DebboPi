@@ -32,42 +32,41 @@ public class ProduitController implements IProduitService{
     @Override
     public void ajouterProduit(Produit produit)  {
         System.out.println(produit);
-        String req = "INSERT INTO `produit`("
-                + "`nom`,"
-                + " `prix`,"
-                + " `quantite`,"
-                + " `reserve`,"
-                + " `FK_id_categorie`,"
-                + "`FK_id_entrepot`)"
-                + " VALUES (?,?,?,?,?,?)";
-      
+        String req ="INSERT INTO `produit`( "
+                + "`libelle`, "
+                + "`reference`,"
+                + " `marque`, "
+                + "`prix`, "
+                + "`FK_id_categorie`,"
+                + " `FK_id_entrepot`) "
+                + "VALUES (?,?,?,?,?,?)";
+                
         try {
-            ps = conn.prepareStatement(req);
-            ps.setString(1,produit.getNom());
-            ps.setDouble(2,produit.getPrix());
-            ps.setDouble(3,produit.getQuantite());
-            ps.setDouble(4,produit.getReserve());
+             ps = conn.prepareStatement(req);
+            ps.setString(1,produit.getLibelle());
+            ps.setInt(2,produit.getReference());
+            ps.setString(3,produit.getMarque());
+            ps.setDouble(4,produit.getPrix());
             ps.setInt(5,produit.getCategorie().getId());
             ps.setInt(6,produit.getEntrepot().getId_entrepot());
             ps.execute();
             System.out.println("produit ajouté");
             
         } catch (SQLException ex) {
-            System.out.println(req);
             System.out.println("Produit non ajouté");
         }
                 
     }
 
     @Override
-    public void supprimerProduit(String nom) {
+    public void supprimerProduit(String libelle) {
         
         
         try {
-                    String req="DELETE FROM `produit` WHERE `nom`=?" ;
+                    String req="DELETE FROM `produit` WHERE `libelle`=?" ;
 
             ps = conn.prepareStatement(req);
-            ps.setString(1, nom);
+            ps.setString(1, libelle);
             ps.execute();
              System.out.println("suppression validée");
             
@@ -80,7 +79,7 @@ public class ProduitController implements IProduitService{
     @Override
     public void consulterProduit(String nom){
         Produit p=new Produit();
-        String req= "SELECT * FROM `produit` WHERE `nom`=?";
+        String req= "SELECT * FROM `produit` WHERE `libelle`=?";
         try {
         ps=conn.prepareStatement(req);
         ps.setString(1,nom);
@@ -88,13 +87,12 @@ public class ProduitController implements IProduitService{
         
          while (rs.next()) 
                {
-                   
-                  
-                   p.setId(rs.getInt("id_produit"));
-                   p.setNom(rs.getString("nom"));
+                                      p.setId(rs.getInt("id_produit"));
+
+                   p.setLibelle(rs.getString("libelle"));
                    p.setPrix(rs.getDouble("prix"));
-                   p.setQuantite(rs.getDouble("quantite"));
-                   p.setReserve(rs.getDouble("reserve"));
+                   p.setReference(rs.getInt("reference"));
+                   p.setMarque(rs.getString("marque"));
                    System.out.println(p);
                }
         }
@@ -102,100 +100,114 @@ public class ProduitController implements IProduitService{
         catch (SQLException ex) {
             System.out.println("Produit introuvable");
         }
-             
 
-    
     }
+     public Categorie getCategorie(int id){
+           String req2 = "SELECT * FROM `categories` WHERE `id_categorie`=?";
+                        Categorie c =new Categorie();
 
-    @Override
-    public List<Produit> listeProduit() {
-        List<Produit> produits = new ArrayList<>();
-        String req = "SELECT * FROM `produit` WHERE 1";
-        try {
-            ps = conn.prepareStatement(req);
-             rs = ps.executeQuery();
-               while (rs.next()) 
-               {
-                   
-                   Produit p=new Produit();
-                   p.setId(rs.getInt("id_produit"));
-                   p.setNom(rs.getString("nom"));
-                   p.setPrix(rs.getDouble("prix"));
-                   p.setQuantite(rs.getDouble("quantite"));
-                   p.setReserve(rs.getDouble("reserve"));
-                   
-                  
-                   /**
-                    * Jointure Fk_Produit_Categorie
-                    */
-                   
-                   String req2 = "SELECT * FROM `categories` WHERE `id_categorie`=?";
-                PreparedStatement ps2 = conn.prepareStatement(req2);
-                
-                ps2.setInt(1, rs.getInt("FK_id_categorie"));
+           try {
+            PreparedStatement ps2 = conn.prepareStatement(req2);
+               ps2.setInt(1, id);
                 ResultSet rs2 = ps2.executeQuery();
-                 Categorie c =new Categorie();
                    while (rs2.next()) {  
                        c.setId(rs2.getInt("id_categorie"));
                        c.setNom(rs2.getString("nom"));
+                       
                    }
-                   //affecter la categorie au produit
-                   p.setCategorie(c);
-                     //ajouter le produit dans la liste 
-                    
-                   String req3 = "SELECT `entreprise` FROM `entrepot` WHERE `id_entrepot`=?";
-                                   PreparedStatement ps3 = conn.prepareStatement(req3);
-                                   
-                                   ps3.setInt(1,rs.getInt("FK_id_entrepot"));
-                                   ResultSet rs3 = ps3.executeQuery();
-                                   Entrepot e = new Entrepot();
-                                   while(rs3.next()){
-                                   
-                                   e.setId_entrepot(rs3.getInt("id_entrepot"));
+            
+        } catch (SQLException ex) {
+              
+        }
+         return c;
+        
+    }
+     public Entrepot getEntrepot (int id){
+          Entrepot e = new Entrepot();
+         
+          String reeq = "SELECT * FROM `entrepot` WHERE `id_entrepot`=?";
+                                            
 
-                                   e.setAdresse_entrepot(rs3.getString("adresse_entrepot"));
-                                   e.setNum_fiscale(rs3.getInt("num_fiscale"));
-                                   e.setQuantite_max(rs3.getInt("quantite_max"));
-                                   e.setEtat(rs3.getString("etat"));
-                                   e.setEntreprise(rs3.getString("entreprise"));
+        try {
+            PreparedStatement ps4 = conn.prepareStatement(reeq);
+                        ps4.setInt(1,id);
+                                   ResultSet r2 = ps4.executeQuery();
+                                   while(r2.next()){
+                                       System.out.println(reeq);System.out.println("in while");
+                                   e.setId_entrepot(r2.getInt("id_entrepot"));
+                                   e.setAdresse_entrepot(r2.getString("adresse"));
+                                   e.setNum_fiscale(r2.getInt("num_fiscale"));
+                                   e.setQuantite_max(r2.getInt("quantite_max"));
+                                   e.setEtat(r2.getString("etat"));
+                                   e.setEntreprise(r2.getString("entreprise"));
                                    
                                    }
-                                   p.setEntrepot(e);
-                                   
-
-                                      produits.add(p);
-
-                   
-                   
-                   
-               }
+        
+            
         } catch (SQLException ex) {
-            System.err.println("erreur ");
+            
+            System.out.println(ex);
+        }
+                    return e;
+
+}
+
+    @Override
+    public List<Produit> listeProduit() {
+              List<Produit> produits = new ArrayList<>();
+        String req = "SELECT * FROM `produit`";
+        try {
+            ps = conn.prepareStatement(req);
+             rs = ps.executeQuery();
+           
+               while (rs.next()) 
+               {
+                   Produit p=new Produit();
+                   p.setId(rs.getInt("id_produit"));
+                  p.setLibelle(rs.getString("libelle"));
+                   p.setPrix(rs.getDouble("prix"));
+                   p.setReference(rs.getInt("reference"));
+                   p.setMarque(rs.getString("marque"));
+                   /**
+                    * Jointure Fk_Produit_Categorie
+                    */
+                   Categorie c = getCategorie(rs.getInt("FK_id_categorie"));
+                   p.setCategorie(c);
+                   //affecter la categorie au produit
+                 
+                     //ajouter le produit dans la liste
+                     Entrepot e=getEntrepot(rs.getInt("FK_id_entrepot"));
+                      p.setEntrepot(e);
+                      
+                      produits.add(p);
+
+               }
+
+
+        } catch (SQLException ex) {
+            System.out.println("erreur ");
         }
         System.out.println(produits);
         return produits;
     }
 
-   
-   
-
     @Override
     public Produit modiferProduit(Produit produit)  {
         String req = "UPDATE `produit` SET "
-                + "`nom`=?,"
+                + "`libelle`=?,"
+                + "`reference`=?,"
+                + "`marque`=?,"
                 + "`prix`=?,"
-                + "`quantite`=?,"
-                + "`reserve`=?,"
                 + "`FK_id_categorie`=?,"
-                + "`FK_id_entrepot`=?"
-
-                + " WHERE `id_produit`=?";    
+                + "`FK_id_entrepot`=? "
+                + "WHERE `id_produit`=?";
+                   
           try {
             ps = conn.prepareStatement(req);
-            ps.setString(1,produit.getNom());
-            ps.setDouble(2,produit.getPrix());
-            ps.setDouble(3,produit.getQuantite());
-            ps.setDouble(4,produit.getReserve());
+            ps.setString(1,produit.getLibelle());
+            ps.setInt(2,produit.getReference());
+            ps.setString(3,produit.getMarque());
+            ps.setDouble(4,produit.getPrix());
             ps.setInt(5,produit.getCategorie().getId());
             ps.setInt(6,produit.getEntrepot().getId_entrepot());
             ps.setInt(7,produit.getId());

@@ -24,10 +24,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+//masmaat chy meli koltholi
 
 /**
  * FXML Controller class
@@ -39,21 +41,19 @@ public class ListeProduitController implements Initializable {
     @FXML
     private TableView<Produit> table;
     @FXML
-    private TableColumn<Produit, String> clNom;
+    private TableColumn<Produit, String> clLib;
     @FXML
     private TableColumn<Produit, Double> clPrix;
     @FXML
-    private TableColumn<Produit, Double> clQte;
+    private TableColumn<Produit, Integer> clRef;
     @FXML
-    private TableColumn<Produit, Double> clReserve;
+    private TableColumn<Produit, String> clMarque;
     
         private Produit ProduitSelectionner =new Produit();
 
        CategorieController categorieController = new CategorieController();
-    
         private  List<Categorie> categories=new ArrayList<>();
-    EntrepotController entrepotController=new EntrepotController();
-        private List<Entrepot> entrepots= new ArrayList<>();
+   
   
      List<Produit> produits=new ArrayList<>();
     
@@ -64,8 +64,7 @@ public class ListeProduitController implements Initializable {
     private Button btn3;
     @FXML
     private Button btn2;
-    @FXML
-    private ComboBox<Entrepot> cmbE;
+    
     @FXML
     private ComboBox<Categorie> cmbC;
     @FXML
@@ -77,7 +76,20 @@ public class ListeProduitController implements Initializable {
     @FXML
     private TextField txt3;
         private int indexProduitSelectionner;
-
+    @FXML
+    // private ComboBox<Entrepot> cmbE;
+EntrepotController entrepotController = new EntrepotController();
+    List<Entrepot> entrepots = new ArrayList<>();
+    @FXML
+    private Label lib;
+    @FXML
+    private Label prix;
+    @FXML
+    private Label ref;
+    @FXML
+    private Label mar;
+    @FXML
+    private Button btnAj;
 
     /**
      * Initializes the controller class.
@@ -86,20 +98,31 @@ public class ListeProduitController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         categories= categorieController.listCategorie();
-       entrepots=entrepotController.readAll();
                produits=produitController.listeProduit();
-
+               entrepots=entrepotController.readAll();
+               
+               System.out.println(entrepots);
+               
+               
+               
+               
         ObservableList observableList=FXCollections.observableArrayList(categories);
         ObservableList observableList1=FXCollections.observableArrayList(entrepots);
+        //System.out.println(observableList1);
         cmbC.setItems(observableList);
-        cmbE.setItems(observableList1);
+        //cmbE.setItems(observableList1);
+
         
-                reverseButton(true);
+                reverseButtonModif(true);
+                reverseButtonAjout(true);
                 
-         clNom.setCellValueFactory(new PropertyValueFactory("Nom"));
+                
+                
+                setInvisible(false);
+         clLib.setCellValueFactory(new PropertyValueFactory("libelle"));
          clPrix.setCellValueFactory(new PropertyValueFactory("prix"));
-         clQte.setCellValueFactory(new PropertyValueFactory("quantite"));
-         clReserve.setCellValueFactory(new PropertyValueFactory("reserve"));
+         clRef.setCellValueFactory(new PropertyValueFactory("reference"));
+         clMarque.setCellValueFactory(new PropertyValueFactory("marque"));
          table.getItems().addAll(produits);
          
          
@@ -107,22 +130,25 @@ public class ListeProduitController implements Initializable {
         //pour modifier un produit il faut faire deux click
               if (event.getClickCount() == 2) {
                   //activer les Buttons 
-                  reverseButton(false);
-                  
+                  reverseButtonModif(false);
+                  reverseButtonAjout(true);
+                  setInvisible(true);
+
                   ProduitSelectionner = table.getItems().get(table.getSelectionModel().getSelectedIndex());
+                  //System.out.println("Produit selectionnner"+ProduitSelectionner);
                   indexProduitSelectionner=table.getSelectionModel().getSelectedIndex();
-                  txt.setText(ProduitSelectionner.getNom());
+                  
+                  txt.setText(ProduitSelectionner.getLibelle());
                   txt1.setText(String.valueOf(ProduitSelectionner.getPrix()));
-                  txt2.setText(String.valueOf(ProduitSelectionner.getQuantite()));
-                  txt3.setText(String.valueOf(ProduitSelectionner.getReserve()));
+                  txt2.setText(String.valueOf(ProduitSelectionner.getReference()));
+                  txt3.setText(String.valueOf(ProduitSelectionner.getMarque()));
                   //System.out.println(ProduitSelectionner.getCategorie());
                   cmbC.setValue(ProduitSelectionner.getCategorie());
+                 // cmbE.setValue(ProduitSelectionner.getEntrepot());
               }
              
                     });
-        
-        
-        
+       
     }    
     
     
@@ -131,19 +157,43 @@ public class ListeProduitController implements Initializable {
         table.getItems().addAll(produitController.listeProduit());
     }
     
-     public void reverseButton(Boolean etat){
+     public void reverseButtonModif(Boolean etat){
         btn1.setDisable(etat);
-        btn2.setDisable(etat);
-        btn3.setDisable(etat);
-    }
+                btn2.setDisable(etat);
 
+      
+    }
+     public void reverseButtonAjout(Boolean etat){
+  
+        btnAj.setDisable(etat);
+     }
+     
+     public void setInvisible(Boolean etat){
+     lib.setVisible(etat);
+     mar.setVisible(etat);
+     prix.setVisible(etat);
+     ref.setVisible(etat);
+     txt.setVisible(etat);
+     txt1.setVisible(etat);
+     txt2.setVisible(etat);
+     txt3.setVisible(etat);
+     
+     
+     
+     
+     }
+     
     @FXML
     private void onClickModif(ActionEvent event) {
-        
-        ProduitSelectionner.setNom(txt.getText());
+        setInvisible(true);
+        ProduitSelectionner.setLibelle(txt.getText());
        ProduitSelectionner.setPrix(Double.parseDouble(txt1.getText()));
-       ProduitSelectionner.setQuantite(Double.parseDouble(txt2.getText()));
-       ProduitSelectionner.setQuantite(Double.parseDouble(txt3.getText()));
+       ProduitSelectionner.setReference(Integer.parseInt(txt2.getText()));
+       ProduitSelectionner.setMarque(txt3.getText());
+       
+       ProduitSelectionner.setCategorie(cmbC.getValue());
+       //ProduitSelectionner.setEntrepot(cmbE.getValue());
+        //System.out.println(cmbE.getValue());
         //System.out.println(ProduitSelectionner);
        produitController.modiferProduit(ProduitSelectionner);
        
@@ -164,7 +214,7 @@ public class ListeProduitController implements Initializable {
 
     @FXML
     private void onClickSupp(ActionEvent event) {
-         produitController.supprimerProduit(ProduitSelectionner.getNom());
+         produitController.supprimerProduit(ProduitSelectionner.getLibelle());
         table.getItems().remove(indexProduitSelectionner);
     }
     

@@ -11,10 +11,10 @@ package com.esprit.entities;
  */
 public class Produit {
 private int id;
-    private String nom;
+    private String libelle;
     private double prix;
-    private double quantite;
-    private double reserve;
+    private int reference;
+    private String marque;
     //un produit posséde une catégorie
     private Categorie categorie;
     private Entrepot entrepot;
@@ -23,70 +23,68 @@ private int id;
     public Produit() {
     }
 
-    public Entrepot getEntrepot() {
-        return entrepot;
-    }
-
-    public void setEntrepot(Entrepot entrepot) {
-        this.entrepot = entrepot;
-    }
-
-   
-    
     public int getId() {
         return id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getLibelle() {
+        return libelle;
     }
 
     public double getPrix() {
         return prix;
     }
 
-    public double getQuantite() {
-        return quantite;
+    public int getReference() {
+        return reference;
     }
 
-    public double getReserve() {
-        return reserve;
+    public String getMarque() {
+        return marque;
     }
 
     public Categorie getCategorie() {
         return categorie;
     }
 
+    public Entrepot getEntrepot() {
+        return entrepot;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     public void setPrix(double prix) {
         this.prix = prix;
     }
 
-    public void setQuantite(double quantite) {
-        this.quantite = quantite;
+    public void setReference(int reference) {
+        this.reference = reference;
     }
 
-    public void setReserve(double reserve) {
-        this.reserve = reserve;
+    public void setMarque(String marque) {
+        this.marque = marque;
     }
 
-   
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }
 
-    @Override
-    public String toString() {
-        return "Produit{" + "id=" + id + ", nom=" + nom + ", prix=" + prix + ", quantite=" + quantite + ", reserve=" + reserve + ", categorie=" + categorie + ", entrepot=" + entrepot + '}';
+    public void setEntrepot(Entrepot entrepot) {
+        this.entrepot = entrepot;
     }
 
+    @Override
+    public String toString() {
+        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", reference=" + reference + ", marque=" + marque + ", categorie=" + categorie + ", entrepot=" + entrepot + '}';
+    }
+
+   
     
     
 
