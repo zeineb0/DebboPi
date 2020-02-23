@@ -145,10 +145,10 @@ Connection conn = DataSource.getInstance().getConnection();
                {
                    Produit p=new Produit();
                    p.setId(rs.getInt("id_produit"));
-                   p.setNom(rs.getString("nom"));
+                   p.setLibelle(rs.getString("libelle"));
                    p.setPrix(rs.getDouble("prix"));
-                   p.setQuantite(rs.getDouble("quantite"));
-                   p.setReserve(rs.getDouble("reserve"));
+                   p.setReference(rs.getInt("reference"));
+                   p.setMarque(rs.getString("marque"));
                    p.setCategorie(categorie);
                    produits.add(p);
                }
