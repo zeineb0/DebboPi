@@ -115,12 +115,12 @@ try {
                int FK_id_entrepot = rs.getInt(5);
                int FK_id_user = rs.getInt(6);
                
-               
+     
              
                
     Location l = new Location(id_location, date_deb_location, date_fin_location, prix_location, FK_id_entrepot, FK_id_user);
     locations.add(l);
-     }
+     } 
     return locations;
     }
    public List<Location> trierLocationParPrixCroissant() throws SQLException{
@@ -161,5 +161,17 @@ public List<Location> trierLocationParDateCroissant() throws SQLException{
               
  
     
+}
+
+public Double calculPrix (Double prix,Date datedeb, Date datefin)
+{ 
+        double prix1;
+        final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24; 
+
+        return prix1= ((prix/31)*(datefin.getTime()-datedeb.getTime()))/ (MILLISECONDS_PER_DAY)
+                
+                ;
+
+
 }
 }
