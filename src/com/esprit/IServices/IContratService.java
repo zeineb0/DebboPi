@@ -19,7 +19,7 @@ import java.util.List;
 public interface IContratService {
     
     public void ajouterContrat (Contrat contrat,Utilisateur user,Entrepot entrepot);
-    public void supprimerContrat (Contrat contrat);
+    public void supprimerContrat (ContratDetail contrat);
     public void modifierContrat(Contrat contrat);
     public List<ContratDetail> afficherContrat();
     public List<ContratDetail> afficherContratTransporteur(Utilisateur user);
