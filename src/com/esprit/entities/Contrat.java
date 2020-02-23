@@ -19,6 +19,11 @@ public class Contrat {
 
     public Contrat() {
     }
+
+    public Contrat(Date date_debut, Date date_fin) {
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+    }
     
     
 
