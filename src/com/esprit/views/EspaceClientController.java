@@ -42,7 +42,7 @@ import javafx.stage.Stage;
  * @author asus
  */
 public class EspaceClientController implements Initializable {
- @FXML
+    @FXML
     private TableView<Entrepot> table;
     @FXML
     private TableColumn<Entrepot, Integer> Ide;
@@ -104,14 +104,23 @@ private Entrepot EntrepotSelectionner = new Entrepot();
          
           table.setOnMouseClicked(event->{
         //pour modifier un produit il faut faire deux click
-              if (event.getClickCount() == 2) {
-                  EntrepotSelectionner=table.getItems().get(table.getSelectionModel().getSelectedIndex());
-                  idA=EntrepotSelectionner.getId_entrepot();
-                  pri=EntrepotSelectionner.getPrix_location();
-                  String id = Double.toString(idA);
-                  idEnt.setText(id);
-                  String p = Double.toString(pri);
-                  prix1.setText(p);
+            if (event.getClickCount() == 2) {
+                EntrepotSelectionner=table.getItems().get(table.getSelectionModel().getSelectedIndex());
+                idA=EntrepotSelectionner.getId_entrepot();
+                pri=EntrepotSelectionner.getPrix_location();
+                String id = Double.toString(idA);
+                idEnt.setText(id);
+                Date date1 = Date.valueOf(dateDeb.getValue());
+                Date date2 = Date.valueOf(dateFin.getValue());  
+                    if(SystemClockFactory.getDatetime().before(date1).before(date2))
+                        {String p = serviceLocation.calculPrix(pri,date1, date2 ).toString();
+                        prix1.setText(p);
+                        }
+                    else
+                         {erreur.setVisible(true);}
+               
+                  
+                 
               }
                     });
 
@@ -128,12 +137,12 @@ private Entrepot EntrepotSelectionner = new Entrepot();
 
          
             Location l =new Location();
-            if(date1.before(date2))
-            { l.setDate_deb_location(date1);
-              l.setDate_fin_location(date2);}
-             else
-            {erreur.setVisible(true);}
-         l.setPrix_location(pri);
+            
+            l.setDate_deb_location(date1);
+            l.setDate_fin_location(date2);
+            
+            l.setPrix_location(Double.parseDouble(prix1.getText()));
+        
          l.setFK_id_entrepot(idA);
         serviceLocation.ajouter(l);
        
