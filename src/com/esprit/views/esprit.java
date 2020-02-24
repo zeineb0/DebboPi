@@ -11,6 +11,7 @@ import com.esprit.entities.Entrepot;
 import com.esprit.entities.Livraison;
 import com.esprit.entities.Utilisateur;
 import com.esprit.services.impl.ContratService;
+import com.esprit.services.impl.MailService;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
  *
  * @author Zeineb_yahiaoui
  */
-public class esprit extends Application {
+public class esprit extends Application  {
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -62,6 +63,8 @@ public class esprit extends Application {
 //                  
 //                  contrat_detail=contrat_service.afficherContrat();
 //                  contrat_detail.stream().forEach(System.out::println);
+
+                    MailService.SendMail("benakachamohamedfarouk@gmail.com","Hello Test");
                   
                   
                   
