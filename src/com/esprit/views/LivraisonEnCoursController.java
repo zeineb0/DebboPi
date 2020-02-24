@@ -96,7 +96,8 @@ public class LivraisonEnCoursController implements Initializable {
     }
     
     
-    private void addButtonToTable() {
+    private void addButtonToTable() 
+    {
        
 
         Callback<TableColumn<Livraison, Void>, TableCell<Livraison, Void>> cellFactory = new Callback<TableColumn<Livraison, Void>, TableCell<Livraison, Void>>() {
@@ -112,20 +113,20 @@ public class LivraisonEnCoursController implements Initializable {
                             contrat_service.modifierEtatLivraison(data);
                             LivraisonEncoursTable.getItems().clear();
                             Utilisateur transporteur1 = new Utilisateur();
-        transporteur1.setId(1);
-        ArrayList<Livraison> list_livraison=(ArrayList<Livraison>) contrat_service.afficherLivraisonParTransporteurNonLivree(transporteur1);
+                            transporteur1.setId(1);
+                            ArrayList<Livraison> list_livraison=(ArrayList<Livraison>) contrat_service.afficherLivraisonParTransporteurNonLivree(transporteur1);
          
-         data_list = FXCollections.observableArrayList(list_livraison);
-         
+                            data_list = FXCollections.observableArrayList(list_livraison);
+            
         
-         date_livraison.setCellValueFactory(new PropertyValueFactory<>("date_livraison"));
-         adresse_livraison.setCellValueFactory(new PropertyValueFactory<>("adresse_livraison"));
-         etat_livraison.setCellValueFactory(new PropertyValueFactory<>("etat_livraison"));
-         acceptation.setCellValueFactory(new PropertyValueFactory<>("acceptation"));
-         FK_id_commande.setCellValueFactory(new PropertyValueFactory<>("FK_id_commande"));
-         FK_id_user.setCellValueFactory(new PropertyValueFactory<>("FK_id_user"));
-         addButtonToTable();
-         LivraisonEncoursTable.setItems(data_list);
+                            date_livraison.setCellValueFactory(new PropertyValueFactory<>("date_livraison"));
+                            adresse_livraison.setCellValueFactory(new PropertyValueFactory<>("adresse_livraison"));
+                            etat_livraison.setCellValueFactory(new PropertyValueFactory<>("etat_livraison"));
+                            acceptation.setCellValueFactory(new PropertyValueFactory<>("acceptation"));
+                            FK_id_commande.setCellValueFactory(new PropertyValueFactory<>("FK_id_commande"));
+                            FK_id_user.setCellValueFactory(new PropertyValueFactory<>("FK_id_user"));
+                            addButtonToTable();
+                            LivraisonEncoursTable.setItems(data_list);
          
                             
                             
