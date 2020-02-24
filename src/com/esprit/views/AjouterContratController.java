@@ -10,6 +10,7 @@ import com.esprit.entities.ContratDetail;
 import com.esprit.entities.Entrepot;
 import com.esprit.entities.Utilisateur;
 import com.esprit.services.impl.ContratService;
+import com.esprit.services.impl.MailService;
 import com.esprit.utilities.DataSource;
 import java.io.IOException;
 import java.net.URL;
@@ -61,6 +62,7 @@ public class AjouterContratController implements Initializable {
     private ContratService contrat_service;
     
     private int id, id2;
+    private String email;
     private List<String> nom_prenom ;
     @FXML
     private TextField nomp;
@@ -96,7 +98,7 @@ public class AjouterContratController implements Initializable {
     
 
     @FXML
-    private void onClickAdd(ActionEvent event) throws SQLException, IOException {
+    private void onClickAdd(ActionEvent event) throws SQLException, IOException, Exception {
         contrat_service = new ContratService();
         
         Date date1 = Date.valueOf(dateDeb.getValue());
@@ -132,15 +134,7 @@ public class AjouterContratController implements Initializable {
             while(rs.next())
                  {
                     id = rs.getInt("id_user");
-                    System.out.println(id);
-        
-//         Utilisateur user = new Utilisateur();
-//        user.setId(rs.getInt("id_user"));
-//        user.setNom(rs.getString("nom"));
-//        user.setPrenom(rs.getString("prenom"));
-//        
-//        System.out.println(user);
-        
+                    System.out.println(id);        
                  }
         }   catch (SQLException ex) {
             Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
@@ -162,20 +156,41 @@ public class AjouterContratController implements Initializable {
         {
             Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+        
+        
+        
+         try
+        {
+            String req = "select email  from utilisateur where nom ='"+nom+"' and prenom ='"+prenom+"' ";
+            Statement s=DataSource.getInstance().getConnection().createStatement();
+            ResultSet rs=s.executeQuery(req);
 
+            while(rs.next())
+                 {
+                    email = rs.getString("email");
+                    System.out.println(email);        
+                 }
+        }   catch (SQLException ex) {
+            Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+      
         Contrat contrat = new Contrat(date1, date2);
         Utilisateur user = new Utilisateur();
         user.setId(id);
         Entrepot entrepot = new Entrepot();
         entrepot.setId_entrepot(id2);
+       
         contrat_service.ajouterContrat(contrat, user, entrepot);
-        
+        MailService.SendMail(email,"Hello Test");
+                
         Parent gestion_contrat = FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
         Scene gestionCV= new Scene(gestion_contrat);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(gestionCV);
         window.show();
+        
+        
         
  
         
