@@ -7,6 +7,7 @@ package com.esprit.views;
 
 import com.esprit.entities.Contrat;
 import com.esprit.entities.ContratDetail;
+import com.esprit.entities.Entrepot;
 import com.esprit.services.impl.ContratService;
 import java.io.IOException;
 import java.net.URL;
@@ -67,7 +68,7 @@ public class GestionContratController implements Initializable {
     private ContratDetail Contrat_selectionne = new ContratDetail();
     ContratService contrat_service= new ContratService();
     
-
+            Entrepot entrepot = new Entrepot();
 
     /**
      * Initializes the controller class.
@@ -76,8 +77,9 @@ public class GestionContratController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         
+        entrepot.setId_entrepot(3);
         
-        ArrayList<ContratDetail> liste_contrat=(ArrayList<ContratDetail>) contrat_service.afficherContrat();
+        ArrayList<ContratDetail> liste_contrat=(ArrayList<ContratDetail>) contrat_service.afficherContratEntrepot(entrepot);
         
         data_list = FXCollections.observableArrayList(liste_contrat);
         
@@ -92,30 +94,28 @@ public class GestionContratController implements Initializable {
         
         
         
-                ContratTable.setOnMouseClicked(event->{
+        ContratTable.setOnMouseClicked(event->{
         //pour modifier un produit il faut faire deux click
-              if (event.getClickCount() == 2) {
-                  //activer les Buttons 
-                 // reverseButton(false);
+            if (event.getClickCount() == 2)
+            {
                   
-                  Contrat_selectionne =  ContratTable.getItems().get(ContratTable.getSelectionModel().getSelectedIndex());
-                  indexContratSelectionner=ContratTable.getSelectionModel().getSelectedIndex();
+                Contrat_selectionne =  ContratTable.getItems().get(ContratTable.getSelectionModel().getSelectedIndex());
+                indexContratSelectionner=ContratTable.getSelectionModel().getSelectedIndex();
                   
-                  System.out.println(Contrat_selectionne);
-              //    dateD.setValue(Contrat_selectionne.getDate_deb());
-                  
-//                  txt1.setText(String.valueOf(Contrat_selectionne.getPrix()));
-//                  txt2.setText(String.valueOf(Contrat_selectionne.getQuantite()));
-//                  txt3.setText(String.valueOf(Contrat_selectionne.getReserve()));
-                  //System.out.println(ProduitSelectionner.getCategorie());
-                
-              }
+                System.out.println(Contrat_selectionne);
+             }
              
                     });
         
         
         
     }    
+    
+    
+     public void ref() {
+        ContratTable.getItems().clear();
+        ContratTable.getItems().addAll(contrat_service.afficherContratEntrepot(entrepot));
+    }
 
     @FXML
     private void onClickAdd(ActionEvent event) throws IOException {
@@ -129,6 +129,15 @@ public class GestionContratController implements Initializable {
 
     @FXML
     private void onClickUpdate(ActionEvent event) {
+        
+         Date date_debut = Date.valueOf(dateD.getValue());
+         Date date_fin = Date.valueOf(dateF.getValue());
+         
+         contrat_service.modifierContrat(Contrat_selectionne, date_debut, date_fin);
+         ref();         
+         
+         
+        
     }
 
     @FXML
@@ -143,6 +152,8 @@ public class GestionContratController implements Initializable {
 
     @FXML
     private void onClickCancel(ActionEvent event) {
+        
+        
     }
     
 }
