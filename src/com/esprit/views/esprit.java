@@ -64,9 +64,6 @@ public class esprit extends Application  {
 //                  contrat_detail=contrat_service.afficherContrat();
 //                  contrat_detail.stream().forEach(System.out::println);
 
-                    MailService.SendMail("benakachamohamedfarouk@gmail.com","Hello Test");
-                  
-                  
                   
                //   Livraison livraison = new Livraison();
                 //  livraison.setId_livraison(1);
