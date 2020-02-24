@@ -26,7 +26,7 @@ import javax.mail.internet.MimeMessage;
 public class MailService {
     
      public static void SendMail(String recepient,String corps) throws Exception {
-         System.out.println("Preparing to send ail");
+         System.out.println("Preparing to send email");
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
