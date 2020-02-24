@@ -30,17 +30,15 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="addC" layoutX="595.0" layoutY="597.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="31.0" prefWidth="143.0" text="Ajouter Contrat" />
+      <Button fx:id="addC" layoutX="584.0" layoutY="505.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="31.0" prefWidth="143.0" text="Ajouter Contrat" />
       <Button fx:id="gestC" layoutX="41.0" layoutY="305.0" mnemonicParsing="false" onAction="#onClickGestion" prefHeight="80.0" prefWidth="187.0" text="Gestion des contrats" />
-      <TextField fx:id="nom" layoutX="655.0" layoutY="297.0" />
-      <TextField fx:id="prenom" layoutX="657.0" layoutY="398.0" prefHeight="31.0" prefWidth="187.0" />
-      <TextField fx:id="entreprise" layoutX="657.0" layoutY="495.0" />
+      <TextField fx:id="nomp" layoutX="655.0" layoutY="297.0" />
+      <TextField fx:id="entreprise" layoutX="655.0" layoutY="385.0" />
       <DatePicker fx:id="dateDeb" layoutX="650.0" layoutY="100.0" />
       <DatePicker fx:id="dateFin" layoutX="650.0" layoutY="189.0" />
-      <Label layoutX="447.0" layoutY="105.0" prefHeight="21.0" prefWidth="110.0" text="Date Debut :" />
-      <Label layoutX="448.0" layoutY="194.0" prefHeight="21.0" prefWidth="110.0" text="Date Fin :" />
-      <Label layoutX="442.0" layoutY="305.0" text="Nom du transporteur :" />
-      <Label layoutX="442.0" layoutY="403.0" text="Prenom du transporteur :" />
-      <Label layoutX="442.0" layoutY="500.0" prefHeight="21.0" prefWidth="149.0" text="L'entrepot :" />
+      <Label layoutX="402.0" layoutY="105.0" prefHeight="21.0" prefWidth="110.0" text="Date Debut :" />
+      <Label layoutX="406.0" layoutY="194.0" prefHeight="21.0" prefWidth="110.0" text="Date Fin :" />
+      <Label layoutX="404.0" layoutY="305.0" text="Nom et Prenom  du transporteur :" />
+      <Label layoutX="406.0" layoutY="390.0" prefHeight="21.0" prefWidth="149.0" text="L'entrepot :" />
    </children>
 </AnchorPane>
