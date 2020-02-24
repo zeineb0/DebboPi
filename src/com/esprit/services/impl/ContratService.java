@@ -339,7 +339,7 @@ public class ContratService implements IContratService {
      public List<String> getNomPrenom(){
         List<String> maliste = new ArrayList<String>();
         try {
-            String req="SELECT nom , prenom  FROM utilisateur";
+            String req="SELECT nom , prenom  FROM utilisateur where role='transporteur' ";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
             while(rs.next())
