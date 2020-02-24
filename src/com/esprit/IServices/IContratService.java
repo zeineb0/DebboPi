@@ -10,6 +10,7 @@ import com.esprit.entities.ContratDetail;
 import com.esprit.entities.Entrepot;
 import com.esprit.entities.Livraison;
 import com.esprit.entities.Utilisateur;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -20,8 +21,8 @@ public interface IContratService {
     
     public void ajouterContrat (Contrat contrat,Utilisateur user,Entrepot entrepot);
     public void supprimerContrat (ContratDetail contrat);
-    public void modifierContrat(Contrat contrat);
-    public List<ContratDetail> afficherContrat();
+    public void modifierContrat(ContratDetail contrat,Date date_debut , Date date_fin);
+    public List<ContratDetail> afficherContratEntrepot(Entrepot entrepot);
     public List<ContratDetail> afficherContratTransporteur(Utilisateur user);
     public void modifierEtatLivraison(Livraison livraison);
     public List<Utilisateur> afficherTransporteurLibre();
