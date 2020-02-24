@@ -10,6 +10,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,9 +52,9 @@ public class StatistiquesController implements Initializable {
     @FXML
     private ChoiceBox<String> typech;
     @FXML
-    private BarChart<String,Integer> barchart;
+    private BarChart<Date,Integer> barchart;
     @FXML
-    private LineChart<String,Integer> linechart;
+    private LineChart<Date,Integer> linechart;
     @FXML
     private RadioButton radioentree;
     @FXML
@@ -106,14 +107,14 @@ public class StatistiquesController implements Initializable {
 //            }
             
             String req ="select "+axexValue+","+axeyValue+" from mouvement_du_stock where nature_mouvement='"+nature+"' order by "+axexValue;
-            XYChart.Series<String,Integer> series = new XYChart.Series<>();
+            XYChart.Series<Date,Integer> series = new XYChart.Series<>();
             series.setName("BarChart qui évolue le "+axeyValue+" "+nature+" par "+axexValue);
             
             try {
             Connection con = DataSource.getInstance().getConnection();
             ResultSet res = con.createStatement().executeQuery(req);
             while (res.next()){
-                series.getData().add(new XYChart.Data<>(res.getString(1),res.getInt(2)));
+                series.getData().add(new XYChart.Data<>(res.getDate(1),res.getInt(2)));
             }
                 barchart.getData().add(series);
                 barchart.setVisible(true);
@@ -146,7 +147,7 @@ public class StatistiquesController implements Initializable {
             Connection con = DataSource.getInstance().getConnection();
             ResultSet res = con.createStatement().executeQuery(req2);
             while (res.next()){
-                series2.getData().add(new XYChart.Data<>(res.getString(1),res.getInt(2)));
+                series2.getData().add(new XYChart.Data<>(res.getDate(1),res.getInt(2)));
             }
                 linechart.getData().add(series2);
                 linechart.setVisible(true);
