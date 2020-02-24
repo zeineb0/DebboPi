@@ -9,6 +9,7 @@ import com.esprit.entities.Livraison;
 import com.esprit.services.IService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ public class ServiceLivraison implements IService<Livraison> {
     {
     PreparedStatement pre=con.prepareStatement("INSERT INTO `livraison` (`date_livraison`, `adresse_livraison`, `etat_livraison`, `longitude_dest`, `altitude_dest`, `acceptation`, `FK_id_commande`, `FK_id_user`) VALUES (?,?,?,?,?,?,?,?);");
     
-    pre.setString(1, l.getDate_livraison());
+    pre.setDate(1, (Date) l.getDate_livraison());
     pre.setString(2, l.getAdresse_livraison());
     pre.setString(3, l.getEtat_livraison());
     pre.setFloat(4, l.getLongitude_dest());
@@ -56,7 +57,7 @@ public class ServiceLivraison implements IService<Livraison> {
     public boolean update(Livraison l) throws SQLException
     {
         PreparedStatement pre=con.prepareStatement("UPDATE `livraison` SET `date_livraison` = ?, `adresse_livraison` = ?, `etat_livraison` = ?, `longitude_dest` = ?, `altitude_dest` = ?, `acceptation` = ? WHERE `livraison`.`id_livraison` = ?;");
-           pre.setString(1, l.getDate_livraison());
+           pre.setDate(1, (Date) l.getDate_livraison());
            pre.setString(2, l.getAdresse_livraison());
            pre.setString(3, l.getEtat_livraison());
            pre.setFloat(4, l.getLongitude_dest());
@@ -79,7 +80,7 @@ public class ServiceLivraison implements IService<Livraison> {
     ResultSet rs=ste.executeQuery("select * from Livraison");
      while (rs.next()) {                
                int id=rs.getInt(1);
-               String date=rs.getString(2);
+               Date date=rs.getDate(2);
                String adr=rs.getString(3);
                String etat=rs.getString(4);
                float longitude=rs.getFloat(5);
@@ -100,7 +101,7 @@ public class ServiceLivraison implements IService<Livraison> {
     ResultSet rs=ste.executeQuery("select * from Livraison WHERE `etat_livraison` = 'livree'");
      while (rs.next()) {                
                int id=rs.getInt(1);
-               String date=rs.getString(2);
+               Date date=rs.getDate(2);
                String adr=rs.getString(3);
                String etat=rs.getString(4);
                float longitude=rs.getFloat(5);
@@ -121,7 +122,7 @@ public class ServiceLivraison implements IService<Livraison> {
     ResultSet rs=ste.executeQuery("select * from Livraison WHERE `etat_livraison` = 'annulle'");
      while (rs.next()) {                
                int id=rs.getInt(1);
-               String date=rs.getString(2);
+               Date date=rs.getDate(2);
                String adr=rs.getString(3);
                String etat=rs.getString(4);
                float longitude=rs.getFloat(5);
@@ -143,7 +144,7 @@ public class ServiceLivraison implements IService<Livraison> {
     ResultSet rs=ste.executeQuery("select * from Livraison WHERE `etat_livraison` = 'NonLivree'");
      while (rs.next()) {                
                int id=rs.getInt(1);
-               String date=rs.getString(2);
+               Date date=rs.getDate(2);
                String adr=rs.getString(3);
                String etat=rs.getString(4);
                float longitude=rs.getFloat(5);
