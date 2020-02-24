@@ -14,11 +14,14 @@ import com.esprit.utilities.DataSource;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -32,6 +35,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.controlsfx.control.textfield.TextFields;
 
 /**
  * FXML Controller class
@@ -44,10 +48,9 @@ public class AjouterContratController implements Initializable {
     private Button addC;
     @FXML
     private Button gestC;
-    @FXML
-    private TextField nom;
-    @FXML
-    private TextField prenom;
+    
+    private String nom;
+    private String prenom;
     @FXML
     private TextField entreprise;
     @FXML
@@ -58,6 +61,11 @@ public class AjouterContratController implements Initializable {
     private ContratService contrat_service;
     
     private int id, id2;
+    private List<String> nom_prenom ;
+    @FXML
+    private TextField nomp;
+    
+    
     
     
     
@@ -67,27 +75,57 @@ public class AjouterContratController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        contrat_service=new ContratService();
+        
+        nom_prenom=contrat_service.getNomPrenom();
+        
+        System.out.println(nom_prenom);
+        
+    
+        TextFields.bindAutoCompletion(nomp, nom_prenom);
+           
+           
+           
+        
+        
+        
+        
     }    
+    
+    
 
     @FXML
-    private void onClickAdd(ActionEvent event) throws SQLException {
+    private void onClickAdd(ActionEvent event) throws SQLException, IOException {
         contrat_service = new ContratService();
         
         Date date1 = Date.valueOf(dateDeb.getValue());
         Date date2 = Date.valueOf(dateFin.getValue());
         
+     
+       
+        
+        String np = nomp.getText();
+        String[] currencies = np.split(" ");
+        
+        nom=currencies[0];
+        prenom=currencies[1];
+                
+        
+        
+        
+        
         ContratDetail contrat_detail = new ContratDetail();
         contrat_detail.setDate_debut(date1);
         contrat_detail.setDate_fin(date2);
-        contrat_detail.setNom(nom.getText());
-        contrat_detail.setPrenom(prenom.getText());
+        contrat_detail.setNom(nom);
+        contrat_detail.setPrenom(prenom);
         contrat_detail.setEntreprise(entreprise.getText());
         
         System.out.println(contrat_detail);
         try
         {
-            String req = "select id_user , nom , prenom  from utilisateur where nom ='"+nom.getText()+"' and prenom ='"+prenom.getText()+"' ";
+            String req = "select id_user , nom , prenom  from utilisateur where nom ='"+nom+"' and prenom ='"+prenom+"' ";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
 
@@ -132,6 +170,12 @@ public class AjouterContratController implements Initializable {
         Entrepot entrepot = new Entrepot();
         entrepot.setId_entrepot(id2);
         contrat_service.ajouterContrat(contrat, user, entrepot);
+        
+        Parent gestion_contrat = FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
+        Scene gestionCV= new Scene(gestion_contrat);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(gestionCV);
+        window.show();
         
  
         
