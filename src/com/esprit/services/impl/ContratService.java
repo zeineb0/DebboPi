@@ -334,6 +334,27 @@ public class ContratService implements IContratService {
         return livraison_list;
     }
      
+     
+     
+     public List<String> getNomPrenom(){
+        List<String> maliste = new ArrayList<String>();
+        try {
+            String req="SELECT nom , prenom  FROM utilisateur";
+            Statement s=DataSource.getInstance().getConnection().createStatement();
+            ResultSet rs=s.executeQuery(req);
+            while(rs.next())
+            {
+                
+          
+           maliste.add(rs.getString("nom")+" "+rs.getString("prenom"));
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maliste;
+    }
+     
         
     }
     
