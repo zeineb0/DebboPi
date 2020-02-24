@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Livraison {
     public int id_livraison;
-    public String date_livraison;
+    public Date date_livraison;
     public String adresse_livraison;
     public String etat_livraison;
     public float longitude_dest;
@@ -25,7 +25,7 @@ public class Livraison {
     public Livraison() {
     }
 
-    public Livraison(String date_livraison, String adresse_livraison, String etat_livraison, float longitude_dest, float altitude_dest, String acceptation) {
+    public Livraison(Date date_livraison, String adresse_livraison, String etat_livraison, float longitude_dest, float altitude_dest, String acceptation) {
         this.date_livraison = date_livraison;
         this.adresse_livraison = adresse_livraison;
         this.etat_livraison = etat_livraison;
@@ -44,7 +44,7 @@ public class Livraison {
 
 
 
-    public Livraison(int id_livraison, String date_livraison, String adresse_livraison, String etat_livraison, float longitude_dest, float altitude_dest, String acceptation, int FK_id_commande, int FK_id_user) {
+    public Livraison(int id_livraison, Date date_livraison, String adresse_livraison, String etat_livraison, float longitude_dest, float altitude_dest, String acceptation, int FK_id_commande, int FK_id_user) {
         this.id_livraison = id_livraison;
         this.date_livraison = date_livraison;
         this.adresse_livraison = adresse_livraison;
@@ -80,7 +80,7 @@ public class Livraison {
         return altitude_dest;
     }
 
-    public String getDate_livraison() {
+    public Date getDate_livraison() {
         return date_livraison;
     }
 
@@ -112,7 +112,7 @@ public class Livraison {
         this.altitude_dest = altitude_dest;
     }
 
-    public void setDate_livraison(String date_livraison) {
+    public void setDate_livraison(Date date_livraison) {
         this.date_livraison = date_livraison;
     }
 
