@@ -12,6 +12,7 @@ import com.esprit.entities.Entrepot;
 import com.esprit.entities.Livraison;
 import com.esprit.entities.Utilisateur;
 import com.esprit.utilities.DataSource;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -72,15 +73,15 @@ public class ContratService implements IContratService {
     
     
     @Override
-    public void modifierContrat(Contrat contrat)
+    public void modifierContrat(ContratDetail contrat , Date date_debut , Date date_fin)
     {
         try {
 
-            String req="UPDATE contrat SET date_deb = ?, date_fin = ? WHERE contrat.`id_user` = ? and contrat.`id_entrepot` = ?";
+            String req="UPDATE contrat SET date_deb = ?, date_fin = ? WHERE contrat.`FK_id_user` = ? and contrat.`FK_id_entrepot` = ?";
             PreparedStatement ps= DataSource.getInstance().getConnection().prepareStatement(req);
             
-            ps.setDate(1,contrat.getDate_debut());
-            ps.setDate(2,contrat.getDate_fin());
+            ps.setDate(1,date_debut);
+            ps.setDate(2,date_fin);
             ps.setInt(3,contrat.getId_user());
             ps.setInt(4,contrat.getId_entrepot());
 
@@ -93,14 +94,14 @@ public class ContratService implements IContratService {
     
     
     @Override
-    public List<ContratDetail> afficherContrat()
+    public List<ContratDetail> afficherContratEntrepot(Entrepot entrepot)
     {
        
         List<ContratDetail> contrat_list = new ArrayList<>();
        
        
         try {
-            String req="SELECT  date_deb , date_fin , u.id_user, u.nom , u.prenom , e.id_entrepot , e.entreprise FROM `contrat` c INNER JOIN utilisateur u on u.id_user=c.FK_id_user INNER JOIN entrepot e on c.FK_id_entrepot=e.id_entrepot";
+            String req="SELECT  date_deb , date_fin , u.id_user, u.nom , u.prenom , e.id_entrepot , e.entreprise FROM `contrat` c INNER JOIN utilisateur u on u.id_user=c.FK_id_user INNER JOIN entrepot e on c.FK_id_entrepot='"+entrepot.getId_entrepot()+"'";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
             while(rs.next())
