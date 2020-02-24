@@ -118,15 +118,7 @@ public class ModifierEntrepotController implements Initializable {
         window.show();
     }
 
-    @FXML
-    private void onClick1(ActionEvent event) throws IOException {
-   
-        Parent liste = FXMLLoader.load(getClass().getResource("supprimerEntrepot.fxml"));
-           Scene ListeE = new Scene(liste);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(ListeE);
-        window.show();
-    }
+  
 
     @FXML
     private void onClick2(ActionEvent event) throws IOException {

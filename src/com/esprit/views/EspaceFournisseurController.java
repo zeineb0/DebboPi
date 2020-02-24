@@ -12,8 +12,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -43,8 +42,6 @@ public class EspaceFournisseurController implements Initializable {
     @FXML
     private TableView<Entrepot> table;
     @FXML
-    private TableColumn<Entrepot, Integer> Ide;
-    @FXML
     private TableColumn<Entrepot, String> adre;
     @FXML
     private TableColumn<Entrepot, Integer> num;
@@ -59,10 +56,25 @@ public class EspaceFournisseurController implements Initializable {
     @FXML
     private TableColumn<Entrepot, Double> prix;
     private Entrepot EntrepotSelectionner = new Entrepot();
+    private Entrepot EntrepotSelectionner1 = new Entrepot();
 
 int id;
     @FXML
     private Button supp;
+    @FXML
+    private Button modifier;
+    @FXML
+    private TextField numfisc;
+    @FXML
+    private TextField quanmax;
+    @FXML
+    private TextField adresse;
+    @FXML
+    private TextField etat1;
+    @FXML
+    private TextField entrep1;
+    @FXML
+    private TextField pri;
     //public Observablelist<Entrepot> data= FXCollections.observableArrayList();
     /**
      * Initializes the controller class.
@@ -85,6 +97,8 @@ int id;
         } catch (SQLException ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
+        
+    
         table.setOnMouseClicked(event->{
         //pour modifier un produit il faut faire deux click
               if (event.getClickCount() == 1) {
@@ -92,40 +106,76 @@ int id;
                   id= EntrepotSelectionner.getId_entrepot();
                 supp.setOnAction(new EventHandler<ActionEvent>() {
  
+                @Override
+                      public void handle(ActionEvent event) {
+                        try 
+                        {serviceEntrepot.delete(id);} 
+                        catch (SQLException ex) 
+                        {System.out.println(".handle()");}
+                      }
+                
+                 }); 
+                  
+              
+        }
+               
+    
+        //pour modifier un produit il faut faire deux click
+              if (event.getClickCount() == 2) {
+                  EntrepotSelectionner1=table.getItems().get(table.getSelectionModel().getSelectedIndex());
+                  id= EntrepotSelectionner1.getId_entrepot();
+                  adresse.setText(EntrepotSelectionner1.getAdresse_entrepot());
+                  int num1 = EntrepotSelectionner1.getNum_fiscale();
+                  String a= Integer.toString(num1);
+                  numfisc.setText(a);
+                  int num2 = EntrepotSelectionner1.getQuantite_max();
+                  String b= Integer.toString(num2);
+                  quanmax.setText(b);
+                  etat1.setText(EntrepotSelectionner1.getEtat());
+                  entrep1.setText(EntrepotSelectionner1.getEntreprise());
+                  Double num3 = EntrepotSelectionner1.getPrix_location();
+                  String c= Double.toString(num3);
+                  pri.setText(c);
+
+
+      
+                modifier.setOnAction(new EventHandler<ActionEvent>() {
+ 
                    
                 @Override
                       public void handle(ActionEvent event) {
                         try {
-                          serviceEntrepot.delete(id);
-                          try {
-            ArrayList<Entrepot> entrepots = (ArrayList<Entrepot>) serviceEntrepot.readAll();
-                
-            datalist = FXCollections.observableArrayList(entrepots);
-            adre.setCellValueFactory(new PropertyValueFactory<>("adresse_entrepot"));
-            num.setCellValueFactory(new PropertyValueFactory<>("num_fiscale"));
-            quant.setCellValueFactory(new PropertyValueFactory<>("quantite_max"));
-            etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
-            prix.setCellValueFactory(new PropertyValueFactory<>("prix_location"));
-            entrep.setCellValueFactory(new PropertyValueFactory<>("entreprise"));
-            
-            table.setItems(datalist);
+                  Entrepot e = new Entrepot();
+
+                  String ad = adresse.getText();
+                  int num_fiscale = Integer.parseInt(numfisc.getText());
+                  int quantite = Integer.parseInt(quanmax.getText());
+                  String et=etat.getText();
+                  Double pri1= Double.parseDouble(pri.getText());
+                  String entreprise = entrep.getText();
+                  e.setAdresse_entrepot(ad);
+                  e.setNum_fiscale(num_fiscale);
+                  e.setQuantite_max(quantite);
+                  e.setEtat(et);
+                  e.setPrix_location(pri1);
+                  e.setEntreprise(entreprise);
+                  e.setId_entrepot(id);
+                        serviceEntrepot.update(e);}
+                        
       
-        } catch (SQLException ex) {
+        catch (SQLException ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
-                      } catch (SQLException ex) {
-                            System.out.println(".handle()");                      }
-                          }
                   
-                  
-           
-                 }); 
-                  
-              }
-                    });
-                      
+                      }
+              });
+                        }
+                        });
+                       }
+  
     
-            }
+                
+                
 
 @FXML
     private void onClick(ActionEvent event) throws IOException {
@@ -139,15 +189,6 @@ int id;
  
       
      
-    @FXML
-    private void onClick2(ActionEvent event) throws IOException {
-        Parent liste = FXMLLoader.load(getClass().getResource("modifierEntrepot.fxml"));
-          Scene ListeE = new Scene(liste);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(ListeE);
-        window.show();
-    }
-
     @FXML
     private void onClick3(ActionEvent event) throws IOException {
         Parent liste = FXMLLoader.load(getClass().getResource("espaceFournisseur.fxml"));

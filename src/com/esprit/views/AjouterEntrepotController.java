@@ -23,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -45,6 +46,8 @@ public class AjouterEntrepotController implements Initializable {
 ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
     @FXML
     private TextField prix;
+    @FXML
+    private Label erreur;
    
 
     /**
@@ -56,6 +59,7 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
         try {
             list= FXCollections.observableArrayList("libre","loué","à louer");
             etat.setItems(list);
+            erreur.setVisible(false);
         } catch (Exception ex) {
             System.out.println("com.esprit.views.AjouterEntrepotController.initialize()");
         }
@@ -72,6 +76,7 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
         String entreprise = entrep.getText();
         Entrepot e = new Entrepot();
         e.setAdresse_entrepot(ad);
+        
         e.setNum_fiscale(num_fiscale);
         e.setQuantite_max(quantite);
         e.setEtat(etat.getValue());
@@ -95,7 +100,6 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
         window.setScene(ListeE);
         window.show();
     }  
-    @FXML
     private void onClick1(ActionEvent event) throws IOException {
          
         Parent liste = FXMLLoader.load(getClass().getResource("supprimerEntrepot.fxml"));

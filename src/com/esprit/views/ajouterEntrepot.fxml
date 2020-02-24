@@ -14,12 +14,6 @@
             <Font size="35.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="430.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Prix location">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <TextField fx:id="prix" layoutX="314.0" layoutY="431.0" prefHeight="30.0" prefWidth="200.0" />
       <Label layoutX="100.0" layoutY="382.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Etat">
          <font>
             <Font size="22.0" />
@@ -56,11 +50,22 @@
             <Button layoutX="399.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="180.0" text="Modifier Entrepot" />
          </children>
       </AnchorPane>
-      <Label layoutX="100.0" layoutY="476.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Entreprise">
+      <Label layoutX="100.0" layoutY="429.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Entreprise">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="entrep" layoutX="314.0" layoutY="477.0" prefHeight="30.0" prefWidth="200.0" />
+      <TextField fx:id="entrep" layoutX="314.0" layoutY="431.0" prefHeight="30.0" prefWidth="200.0" />
+      <Label layoutX="100.0" layoutY="475.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Prix location">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="prix" layoutX="314.0" layoutY="476.0" prefHeight="30.0" prefWidth="200.0" />
+      <Label fx:id="erreur" layoutX="530.0" layoutY="278.0" prefHeight="25.0" prefWidth="150.0" text="Numero fiscale existe deja" textFill="#e30000" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

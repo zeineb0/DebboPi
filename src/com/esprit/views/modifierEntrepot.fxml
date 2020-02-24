@@ -48,17 +48,6 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Label layoutX="104.0" layoutY="165.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Id entrepot">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <TextField fx:id="id" layoutX="319.0" layoutY="166.0" prefHeight="30.0" prefWidth="200.0" />
-      <Button layoutX="541.0" layoutY="161.0" mnemonicParsing="false" onAction="#getEntrepot" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: CD5C5C;" text="Trouver Entrepot">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
       <TextField fx:id="etat" layoutX="318.0" layoutY="382.0" prefHeight="30.0" prefWidth="200.0" />
       <AnchorPane prefHeight="70.0" prefWidth="800.0" AnchorPane.bottomAnchor="530.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

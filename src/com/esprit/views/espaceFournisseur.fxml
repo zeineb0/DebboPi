@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -16,21 +17,21 @@
             <Button mnemonicParsing="false" onAction="#onClick3" prefHeight="40.0" prefWidth="180.0" text="Afficher Entrepot" />
           <Button mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="180.0" text="Ajouter Entrepot" />
             <Button fx:id="supp" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Supprimer Entreport" />
-            <Button mnemonicParsing="false" onAction="#onClick2" prefHeight="40.0" prefWidth="180.0" text="Modifier Entrepot" />
+            <Button fx:id="modifier" mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Modifier Entrepot" />
         </items>
       </ToolBar>
    </top>
-   <center>
+   <bottom>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane id="AnchorPane" layoutY="-20.0" prefHeight="500.0" prefWidth="800.0">
+            <AnchorPane id="AnchorPane" layoutY="26.0" prefHeight="447.0" prefWidth="800.0">
                <children>
-                  <Label layoutX="51.0" layoutY="45.0" prefHeight="51.0" prefWidth="330.0" style="-fx-background-color: ;" text="Liste des Entrepots" textFill="FIREBRICK">
+                  <Label layoutX="51.0" layoutY="-1.0" prefHeight="51.0" prefWidth="330.0" style="-fx-background-color: ;" text="Liste des Entrepots" textFill="FIREBRICK">
                      <font>
                         <Font size="35.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="table" layoutX="51.0" layoutY="107.0" prefHeight="442.0" prefWidth="629.0">
+                  <TableView fx:id="table" layoutX="50.0" layoutY="44.0" prefHeight="248.0" prefWidth="628.0">
                      <columns>
                         <TableColumn fx:id="adre" prefWidth="112.0" text="Adresse Entrepot" />
                         <TableColumn fx:id="num" prefWidth="111.0" text="Numero fiscale" />
@@ -40,9 +41,45 @@
                         <TableColumn fx:id="entrep" prefWidth="126.0" text="Entreprise" />
                      </columns>
                   </TableView>
+                  <Label layoutX="148.0" layoutY="337.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: DCDCDC;" text="Numero fiscale">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="147.0" layoutY="295.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: DCDCDC;" text="Adresse entrepot">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="146.0" layoutY="376.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: DCDCDC;" text="Quantite max">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="146.0" layoutY="418.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: DCDCDC;" text="Etat">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="numfisc" layoutX="320.0" layoutY="337.0" prefHeight="30.0" prefWidth="160.0" />
+                  <TextField fx:id="quanmax" layoutX="319.0" layoutY="376.0" prefHeight="30.0" prefWidth="160.0" />
+                  <TextField fx:id="adresse" layoutX="320.0" layoutY="295.0" prefHeight="30.0" prefWidth="160.0" />
+                  <TextField fx:id="etat1" layoutX="319.0" layoutY="418.0" prefHeight="30.0" prefWidth="160.0" />
                </children>
             </AnchorPane>
+            <Label layoutX="146.0" layoutY="482.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: DCDCDC;" text="Entreprise">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="entrep1" layoutX="319.0" layoutY="482.0" prefHeight="30.0" prefWidth="160.0" />
+            <Label layoutX="146.0" layoutY="523.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: DCDCDC;" text="Prix location">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="pri" layoutX="319.0" layoutY="526.0" prefHeight="30.0" prefWidth="160.0" />
          </children>
       </AnchorPane>
-   </center>
+   </bottom>
 </BorderPane>
