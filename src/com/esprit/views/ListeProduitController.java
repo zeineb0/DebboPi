@@ -58,13 +58,7 @@ public class ListeProduitController implements Initializable {
      List<Produit> produits=new ArrayList<>();
     
     ProduitController produitController=new ProduitController();
-    @FXML
-    private Button btn1;
-    @FXML
-    private Button btn3;
-    @FXML
-    private Button btn2;
-    
+   
     @FXML
     private ComboBox<Categorie> cmbC;
     @FXML
@@ -77,7 +71,7 @@ public class ListeProduitController implements Initializable {
     private TextField txt3;
         private int indexProduitSelectionner;
     @FXML
-    // private ComboBox<Entrepot> cmbE;
+    private ComboBox<Entrepot> cmbE;
 EntrepotController entrepotController = new EntrepotController();
     List<Entrepot> entrepots = new ArrayList<>();
     @FXML
@@ -90,6 +84,12 @@ EntrepotController entrepotController = new EntrepotController();
     private Label mar;
     @FXML
     private Button btnAj;
+    @FXML
+    private Button btnModif;
+    @FXML
+    private Button btnAnnu;
+    @FXML
+    private Button btnSupp;
 
     /**
      * Initializes the controller class.
@@ -108,23 +108,24 @@ EntrepotController entrepotController = new EntrepotController();
                
         ObservableList observableList=FXCollections.observableArrayList(categories);
         ObservableList observableList1=FXCollections.observableArrayList(entrepots);
-        //System.out.println(observableList1);
+        System.out.println(observableList1);
         cmbC.setItems(observableList);
-        //cmbE.setItems(observableList1);
+        cmbE.setItems(observableList1);
 
-        
-                reverseButtonModif(true);
-                reverseButtonAjout(true);
+                reverseButtonAjout(false);
+                reverseButtonModif(false);
+                reverseButtonSupp(false);
+                reverseButtonAnnuler(false);
                 
                 
                 
                 setInvisible(false);
+                
          clLib.setCellValueFactory(new PropertyValueFactory("libelle"));
          clPrix.setCellValueFactory(new PropertyValueFactory("prix"));
          clRef.setCellValueFactory(new PropertyValueFactory("reference"));
          clMarque.setCellValueFactory(new PropertyValueFactory("marque"));
          table.getItems().addAll(produits);
-         
          
                 table.setOnMouseClicked(event->{
         //pour modifier un produit il faut faire deux click
@@ -132,6 +133,8 @@ EntrepotController entrepotController = new EntrepotController();
                   //activer les Buttons 
                   reverseButtonModif(false);
                   reverseButtonAjout(true);
+                  reverseButtonSupp(true);
+                  reverseButtonAnnuler(true);
                   setInvisible(true);
 
                   ProduitSelectionner = table.getItems().get(table.getSelectionModel().getSelectedIndex());
@@ -142,9 +145,10 @@ EntrepotController entrepotController = new EntrepotController();
                   txt1.setText(String.valueOf(ProduitSelectionner.getPrix()));
                   txt2.setText(String.valueOf(ProduitSelectionner.getReference()));
                   txt3.setText(String.valueOf(ProduitSelectionner.getMarque()));
-                  //System.out.println(ProduitSelectionner.getCategorie());
+                 // System.out.println(ProduitSelectionner.getEntrepot());
+                  Entrepot entrep = ProduitSelectionner.getEntrepot();
                   cmbC.setValue(ProduitSelectionner.getCategorie());
-                 // cmbE.setValue(ProduitSelectionner.getEntrepot());
+                  cmbE.setValue(entrep);
               }
              
                     });
@@ -158,16 +162,21 @@ EntrepotController entrepotController = new EntrepotController();
     }
     
      public void reverseButtonModif(Boolean etat){
-        btn1.setDisable(etat);
-                btn2.setDisable(etat);
-
+                btnModif.setDisable(etat);
       
     }
      public void reverseButtonAjout(Boolean etat){
   
         btnAj.setDisable(etat);
      }
-     
+      public void reverseButtonSupp(Boolean etat){
+  
+        btnSupp.setDisable(etat);
+     }
+      public void reverseButtonAnnuler(Boolean etat){
+  
+        btnAnnu.setDisable(etat);
+     }
      public void setInvisible(Boolean etat){
      lib.setVisible(etat);
      mar.setVisible(etat);
@@ -192,8 +201,8 @@ EntrepotController entrepotController = new EntrepotController();
        ProduitSelectionner.setMarque(txt3.getText());
        
        ProduitSelectionner.setCategorie(cmbC.getValue());
-       //ProduitSelectionner.setEntrepot(cmbE.getValue());
-        //System.out.println(cmbE.getValue());
+       ProduitSelectionner.setEntrepot(cmbE.getValue());
+        System.out.println(cmbE.getValue());
         //System.out.println(ProduitSelectionner);
        produitController.modiferProduit(ProduitSelectionner);
        
@@ -214,8 +223,71 @@ EntrepotController entrepotController = new EntrepotController();
 
     @FXML
     private void onClickSupp(ActionEvent event) {
+        
+         btnSupp.setOnMouseClicked((event2) -> {
+            
+            if (event2.getClickCount()==1)
+                
+                reverseButtonModif(true);
+                reverseButtonAjout(true);
+                reverseButtonAnnuler(true);
+                reverseButtonSupp(false);
+                
          produitController.supprimerProduit(ProduitSelectionner.getLibelle());
-        table.getItems().remove(indexProduitSelectionner);
+         table.getItems().remove(indexProduitSelectionner); 
+        });
+
+        
+        
+       
+    }
+
+    
+    
+    
+    private boolean verif(){
+        if (cmbC.getValue() != null && cmbE.getValue() != null && txt !=null && txt1 != null && txt2 != null && txt3 !=null) {
+            return true;
+        }
+         
+        return false;
+    }
+    
+    @FXML
+    private void onClickAjouter(ActionEvent event) {
+        
+        btnAj.setOnMouseClicked((event1) -> {
+            
+            if (event1.getClickCount()==1)
+                reverseButtonModif(true);
+                reverseButtonSupp(true);
+                reverseButtonAnnuler(true);
+            
+        });
+
+        setInvisible(true);
+        
+        
+        if (verif()){
+        String nom = txt.getText();
+        Double prix = Double.parseDouble(txt1.getText());
+        Integer ref = Integer.parseInt(txt2.getText());
+        String marque = txt3.getText();
+        
+         Produit p=new Produit();
+         
+        p.setLibelle(nom);
+        p.setPrix(prix);
+        p.setReference(ref);
+        p.setMarque(marque);
+        Categorie c=cmbC.getValue();
+        p.setCategorie(c);
+        Entrepot e = cmbE.getValue();
+        p.setEntrepot(e);
+        produitController.ajouterProduit(p); }
+        
+        ref();
+        
     }
     
     

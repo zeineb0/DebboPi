@@ -24,9 +24,9 @@
             <TableColumn fx:id="clMarque" prefWidth="101.0" text="MARQUE" />
         </columns>
       </TableView>
-      <Button fx:id="btn1" layoutX="335.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickModif" text="Modifier" />
-      <Button fx:id="btn3" layoutX="591.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickAnnul" text="Annuler" />
-      <Button fx:id="btn2" layoutX="464.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickSupp" text="Supprimer" />
+      <Button fx:id="btnModif" layoutX="335.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickModif" text="Modifier" />
+      <Button fx:id="btnAnnu" layoutX="591.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickAnnul" text="Annuler" />
+      <Button fx:id="btnSupp" layoutX="464.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickSupp" text="Supprimer" />
       <ComboBox fx:id="cmbC" layoutX="558.0" layoutY="163.0" prefHeight="31.0" prefWidth="207.0" promptText="veuillez choisir une catégorie" />
        <ComboBox fx:id="cmbE" layoutX="142.0" layoutY="163.0" prefHeight="31.0" prefWidth="248.0" promptText="veuillez " />
 
@@ -40,6 +40,6 @@
       <Label fx:id="prix" layoutX="483.0" layoutY="280.0" text="PRIX" />
       <Label fx:id="ref" layoutX="468.0" layoutY="331.0" text="REFERENCE" />
       <Label fx:id="mar" layoutX="472.0" layoutY="379.0" text="MARQUE" />
-      <Button fx:id="btnAj" layoutX="205.0" layoutY="483.0" mnemonicParsing="false" text="Ajouter" />
+      <Button fx:id="btnAj" layoutX="205.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickAjouter" text="Ajouter" />
    </children>
 </AnchorPane>
