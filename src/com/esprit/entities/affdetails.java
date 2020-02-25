@@ -12,6 +12,7 @@ import java.util.Date;
  * @author ASUS X550V
  */
 public class affdetails {
+    public String hashmat;
     public Date date;
     public String adresse;
     public String etat;
@@ -19,7 +20,8 @@ public class affdetails {
     public String prenom;
     public String tel;
 
-    public affdetails(Date date, String adresse, String etat, String nom, String prenom, String tel) {
+    public affdetails(String hashmat, Date date, String adresse, String etat, String nom, String prenom, String tel) {
+        this.hashmat = hashmat;
         this.date = date;
         this.adresse = adresse;
         this.etat = etat;
@@ -27,6 +29,8 @@ public class affdetails {
         this.prenom = prenom;
         this.tel = tel;
     }
+
+
 
 
 
@@ -85,6 +89,14 @@ public class affdetails {
     @Override
     public String toString() {
         return "affdetails{" + "date=" + date + ", adresse=" + adresse + ", etat=" + etat + ", nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + '}';
+    }
+
+    public String getHashmat() {
+        return hashmat;
+    }
+
+    public void setHashmat(String hashmat) {
+        this.hashmat = hashmat;
     }
     
     
