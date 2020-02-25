@@ -31,6 +31,16 @@ public class esprit extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        
+        
+         
+        Parent root = FXMLLoader.load(getClass().getResource("MvtStock.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+        
 //        // instance catégorie
 //        Categorie c1=new Categorie();
 //        c1.setNom("informatique1");
@@ -46,9 +56,9 @@ public class esprit extends Application {
 //                    List<Categorie> liste = categorieController.listCategorie();
 //        //c1.setId(2);
 //        //instance produit
-//        
-        ProduitController produitController=new ProduitController();
-           produitController.listeProduit();
+////        
+//        ProduitController produitController=new ProduitController();
+//           produitController.listeProduit();
 //           EntrepotController entrepotController=new EntrepotController();
 //           List<Entrepot> entrepots = entrepotController.readAll();
 //           System.out.println(entrepots);
@@ -96,15 +106,7 @@ public class esprit extends Application {
 //  EntrepotController entrepotController = new EntrepotController();
 //  List<Entrepot> entrepots = entrepotController.readAll();
 //        System.out.println(entrepots);
-        
-        Parent root = FXMLLoader.load(getClass().getResource("ListeProduit.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-        
-        
+       
     }
 
     /**
