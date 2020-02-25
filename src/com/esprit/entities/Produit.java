@@ -16,13 +16,15 @@ private int id;
     private int reference;
     private String marque;
     //un produit posséde une catégorie
+    private String image;
     private Categorie categorie;
     private Entrepot entrepot;
-
 
     public Produit() {
     }
 
+    
+    
     public int getId() {
         return id;
     }
@@ -43,12 +45,21 @@ private int id;
         return marque;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public Categorie getCategorie() {
         return categorie;
     }
 
     public Entrepot getEntrepot() {
         return entrepot;
+    }
+
+    @Override
+    public String toString() {
+        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", reference=" + reference + ", marque=" + marque + ", image=" + image + ", categorie=" + categorie + ", entrepot=" + entrepot + '}';
     }
 
     public void setId(int id) {
@@ -71,6 +82,10 @@ private int id;
         this.marque = marque;
     }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }
@@ -79,12 +94,8 @@ private int id;
         this.entrepot = entrepot;
     }
 
-    @Override
-    public String toString() {
-        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", reference=" + reference + ", marque=" + marque + ", categorie=" + categorie + ", entrepot=" + entrepot + '}';
-    }
 
-   
+    
     
     
 
