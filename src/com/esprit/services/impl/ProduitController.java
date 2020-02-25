@@ -32,14 +32,14 @@ public class ProduitController implements IProduitService{
     @Override
     public void ajouterProduit(Produit produit)  {
         System.out.println(produit);
-        String req ="INSERT INTO `produit`( "
-                + "`libelle`, "
-                + "`reference`,"
-                + " `marque`, "
-                + "`prix`, "
-                + "`FK_id_categorie`,"
-                + " `FK_id_entrepot`) "
-                + "VALUES (?,?,?,?,?,?)";
+        String req ="INSERT INTO `produit`( `libelle`,"
+                + " `reference`,"
+                + " `marque`,"
+                + " `prix`,"
+                + " `image`,"
+                + " `FK_id_categorie`,"
+                + " `FK_id_entrepot`)"
+                + " VALUES  (?,?,?,?,?,?,?)";
                 
         try {
              ps = conn.prepareStatement(req);
@@ -47,8 +47,9 @@ public class ProduitController implements IProduitService{
             ps.setInt(2,produit.getReference());
             ps.setString(3,produit.getMarque());
             ps.setDouble(4,produit.getPrix());
-            ps.setInt(5,produit.getCategorie().getId());
-            ps.setInt(6,produit.getEntrepot().getId_entrepot());
+            ps.setString(5,produit.getImage());
+            ps.setInt(6,produit.getCategorie().getId());
+            ps.setInt(7,produit.getEntrepot().getId_entrepot());
             ps.execute();
             System.out.println("produit ajouté");
             
@@ -198,6 +199,7 @@ public class ProduitController implements IProduitService{
                 + "`reference`=?,"
                 + "`marque`=?,"
                 + "`prix`=?,"
+                + " `image`=?,"
                 + "`FK_id_categorie`=?,"
                 + "`FK_id_entrepot`=? "
                 + "WHERE `id_produit`=?";
@@ -208,9 +210,10 @@ public class ProduitController implements IProduitService{
             ps.setInt(2,produit.getReference());
             ps.setString(3,produit.getMarque());
             ps.setDouble(4,produit.getPrix());
-            ps.setInt(5,produit.getCategorie().getId());
-            ps.setInt(6,produit.getEntrepot().getId_entrepot());
-            ps.setInt(7,produit.getId());
+            ps.setString(5,produit.getImage());
+            ps.setInt(6,produit.getCategorie().getId());
+            ps.setInt(7,produit.getEntrepot().getId_entrepot());
+            ps.setInt(8,produit.getId());
             ps.execute();
               System.out.println("produit modifié");
         } catch (SQLException ex) {

@@ -125,10 +125,6 @@ public class AjouterProduitController implements Initializable {
 //       stage .hide();
 //       stage .setScene(scene );
 //       stage.show();
-       
-        
-        
-        
         else{
             txtErruerCateg.setText("categorie invalide");
         }
