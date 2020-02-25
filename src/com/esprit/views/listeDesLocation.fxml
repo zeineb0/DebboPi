@@ -18,14 +18,15 @@
                   <Font size="35.0" />
                </font>
             </Label>
-            <TableView fx:id="table" layoutX="7.0" layoutY="85.0" prefHeight="247.0" prefWidth="621.0">
+            <TableView fx:id="table" layoutX="7.0" layoutY="85.0" prefHeight="247.0" prefWidth="672.0">
                <columns>
-                  <TableColumn fx:id="Ide" prefWidth="82.0" text="Id Location" />
                   <TableColumn fx:id="dateDeb" prefWidth="124.0" text="Date debut location" />
                   <TableColumn fx:id="dateFin" prefWidth="113.0" text="Date fin location" />
                   <TableColumn fx:id="prix" minWidth="0.0" prefWidth="95.0" text="Prix location" />
                   <TableColumn fx:id="quan" prefWidth="97.0" text="Quatite max" />
                   <TableColumn fx:id="adr" prefWidth="108.0" text="adresse entrepot" />
+                  <TableColumn fx:id="nom" prefWidth="50.0" text="Nom proprietaire entrepot" />
+                  <TableColumn fx:id="prenom" prefWidth="84.0" text="Prenom proprietaire entrepot" />
                </columns>
             </TableView>
             <TextField fx:id="prix1" layoutX="272.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" />
@@ -44,30 +45,30 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="206.0" layoutY="547.0" mnemonicParsing="false" onAction="#modifierLocation" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Modifier location">
+            <Button fx:id="modifier" layoutX="125.0" layoutY="547.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Modifier location">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
             <DatePicker fx:id="datDeb" layoutX="273.0" layoutY="351.0" />
             <DatePicker fx:id="datFin" layoutX="273.0" layoutY="389.0" />
-            <TextField fx:id="idEnt" layoutX="272.0" layoutY="467.0" prefHeight="30.0" prefWidth="150.0" />
-            <Label layoutX="101.0" layoutY="467.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="Id location">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
             <Label fx:id="erreur" layoutX="454.0" layoutY="370.0" prefHeight="25.0" prefWidth="84.0" text="Verifie la date " textFill="#e30000" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button layoutX="400.0" layoutY="547.0" mnemonicParsing="false" onAction="#supprimerLocation" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Supprimer location">
+            <Button fx:id="supp" layoutX="304.0" layoutY="547.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Supprimer location">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="476.0" layoutY="547.0" mnemonicParsing="false" onAction="#retourALaListeDesEntrepots" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="retour ">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
+      <Button mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>

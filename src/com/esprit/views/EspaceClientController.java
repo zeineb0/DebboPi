@@ -7,21 +7,13 @@ package com.esprit.views;
 
 import com.esprit.entities.Entrepot;
 import com.esprit.entities.Location;
-import com.esprit.services.impl.ServiceEntrepot;
 import com.esprit.services.impl.ServiceLocation;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,7 +23,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -49,7 +40,6 @@ import javafx.stage.Stage;
 public class EspaceClientController implements Initializable {
     @FXML
     private TableView<Entrepot> table;
-    @FXML
     private TableColumn<Entrepot, Integer> Ide;
     @FXML
     private TableColumn<Entrepot, String> adre;
@@ -61,7 +51,6 @@ public class EspaceClientController implements Initializable {
     private TableColumn<Entrepot, String> etat;
     @FXML
     private TableColumn<Entrepot, String> entrep;
-    @FXML
     private TableColumn<Entrepot, Integer> idfour;
     ObservableList<Entrepot> datalist;
     ServiceLocation serviceLocation = new ServiceLocation();
@@ -74,7 +63,6 @@ private Entrepot EntrepotSelectionner = new Entrepot();
     private DatePicker dateDeb;
     @FXML
     private DatePicker dateFin;
-    @FXML
     private TextField idEnt;
     @FXML
     private Label erreur;

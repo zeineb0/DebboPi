@@ -6,12 +6,15 @@
 package com.esprit.views;
 
 import com.esprit.entities.Entrepot;
+import com.esprit.entities.utilisateur;
 import com.esprit.services.impl.ServiceEntrepot;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,11 +26,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -35,6 +40,7 @@ import javafx.stage.Stage;
  * @author asus
  */
 public class EspaceFournisseurController implements Initializable {
+   
 
     /**
      * Initializes the controller class.
@@ -79,8 +85,10 @@ int id;
     /**
      * Initializes the controller class.
      */
+    utilisateur u = new utilisateur();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
         try {
             ArrayList<Entrepot> entrepots = (ArrayList<Entrepot>) serviceEntrepot.readAll();
                 
@@ -91,7 +99,7 @@ int id;
             etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
             prix.setCellValueFactory(new PropertyValueFactory<>("prix_location"));
             entrep.setCellValueFactory(new PropertyValueFactory<>("entreprise"));
-            
+            addButtonToTable();
             table.setItems(datalist);
       
         } catch (SQLException ex) {
@@ -109,7 +117,8 @@ int id;
                 @Override
                       public void handle(ActionEvent event) {
                         try 
-                        {serviceEntrepot.delete(id);} 
+                        {serviceEntrepot.delete(id);
+                            ref();} 
                         catch (SQLException ex) 
                         {System.out.println(".handle()");}
                       }
@@ -160,8 +169,10 @@ int id;
                   e.setPrix_location(pri1);
                   e.setEntreprise(entreprise);
                   e.setId_entrepot(id);
-                        serviceEntrepot.update(e);}
-                        
+                  serviceEntrepot.update(e);
+                    ref();
+                                }
+                 
       
         catch (SQLException ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
@@ -171,12 +182,55 @@ int id;
               });
                         }
                         });
+        
                        }
   
     
-                
-                
+      public void ref() {
+        try {
+            table.getItems().clear();
+            table.getItems().addAll(serviceEntrepot.readAll());
+        } catch (SQLException ex) {
+            System.out.println("com.esprit.views.EspaceFournisseurController.ref()");        }
+    }          
+       
+        private void addButtonToTable() {
+        TableColumn<Entrepot, Void> colBtn = new TableColumn("Gestion des entrepots");
 
+        Callback<TableColumn<Entrepot, Void>, TableCell<Entrepot, Void>> cellFactory = new Callback<TableColumn<Entrepot, Void>, TableCell<Entrepot, Void>>() {
+            public TableCell<Entrepot, Void> call(final TableColumn<Entrepot, Void> param) {
+                final TableCell<Entrepot, Void> cell = new TableCell<Entrepot, Void>() {
+                   
+                 
+                    private final Button btn = new Button("Modifier");
+                    
+                    
+                    {
+                            btn.setOnAction((ActionEvent event) -> {
+                            Entrepot entrepot = getTableView().getItems().get(getIndex());
+                            System.out.println("selectedData: " + entrepot);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colBtn.setCellFactory(cellFactory);
+
+        table.getColumns().add(colBtn);
+
+    }
 @FXML
     private void onClick(ActionEvent event) throws IOException {
          Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
@@ -204,6 +258,9 @@ int id;
 //        primaryStage.setTitle("Liste des entrepots");
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
+
+    
+   
    
 
     

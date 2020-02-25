@@ -7,6 +7,7 @@ package com.esprit.services.impl;
 
 import com.esprit.entities.Entrepot;
 import com.esprit.entities.Location;
+import com.esprit.entities.LocationDetail;
 import com.esprit.services.IServiceLocation;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
@@ -91,7 +92,7 @@ try {
                int num_fiscale=rs.getInt(3);
                int quantite_max=rs.getInt(4);
                String etat = rs.getString(5);
-                 double prix_location=rs.getDouble(6);
+               double prix_location=rs.getDouble(6);
                String entreprise=rs.getString(7);
              
                int fk_id_fournisseur=rs.getInt(8);
@@ -102,66 +103,32 @@ try {
     }
 
    
-    @Override
-    public List<Location> readAll() throws SQLException {
-    List<Location> locations=new ArrayList<>();
+    public List<LocationDetail> readAl1() throws SQLException {
+    List<LocationDetail> locationsDetails=new ArrayList<>();
     ste=con.createStatement();
-    ResultSet rs=ste.executeQuery("select * from location");
+    ResultSet rs=ste.executeQuery("SELECT id_location , date_deb_location , date_fin_location, l.prix_location ,"
+            + " e.quantite_max , e.adresse , u.nom, u.prenom from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user" );
      while (rs.next()) {                
                int id_location=rs.getInt(1);
                Date date_deb_location = rs.getDate(2);
                Date date_fin_location = rs.getDate(3);
                double prix_location = rs.getDouble(4);
-               int FK_id_entrepot = rs.getInt(5);
-               int FK_id_user = rs.getInt(6);
+               int quantite_max = rs.getInt(5);
+               String adresse_entrepot=rs.getString(6);
+               String nom=rs.getString(7);
+               String prenom=rs.getString(8);
+//               int FK_id_entrepot = rs.getInt(9);
+//               int FK_id_user = rs.getInt(10);
                
      
              
                
-    Location l = new Location(id_location, date_deb_location, date_fin_location, prix_location, FK_id_entrepot, FK_id_user);
-    locations.add(l);
+    LocationDetail l = new LocationDetail(id_location, date_deb_location, date_fin_location, prix_location, quantite_max, adresse_entrepot, nom, prenom);
+    locationsDetails.add(l);
      } 
-    return locations;
+    return locationsDetails;
     }
-   public List<Location> trierLocationParPrixCroissant() throws SQLException{
-   List<Location> locations2 =new ArrayList<>();
-   ste= con.createStatement();
-   ResultSet rs = ste.executeQuery("SELECT * FROM location ORDER BY`prix_location`ASC");
-   while (rs.next())
-   {           int id_location=rs.getInt(1);
-               Date date_deb_location = rs.getDate(2);
-               Date date_fin_location = rs.getDate(3);
-               double prix_location = rs.getDouble(4);
-               int FK_id_entrepot = rs.getInt(5);
-               int FK_id_user = rs.getInt(6);
-               
-    Location l = new Location(id_location, date_deb_location, date_fin_location, prix_location, FK_id_entrepot, FK_id_user);
-    locations2.add(l);
-}
-     return locations2;  
-}
-   
-public List<Location> trierLocationParDateCroissant() throws SQLException{
-   List<Location> locations3 =new ArrayList<>();
-   ste= con.createStatement();
-   ResultSet rs = ste.executeQuery("SELECT * FROM location ORDER BY`date_location`ASC");
-   while (rs.next())
-   {           int id_location=rs.getInt(1);
-              Date date_deb_location = rs.getDate(2);
-               Date date_fin_location = rs.getDate(3);
-               double prix_location = rs.getDouble(4);
-               int FK_id_entrepot = rs.getInt(5);
-               int FK_id_user = rs.getInt(6);
-               
-               
-    Location l = new Location(id_location, date_deb_location, date_fin_location, prix_location, FK_id_entrepot, FK_id_user);
-    locations3.add(l);
-}
-     return locations3;
-              
- 
-    
-}
+  
 
 public Double calculPrix (Double prix,Date datedeb, Date datefin)
 { 
@@ -174,4 +141,9 @@ public Double calculPrix (Double prix,Date datedeb, Date datefin)
 
 
 }
+
+    @Override
+    public List<Location> readAll() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
