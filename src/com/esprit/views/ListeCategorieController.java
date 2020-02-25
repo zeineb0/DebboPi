@@ -83,6 +83,10 @@ table.setOnMouseClicked(event->{
     Categorie c = new Categorie();
         c.setNom(nom);
       categorieController.ajouterCategorie(c);
+      
+      table.refresh();
+        ref();
+      
     }
 
     @FXML

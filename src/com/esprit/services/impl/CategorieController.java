@@ -44,10 +44,11 @@ Connection conn = DataSource.getInstance().getConnection();
                    categories.add(c);
                }
             
-                               System.out.println(categories.toString());
 
         } catch (SQLException ex) {
             System.out.println("erreur");        }
+                                       System.out.println(categories.toString());
+
         return categories;
 
     }
