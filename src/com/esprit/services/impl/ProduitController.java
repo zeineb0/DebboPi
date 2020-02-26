@@ -54,7 +54,7 @@ public class ProduitController implements IProduitService{
             System.out.println("produit ajouté");
             
         } catch (SQLException ex) {
-            System.out.println("Produit non ajouté");
+            System.out.println("Produit non ajouté"+ex);
         }
                 
     }
@@ -72,7 +72,7 @@ public class ProduitController implements IProduitService{
              System.out.println("suppression validée");
             
         } catch (SQLException ex) {
-            System.out.println("erreur de suppression");
+            System.out.println("erreur de suppression" +ex);
         }
         
     }
@@ -99,7 +99,7 @@ public class ProduitController implements IProduitService{
         }
        
         catch (SQLException ex) {
-            System.out.println("Produit introuvable");
+            System.out.println("Produit introuvable" +ex);
         }
 
     }
@@ -118,7 +118,7 @@ public class ProduitController implements IProduitService{
                    }
             
         } catch (SQLException ex) {
-              
+               System.out.println(ex);
         }
          return c;
         
@@ -169,6 +169,7 @@ public class ProduitController implements IProduitService{
                    p.setPrix(rs.getDouble("prix"));
                    p.setReference(rs.getInt("reference"));
                    p.setMarque(rs.getString("marque"));
+                   p.setQuantite(rs.getInt("quantite"));
                    /**
                     * Jointure Fk_Produit_Categorie
                     */
@@ -186,7 +187,7 @@ public class ProduitController implements IProduitService{
 
 
         } catch (SQLException ex) {
-            System.out.println("erreur ");
+            System.out.println(ex);
         }
         System.out.println(produits);
         return produits;
@@ -222,6 +223,21 @@ public class ProduitController implements IProduitService{
         }
         
     return produit;
+    }
+    public void ajouterQte(int qte, int id){
+    
+    String req ="UPDATE `produit` SET `quantite`=? WHERE `id_produit`=? ";
+    try {
+             ps = conn.prepareStatement(req);
+            ps.setInt(1,qte);
+            ps.setInt(2,id);
+            ps.execute();
+            System.out.println("quantité ajoutée");
+            
+        } catch (SQLException ex) {
+            System.out.println("quantité non ajoutée "+ex);
+        }
+    
     }
     
 }

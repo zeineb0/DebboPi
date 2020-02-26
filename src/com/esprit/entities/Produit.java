@@ -19,11 +19,18 @@ private int id;
     private String image;
     private Categorie categorie;
     private Entrepot entrepot;
+    private int quantite;
 
     public Produit() {
     }
 
-    
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
     
     public int getId() {
         return id;
@@ -59,7 +66,7 @@ private int id;
 
     @Override
     public String toString() {
-        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", reference=" + reference + ", marque=" + marque + ", image=" + image + ", categorie=" + categorie + ", entrepot=" + entrepot + '}';
+        return "Produit{" + "id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", reference=" + reference + ", marque=" + marque + ", image=" + image + ", categorie=" + categorie + ", entrepot=" + entrepot + ", quantite=" + quantite + '}';
     }
 
     public void setId(int id) {
