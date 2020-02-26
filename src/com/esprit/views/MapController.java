@@ -21,6 +21,7 @@ import com.teamdev.jxmaps.MapViewOptions;
 import com.teamdev.jxmaps.Marker;
 import com.teamdev.jxmaps.javafx.MapView;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -63,10 +64,10 @@ public class MapController implements Initializable {
                     map.setCenter(new LatLng(36.8599390, 10.1909730));
                     // Setting initial zoom value
                     map.setZoom(10.0);
-                    
-                            LatLng ariana = new LatLng(36.8599390, 10.1909730);
                             Marker marker = new Marker(map);
-                            marker.setPosition(ariana);
+//                            marker.setPosition(ariana);
+//                            performGeocode("az");
+
                 }
             }
         });

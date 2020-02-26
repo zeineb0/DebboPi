@@ -35,6 +35,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -64,8 +67,6 @@ public class AffichageController implements Initializable {
     @FXML
     private TableColumn<affdetails, String> tel;
     @FXML
-    private TextField filterbox;
-    @FXML
     private TextField tx2,tx3,tx4,tx5,tx6;
     private Statement ste;
     ServiceLivraison ser=new ServiceLivraison();
@@ -79,12 +80,18 @@ public class AffichageController implements Initializable {
     private TableColumn<?, ?> mat;
     @FXML
     private TextField txtmat;
+    @FXML
+    private ImageView icon;
+   
+
+    
    
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-
+                Image image = new Image("/icon.png");
+                icon.setImage(image); 
             Connection con = DataSource.getInstance().getConnection();
             ResultSet res = con.createStatement().executeQuery("SELECT livraison.id_livraison,livraison.date_livraison,livraison.adresse_livraison,livraison.etat_livraison,utilisateur.nom,utilisateur.prenom,utilisateur.tel FROM livraison,utilisateur where utilisateur.id_user=livraison.FK_id_user");    
             while(res.next()){
@@ -305,7 +312,7 @@ public class AffichageController implements Initializable {
                                 primaryStage1.setScene(scene1);
                                 primaryStage1.show();
                             } catch (IOException ex) {
-                                Logger.getLogger(AffichageController.class.getName()).log(Level.SEVERE, null, ex);
+
                             }
                         });
                         
@@ -349,5 +356,19 @@ public String hashID(String i){
 public String unhashID(String i){
     return  i.substring(4, 1);
 }
+
+    @FXML
+    private void showmap(MouseEvent event) {
+        try {
+            Parent root2 = FXMLLoader.load(getClass().getResource("showmap.fxml"));
+            Scene scene1 = new Scene(root2);
+            Stage primaryStage1 = new Stage();
+            primaryStage1.setTitle("Hello World!");
+            primaryStage1.setScene(scene1);
+            primaryStage1.show();
+        } catch (IOException ex) {
+        }
+          
+    }
 
 }

@@ -38,7 +38,7 @@ public class PieChartController implements Initializable {
 
     /**
      * Initializes the controller class.
-     */
+     */ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         piechart.setTitle("Disposition des commandes selon les villes");

@@ -4,6 +4,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -22,17 +24,22 @@
             <TableColumn fx:id="tel" minWidth="0.0" prefWidth="96.0" text="Tel" />
          </columns>
       </TableView>
-      <TextField fx:id="filterbox" layoutX="168.0" layoutY="54.0" prefHeight="25.0" prefWidth="291.0" />
-      <Text layoutX="33.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search box">
+      <TextField fx:id="tx2" layoutX="205.0" layoutY="95.0" onKeyTyped="#smartsearchAdr" prefHeight="25.0" prefWidth="99.0" promptText="Saisir adresse..." />
+      <TextField fx:id="tx3" layoutX="305.0" layoutY="95.0" onKeyTyped="#smartsearchEtat" prefHeight="25.0" prefWidth="92.0" promptText="Saisir etat..." />
+      <TextField fx:id="tx4" layoutX="402.0" layoutY="95.0" onKeyTyped="#smartsearchNom" prefHeight="25.0" prefWidth="83.0" promptText="Saisir nom..." />
+      <TextField fx:id="tx5" layoutX="490.0" layoutY="95.0" onKeyTyped="#smartsearchPrenom" prefHeight="25.0" prefWidth="99.0" promptText="Saisir prenom" />
+      <TextField fx:id="tx6" layoutX="596.0" layoutY="95.0" onKeyTyped="#smartsearchTel" prefHeight="25.0" prefWidth="99.0" promptText="Saisir Tel" />
+      <TextField fx:id="txtmat" layoutX="33.0" layoutY="95.0" onKeyTyped="#smartsearchmat" prefHeight="25.0" prefWidth="92.0" promptText="Saisir numero..." />
+      <Text layoutX="33.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voir l'emplacement des commandes non encore livrées :">
          <font>
-            <Font size="25.0" />
+            <Font name="System Italic" size="16.0" />
          </font>
       </Text>
-      <TextField fx:id="tx2" layoutX="205.0" layoutY="95.0" onKeyTyped="#smartsearchAdr" prefHeight="25.0" prefWidth="83.0" />
-      <TextField fx:id="tx3" layoutX="305.0" layoutY="95.0" onKeyTyped="#smartsearchEtat" prefHeight="25.0" prefWidth="92.0" />
-      <TextField fx:id="tx4" layoutX="402.0" layoutY="95.0" onKeyTyped="#smartsearchNom" prefHeight="25.0" prefWidth="83.0" />
-      <TextField fx:id="tx5" layoutX="490.0" layoutY="95.0" onKeyTyped="#smartsearchPrenom" prefHeight="25.0" prefWidth="99.0" />
-      <TextField fx:id="tx6" layoutX="596.0" layoutY="95.0" onKeyTyped="#smartsearchTel" prefHeight="25.0" prefWidth="99.0" />
-      <TextField fx:id="txtmat" layoutX="33.0" layoutY="95.0" onKeyTyped="#smartsearchmat" prefHeight="25.0" prefWidth="77.0" />
+      <ImageView fx:id="icon" cache="true" fitHeight="40.0" fitWidth="42.0" layoutX="481.0" layoutY="37.0" onMouseClicked="#showmap" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../Desktop/icon.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="473.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliquez ICI" />
     </children>
 </AnchorPane>
