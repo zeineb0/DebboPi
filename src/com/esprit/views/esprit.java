@@ -11,6 +11,7 @@ import com.esprit.entities.Produit;
 import com.esprit.services.ICategorieService;
 import com.esprit.services.impl.CategorieController;
 import com.esprit.services.impl.EntrepotController;
+import com.esprit.services.impl.MouvementController;
 import com.esprit.services.impl.ProduitController;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
@@ -40,6 +41,11 @@ public class esprit extends Application {
         
         stage.setScene(scene);
         stage.show();
+        
+        //MouvementController mouvementController = new MouvementController();
+        
+        
+
         
 //        // instance catégorie
 //        Categorie c1=new Categorie();
