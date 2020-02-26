@@ -15,6 +15,7 @@ import com.esprit.services.impl.MouvementController;
 import com.esprit.services.impl.ProduitController;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +118,7 @@ public class MvtStockController implements Initializable {
         clMarq.setCellValueFactory(new PropertyValueFactory("marque"));
          
          
-        clQte.setCellValueFactory(new PropertyValueFactory("quantite"));
+        //clQte.setCellValueFactory(new PropertyValueFactory("quantite"));
         table.getItems().addAll(produits);
          
          table.setOnMouseClicked(event->{
@@ -133,13 +134,19 @@ public class MvtStockController implements Initializable {
                   txt1.setText(String.valueOf(ProduitSelectionner.getPrix()));
                   txt2.setText(String.valueOf(ProduitSelectionner.getReference()));
                   txt3.setText(String.valueOf(ProduitSelectionner.getMarque()));
+                  //txtQ.setText(String.valueOf(ProduitSelectionner.getQuantite()));
                  // System.out.println(ProduitSelectionner.getEntrepot());
                   Entrepot entrep = ProduitSelectionner.getEntrepot();
                   cmbC.setValue(ProduitSelectionner.getCategorie());
                   cmbE.setValue(entrep);
+                    int qtep=  ProduitSelectionner.getQuantite();
+                    System.out.println(qtep);
+                    String nom = ProduitSelectionner.getLibelle();
+                    System.out.println(nom);
               }
              
                     });
+         
     } 
     
     private boolean verif(){
@@ -154,29 +161,47 @@ public class MvtStockController implements Initializable {
 
     @FXML
     private void onClickValider(ActionEvent event) {
+        
         MouvementStock mvt = new MouvementStock();
         Integer qte = Integer.parseInt(txtQ.getText());
         Date date1 = Date.valueOf(this.date.getValue());
         String nature = String.valueOf(chE.getText());
-        
         Date dateLoc = Date.valueOf(LocalDate.now());
-              
-                if(date1.before(date1) )
+          
+                if(date1.before(dateLoc) )
                         {
-                                    mvt.setDateMouv(date1);
-
+                                erreur.setVisible(true);
                         }
                     else
-                         {erreur.setVisible(true);}
-               
+                         { 
+                             mvt.setDateMouv(date1);
 
-        mvt.setQuantite(qte);
+                           }
+        Produit p = new Produit();
+        System.out.println(qte);
         Entrepot e = cmbE.getValue();
         mvt.setE(e);
         mvt.setP(ProduitSelectionner);
         mvt.setNatureDuStock(nature);
-        mouvementController.testQuantité(mvt);
+    
+        int id =ProduitSelectionner.getId();
         
+     if (ProduitSelectionner.getQuantite() != 0){
+               Integer qteAjoutée = qte+ProduitSelectionner.getQuantite();
+
+             produitController.ajouterQte(qteAjoutée, ProduitSelectionner.getId());
+
+         System.out.println("oui");
+     
+     } else{
+         
+         System.out.println("non");
+        produitController.ajouterQte(qte, ProduitSelectionner.getId());}
+     
+     
+     
+        //ProduitSelectionner.setQuantite(qte);
+        mouvementController.ajouterMouvement(mvt);
     }
    
 }
