@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * FXML Controller class
@@ -60,7 +61,7 @@ public class HomeAdminController implements Initializable {
     if (event.getSource() == chpw) {
   
       
-        String req2 = "UPDATE utilisateur SET password='"+b+"'  WHERE password='"+a+"'";
+        String req2 = "UPDATE utilisateur SET password='"+DigestUtils.shaHex(b)+"'  WHERE password='"+DigestUtils.shaHex(a)+"'";
         
         PreparedStatement ps2 = null;
          ps2 = con.prepareStatement(req2);

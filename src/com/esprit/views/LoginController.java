@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * FXML Controller class
@@ -74,11 +75,11 @@ public class LoginController implements Initializable {
         String pw = password.getText();
 
         //Query
-        String req = "SELECT * FROM utilisateur Where email = ? and password = ?";
+        String req = "SELECT * FROM utilisateur Where email = ? and password ='"+DigestUtils.shaHex(pw)+"'";
 
         ps = con.prepareStatement(req);
         ps.setString(1, usr);
-        ps.setString(2, pw);
+        //ps.setString(2, pw);
         rs = ps.executeQuery();
 
         if (!rs.next()) {
