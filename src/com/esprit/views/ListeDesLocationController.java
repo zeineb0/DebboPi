@@ -36,6 +36,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -109,21 +110,20 @@ public class ListeDesLocationController implements Initializable {
         } catch (SQLException ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
-        datFin.setOnMouseClicked((event) -> {
-             try {
-            id= locationSel.getId_location();
-            if (datefin.before(datdeb))
-            { erreur1.setVisible(true);}
-            
-            
-            double prixLoca = serviceLocation.getPrix(id);
-            String p = serviceLocation.calculPrix(prixLoca, datdeb, datefin).toString();
-            prix1.setText(p);
-        } catch (SQLException ex) {
-            System.out.println(ex);        }
-    
-    
-        });
+//        datFin.setOnMouseClicked((event) -> {
+//             try {
+//            id= locationSel.getId_location();
+//            if (datefin.before(datdeb))
+//            { erreur1.setVisible(true);}
+//            
+//            double prixLoca = serviceLocation.getPrix(id);
+//            String p = serviceLocation.calculPrix(prixLoca, datdeb, datefin).toString();
+//            prix1.setText(p);
+//        } catch (SQLException ex) {
+//            System.out.println(ex);        }
+//    
+//    
+//        });
         
     
         table.setOnMouseClicked(event->{
@@ -161,7 +161,29 @@ public class ListeDesLocationController implements Initializable {
                   datDeb.setValue(datdeb.toLocalDate());
                   // datefin=Date.valueOf(datFin.getValue());
 
+                  datFin.setOnMouseDragEntered(new EventHandler<MouseDragEvent>(){
+                     @Override
+                     public void handle(MouseDragEvent event) {
+
+   try {
+            id= locationSel.getId_location();
+            if (datefin.before(datdeb))
+            { erreur1.setVisible(true);}
+            
+            double prixLoca = serviceLocation.getPrix(id);
+            String p = serviceLocation.calculPrix(prixLoca, datdeb, datefin).toString();
+            prix1.setText(p);
+        } catch (SQLException ex) {
+            System.out.println(ex);        }
+    
+    
+
+                     }
                   
+                  
+                  
+                  
+                  });
 
 	                  
                   
