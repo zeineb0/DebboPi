@@ -74,12 +74,40 @@ public class ServiceLocation implements IServiceLocation<Location>{
        while (r.next())
                {prix1=r.getDouble("prix_location");}
         return  prix1; 
-    
-   
-       
-           
-  
+ 
     }
+    
+    public void modifierEtatEntrepotALoue(int id)
+    {
+        try {
+
+            String req="UPDATE `entrepot` SET`etat`=\"Loué\" WHERE `id_entrepot` = ?";
+            PreparedStatement ps= DataSource.getInstance().getConnection().prepareStatement(req);
+            
+            ps.setInt(1,id);
+            
+
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("erreur");
+        }
+    }
+    public void modifierEtatEntrepotALouer(int id)
+    {
+        try {
+
+            String req="UPDATE `entrepot` SET`etat`=\"A Louer\" WHERE `id_entrepot` = ?";
+            PreparedStatement ps= DataSource.getInstance().getConnection().prepareStatement(req);
+            
+            ps.setInt(1,id);
+            
+
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("erreur");
+        }
+    }
+    
 
     @Override
     public void update(Location l) throws SQLException {

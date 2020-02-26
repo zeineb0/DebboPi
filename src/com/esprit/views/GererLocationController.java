@@ -140,10 +140,20 @@ private Entrepot EntrepotSelectionner = new Entrepot();
         
          l.setFK_id_entrepot(idA);
         serviceLocation.ajouter(l);
-       
+        serviceLocation.modifierEtatEntrepotALoue(EntrepotSelectionner.getId_entrepot());
+            ref();
+        
      } catch (SQLException ex) {
          System.out.println("com.esprit.views.EspaceClientController.ajouterLocation()");     }
     }
+     public void ref() {
+        try {
+            table.getItems().clear();
+            table.getItems().addAll(serviceLocation.readAL());
+        } catch (SQLException ex) {
+            System.out.println("erreur");        }
+ }          
+
 
     @FXML
     private void listerLocation(ActionEvent event) throws IOException {

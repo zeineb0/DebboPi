@@ -172,6 +172,7 @@ public class ListeDesLocationController implements Initializable {
 
                   serviceLocation.update(l);
                     ref();
+                   
                                 }
                  
                     
@@ -195,6 +196,7 @@ public class ListeDesLocationController implements Initializable {
                  id= locationSel.getId_location();  
                   try 
                         {serviceLocation.delete(id);
+            serviceLocation.modifierEtatEntrepotALouer(locationSel.getFK_id_entrepot());
                         ref();} 
                         catch (SQLException ex) 
                         {System.out.println(".handle()");}
