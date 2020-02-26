@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,13 +69,12 @@ public class ServiceLocation implements IServiceLocation<Location>{
     public void update(Location l) throws SQLException {
 try {
             PreparedStatement pre=con.prepareStatement("UPDATE `location` SET `date_deb_location`=?,`date_fin_location`=?,`prix_location`=?,`FK_id_entrepot`=?,`FK_id_user`=? WHERE `id_location`=?;");
-            pre.setInt(1, l.getId_location());
-            pre.setDate(2, l.getDate_deb_location());
-            pre.setDate(3, l.getDate_fin_location());
-            pre.setDouble(4, l.getPrix_location());
-            pre.setInt(5, l.getFK_id_entrepot());
-            pre.setInt(6, l.getFK_id_user());
-            pre.setInt(7, l.getId_location());
+            pre.setDate(1, l.getDate_deb_location());
+            pre.setDate(2, l.getDate_fin_location());
+            pre.setDouble(3, l.getPrix_location());
+            pre.setInt(4, l.getFK_id_entrepot());
+            pre.setInt(5, l.getFK_id_user());
+            pre.setInt(6, l.getId_location());
             pre.executeUpdate();
             System.out.println("la loc num"+ l.getId_location()+ " updated.");
             
@@ -85,9 +85,9 @@ try {
     public List<Entrepot> readAL() throws SQLException {
     List<Entrepot> entrepot=new ArrayList<>();
     ste=con.createStatement();
-    ResultSet rs=ste.executeQuery("SELECT * FROM `entrepot` WHERE `etat`=\"à louer\"");
+    ResultSet rs=ste.executeQuery("SELECT * FROM `entrepot` WHERE `etat`=\"A louer\"");
      while (rs.next()) {                
-               int id_entrepot=rs.getInt(1);
+              int id_entrepot=rs.getInt(1);
                String adresse_entrepot=rs.getString(2);
                int num_fiscale=rs.getInt(3);
                int quantite_max=rs.getInt(4);
@@ -96,7 +96,7 @@ try {
                String entreprise=rs.getString(7);
              
                int fk_id_fournisseur=rs.getInt(8);
-               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat,  prix_location,entreprise, fk_id_fournisseur);
+               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, prix_location, entreprise, fk_id_fournisseur);
      entrepot.add(e);
      }
     return entrepot;
@@ -141,6 +141,24 @@ public Double calculPrix (Double prix,Date datedeb, Date datefin)
 
 
 }
+public Double updateCalculPrix (Double prix,Date datdeban,Date datfinan,Date datedeb, Date datefin)
+{       
+        double prix1;
+        final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24; 
+        
+
+////        if(datefin.before(datfinan))
+////        {double prix2=((prix/(datfinan.getTime()-datdeban.getTime()))*(datefin.getTime()-date.getTime()))/ (MILLISECONDS_PER_DAY);
+////            prix1= (((prix/datfinan.getTime()-datdeban.getTime())*(datefin.getTime()-datedeb.getTime())-prix2))/ (MILLISECONDS_PER_DAY);
+////            return prix1;
+////        }
+////        else{
+        return prix1= ((prix/(datfinan.getTime()-datdeban.getTime()/(MILLISECONDS_PER_DAY)))*(datefin.getTime()-datedeb.getTime()))/ (MILLISECONDS_PER_DAY);
+                }
+                
+
+
+
 
     @Override
     public List<Location> readAll() throws SQLException {

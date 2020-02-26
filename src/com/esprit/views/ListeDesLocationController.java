@@ -59,6 +59,8 @@ public class ListeDesLocationController implements Initializable {
     @FXML
     private Label erreur;
     @FXML
+    private Label erreur1;
+    @FXML
     private DatePicker datDeb;
     @FXML
     private DatePicker datFin;
@@ -95,6 +97,8 @@ public class ListeDesLocationController implements Initializable {
             prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
             //addButtonToTable();
             table.setItems(datalist);
+            erreur.setVisible(false);
+            erreur1.setVisible(false);
       
         } catch (SQLException ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
@@ -129,9 +133,10 @@ public class ListeDesLocationController implements Initializable {
                   id= locationSel.getId_location();
                   adr.setText(locationSel.getAdresse_entrepot());
                   double num1 = locationSel.getPrix_location();
-                  String a= Double.toString(num1);
-                  prix1.setText(a);
-//                  Date datdeb=locationSel.getDate_deb_location();
+                  //String a= Double.toString(num1);
+                  //prix1.setText(a);
+                  Date datdebans=locationSel.getDate_deb_location();
+                  Date datfinans=locationSel.getDate_fin_location();
                  
 
       
@@ -143,13 +148,25 @@ public class ListeDesLocationController implements Initializable {
                         try {
                   Location l = new Location();
 
-                  Double prix = Double.parseDouble(prix1.getText());
+                 
                   Date datedeb=Date.valueOf(datDeb.getValue());
                   Date datefin=Date.valueOf(datFin.getValue());
+                  if (datedeb.before(datdebans))
                   
-                  l.setPrix_location(prix);
+                  erreur.setVisible(true);
+                  if (datefin.before(datfinans))
+                  {
+                  erreur1.setVisible(true);}
+                  else
+                  {String p = serviceLocation.updateCalculPrix(num1, datfinans, datdebans, datedeb, datefin).toString();
+                  prix1.setText(p);
+                  double p1=Double.parseDouble(p);
+                  
                   l.setDate_deb_location(datedeb);
                   l.setDate_fin_location(datefin);
+                  
+                   l.setPrix_location(p1);}
+
                   serviceLocation.update(l);
                     ref();
                                 }

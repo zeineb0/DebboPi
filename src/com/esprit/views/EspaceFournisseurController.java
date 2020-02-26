@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import static java.util.Collections.list;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -76,7 +78,7 @@ int id;
     @FXML
     private TextField adresse;
     @FXML
-    private TextField etat1;
+    private ComboBox<String> etat1;
     @FXML
     private TextField entrep1;
     @FXML
@@ -105,7 +107,14 @@ int id;
         } catch (SQLException ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
-        
+                ObservableList<String> list;
+
+         try {
+            list= FXCollections.observableArrayList("Libre","Loué","A louer");
+            etat1.setItems(list);
+        } catch (Exception ex) {
+            System.out.println("com.esprit.views.AjouterEntrepotController.initialize()");
+        }
     
         table.setOnMouseClicked(event->{
         //pour modifier un produit il faut faire deux click
@@ -140,7 +149,7 @@ int id;
                   int num2 = EntrepotSelectionner1.getQuantite_max();
                   String b= Integer.toString(num2);
                   quanmax.setText(b);
-                  etat1.setText(EntrepotSelectionner1.getEtat());
+                  etat1.setValue(EntrepotSelectionner1.getEtat());
                   entrep1.setText(EntrepotSelectionner1.getEntreprise());
                   Double num3 = EntrepotSelectionner1.getPrix_location();
                   String c= Double.toString(num3);
@@ -159,7 +168,7 @@ int id;
                   String ad = adresse.getText();
                   int num_fiscale = Integer.parseInt(numfisc.getText());
                   int quantite = Integer.parseInt(quanmax.getText());
-                  String et=etat.getText();
+                  String et=etat1.getValue();
                   Double pri1= Double.parseDouble(pri.getText());
                   String entreprise = entrep.getText();
                   e.setAdresse_entrepot(ad);

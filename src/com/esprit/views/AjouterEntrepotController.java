@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -57,7 +57,7 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> list;
         try {
-            list= FXCollections.observableArrayList("libre","loué","à louer");
+            list= FXCollections.observableArrayList("Libre","Loué","A louer");
             etat.setItems(list);
             erreur.setVisible(false);
         } catch (Exception ex) {
@@ -72,7 +72,7 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
         int num_fiscale = Integer.parseInt(numfisc.getText());
         int quantite = Integer.parseInt(quanmax.getText());
         Double pr=Double.parseDouble(prix.getText());
-
+        
         String entreprise = entrep.getText();
         Entrepot e = new Entrepot();
         e.setAdresse_entrepot(ad);
@@ -82,11 +82,11 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
         e.setEtat(etat.getValue());
         e.setPrix_location(pr);
         e.setEntreprise(entreprise);
-      
+        
            
         serviceEntrepot.ajouter(e);
             } catch (SQLException ex) {
-                System.out.println("com.esprit.views.AjouterEntrepotController.onClick()");;
+                System.out.println("com.esprit.views.AjouterEntrepotController.onClick()");
             }
             
         }
@@ -100,15 +100,8 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
         window.setScene(ListeE);
         window.show();
     }  
-    private void onClick1(ActionEvent event) throws IOException {
-         
-        Parent liste = FXMLLoader.load(getClass().getResource("supprimerEntrepot.fxml"));
-           Scene ListeE = new Scene(liste);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(ListeE);
-        window.show();
-        
-    }   
+  
+    
     @FXML
     private void onClick2(ActionEvent event) throws IOException {
         Parent liste = FXMLLoader.load(getClass().getResource("modifierEntrepot.fxml"));

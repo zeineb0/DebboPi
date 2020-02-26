@@ -30,6 +30,15 @@ public class Entrepot {
         this.fk_id_fournisseur= fk_id_fournisseur;
     }
 
+    public Entrepot(String adresse_entrepot, int num_fiscale, int quantite_max, String etat, double prix_location, String entreprise) {
+this.adresse_entrepot = adresse_entrepot;
+        this.num_fiscale = num_fiscale;
+        this.quantite_max = quantite_max;
+        this.etat = etat;
+        this.entreprise = entreprise;
+
+    }
+
 
 
     public Double getPrix_location() {

@@ -40,36 +40,37 @@ public class ServiceEntrepot implements IService<Entrepot> {
     try{    
     PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`,`prix_location`,`fk_id_user`) VALUES ( ?, ?, ?, ?, ?,?,?);");
     pre.setString(1, e.getAdresse_entrepot());
-        double numR1 = 0;
-   
-    ste=con.createStatement();
-    ResultSet r1=ste.executeQuery("SELECT  `num_fiscale`  FROM  `entrepot` WHERE  `num_fiscale` =  '"+numR1+"' ");
-     int numR0 = 0;
-
-    try {
-        while (r1.next()) {
-             int nbp = 0;
-
-             numR0 =r1.getInt("numR");
-            nbp++;   
-        } 
-        if(numR1==numR0){
-            System.out.println("numR exists! : " +numR0 );
-             } 
- 
-        else { 
-            System.out.println("numR is not existing ");
-                pre.setInt(2, e.getNum_fiscale());
-
-              }
- 
-       
- 
-      } catch (SQLException e1) {
-        e1.printStackTrace();
-        System.out.println("error validation numR: "+e1);
- 
-    } 
+    pre.setInt(2, e.getNum_fiscale());
+//        double numR1 = 0;
+//   
+//    ste=con.createStatement();
+//    ResultSet r1=ste.executeQuery("SELECT  `num_fiscale`  FROM  `entrepot` WHERE  `num_fiscale` =  '"+numR1+"' ");
+//     int numR0 = 0;
+//
+//    try {
+//        while (r1.next()) {
+//             int nbp = 0;
+//
+//             numR0 =r1.getInt("numR");
+//            nbp++;   
+//        } 
+//        if(numR1==numR0){
+//            System.out.println("numR exists! : " +numR0 );
+//             } 
+// 
+//        else { 
+//            System.out.println("numR is not existing ");
+//                pre.setInt(2, e.getNum_fiscale());
+//
+//              }
+// 
+//       
+// 
+//      } catch (SQLException e1) {
+//        e1.printStackTrace();
+//        System.out.println("error validation numR: "+e1);
+// 
+//    } 
  
 
     pre.setInt(3, e.getQuantite_max());
@@ -79,7 +80,7 @@ public class ServiceEntrepot implements IService<Entrepot> {
     //if (utilisateur.getRole().equals("fournisseur"))
       
     pre.setInt(7,utilisateur.getId());
-    //pre.setInt(7, e.getFk_id_fournisseur());
+    pre.setInt(7, e.getFk_id_fournisseur());
     
     pre.executeUpdate(); 
     }

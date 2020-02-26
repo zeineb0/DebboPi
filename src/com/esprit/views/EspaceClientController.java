@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -79,7 +80,7 @@ private Entrepot EntrepotSelectionner = new Entrepot();
             ArrayList<Entrepot> entrepots = (ArrayList<Entrepot>) serviceLocation.readAL();
                 
             datalist = FXCollections.observableArrayList(entrepots);
-            Ide.setCellValueFactory(new PropertyValueFactory<>("id_entrepot"));
+          //  Ide.setCellValueFactory(new PropertyValueFactory<>("id_entrepot"));
             adre.setCellValueFactory(new PropertyValueFactory<>("adresse_entrepot"));
             num.setCellValueFactory(new PropertyValueFactory<>("num_fiscale"));
             quant.setCellValueFactory(new PropertyValueFactory<>("quantite_max"));
@@ -87,12 +88,12 @@ private Entrepot EntrepotSelectionner = new Entrepot();
 
             entrep.setCellValueFactory(new PropertyValueFactory<>("entreprise"));
             prix.setCellValueFactory(new PropertyValueFactory<>("prix_location"));
-            idfour.setCellValueFactory(new PropertyValueFactory<>("fk_id_fournisseur"));
+//            idfour.setCellValueFactory(new PropertyValueFactory<>("fk_id_fournisseur"));
             
             table.setItems(datalist);
       
         } catch (SQLException ex) {
-             System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
+             System.out.println(ex.getMessage());
         }
          
           table.setOnMouseClicked((MouseEvent event)->{
@@ -101,11 +102,12 @@ private Entrepot EntrepotSelectionner = new Entrepot();
                 EntrepotSelectionner=table.getItems().get(table.getSelectionModel().getSelectedIndex());
                 idA=EntrepotSelectionner.getId_entrepot();
                 pri=EntrepotSelectionner.getPrix_location();
-                String id = Double.toString(idA);
-                idEnt.setText(id);
+                //String id = Double.toString(idA);
+                //idEnt.setText(id);
+                Date date=Date.valueOf(LocalDate.now());
                 Date date1 = Date.valueOf(dateDeb.getValue());
                 Date date2 = Date.valueOf(dateFin.getValue());
-                if(date1.before(date2))
+                if(date.before(date1) && date1.before(date2))
                         {String p = serviceLocation.calculPrix(pri,date1, date2 ).toString();
                         prix1.setText(p);
                         }
