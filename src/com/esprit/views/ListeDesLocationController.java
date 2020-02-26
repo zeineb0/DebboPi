@@ -105,7 +105,6 @@ public class ListeDesLocationController implements Initializable {
             adr.setCellValueFactory(new PropertyValueFactory<>("adresse_entrepot"));
             nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
             prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-            //addButtonToTable();
             table.setItems(datalist);
             erreur.setVisible(false);
             erreur1.setVisible(false);

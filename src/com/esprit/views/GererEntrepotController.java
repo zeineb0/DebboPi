@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,7 +102,7 @@ int id;
             etat.setCellValueFactory(new PropertyValueFactory<>("etat"));
             prix.setCellValueFactory(new PropertyValueFactory<>("prix_location"));
             entrep.setCellValueFactory(new PropertyValueFactory<>("entreprise"));
-            addButtonToTable();
+           // addButtonToTable();
             table.setItems(datalist);
       
         } catch (SQLException ex) {
@@ -209,11 +210,7 @@ int id;
         Callback<TableColumn<Entrepot, Void>, TableCell<Entrepot, Void>> cellFactory = new Callback<TableColumn<Entrepot, Void>, TableCell<Entrepot, Void>>() {
             public TableCell<Entrepot, Void> call(final TableColumn<Entrepot, Void> param) {
                 final TableCell<Entrepot, Void> cell = new TableCell<Entrepot, Void>() {
-                   
-                 
                     private final Button btn = new Button("Modifier");
-                    
-                    
                     {
                             btn.setOnAction((ActionEvent event) -> {
                             Entrepot entrepot = getTableView().getItems().get(getIndex());
@@ -234,20 +231,18 @@ int id;
                 return cell;
             }
         };
-
         colBtn.setCellFactory(cellFactory);
 
         table.getColumns().add(colBtn);
 
     }
-@FXML
     private void onClick(ActionEvent event) throws IOException {
-         Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
-
-           Scene ListeE = new Scene(liste);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(ListeE);
-        window.show();
+//         Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
+//
+//           Scene ListeE = new Scene(liste);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(ListeE);
+//        window.show();
     }  
  
       
@@ -267,6 +262,20 @@ int id;
 //        primaryStage.setTitle("Liste des entrepots");
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
+
+    @FXML
+    private void onClick(Event event) throws IOException {
+        Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
+
+           Scene ListeE = new Scene(liste);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(ListeE);
+        window.show();
+    }
+
+    @FXML
+    private void onClick1(ActionEvent event) {
+    }
 
     
    
