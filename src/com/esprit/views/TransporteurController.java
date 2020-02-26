@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -62,6 +65,8 @@ public class TransporteurController implements Initializable {
     @FXML
     private Button list_liv;
     TableColumn<Livraison, Void> colBtn;
+    @FXML
+    private TextField filtreAdresse;
    
 
     /**
@@ -79,6 +84,8 @@ public class TransporteurController implements Initializable {
         ArrayList<Livraison> list_livraison=(ArrayList<Livraison>) contrat_service.afficherLivraisonParTransporteurLivree(transporteur1);
          
          data_list = FXCollections.observableArrayList(list_livraison);
+         
+         
          
       
          date_livraison.setCellValueFactory(new PropertyValueFactory<>("date_livraison"));
@@ -118,5 +125,40 @@ public class TransporteurController implements Initializable {
         window.setScene(LivEnCoursV);
         window.show();
     }
+    
+    @FXML
+        public void searchAdresse(){ 
+            
+            
+            
+            
+                           FilteredList<Livraison> filteredData2 = new FilteredList<>(data_list, l -> true);
+        		// tbadél l predicate te3 l filtre selon tabdil l filtre
+		filtreAdresse.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData2.setPredicate(livraison -> {
+				// ken l filtre (searchbox) feragh n'affichi kol chay			
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+                                // n9arén l predicate beli éna ktébtou selon date w etat
+				String lowerCaseFilter = newValue.toLowerCase();
+				if (livraison.getAdresse_livraison().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; 
+				}
+				     else  
+				    	 return false; 
+			});
+		});
+        		// n7ot FilteredList f SortedList. 
+		SortedList<Livraison> sortedData = new SortedList<>(filteredData2);
+		
+		// n9arén e sortedlist b tableview
+		
+		//n'ajouti tawa sortedlist l héya resultat te3 l filtre f tableview mte3i
+		LivraisonTable.setItems(sortedData);
+        
+    }
+    
+    
     
 }
