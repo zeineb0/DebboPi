@@ -5,6 +5,7 @@
  */
 package com.esprit.views;
 
+import com.esprit.entities.Session;
 import com.esprit.entities.User;
 import com.esprit.utilities.DataSource;
 import java.net.URL;
@@ -45,8 +46,8 @@ public class HomeAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-    
+   
+   int idSess= Session.getIdSession();
 
     @FXML
     private void changepww(MouseEvent event) throws SQLException {
@@ -64,8 +65,8 @@ public class HomeAdminController implements Initializable {
         PreparedStatement ps2 = null;
          ps2 = con.prepareStatement(req2);
         int executeUpdate = ps2.executeUpdate();
-        
-        
+      System.out.println(idSess);
+    }
         if (event.getSource() == infos ) {
          
        String     req3="select * from utilisateur";
@@ -96,4 +97,3 @@ public class HomeAdminController implements Initializable {
     
     
     
-}

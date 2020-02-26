@@ -5,6 +5,7 @@
  */
 package com.esprit.views;
 
+import com.esprit.entities.Session;
 import com.esprit.utilities.DataSource;
 import java.io.IOException;
 import java.net.URL;
@@ -45,6 +46,7 @@ public class LoginController implements Initializable {
     private Label register;
     @FXML
     private Label check;
+   
 
     /**
      * Initializes the controller class.
@@ -62,6 +64,7 @@ public class LoginController implements Initializable {
     PreparedStatement ps = null;
     ResultSet rs = null;
     String roleee="";
+    int idS;
 
     private String login() throws SQLException {
 
@@ -85,6 +88,8 @@ public class LoginController implements Initializable {
         } else {
            
             roleee=rs.getString("role");
+           idS=rs.getInt("id_user");
+           Session.setIdSession(idS);
             
             check.setTextFill(Color.GREEN);
             check.setText("Logging Succesfull..Redirecting..");
@@ -94,6 +99,10 @@ public class LoginController implements Initializable {
 
     }
 
+
+
+    
+    
     @FXML
     private void handleButtonAction(MouseEvent event) throws SQLException {
         if (event.getSource() == btnLogin) {
@@ -130,7 +139,7 @@ public class LoginController implements Initializable {
                     System.err.print(ex.getMessage());
                 }
                 }
-
+              System.out.println(idS);
             }
         }
         if (event.getSource() == register) {
@@ -153,5 +162,7 @@ public class LoginController implements Initializable {
         
 
     }
+
+ 
 
 }
