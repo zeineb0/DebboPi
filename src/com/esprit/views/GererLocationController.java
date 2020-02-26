@@ -38,7 +38,7 @@ import javafx.stage.Stage;
  *
  * @author asus
  */
-public class EspaceClientController implements Initializable {
+public class GererLocationController implements Initializable {
     @FXML
     private TableView<Entrepot> table;
     private TableColumn<Entrepot, Integer> Ide;
