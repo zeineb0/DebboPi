@@ -10,6 +10,7 @@ import com.esprit.entities.Location;
 import com.esprit.entities.LocationDetail;
 import com.esprit.services.impl.ServiceEntrepot;
 import com.esprit.services.impl.ServiceLocation;
+import com.mysql.jdbc.PreparedStatement;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -36,6 +37,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -80,6 +82,7 @@ public class ListeDesLocationController implements Initializable {
     @FXML
     private Button supp;
     int id;
+    int id1;
     @FXML
     private Button modifier;
     Date datefin;
@@ -110,112 +113,19 @@ public class ListeDesLocationController implements Initializable {
         } catch (SQLException ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
-//        datFin.setOnMouseClicked((event) -> {
-//             try {
-//            id= locationSel.getId_location();
-//            if (datefin.before(datdeb))
-//            { erreur1.setVisible(true);}
-//            
-//            double prixLoca = serviceLocation.getPrix(id);
-//            String p = serviceLocation.calculPrix(prixLoca, datdeb, datefin).toString();
-//            prix1.setText(p);
-//        } catch (SQLException ex) {
-//            System.out.println(ex);        }
-//    
-//    
-//        });
-        
-    
-        table.setOnMouseClicked(event->{
-//        pour modifier un produit il faut faire deux click
-              if (event.getClickCount() == 1) {
-                  locationSel =table.getItems().get(table.getSelectionModel().getSelectedIndex());
-                 id= locationSel.getId_location();
-                supp.setOnAction(new EventHandler<ActionEvent>() {
- 
-                @Override
-                      public void handle(ActionEvent event) {
-                        try 
-                        {serviceLocation.delete(id);
-                        ref();} 
-                        catch (SQLException ex) 
-                        {System.out.println(".handle()");}
-                      }
-                
-                 }); 
-                  
-              
-        }
+          
+          table.setOnMouseClicked(event->{
+              locationSel=table.getItems().get(table.getSelectionModel().getSelectedIndex());
+              datdeb=locationSel.getDate_deb_location();
+               datDeb.setValue(datdeb.toLocalDate());
+               datFin.setValue(null);
+               prix1.setText("");
+               });
                
-    
-        //pour modifier un produit il faut faire deux click
-              if (event.getClickCount() == 2) {
-                 locationSel=table.getItems().get(table.getSelectionModel().getSelectedIndex());
-                  id= locationSel.getId_location();
-                 // double num1 = locationSel.getPrix_location();
-                  //String a= Double.toString(num1);
-                  //prix1.setText(a);
-                  datdeb=locationSel.getDate_deb_location();
-                  //Date datfinans=locationSel.getDate_fin_location();
-                  //String d=datdeb.toString();
-                  datDeb.setValue(datdeb.toLocalDate());
-                  // datefin=Date.valueOf(datFin.getValue());
-
-                  datFin.setOnMouseDragEntered(new EventHandler<MouseDragEvent>(){
-                     @Override
-                     public void handle(MouseDragEvent event) {
-
-   try {
-            id= locationSel.getId_location();
-            if (datefin.before(datdeb))
-            { erreur1.setVisible(true);}
-            
-            double prixLoca = serviceLocation.getPrix(id);
-            String p = serviceLocation.calculPrix(prixLoca, datdeb, datefin).toString();
-            prix1.setText(p);
-        } catch (SQLException ex) {
-            System.out.println(ex);        }
-    
-    
-
-                     }
-                  
-                  
-                  
-                  
-                  });
-
-	                  
-                  
-                 
-                   modifier.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                      public void handle(ActionEvent event) {
-                       
-                  Location l = new Location();
-                   try {
-                 
-                  double p1=Double.parseDouble(prix1.getText());
-                  l.setDate_fin_location(datefin);
-                  l.setPrix_location(p1);
-                  
-
-                  serviceLocation.update(l);
-                    ref();
-                                }
-                 
-      
-        catch (SQLException ex) {
-             System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
-        }
-                  
-                      }
-              });
-                        }
-                        });
+                   
+           }
         
-                       }
-  
+
     
       public void ref() {
         try {
@@ -231,12 +141,99 @@ public class ListeDesLocationController implements Initializable {
 
     @FXML
     private void retourALaListeDesEntrepots(ActionEvent event) throws IOException {
-         Parent list = FXMLLoader.load(getClass().getResource("espaceClient.fxml"));
+         Parent list = FXMLLoader.load(getClass().getResource("gererLocation.fxml"));
         Scene listE= new Scene(list);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(listE);
         window.show();
     }
+
+    @FXML
+    private void ModLocation(ActionEvent event) {
+        if(table.getSelectionModel().getSelectedIndex()==-1)
+                {
+                    System.out.println("selectionner de la table location");
+                }
+        else
+        {   locationSel =table.getItems().get(table.getSelectionModel().getSelectedIndex());
+            id= locationSel.getId_location(); 
+            datefin=Date.valueOf(datFin.getValue());
+                 if(datefin.toString().equals("")) 
+                 {
+                      System.out.println("selectionner date");
+                 }
+                 else
+                 {Location l = new Location();
+                   try {
+                 
+                  double p1=Double.parseDouble(prix1.getText());
+                  l.setDate_fin_location(datefin);
+                  l.setPrix_location(p1);
+                  l.setId_location(id);
+
+                  serviceLocation.update(l);
+                    ref();
+                                }
+                 
+                    
+        catch (SQLException ex) {
+             System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
+        }
+                 }
+        }
+    }
+
+    @FXML
+    private void SuppLocation(ActionEvent event) {
+          if(table.getSelectionModel().getSelectedIndex()==-1)
+                {
+                    System.out.println("selectionner de la table location");
+
+                }
+           else
+        {
+                 locationSel =table.getItems().get(table.getSelectionModel().getSelectedIndex());
+                 id= locationSel.getId_location();  
+                  try 
+                        {serviceLocation.delete(id);
+                        ref();} 
+                        catch (SQLException ex) 
+                        {System.out.println(".handle()");}
+                      
+
+        }
+    }
+
+    @FXML
+    private void getDate(ActionEvent event) throws SQLException {
+                System.out.println("oui");
+        if(table.getSelectionModel().getSelectedIndex()==-1||datFin.getValue()==null)
+                {
+                    System.out.println("erreur");
+                }
+        else
+            
+        {
+        locationSel =table.getItems().get(table.getSelectionModel().getSelectedIndex());
+          int  id_l= locationSel.getId_location(); 
+           System.out.println("hhh"+id_l);
+         int id_Ent= serviceLocation.getIDEntrepot(id_l);
+            System.out.println("hhh"+id_Ent);
+        try {
+                         double prixLoca = serviceLocation.getPrix(id_Ent);
+                         System.out.println(prixLoca);
+                         datdeb=Date.valueOf(datDeb.getValue());
+                         datefin=Date.valueOf(datFin.getValue());
+                         String p = serviceLocation.calculPrix(prixLoca, datdeb, datefin).toString();
+                          System.out.println(p);
+                         prix1.setText(p);
+                     } catch (SQLException ex) {
+                                System.out.println("com.esprit.views.ListeDesLocationController.initialize()");
+                     }
+
+    }
+    }
+
 
   
   

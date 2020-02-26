@@ -29,35 +29,35 @@
                   <TableColumn fx:id="prenom" prefWidth="84.0" text="Prenom proprietaire entrepot" />
                </columns>
             </TableView>
-            <TextField fx:id="prix1" layoutX="272.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" />
-            <Label layoutX="101.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="prix">
+            <TextField fx:id="prix1" editable="false" layoutX="272.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" />
+            <Label layoutX="101.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ddd;" text="prix">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="101.0" layoutY="348.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="Date debut location">
+            <Label layoutX="101.0" layoutY="348.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ddd;" text="Date debut location">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="101.0" layoutY="386.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="Date fin location">
+            <Label layoutX="101.0" layoutY="386.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ddd;" text="Date fin location">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button fx:id="modifier" layoutX="125.0" layoutY="547.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Modifier location">
+            <Button fx:id="modifier" layoutX="125.0" layoutY="547.0" mnemonicParsing="false" onAction="#ModLocation" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Modifier location">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
             <DatePicker fx:id="datDeb" editable="false" layoutX="273.0" layoutY="351.0" />
-            <DatePicker fx:id="datFin" layoutX="273.0" layoutY="389.0" />
+            <DatePicker fx:id="datFin" layoutX="273.0" layoutY="389.0" onAction="#getDate" />
             <Label fx:id="erreur" layoutX="463.0" layoutY="351.0" prefHeight="25.0" prefWidth="84.0" text="Verifie la date " textFill="#e30000" underline="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="supp" layoutX="304.0" layoutY="547.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Supprimer location">
+            <Button fx:id="supp" layoutX="304.0" layoutY="547.0" mnemonicParsing="false" onAction="#SuppLocation" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Supprimer location">
                <font>
                   <Font size="15.0" />
                </font>

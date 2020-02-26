@@ -123,7 +123,7 @@ public class LocationDetail {
     }
                
 
-    public LocationDetail(int id_location, Date date_deb_location, Date date_fin_location, double prix_location, int quantite_max, String adresse_entrepot, String nom, String prenom, int FK_id_entrepot, int FK_id_user) {
+    public LocationDetail(int id_location, Date date_deb_location, Date date_fin_location, double prix_location, int quantite_max, String adresse_entrepot, String nom, String prenom, int FK_id_entrepot) {
         this.id_location = id_location;
         this.date_deb_location = date_deb_location;
         this.date_fin_location = date_fin_location;
@@ -133,7 +133,7 @@ public class LocationDetail {
         this.nom = nom;
         this.prenom = prenom;
         this.FK_id_entrepot = FK_id_entrepot;
-        this.FK_id_user = FK_id_user;
+      
     }
                
 }

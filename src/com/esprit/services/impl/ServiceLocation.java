@@ -65,12 +65,14 @@ public class ServiceLocation implements IServiceLocation<Location>{
        
     }
     public Double getPrix(int id) throws SQLException {
-            double prix1 = 0 ;
+            double prix1 =0;
 
         
-       PreparedStatement pre = con.prepareStatement("SELECT `prix_location` FROM `location` WHERE `id_location`= ?");
+       PreparedStatement pre = con.prepareStatement("SELECT `prix_location` FROM `entrepot` WHERE `id_entrepot` = ?");
        pre.setInt(1, id);
-       prix1=pre.executeUpdate();
+       ResultSet r =pre.executeQuery();
+       while (r.next())
+               {prix1=r.getDouble("prix_location");}
         return  prix1; 
     
    
@@ -82,13 +84,10 @@ public class ServiceLocation implements IServiceLocation<Location>{
     @Override
     public void update(Location l) throws SQLException {
 try {
-            PreparedStatement pre=con.prepareStatement("UPDATE `location` SET `date_deb_location`=?,`date_fin_location`=?,`prix_location`=?,`FK_id_entrepot`=?,`FK_id_user`=? WHERE `id_location`=?;");
-            pre.setDate(1, l.getDate_deb_location());
-            pre.setDate(2, l.getDate_fin_location());
-            pre.setDouble(3, l.getPrix_location());
-            pre.setInt(4, l.getFK_id_entrepot());
-            pre.setInt(5, l.getFK_id_user());
-            pre.setInt(6, l.getId_location());
+            PreparedStatement pre=con.prepareStatement("UPDATE `location` SET `date_fin_location`=?,`prix_location`=? WHERE `id_location`=?;");
+            pre.setDate(1, l.getDate_fin_location());
+            pre.setDouble(2, l.getPrix_location());
+            pre.setInt(3, l.getId_location());
             pre.executeUpdate();
             System.out.println("la loc num"+ l.getId_location()+ " updated.");
             
@@ -121,7 +120,7 @@ try {
     List<LocationDetail> locationsDetails=new ArrayList<>();
     ste=con.createStatement();
     ResultSet rs=ste.executeQuery("SELECT id_location , date_deb_location , date_fin_location, l.prix_location ,"
-            + " e.quantite_max , e.adresse , u.nom, u.prenom from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user" );
+            + " e.quantite_max , e.adresse , u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user" );
      while (rs.next()) {                
                int id_location=rs.getInt(1);
                Date date_deb_location = rs.getDate(2);
@@ -131,13 +130,14 @@ try {
                String adresse_entrepot=rs.getString(6);
                String nom=rs.getString(7);
                String prenom=rs.getString(8);
-//               int FK_id_entrepot = rs.getInt(9);
+                  int FK_id_entrepot = rs.getInt(9);
+
 //               int FK_id_user = rs.getInt(10);
                
      
              
                
-    LocationDetail l = new LocationDetail(id_location, date_deb_location, date_fin_location, prix_location, quantite_max, adresse_entrepot, nom, prenom);
+    LocationDetail l = new LocationDetail(id_location, date_deb_location, date_fin_location, prix_location, quantite_max, adresse_entrepot, nom, prenom, FK_id_entrepot);
     locationsDetails.add(l);
      } 
     return locationsDetails;
@@ -147,6 +147,7 @@ try {
 public Double calculPrix (Double prix,Date datedeb, Date datefin)
 { 
         double prix1;
+         System.out.println(prix);
         final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24; 
 
         return prix1= ((prix/31)*(datefin.getTime()-datedeb.getTime()))/ (MILLISECONDS_PER_DAY);
@@ -162,4 +163,21 @@ public Double calculPrix (Double prix,Date datedeb, Date datefin)
     public List<Location> readAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    public int getIDEntrepot(int id) throws SQLException {
+            int idEn=0;
+       PreparedStatement pre = con.prepareStatement("SELECT FK_id_entrepot FROM `location` WHERE `id_location` = ?");
+       pre.setInt(1, id);
+       ResultSet r =pre.executeQuery();
+
+       while (r.next())
+             {idEn=r.getInt("FK_id_entrepot");}
+
+        return  idEn; 
+    
+   
+       
+           
+  
+    }
+
 }
