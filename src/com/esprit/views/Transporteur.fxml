@@ -33,7 +33,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView fx:id="LivraisonTable" layoutX="172.0" layoutY="38.0" prefHeight="523.0" prefWidth="736.0">
+      <TableView fx:id="LivraisonTable" layoutX="188.0" layoutY="38.0" prefHeight="523.0" prefWidth="736.0">
         <columns>
           <TableColumn fx:id="date_livraison" prefWidth="125.0" text="Date livraison" />
             <TableColumn fx:id="adresse_livraison" prefWidth="141.0" text="Adresse livraison" />
