@@ -64,6 +64,20 @@ public class ServiceLocation implements IServiceLocation<Location>{
        
        
     }
+    public Double getPrix(int id) throws SQLException {
+            double prix1 = 0 ;
+
+        
+       PreparedStatement pre = con.prepareStatement("SELECT `prix_location` FROM `location` WHERE `id_location`= ?");
+       pre.setInt(1, id);
+       prix1=pre.executeUpdate();
+        return  prix1; 
+    
+   
+       
+           
+  
+    }
 
     @Override
     public void update(Location l) throws SQLException {
@@ -135,27 +149,11 @@ public Double calculPrix (Double prix,Date datedeb, Date datefin)
         double prix1;
         final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24; 
 
-        return prix1= ((prix/31)*(datefin.getTime()-datedeb.getTime()))/ (MILLISECONDS_PER_DAY)
-                
-                ;
+        return prix1= ((prix/31)*(datefin.getTime()-datedeb.getTime()))/ (MILLISECONDS_PER_DAY);
 
 
 }
-public Double updateCalculPrix (Double prix,Date datdeban,Date datfinan,Date datedeb, Date datefin)
-{       
-        double prix1;
-        final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24; 
-        
 
-////        if(datefin.before(datfinan))
-////        {double prix2=((prix/(datfinan.getTime()-datdeban.getTime()))*(datefin.getTime()-date.getTime()))/ (MILLISECONDS_PER_DAY);
-////            prix1= (((prix/datfinan.getTime()-datdeban.getTime())*(datefin.getTime()-datedeb.getTime())-prix2))/ (MILLISECONDS_PER_DAY);
-////            return prix1;
-////        }
-////        else{
-        return prix1= ((prix/(datfinan.getTime()-datdeban.getTime()/(MILLISECONDS_PER_DAY)))*(datefin.getTime()-datedeb.getTime()))/ (MILLISECONDS_PER_DAY);
-                }
-                
 
 
 

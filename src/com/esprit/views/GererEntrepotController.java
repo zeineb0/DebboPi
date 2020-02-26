@@ -41,7 +41,7 @@ import javafx.util.Callback;
  *
  * @author asus
  */
-public class EspaceFournisseurController implements Initializable {
+public class GererEntrepotController implements Initializable {
    
 
     /**

@@ -50,7 +50,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <DatePicker fx:id="datDeb" layoutX="273.0" layoutY="351.0" />
+            <DatePicker fx:id="datDeb" editable="false" layoutX="273.0" layoutY="351.0" />
             <DatePicker fx:id="datFin" layoutX="273.0" layoutY="389.0" />
             <Label fx:id="erreur" layoutX="463.0" layoutY="351.0" prefHeight="25.0" prefWidth="84.0" text="Verifie la date " textFill="#e30000" underline="true">
                <font>

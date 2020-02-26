@@ -16,6 +16,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,6 +35,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -77,6 +81,8 @@ public class ListeDesLocationController implements Initializable {
     int id;
     @FXML
     private Button modifier;
+    Date datefin;
+    Date datdeb;
 
     /**
      * Initializes the controller class.
@@ -103,6 +109,21 @@ public class ListeDesLocationController implements Initializable {
         } catch (SQLException ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
+        datFin.setOnMouseClicked((event) -> {
+             try {
+            id= locationSel.getId_location();
+            if (datefin.before(datdeb))
+            { erreur1.setVisible(true);}
+            
+            
+            double prixLoca = serviceLocation.getPrix(id);
+            String p = serviceLocation.calculPrix(prixLoca, datdeb, datefin).toString();
+            prix1.setText(p);
+        } catch (SQLException ex) {
+            System.out.println(ex);        }
+    
+    
+        });
         
     
         table.setOnMouseClicked(event->{
@@ -131,41 +152,31 @@ public class ListeDesLocationController implements Initializable {
               if (event.getClickCount() == 2) {
                  locationSel=table.getItems().get(table.getSelectionModel().getSelectedIndex());
                   id= locationSel.getId_location();
-                  adr.setText(locationSel.getAdresse_entrepot());
-                  double num1 = locationSel.getPrix_location();
+                 // double num1 = locationSel.getPrix_location();
                   //String a= Double.toString(num1);
                   //prix1.setText(a);
-                  Date datdebans=locationSel.getDate_deb_location();
-                  Date datfinans=locationSel.getDate_fin_location();
-                 
+                  datdeb=locationSel.getDate_deb_location();
+                  //Date datfinans=locationSel.getDate_fin_location();
+                  //String d=datdeb.toString();
+                  datDeb.setValue(datdeb.toLocalDate());
+                  // datefin=Date.valueOf(datFin.getValue());
 
-      
-                modifier.setOnAction(new EventHandler<ActionEvent>() {
- 
-                   
+                  
+
+	                  
+                  
+                 
+                   modifier.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                       public void handle(ActionEvent event) {
-                        try {
+                       
                   Location l = new Location();
-
+                   try {
                  
-                  Date datedeb=Date.valueOf(datDeb.getValue());
-                  Date datefin=Date.valueOf(datFin.getValue());
-                  if (datedeb.before(datdebans))
-                  
-                  erreur.setVisible(true);
-                  if (datefin.before(datfinans))
-                  {
-                  erreur1.setVisible(true);}
-                  else
-                  {String p = serviceLocation.updateCalculPrix(num1, datfinans, datdebans, datedeb, datefin).toString();
-                  prix1.setText(p);
-                  double p1=Double.parseDouble(p);
-                  
-                  l.setDate_deb_location(datedeb);
+                  double p1=Double.parseDouble(prix1.getText());
                   l.setDate_fin_location(datefin);
+                  l.setPrix_location(p1);
                   
-                   l.setPrix_location(p1);}
 
                   serviceLocation.update(l);
                     ref();
@@ -204,5 +215,7 @@ public class ListeDesLocationController implements Initializable {
         window.setScene(listE);
         window.show();
     }
-    
+
+  
+  
 }
