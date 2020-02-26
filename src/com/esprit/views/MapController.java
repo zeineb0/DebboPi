@@ -60,7 +60,7 @@ public class MapController implements Initializable {
                     // Setting map options
                     map.setOptions(options);
                     // Setting the map center
-                    map.setCenter(new LatLng(35.91466, 10.312499));
+                    map.setCenter(new LatLng(36.8599390, 10.1909730));
                     // Setting initial zoom value
                     map.setZoom(10.0);
                     

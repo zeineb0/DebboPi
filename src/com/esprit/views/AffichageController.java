@@ -90,8 +90,7 @@ public class AffichageController implements Initializable {
             while(res.next()){
                     datalist.add(new affdetails(hashID(res.getString(1)),res.getDate(2),
                             res.getString(3),res.getString(4),
-                            res.getString(5),res.getString(6),res.getString(7)));
-                    
+                            res.getString(5),res.getString(6),res.getString(7)));                   
                 }            
             mat.setCellValueFactory(new PropertyValueFactory<>("hashmat"));
             date.setCellValueFactory(new PropertyValueFactory<>("date"));           

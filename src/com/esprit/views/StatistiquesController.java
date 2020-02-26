@@ -8,6 +8,7 @@ package com.esprit.views;
 import com.esprit.utilities.DataSource;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,13 +25,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.BubbleChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -41,6 +46,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -52,7 +58,7 @@ import org.controlsfx.control.Notifications;
  */
 public class StatistiquesController implements Initializable {
     
-    ObservableList<String> typechList = FXCollections.observableArrayList("BarChart","LineChart");
+    ObservableList<String> typechList = FXCollections.observableArrayList("BarChart","LineChart","PieChart");
     ObservableList<String> axexList = FXCollections.observableArrayList("Jour","Année");
     ObservableList<String> axeyList = FXCollections.observableArrayList("Produits","CommandeLivree","CommandeAnnulée");
 
@@ -72,12 +78,14 @@ public class StatistiquesController implements Initializable {
     @FXML
     private LineChart<String,Integer> linechart;
     @FXML
+    private PieChart piechart;
+    @FXML
     private RadioButton radioentree;
     @FXML
     private RadioButton radiosortie;
     final ToggleGroup group = new ToggleGroup();
     Image img = new Image("/tick.png");
-    String arg1,arg2;
+    String arg1,arg2,req;
     
 
     XYChart.Series<String,Integer> series;
@@ -93,6 +101,7 @@ public class StatistiquesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         radioentree.setToggleGroup(group);
         radiosortie.setToggleGroup(group);
+        radioentree.setSelected(true);
         typech.setValue("BarChart");
         typech.setItems(typechList);
         axex.setValue("Jour");
@@ -100,8 +109,7 @@ public class StatistiquesController implements Initializable {
         axey.setValue("Produits");
         axey.setItems(axeyList);
         Image image = new Image("/clear.png");
-        clear.setImage(image);
-              
+        clear.setImage(image);              
     }   
     
     @FXML
@@ -123,6 +131,9 @@ public class StatistiquesController implements Initializable {
         if (axeyValue=="CommandeLivree"){
              arg2="Livree";
         }
+        if (axeyValue=="CommandeLivree"){
+             arg2="NonLivree";
+        }
         
         if (typechValue.equals("BarChart"))
         {
@@ -130,14 +141,13 @@ public class StatistiquesController implements Initializable {
             {
                 linechart.setVisible(false);
             }
-//            if (bubblechart.isVisible())
-//            {
-//                bubblechart.setVisible(false);
-//            }
-   // Changing random data after every 1 second.
-
-            String req ="select "+arg1+","+arg2+" from mouvement_du_stock where nature_mouvement='"+nature+"' order by "+arg1;
-             series = new XYChart.Series<>();
+            if (arg2.equals("Livree") || (arg2.equals("NonLivree")))
+            {             
+             req ="select "+arg1+","+"COUNT(*) from livraison where etat_livraison='"+arg2+"' order by "+arg1;
+            } else {
+             req ="select "+arg1+","+arg2+" from mouvement_du_stock where nature_mouvement='"+nature+"' order by "+arg1;
+            }           
+            series = new XYChart.Series<>();
             series.setName("BarChart qui évolue les "+axeyValue+" "+nature+" par "+axexValue);
             
             try {
@@ -191,11 +201,7 @@ public class StatistiquesController implements Initializable {
 
 
         else if (typechValue.equals("LineChart"))
-         {
-            if (barchart.isVisible())
-            {
-                barchart.setVisible(false);
-            }
+         {                             
               String req2 ="select "+arg1+","+arg2+" from mouvement_du_stock where nature_mouvement='"+nature+"' order by "+arg1;
               NumberAxis xAxis = new NumberAxis(0,1000000,5000);
               xAxis.setLabel(axexValue);
@@ -222,44 +228,34 @@ public class StatistiquesController implements Initializable {
             
         }
         
-
-//        else {
-//            if (linechart.isVisible())
-//            {
-//                linechart.setVisible(false);
-//            }
-//            if (barchart.isVisible())
-//            {
-//                barchart.setVisible(false);
-//            }
-//            Connection con = DataSource.getInstance().getConnection();
-//            
-//            
-//
-//            
-//            
-//            
-//            
-//            
-//        }
-
-
-        
-        
-        
-          
-    
+        else if (typechValue.equals("PieChart")){     
+            try {
+                Parent root= FXMLLoader.load(getClass().getResource("PieChart.fxml"));
+                Scene scene = new Scene(root);
+                Stage primaryStage = new Stage();
+                primaryStage.setTitle("Hello World!");
+                primaryStage.setScene(scene);
+                primaryStage.show();
+            } catch (IOException ex) {
+                ex.getMessage();
+            }
+        }
+        else{
+            System.out.print("Erreur");
+        }
     }
+    
 
+    @FXML
     private void clearall(MouseEvent event) {
         series.getData().clear();
         series2.getData().clear();
     }
-
-    @FXML
-    private void clearall(KeyEvent event) {
-    }
-    
     
 
 }
+
+    
+    
+
+
