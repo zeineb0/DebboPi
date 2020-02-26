@@ -21,7 +21,6 @@ import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -54,11 +53,7 @@ public class PieChartController implements Initializable {
                   PieChart.Data slice = new PieChart.Data(res.getString(1),res.getInt(2));
                   piechart.getData().add(slice);                 
             }       
-            piechart.getData().forEach(data -> {
-    String percentage = String.format("%.2f%%", (data.getPieValue() / 100));
-    Tooltip toolTip = new Tooltip(percentage);
-    Tooltip.install(data.getNode(), toolTip);
-});
+            
 
 
             } catch (SQLException e) {
