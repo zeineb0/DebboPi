@@ -32,6 +32,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -66,6 +67,7 @@ public class AjouterContratController implements Initializable {
     private List<String> nom_prenom ;
     @FXML
     private TextField nomp;
+    private Date date1,date2;
     
     
     
@@ -99,32 +101,44 @@ public class AjouterContratController implements Initializable {
 
     @FXML
     private void onClickAdd(ActionEvent event) throws SQLException, IOException, Exception {
-        contrat_service = new ContratService();
+
         
-        Date date1 = Date.valueOf(dateDeb.getValue());
-        Date date2 = Date.valueOf(dateFin.getValue());
+         if(nomp.getText().equals("") || entreprise.getText().equals("") || dateDeb.getValue() == null || dateFin.getValue() == null )
+        {
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" un ou plusieurs champs sont vides ");
+            alert.setContentText(" vous devez remplir tous les champs ");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            
+            System.out.println("feragh ");
+        }
+         else
+         {
+             
+              contrat_service = new ContratService();
+//        
+            date1 = Date.valueOf(dateDeb.getValue());
+            date2 = Date.valueOf(dateFin.getValue());
+
+            ContratDetail contrat_detail = new ContratDetail();
+            contrat_detail.setDate_debut(date1);
+            contrat_detail.setDate_fin(date2);
+            contrat_detail.setNom(nom);
+            contrat_detail.setPrenom(prenom);
+            contrat_detail.setEntreprise(entreprise.getText());
         
-     
-       
+            System.out.println(contrat_detail);
+            
+            String np = nomp.getText();
+            String[] currencies = np.split(" ");
         
-        String np = nomp.getText();
-        String[] currencies = np.split(" ");
-        
-        nom=currencies[0];
-        prenom=currencies[1];
-                
-        
-        
-        
-        
-        ContratDetail contrat_detail = new ContratDetail();
-        contrat_detail.setDate_debut(date1);
-        contrat_detail.setDate_fin(date2);
-        contrat_detail.setNom(nom);
-        contrat_detail.setPrenom(prenom);
-        contrat_detail.setEntreprise(entreprise.getText());
-        
-        System.out.println(contrat_detail);
+            nom=currencies[0];
+            prenom=currencies[1];
+            
+            
+                    
         try
         {
             String req = "select id_user , nom , prenom  from utilisateur where nom ='"+nom+"' and prenom ='"+prenom+"' ";
@@ -180,15 +194,51 @@ public class AjouterContratController implements Initializable {
         user.setId(id);
         Entrepot entrepot = new Entrepot();
         entrepot.setId_entrepot(id2);
+        
+        
+     
+    
+        if(date2.before(date1))
+        {
+            System.out.println(" les valeurs des dates fausses");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Les champs ne sont pas corrects");
+            alert.setContentText(" la Date du fin est inférieure à la date du début");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        }
+        else{
+            
+            contrat_service.ajouterContrat(contrat, user, entrepot);
+            MailService.SendMail(email,"Hello Test");
+                      
+            Parent gestion_contrat = FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
+            Scene gestionCV= new Scene(gestion_contrat);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(gestionCV);
+            window.show();
+            
+        }
+             
+             
+             
+             
+            System.out.println("m3obin");
+         }
+        
+     
        
-        contrat_service.ajouterContrat(contrat, user, entrepot);
-        MailService.SendMail(email,"Hello Test");
+        
+        
                 
-        Parent gestion_contrat = FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
-        Scene gestionCV= new Scene(gestion_contrat);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(gestionCV);
-        window.show();
+        
+        
+        
+        
+
+       
+        
+      
         
         
         
