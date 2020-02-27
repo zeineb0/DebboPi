@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author Zeineb_yahiaoui
  */
-public class EntrepotController implements IEntrepotService{
+public class ServiceEntrepot implements IEntrepotService{
  Connection conn = DataSource.getInstance().getConnection();
     private ResultSet rs;
     private PreparedStatement ps;
