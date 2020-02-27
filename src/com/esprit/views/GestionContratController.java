@@ -69,7 +69,7 @@ public class GestionContratController implements Initializable {
     private ContratDetail Contrat_selectionne = new ContratDetail();
     ContratService contrat_service= new ContratService();
     
-            Entrepot entrepot = new Entrepot();
+       private     Entrepot entrepot = new Entrepot();
 
     /**
      * Initializes the controller class.
@@ -140,28 +140,28 @@ public class GestionContratController implements Initializable {
          
           if(date_fin.before(date_debut))
             {
-            System.out.println(" les valeurs des dates fausses");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Les champs ne sont pas corrects");
-            alert.setContentText(" la Date du fin est inférieure à la date du début");
-            alert.setHeaderText(null);
-            alert.showAndWait();
+                System.out.println(" les valeurs des dates fausses");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Les champs ne sont pas corrects");
+                alert.setContentText(" la Date du fin est inférieure à la date du début");
+                alert.setHeaderText(null);
+                alert.showAndWait();
             }
           else
             {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation de renouvellement");
-            alert.setContentText(" Vous etes sur de vouloir renouveler le contrat");
-            alert.setHeaderText(null);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation de renouvellement");
+                alert.setContentText(" Vous etes sur de vouloir renouveler le contrat");
+                alert.setHeaderText(null);
         
         
                 Optional<ButtonType> resultat = alert.showAndWait();    
-                 if(resultat.get()== ButtonType.OK)
+                if(resultat.get()== ButtonType.OK)
                 {
                     contrat_service.modifierContrat(Contrat_selectionne, date_debut, date_fin);
                     ref();    
                 }
-                 else
+                else
                 {
                     System.out.println("cancel");
                 }   

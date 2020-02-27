@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +23,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -66,6 +69,7 @@ public class LivraisonEnCoursController implements Initializable {
     @FXML
     private TableColumn<Livraison, Void> colBtn;
     private ContratService contrat_service;
+    private Utilisateur transporteur1 = new Utilisateur();
 
     /**
      * Initializes the controller class.
@@ -74,7 +78,7 @@ public class LivraisonEnCoursController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
          contrat_service = new ContratService();
         
-        Utilisateur transporteur1 = new Utilisateur();
+        
         transporteur1.setId(1);
         ArrayList<Livraison> list_livraison=(ArrayList<Livraison>) contrat_service.afficherLivraisonParTransporteurNonLivree(transporteur1);
          
@@ -110,24 +114,21 @@ public class LivraisonEnCoursController implements Initializable {
                             btn.setOnAction((ActionEvent event) -> {
                             Livraison data = getTableView().getItems().get(getIndex());
                             System.out.println("selectedData: " + data);
-                            contrat_service.modifierEtatLivraison(data);
-                            LivraisonEncoursTable.getItems().clear();
-                            Utilisateur transporteur1 = new Utilisateur();
-                            transporteur1.setId(1);
-                            ArrayList<Livraison> list_livraison=(ArrayList<Livraison>) contrat_service.afficherLivraisonParTransporteurNonLivree(transporteur1);
-         
-                            data_list = FXCollections.observableArrayList(list_livraison);
-            
+                            
+                            
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("Confirmation de modification d'etat");
+                            alert.setContentText(" Vous etes sur de vouloir modifier l'etat de la livraison");
+                            alert.setHeaderText(null);
         
-                            date_livraison.setCellValueFactory(new PropertyValueFactory<>("date_livraison"));
-                            adresse_livraison.setCellValueFactory(new PropertyValueFactory<>("adresse_livraison"));
-                            etat_livraison.setCellValueFactory(new PropertyValueFactory<>("etat_livraison"));
-                            acceptation.setCellValueFactory(new PropertyValueFactory<>("acceptation"));
-                            FK_id_commande.setCellValueFactory(new PropertyValueFactory<>("FK_id_commande"));
-                            FK_id_user.setCellValueFactory(new PropertyValueFactory<>("FK_id_user"));
-                            addButtonToTable();
-                            LivraisonEncoursTable.setItems(data_list);
-         
+        
+                            Optional<ButtonType> resultat = alert.showAndWait();    
+                            if(resultat.get()== ButtonType.OK)
+                                {
+                                     contrat_service.modifierEtatLivraison(data);
+                                     ref();
+                     
+                                }
                             
                             
                         });
@@ -155,6 +156,14 @@ public class LivraisonEnCoursController implements Initializable {
        // LivraisonTable.getColumns().add(colBtn);
 
     }
+    
+    
+    
+    public void ref() {
+        LivraisonEncoursTable.getItems().clear();
+        LivraisonEncoursTable.getItems().addAll(contrat_service.afficherLivraisonParTransporteurNonLivree(transporteur1));
+    }
+    
 
     @FXML
     private void OnClickLivraison(ActionEvent event) throws IOException {
