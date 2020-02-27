@@ -45,8 +45,7 @@
       <DatePicker fx:id="dateF" layoutX="259.0" layoutY="601.0" />
       <Label layoutX="123.0" layoutY="564.0" text="Date Debut :" />
       <Label layoutX="123.0" layoutY="606.0" text="Date Fin :" />
-      <Button fx:id="updC" layoutX="666.0" layoutY="574.0" mnemonicParsing="false" onAction="#onClickUpdate" prefHeight="31.0" prefWidth="110.0" text="Modifier" />
-      <Button fx:id="delC" layoutX="527.0" layoutY="575.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="31.0" prefWidth="110.0" text="Supprimer" />
-      <Button fx:id="cancel" layoutX="809.0" layoutY="574.0" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="31.0" prefWidth="110.0" text="Annuler" />
+      <Button fx:id="updC" layoutX="739.0" layoutY="574.0" mnemonicParsing="false" onAction="#onClickUpdate" prefHeight="31.0" prefWidth="110.0" text="Renouveler" />
+      <Button fx:id="delC" layoutX="576.0" layoutY="575.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="31.0" prefWidth="110.0" text="Supprimer" />
    </children>
 </AnchorPane>
