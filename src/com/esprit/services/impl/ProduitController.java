@@ -171,6 +171,7 @@ public class ProduitController implements IProduitService{
                    p.setReference(rs.getInt("reference"));
                    p.setMarque(rs.getString("marque"));
                    p.setQuantite(rs.getInt("quantite"));
+                   p.setImage(rs.getString("image"));
                    /**
                     * Jointure Fk_Produit_Categorie
                     */
