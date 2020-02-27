@@ -306,10 +306,8 @@ public class AffichageController implements Initializable {
                             
 affselectionne = tableaff.getItems().get(tableaff.getSelectionModel().getSelectedIndex());
                   //System.out.println("Produit selectionnner"+ProduitSelectionner);
-                  //indexProduitSelectionner=table.getSelectionModel().getSelectedIndex();
-                  
-                  dest = affselectionne.getAdresse();
-                                          
+                  //indexProduitSelectionner=table.getSelectionModel().getSelectedIndex();                  
+                  dest = affselectionne.getAdresse();                                        
                         });
                         btn.setOnAction((ActionEvent event) ->{
                             try {
