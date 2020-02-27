@@ -17,6 +17,7 @@ public class Entrepot {
     String etat;
     String entreprise;
     int fk_id_fournisseur;
+    
     public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, String etat, String entreprise,int fk_id_fournisseur) {
         this.id_entrepot = id_entrepot;
         this.adresse_entrepot = adresse_entrepot;

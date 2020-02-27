@@ -75,20 +75,20 @@ public class EntrepotController implements IEntrepotService{
     }
     @Override
     public List<Entrepot> readAll() {
-        List<Entrepot> entrepots =new ArrayList<>();
-     try {
-         
-         ste=conn.createStatement();
-         ResultSet rs=ste.executeQuery("select * from `entrepot`");
+        List<Entrepot> entrepots = new ArrayList<>();
+       String req = "SELECT * FROM `entrepot` WHERE 1";
+        
+        try {
+            ps = conn.prepareStatement(req);
+             rs = ps.executeQuery();
          while (rs.next()) {
-             int id_entrepot=rs.getInt(1);
-             String adresse_entrepot=rs.getString(2);
-             int num_fiscale=rs.getInt(3);
-             int quantite_max=rs.getInt(4);
-             String etat = rs.getString(5);
-             String entreprise=rs.getString(6);
-             int fk_id_fournisseur=rs.getInt(7);
-             Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, entreprise, fk_id_fournisseur);
+             Entrepot e = new Entrepot();
+              e.setId_entrepot(rs.getInt("id_entrepot"));
+                                   e.setAdresse_entrepot(rs.getString("adresse"));
+                                   e.setNum_fiscale(rs.getInt("num_fiscale"));
+                                   e.setQuantite_max(rs.getInt("quantite_max"));
+                                   e.setEtat(rs.getString("etat"));
+                                   e.setEntreprise(rs.getString("entreprise"));
              entrepots.add(e);
          }
         
@@ -96,7 +96,7 @@ public class EntrepotController implements IEntrepotService{
      
          System.out.println("erreur");
      }
-        System.out.println("***********"+entrepots);
+        System.out.println(entrepots);
      return entrepots;
    
 }}
