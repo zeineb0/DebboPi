@@ -15,8 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -84,9 +82,7 @@ public class StatistiquesController implements Initializable {
     @FXML
     private RadioButton radiosortie;
     final ToggleGroup group = new ToggleGroup();
-    Image img = new Image("/tick.png");
-    String arg1,arg2,req;
-    
+    String arg1,arg2,req;    
 
     XYChart.Series<String,Integer> series;
     XYChart.Series series2;
@@ -95,10 +91,12 @@ public class StatistiquesController implements Initializable {
     @FXML
     private Label titre;
 
+
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         radioentree.setToggleGroup(group);
         radiosortie.setToggleGroup(group);
         radioentree.setSelected(true);
@@ -131,7 +129,7 @@ public class StatistiquesController implements Initializable {
         if (axeyValue=="CommandeLivree"){
              arg2="Livree";
         }
-        if (axeyValue=="CommandeLivree"){
+        if (axeyValue=="CommandeAnnulée"){
              arg2="NonLivree";
         }
         
@@ -141,15 +139,13 @@ public class StatistiquesController implements Initializable {
             {
                 linechart.setVisible(false);
             }
-            if (arg2.equals("Livree") || (arg2.equals("NonLivree")))
-            {             
-             req ="select "+arg1+","+"COUNT(*) from livraison where etat_livraison='"+arg2+"' order by "+arg1;
+            if (arg2.equals("Livree") || (arg2.equals("NonLivree"))){
+                req ="select "+arg1+","+"COUNT(*) from livraison where etat_livraison='"+arg2+"' order by "+arg1;               
             } else {
              req ="select "+arg1+","+arg2+" from mouvement_du_stock where nature_mouvement='"+nature+"' order by "+arg1;
-            }           
+            }      
             series = new XYChart.Series<>();
-            series.setName("BarChart qui évolue les "+axeyValue+" "+nature+" par "+axexValue);
-            
+            series.setName("BarChart qui évolue les "+axeyValue+" "+nature+" par "+axexValue);          
             try {
              con = DataSource.getInstance().getConnection();
              res = con.createStatement().executeQuery(req);
@@ -166,49 +162,50 @@ public class StatistiquesController implements Initializable {
                 
 //                barchart.getData().add(series);
 //                barchart.setVisible(true);
-//                Notifications NotificationBuilder = Notifications.create().title("Service Statistiques").text("BarChart crée").graphic(new ImageView(img)).hideAfter(Duration.seconds(5)).position(Pos.TOP_LEFT);
-//                NotificationBuilder.darkStyle();
-//                NotificationBuilder.showConfirm();
+                Notifications NotificationBuilder = Notifications.create().title("Service Statistiques").text("BarChart crée").hideAfter(Duration.seconds(5)).position(Pos.TOP_LEFT);
+                NotificationBuilder.darkStyle();
+                NotificationBuilder.showConfirm();
                 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-             Timeline Updater = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {  
-       @Override  
-       public void handle(ActionEvent event) {  
-             series.getData().clear();  
-            String req ="select "+arg1+","+arg2+" from mouvement_du_stock where nature_mouvement='"+nature+"' order by "+arg1;
-           try {
-               while (res.next()){
-                   series.getData().add(new XYChart.Data<String,Integer>(res.getString(1),res.getInt(2)));
-               }
-           } catch (SQLException ex) {
-           }
-           
-       }
-   
-             }));
-            Updater.setCycleCount(Timeline.INDEFINITE);  
-            Updater.play();  
-            barchart.getData().add(series);  
+//             Timeline Updater = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {  
+//       @Override  
+//       public void handle(ActionEvent event) {  
+//            series.getData().clear();  
+//            String req ="select "+arg1+","+arg2+" from mouvement_du_stock where nature_mouvement='"+nature+"' order by "+arg1;
+//           try {
+//               while (res.next()){
+//                   series.getData().add(new XYChart.Data<>(res.getString(1),res.getInt(2)));
+//               }
+//           } catch (SQLException ex) {
+//           }
+//           
+//       } 
+//             }));
+//            Updater.setCycleCount(Timeline.INDEFINITE);  
+//            Updater.play();  
+//            barchart.getData().add(series);  
             
              }
         
                      
-      
-        
-
-
-
         else if (typechValue.equals("LineChart"))
-         {                             
+         {                          
+             if (barchart.isVisible()) {
+                 barchart.setVisible(false);
+             }
               String req2 ="select "+arg1+","+arg2+" from mouvement_du_stock where nature_mouvement='"+nature+"' order by "+arg1;
+              
               NumberAxis xAxis = new NumberAxis(0,1000000,5000);
               xAxis.setLabel(axexValue);
               NumberAxis yAxis = new NumberAxis(0,300,3);
               yAxis.setLabel(axeyValue);
              LineChart markerchart=new LineChart(xAxis,yAxis);
              series2 = new XYChart.Series<>();
+             series2.setName("BarChart qui évolue les "+axeyValue+" "+nature+" par "+axexValue);          
+
+
             try {
             Connection con = DataSource.getInstance().getConnection();
             ResultSet res = con.createStatement().executeQuery(req2);
@@ -217,7 +214,7 @@ public class StatistiquesController implements Initializable {
             }
                 linechart.getData().add(series2);
                 linechart.setVisible(true);
-                Notifications NotificationBuilder = Notifications.create().title("Service Statistiques").text("LineChart crée").graphic(new ImageView(img)).hideAfter(Duration.seconds(5)).position(Pos.TOP_LEFT);
+                Notifications NotificationBuilder = Notifications.create().title("Service Statistiques").text("LineChart crée").hideAfter(Duration.seconds(5)).position(Pos.TOP_LEFT);
                 NotificationBuilder.darkStyle();
                 NotificationBuilder.showConfirm();
                 
@@ -225,7 +222,7 @@ public class StatistiquesController implements Initializable {
                 System.out.println(e.getMessage());
             }  
             
-            
+             
         }
         
         else if (typechValue.equals("PieChart")){     
@@ -253,7 +250,7 @@ public class StatistiquesController implements Initializable {
     }
     
 
-}
+    }
 
     
     
