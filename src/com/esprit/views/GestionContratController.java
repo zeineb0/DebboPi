@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +24,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -60,8 +63,6 @@ public class GestionContratController implements Initializable {
     private Button updC;
     @FXML
     private Button delC;
-    @FXML
-    private Button cancel;
     
     private int indexContratSelectionner;
     
@@ -92,7 +93,7 @@ public class GestionContratController implements Initializable {
         
         ContratTable.setItems(data_list);
         
-        
+        Contrat_selectionne=null;
         
         ContratTable.setOnMouseClicked(event->{
         //pour modifier un produit il faut faire deux click
@@ -120,7 +121,7 @@ public class GestionContratController implements Initializable {
     @FXML
     private void onClickAdd(ActionEvent event) throws IOException {
         
-         Parent ajouter_contrat = FXMLLoader.load(getClass().getResource("AjouterContrat.fxml"));
+        Parent ajouter_contrat = FXMLLoader.load(getClass().getResource("AjouterContrat.fxml"));
         Scene ajouterCV= new Scene(ajouter_contrat);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(ajouterCV);
@@ -130,11 +131,58 @@ public class GestionContratController implements Initializable {
     @FXML
     private void onClickUpdate(ActionEvent event) {
         
-         Date date_debut = Date.valueOf(dateD.getValue());
-         Date date_fin = Date.valueOf(dateF.getValue());
          
-         contrat_service.modifierContrat(Contrat_selectionne, date_debut, date_fin);
-         ref();         
+         
+         if ( Contrat_selectionne != null)
+         {
+            Date date_debut = Date.valueOf(dateD.getValue());
+            Date date_fin = Date.valueOf(dateF.getValue());
+         
+          if(date_fin.before(date_debut))
+        {
+            System.out.println(" les valeurs des dates fausses");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Les champs ne sont pas corrects");
+            alert.setContentText(" la Date du fin est inférieure à la date du début");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+        }
+          else
+          {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation de renouvellement");
+            alert.setContentText(" Vous etes sur de vouloir renouveler le contrat");
+            alert.setHeaderText(null);
+        
+        
+                Optional<ButtonType> resultat = alert.showAndWait();    
+                 if(resultat.get()== ButtonType.OK)
+                {
+                    contrat_service.modifierContrat(Contrat_selectionne, date_debut, date_fin);
+                    ref();    
+                }
+                 else
+                {
+                    System.out.println("cancel");
+                }   
+          }
+         }
+         else
+         {
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Contrat non selectionné");
+            alert.setContentText(" vous devez selectionner un contrat");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+             
+         }
+        
+              
+           
+          
+         
+              
          
          
         
@@ -143,17 +191,39 @@ public class GestionContratController implements Initializable {
     @FXML
     private void onClickDelete(ActionEvent event) {
         
-        contrat_service.supprimerContrat(Contrat_selectionne);
-        ContratTable.getItems().remove(indexContratSelectionner);
+        if (Contrat_selectionne != null)
+        {
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation du suppression");
+        alert.setContentText(" Vous etes sur de vouloir supprimer le contrat");
+        alert.setHeaderText(null);
         
         
+        Optional<ButtonType> resultat = alert.showAndWait();    
+        if(resultat.get()== ButtonType.OK)
+        {
+            contrat_service.supprimerContrat(Contrat_selectionne);
+            ContratTable.getItems().remove(indexContratSelectionner);
+        }
+        else
+        {
+            System.out.println("cancel");
+        }
+        
+        }
+        
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Contrat non selectionné");
+            alert.setContentText(" vous devez selectionner un contrat");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            
+        }
         
     }
 
-    @FXML
-    private void onClickCancel(ActionEvent event) {
-        
-        
-    }
     
 }
