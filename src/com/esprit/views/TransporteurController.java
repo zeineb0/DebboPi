@@ -96,6 +96,8 @@ public class TransporteurController implements Initializable {
          FK_id_user.setCellValueFactory(new PropertyValueFactory<>("FK_id_user"));
          
          LivraisonTable.setItems(data_list);
+         
+         
     }
         
          
