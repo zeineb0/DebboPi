@@ -39,7 +39,8 @@
       <Label fx:id="prix" layoutX="668.0" layoutY="442.0" text="PRIX" />
       <Label fx:id="ref" layoutX="653.0" layoutY="493.0" text="REFERENCE" />
       <Label fx:id="mar" layoutX="657.0" layoutY="541.0" text="MARQUE" />
-      <Button fx:id="btnAj" layoutX="390.0" layoutY="645.0" mnemonicParsing="false" onAction="#onClickAjouter" text="Ajouter" />
+      <Button fx:id="btnAj" layoutX="265.0" layoutY="645.0" mnemonicParsing="false" onAction="#onClickAjouter" text="Ajouter" />
       <ComboBox fx:id="comboEntrepot" layoutX="370.0" layoutY="325.0" prefWidth="150.0" promptText="entrepot" />
+      <Button fx:id="btnImage" layoutX="377.0" layoutY="645.0" mnemonicParsing="false" onAction="#onClickChooseImage" text="Upload image" />
    </children>
 </AnchorPane>

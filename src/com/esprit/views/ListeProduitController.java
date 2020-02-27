@@ -9,19 +9,19 @@ import com.esprit.entities.Categorie;
 import com.esprit.entities.Entrepot;
 import com.esprit.entities.Produit;
 import com.esprit.services.impl.CategorieController;
-import com.esprit.services.impl.EntrepotController;
+import com.esprit.services.impl.ServiceEntrepot;
+import com.esprit.services.impl.FlickerServiceImpl;
 import com.esprit.services.impl.ProduitController;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -29,6 +29,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 //masmaat chy meli koltholi
 
 /**
@@ -71,7 +78,7 @@ public class ListeProduitController implements Initializable {
     private TextField txt3;
         private int indexProduitSelectionner;
     
-    EntrepotController entrepotController = new EntrepotController();
+    ServiceEntrepot entrepotController = new ServiceEntrepot();
     List<Entrepot> entrepots = new ArrayList<>();
     @FXML
     private Label lib;
@@ -91,12 +98,20 @@ public class ListeProduitController implements Initializable {
     private Button btnSupp;
     @FXML
     private ComboBox<Entrepot> comboEntrepot;
-
+    @FXML
+    private Button btnImage;
+    List<String> lstFiles;
+    private ImageView imgViwer;
+String urli;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+          lstFiles = new ArrayList<>();
+        lstFiles.add("*.JPG");
+        lstFiles.add("*.PNG");
+        lstFiles.add("*.JPEG");
         // TODO
         categories= categorieController.listCategorie();
                produits=produitController.listeProduit();
@@ -143,10 +158,11 @@ public class ListeProduitController implements Initializable {
                  // System.out.println(ProduitSelectionner.getEntrepot());
                   cmbC.setValue(ProduitSelectionner.getCategorie());
                   comboEntrepot.setValue(ProduitSelectionner.getEntrepot());
+                  ProduitSelectionner.setImage(urli);
                   
               }
-                    });
-    }    
+                    });}
+    
     
     
    
@@ -263,7 +279,7 @@ public class ListeProduitController implements Initializable {
         Entrepot e = comboEntrepot.getValue();
         p.setEntrepot(e);
         produitController.ajouterProduit(p);  
-        
+        //p.setImage("https://farm66.staticflickr.com/65535/49592964566_49db46f2b1_z.jpg");
          }
         
       ref();
@@ -274,6 +290,35 @@ public class ListeProduitController implements Initializable {
         table.getItems().clear();
         table.getItems().addAll(produitController.listeProduit());
     }
+
     
-    
+    @FXML
+    private void onClickChooseImage(ActionEvent event) throws FileNotFoundException, Exception {
+        
+        
+        FlickerServiceImpl flickr = new FlickerServiceImpl();
+
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images", lstFiles));
+        File f = fc.showOpenDialog(null);
+        if (f != null) {
+            
+            InputStream targetStream = new FileInputStream(f);
+            String urli = flickr.savePhoto(targetStream, "FirstImage");
+            System.out.println("************   " +urli);
+            //pour afficher l'image 
+            Image image = new Image(urli);
+            imgViwer.setImage(image);
+            
+        }
+
+    }
+
+
 }
+        
+       
+      
+    
+    
+
