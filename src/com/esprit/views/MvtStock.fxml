@@ -11,27 +11,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.MvtStockController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.MvtStockController">
    <children>
-      <Label layoutX="217.0" layoutY="24.0" text="Mouvement du stock" textFill="#d70f0f">
+      <Label layoutX="389.0" layoutY="175.0" text="Mouvement du stock" textFill="#d70f0f">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbE" layoutX="141.0" layoutY="158.0" prefHeight="31.0" prefWidth="220.0" promptText="veuillez entrer l'entrepot" />
-      <ComboBox fx:id="cmbC" layoutX="497.0" layoutY="158.0" prefHeight="31.0" prefWidth="246.0" promptText="veuillez entre la catégorie" />
-      <Label layoutX="63.0" layoutY="163.0" text="Entrepot" />
-      <Label layoutX="403.0" layoutY="163.0" text="Categorie" />
-      <TextField fx:id="txt" layoutX="557.0" layoutY="227.0" prefHeight="31.0" prefWidth="187.0" />
-      <TextField fx:id="txt1" layoutX="557.0" layoutY="277.0" />
-      <TextField fx:id="txt2" layoutX="559.0" layoutY="335.0" />
-      <Label layoutX="469.0" layoutY="232.0" text="libelle" />
-      <Label layoutX="472.0" layoutY="282.0" text="prix" />
-      <Label layoutX="472.0" layoutY="448.0" text="quantité" />
-      <Button fx:id="btnEn" layoutX="342.0" layoutY="537.0" mnemonicParsing="false" onAction="#onClickValider" text="valider" />
-      <DatePicker fx:id="date" layoutX="544.0" layoutY="492.0" />
-      <Label layoutX="482.0" layoutY="497.0" text="date" />
-      <TableView fx:id="table" layoutX="10.0" layoutY="213.0" prefHeight="230.0" prefWidth="449.0">
+      <ComboBox fx:id="cmbE" layoutX="313.0" layoutY="309.0" prefHeight="31.0" prefWidth="220.0" promptText="veuillez entrer l'entrepot" />
+      <ComboBox fx:id="cmbC" layoutX="669.0" layoutY="309.0" prefHeight="31.0" prefWidth="246.0" promptText="veuillez entre la catégorie" />
+      <Label layoutX="235.0" layoutY="314.0" text="Entrepot" />
+      <Label layoutX="575.0" layoutY="314.0" text="Categorie" />
+      <TextField fx:id="txt" layoutX="729.0" layoutY="378.0" prefHeight="31.0" prefWidth="187.0" />
+      <TextField fx:id="txt1" layoutX="729.0" layoutY="428.0" />
+      <TextField fx:id="txt2" layoutX="731.0" layoutY="486.0" />
+      <Label layoutX="641.0" layoutY="383.0" text="libelle" />
+      <Label layoutX="644.0" layoutY="433.0" text="prix" />
+      <Label layoutX="644.0" layoutY="599.0" text="quantité" />
+      <Button fx:id="btnEn" layoutX="514.0" layoutY="688.0" mnemonicParsing="false" onAction="#onClickValider" text="valider" />
+      <DatePicker fx:id="date" layoutX="716.0" layoutY="643.0" />
+      <Label layoutX="654.0" layoutY="648.0" text="date" />
+      <TableView fx:id="table" layoutX="182.0" layoutY="364.0" prefHeight="230.0" prefWidth="449.0">
         <columns>
           <TableColumn fx:id="clLib" prefWidth="92.0" text="LIBELLE" />
           <TableColumn fx:id="clPrix" prefWidth="58.0" text="PRIX" />
@@ -40,13 +40,13 @@
             <TableColumn fx:id="clQte" prefWidth="102.0" text="QUANTITE" />
         </columns>
       </TableView>
-      <TextField fx:id="txt3" layoutX="559.0" layoutY="387.0" />
-      <Label layoutX="469.0" layoutY="340.0" text="reference" />
-      <TextField fx:id="txtQ" layoutX="559.0" layoutY="443.0" />
-      <Label layoutX="469.0" layoutY="392.0" text="marque" />
-      <CheckBox fx:id="chE" layoutX="95.0" layoutY="497.0" mnemonicParsing="false" text="Entrée du stock" />
-      <CheckBox fx:id="chS" layoutX="251.0" layoutY="497.0" mnemonicParsing="false" text="Sortie du stock" />
-      <Label fx:id="erreur" layoutX="576.0" layoutY="536.0" text="date erronée " textFill="#e40e0e">
+      <TextField fx:id="txt3" layoutX="731.0" layoutY="538.0" />
+      <Label layoutX="641.0" layoutY="491.0" text="reference" />
+      <TextField fx:id="txtQ" layoutX="731.0" layoutY="594.0" />
+      <Label layoutX="641.0" layoutY="543.0" text="marque" />
+      <CheckBox fx:id="chE" layoutX="267.0" layoutY="648.0" mnemonicParsing="false" text="Entrée du stock" />
+      <CheckBox fx:id="chS" layoutX="423.0" layoutY="648.0" mnemonicParsing="false" text="Sortie du stock" />
+      <Label fx:id="erreur" layoutX="748.0" layoutY="687.0" text="date erronée " textFill="#e40e0e">
          <font>
             <Font size="23.0" />
          </font>
