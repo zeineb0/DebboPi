@@ -32,14 +32,14 @@ public class ProduitController implements IProduitService{
     @Override
     public void ajouterProduit(Produit produit)  {
         System.out.println(produit);
-        String req ="INSERT INTO `produit`( `libelle`,"
+        String req ="INSERT INTO `produit`(`libelle`,"
                 + " `reference`,"
                 + " `marque`,"
                 + " `prix`,"
+                + " `quantite`,"
                 + " `image`,"
                 + " `FK_id_categorie`,"
-                + " `FK_id_entrepot`)"
-                + " VALUES  (?,?,?,?,?,?,?)";
+                + " `FK_id_entrepot`) VALUES (?,?,?,?,?,?,?,?)";
                 
         try {
              ps = conn.prepareStatement(req);
@@ -47,9 +47,10 @@ public class ProduitController implements IProduitService{
             ps.setInt(2,produit.getReference());
             ps.setString(3,produit.getMarque());
             ps.setDouble(4,produit.getPrix());
-            ps.setString(5,produit.getImage());
-            ps.setInt(6,produit.getCategorie().getId());
-            ps.setInt(7,produit.getEntrepot().getId_entrepot());
+            ps.setInt(5,0);
+            ps.setString(6,produit.getImage());
+            ps.setInt(7,produit.getCategorie().getId());
+            ps.setInt(8,produit.getEntrepot().getId_entrepot());
             ps.execute();
             System.out.println("produit ajouté");
             
@@ -60,14 +61,14 @@ public class ProduitController implements IProduitService{
     }
 
     @Override
-    public void supprimerProduit(String libelle) {
+    public void supprimerProduit(Produit produit) {
         
         
         try {
-                    String req="DELETE FROM `produit` WHERE `libelle`=?" ;
+                    String req="DELETE FROM `produit` WHERE `id_produit`=?" ;
 
             ps = conn.prepareStatement(req);
-            ps.setString(1, libelle);
+            ps.setInt(1,produit.getId());
             ps.execute();
              System.out.println("suppression validée");
             
@@ -134,7 +135,6 @@ public class ProduitController implements IProduitService{
                         ps4.setInt(1,id);
                                    ResultSet r2 = ps4.executeQuery();
                                    while(r2.next()){
-                                       System.out.println(reeq);System.out.println("in while");
                                    e.setId_entrepot(r2.getInt("id_entrepot"));
                                    e.setAdresse_entrepot(r2.getString("adresse"));
                                    e.setNum_fiscale(r2.getInt("num_fiscale"));
@@ -157,6 +157,7 @@ public class ProduitController implements IProduitService{
     public List<Produit> listeProduit() {
               List<Produit> produits = new ArrayList<>();
         String req = "SELECT * FROM `produit`";
+        
         try {
             ps = conn.prepareStatement(req);
              rs = ps.executeQuery();
@@ -189,7 +190,7 @@ public class ProduitController implements IProduitService{
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        System.out.println(produits);
+        System.out.println(produits + "\n");
         return produits;
     }
 

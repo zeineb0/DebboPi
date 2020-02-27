@@ -70,9 +70,8 @@ public class ListeProduitController implements Initializable {
     @FXML
     private TextField txt3;
         private int indexProduitSelectionner;
-    @FXML
-    private ComboBox<Entrepot> cmbE;
-EntrepotController entrepotController = new EntrepotController();
+    
+    EntrepotController entrepotController = new EntrepotController();
     List<Entrepot> entrepots = new ArrayList<>();
     @FXML
     private Label lib;
@@ -90,6 +89,8 @@ EntrepotController entrepotController = new EntrepotController();
     private Button btnAnnu;
     @FXML
     private Button btnSupp;
+    @FXML
+    private ComboBox<Entrepot> comboEntrepot;
 
     /**
      * Initializes the controller class.
@@ -103,22 +104,16 @@ EntrepotController entrepotController = new EntrepotController();
                
                System.out.println(entrepots);
                
-               
-               
-               
         ObservableList observableList=FXCollections.observableArrayList(categories);
         ObservableList observableList1=FXCollections.observableArrayList(entrepots);
         System.out.println(observableList1);
         cmbC.setItems(observableList);
-        cmbE.setItems(observableList1);
+        comboEntrepot.setItems(observableList1);
 
                 reverseButtonAjout(false);
                 reverseButtonModif(false);
                 reverseButtonSupp(false);
                 reverseButtonAnnuler(false);
-                
-                
-                
                 setInvisible(false);
                 
          clLib.setCellValueFactory(new PropertyValueFactory("libelle"));
@@ -126,7 +121,7 @@ EntrepotController entrepotController = new EntrepotController();
          clRef.setCellValueFactory(new PropertyValueFactory("reference"));
          clMarque.setCellValueFactory(new PropertyValueFactory("marque"));
          table.getItems().addAll(produits);
-         
+         table.refresh();
                 table.setOnMouseClicked(event->{
         //pour modifier un produit il faut faire deux click
               if (event.getClickCount() == 2) {
@@ -134,7 +129,7 @@ EntrepotController entrepotController = new EntrepotController();
                   reverseButtonModif(false);
                   reverseButtonAjout(true);
                   reverseButtonSupp(true);
-                  reverseButtonAnnuler(true);
+                  reverseButtonAnnuler(false);
                   setInvisible(true);
 
                   ProduitSelectionner = table.getItems().get(table.getSelectionModel().getSelectedIndex());
@@ -146,20 +141,15 @@ EntrepotController entrepotController = new EntrepotController();
                   txt2.setText(String.valueOf(ProduitSelectionner.getReference()));
                   txt3.setText(String.valueOf(ProduitSelectionner.getMarque()));
                  // System.out.println(ProduitSelectionner.getEntrepot());
-                  Entrepot entrep = ProduitSelectionner.getEntrepot();
                   cmbC.setValue(ProduitSelectionner.getCategorie());
-                  cmbE.setValue(entrep);
+                  comboEntrepot.setValue(ProduitSelectionner.getEntrepot());
+                  
               }
-             
                     });
-       
     }    
     
     
-    public void ref() {
-        table.getItems().clear();
-        table.getItems().addAll(produitController.listeProduit());
-    }
+   
     
      public void reverseButtonModif(Boolean etat){
                 btnModif.setDisable(etat);
@@ -168,6 +158,7 @@ EntrepotController entrepotController = new EntrepotController();
      public void reverseButtonAjout(Boolean etat){
   
         btnAj.setDisable(etat);
+        
      }
       public void reverseButtonSupp(Boolean etat){
   
@@ -186,10 +177,6 @@ EntrepotController entrepotController = new EntrepotController();
      txt1.setVisible(etat);
      txt2.setVisible(etat);
      txt3.setVisible(etat);
-     
-     
-     
-     
      }
      
     @FXML
@@ -201,24 +188,19 @@ EntrepotController entrepotController = new EntrepotController();
        ProduitSelectionner.setMarque(txt3.getText());
        
        ProduitSelectionner.setCategorie(cmbC.getValue());
-       ProduitSelectionner.setEntrepot(cmbE.getValue());
-        System.out.println(cmbE.getValue());
+       ProduitSelectionner.setEntrepot(comboEntrepot.getValue());
+        System.out.println(comboEntrepot.getValue());
         //System.out.println(ProduitSelectionner);
        produitController.modiferProduit(ProduitSelectionner);
-       
-       /**
-        * afin d'afficher la liste finale il nous faut 
-        * 
-        * 1-vider la liste et remplire la liste de puis la BD 
-        */
-      
-     
         ref();
-
     }
 
     @FXML
     private void onClickAnnul(ActionEvent event) {
+             reverseButtonModif(false);
+                  reverseButtonAjout(false);
+                  reverseButtonSupp(false);
+                  setInvisible(false);
     }
 
     @FXML
@@ -226,27 +208,23 @@ EntrepotController entrepotController = new EntrepotController();
         
          btnSupp.setOnMouseClicked((event2) -> {
             
-            if (event2.getClickCount()==1)
+
                 
                 reverseButtonModif(true);
                 reverseButtonAjout(true);
-                reverseButtonAnnuler(true);
+                reverseButtonAnnuler(false);
                 reverseButtonSupp(false);
                 
-         produitController.supprimerProduit(ProduitSelectionner.getLibelle());
-         table.getItems().remove(indexProduitSelectionner); 
+         produitController.supprimerProduit(ProduitSelectionner);
+         table.getItems().remove(indexProduitSelectionner);
+         
         });
 
-        
-        
-       
     }
 
     
-    
-    
     private boolean verif(){
-        if (cmbC.getValue() != null && cmbE.getValue() != null && txt !=null && txt1 != null && txt2 != null && txt3 !=null) {
+        if (cmbC.getValue() != null && comboEntrepot.getValue() != null && txt !=null && txt1 != null && txt2 != null && txt3 !=null) {
             return true;
         }
          
@@ -256,14 +234,14 @@ EntrepotController entrepotController = new EntrepotController();
     @FXML
     private void onClickAjouter(ActionEvent event) {
         
-        btnAj.setOnMouseClicked((event1) -> {
-            
-            if (event1.getClickCount()==1)
-                reverseButtonModif(true);
-                reverseButtonSupp(true);
-                reverseButtonAnnuler(true);
-            
-        });
+//        btnAj.setOnMouseClicked((event1) -> {
+//            
+//            if (event1.getClickCount()==1)
+//                reverseButtonModif(true);
+//                reverseButtonSupp(true);
+//                reverseButtonAnnuler(true);
+//            
+//        });
 
         setInvisible(true);
         
@@ -282,15 +260,20 @@ EntrepotController entrepotController = new EntrepotController();
         p.setMarque(marque);
         Categorie c=cmbC.getValue();
         p.setCategorie(c);
-        Entrepot e = cmbE.getValue();
+        Entrepot e = comboEntrepot.getValue();
         p.setEntrepot(e);
-        produitController.ajouterProduit(p); }
+        produitController.ajouterProduit(p);  
         
-        ref();
+         }
+        
+      ref();
         
     }
     
-    
+     public void ref() {
+        table.getItems().clear();
+        table.getItems().addAll(produitController.listeProduit());
+    }
     
     
 }

@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ListeProduitController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ListeProduitController">
    <children>
-      <Label layoutX="294.0" layoutY="48.0" prefHeight="70.0" prefWidth="413.0" text="Liste des produits" textFill="#d30d0d">
+      <Label layoutX="479.0" layoutY="210.0" prefHeight="70.0" prefWidth="413.0" text="Liste des produits" textFill="#d30d0d">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <TableView fx:id="table" layoutX="27.0" layoutY="225.0" prefHeight="200.0" prefWidth="421.0">
+      <TableView fx:id="table" layoutX="212.0" layoutY="387.0" prefHeight="200.0" prefWidth="421.0">
         <columns>
           <TableColumn fx:id="clLib" prefWidth="119.0" text="LIBELLE" />
           <TableColumn fx:id="clPrix" prefWidth="92.0" text="PRIX" />
@@ -24,22 +24,22 @@
             <TableColumn fx:id="clMarque" prefWidth="101.0" text="MARQUE" />
         </columns>
       </TableView>
-      <Button fx:id="btnModif" layoutX="335.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickModif" text="Modifier" />
-      <Button fx:id="btnAnnu" layoutX="591.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickAnnul" text="Annuler" />
-      <Button fx:id="btnSupp" layoutX="464.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickSupp" text="Supprimer" />
-      <ComboBox fx:id="cmbC" layoutX="558.0" layoutY="163.0" prefHeight="31.0" prefWidth="207.0" promptText="veuillez choisir une catégorie" />
-       <ComboBox fx:id="cmbE" layoutX="142.0" layoutY="163.0" prefHeight="31.0" prefWidth="248.0" promptText="veuillez " />
+      <Button fx:id="btnModif" layoutX="520.0" layoutY="645.0" mnemonicParsing="false" onAction="#onClickModif" text="Modifier" />
+      <Button fx:id="btnAnnu" layoutX="776.0" layoutY="645.0" mnemonicParsing="false" onAction="#onClickAnnul" text="Annuler" />
+      <Button fx:id="btnSupp" layoutX="649.0" layoutY="645.0" mnemonicParsing="false" onAction="#onClickSupp" text="Supprimer" />
+      <ComboBox fx:id="cmbC" layoutX="743.0" layoutY="325.0" prefHeight="31.0" prefWidth="207.0" promptText="veuillez choisir une catégorie" />
 
-      <Label layoutX="27.0" layoutY="168.0" text="ENTREPOT" />
-      <Label layoutX="465.0" layoutY="168.0" text="CATEGORIE" />
-      <TextField fx:id="txt" layoutX="568.0" layoutY="225.0" prefHeight="31.0" prefWidth="187.0" />
-      <TextField fx:id="txt1" layoutX="568.0" layoutY="275.0" />
-      <TextField fx:id="txt2" layoutX="568.0" layoutY="326.0" />
-      <TextField fx:id="txt3" layoutX="568.0" layoutY="374.0" />
-      <Label fx:id="lib" layoutX="480.0" layoutY="230.0" text="LIBELLE" />
-      <Label fx:id="prix" layoutX="483.0" layoutY="280.0" text="PRIX" />
-      <Label fx:id="ref" layoutX="468.0" layoutY="331.0" text="REFERENCE" />
-      <Label fx:id="mar" layoutX="472.0" layoutY="379.0" text="MARQUE" />
-      <Button fx:id="btnAj" layoutX="205.0" layoutY="483.0" mnemonicParsing="false" onAction="#onClickAjouter" text="Ajouter" />
+      <Label layoutX="212.0" layoutY="330.0" text="ENTREPOT" />
+      <Label layoutX="650.0" layoutY="330.0" text="CATEGORIE" />
+      <TextField fx:id="txt" layoutX="753.0" layoutY="387.0" prefHeight="31.0" prefWidth="187.0" />
+      <TextField fx:id="txt1" layoutX="753.0" layoutY="437.0" />
+      <TextField fx:id="txt2" layoutX="753.0" layoutY="488.0" />
+      <TextField fx:id="txt3" layoutX="753.0" layoutY="536.0" />
+      <Label fx:id="lib" layoutX="665.0" layoutY="392.0" text="LIBELLE" />
+      <Label fx:id="prix" layoutX="668.0" layoutY="442.0" text="PRIX" />
+      <Label fx:id="ref" layoutX="653.0" layoutY="493.0" text="REFERENCE" />
+      <Label fx:id="mar" layoutX="657.0" layoutY="541.0" text="MARQUE" />
+      <Button fx:id="btnAj" layoutX="390.0" layoutY="645.0" mnemonicParsing="false" onAction="#onClickAjouter" text="Ajouter" />
+      <ComboBox fx:id="comboEntrepot" layoutX="370.0" layoutY="325.0" prefWidth="150.0" promptText="entrepot" />
    </children>
 </AnchorPane>

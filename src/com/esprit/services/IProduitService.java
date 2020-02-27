@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface IProduitService {
      public void ajouterProduit(Produit produit)throws SQLException;
-    public void supprimerProduit(String nom) throws SQLException;
+    public void supprimerProduit(Produit produit) throws SQLException;
     public void consulterProduit(String nom)throws SQLException;
     public Produit modiferProduit(Produit produit)throws SQLException;
     public List<Produit> listeProduit()throws SQLException;
