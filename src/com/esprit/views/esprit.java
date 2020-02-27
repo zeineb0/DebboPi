@@ -32,10 +32,8 @@ public class esprit extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        
-        
-         
-        Parent root = FXMLLoader.load(getClass().getResource("MvtStock.fxml"));
+                 
+        Parent root = FXMLLoader.load(getClass().getResource("ListeCategorie.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -43,10 +41,6 @@ public class esprit extends Application {
         stage.show();
         
         //MouvementController mouvementController = new MouvementController();
-        
-        
-
-        
 //        // instance catégorie
 //        Categorie c1=new Categorie();
 //        c1.setNom("informatique1");
