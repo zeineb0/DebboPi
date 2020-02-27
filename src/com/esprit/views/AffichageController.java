@@ -309,9 +309,7 @@ affselectionne = tableaff.getItems().get(tableaff.getSelectionModel().getSelecte
                   //indexProduitSelectionner=table.getSelectionModel().getSelectedIndex();
                   
                   dest = affselectionne.getAdresse();
-                            System.out.println(dest);
-                  
-                        
+                                          
                         });
                         btn.setOnAction((ActionEvent event) ->{
                             try {
