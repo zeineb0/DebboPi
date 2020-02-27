@@ -100,8 +100,23 @@ public class LoginController implements Initializable {
         }
 
     }
-
-
+     @FXML
+     public void forgetP(MouseEvent event){
+         
+         try {
+               Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.close();
+                
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ForgetPw.fxml")));
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+         
+         
+     }
 
     
     

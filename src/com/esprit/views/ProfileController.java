@@ -21,9 +21,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -57,6 +59,12 @@ public class ProfileController implements Initializable {
     private Button chemail;
     @FXML
     private Button chtel;
+    @FXML
+    private Label labelpw;
+    @FXML
+    private Label labelemail;
+    @FXML
+    private Label labeltel;
     
     /**
      * Initializes the controller class.
@@ -68,6 +76,17 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void changepww(MouseEvent event) throws SQLException {
+       String oldpassword="";
+       
+        String request0 ="SELECT * from `utilisateur` WHERE `utilisateur`.`id_user` = "+iddd+";";
+        java.sql.PreparedStatement ps0 = con.prepareStatement(request0);
+        ResultSet rs0 = ps0.executeQuery();
+
+        if (rs0.next()) {
+            oldpassword = rs0.getString("password");
+        }
+        
+        if(DigestUtils.shaHex(oldpw.getText()).equals(oldpassword)){
         
         String req ="UPDATE `utilisateur` SET `password` = '"+DigestUtils.shaHex(newpw.getText())+"' WHERE `utilisateur`.`id_user` = "+iddd+";";
         
@@ -75,6 +94,16 @@ public class ProfileController implements Initializable {
         
       ps = con.prepareStatement(req);
       ps.executeUpdate();
+      
+      labelpw.setTextFill(Color.GREEN);
+            labelpw.setText("Password changed successfully !");
+      
+        //    System.out.println("PW CHNGED");
+        }
+        else {
+            labelpw.setTextFill(Color.TOMATO);
+            labelpw.setText("Wrong password !");
+        }
     }
     
     @FXML
@@ -83,6 +112,8 @@ public class ProfileController implements Initializable {
         String req2 ="UPDATE `utilisateur` SET `email` = '"+newemail.getText()+"' WHERE `utilisateur`.`id_user` = "+iddd+";";
         java.sql.PreparedStatement ps2 = con.prepareStatement(req2);
         ps2.executeUpdate();
+        labelemail.setTextFill(Color.GREEN);
+            labelemail.setText("Email changed successfully !");
     }
     
     @FXML
@@ -91,6 +122,8 @@ public class ProfileController implements Initializable {
         String req2 ="UPDATE `utilisateur` SET `tel` = '"+newtel.getText()+"' WHERE `utilisateur`.`id_user` = "+iddd+";";
         java.sql.PreparedStatement ps3 = con.prepareStatement(req2);
         ps3.executeUpdate();
+        labeltel.setTextFill(Color.GREEN);
+            labeltel.setText("Cellphone number changed successfully !");
     }
     
     @FXML
@@ -103,7 +136,7 @@ public class ProfileController implements Initializable {
 
         if (rs4.next()) {
             rl = rs4.getString("role");
-            System.out.println(rl);
+           // System.out.println(rl);
         }
         
 

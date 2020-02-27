@@ -19,20 +19,22 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="oldpw" layoutX="50.0" layoutY="80.0" promptText="old password" />
-                  <PasswordField fx:id="newpw" layoutX="250.0" layoutY="80.0" promptText="new password" />
-                  <Button fx:id="chpw" layoutX="445.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#changepww" text="OK" />
+                  <PasswordField fx:id="oldpw" layoutX="50.0" layoutY="70.0" promptText="old password" />
+                  <PasswordField fx:id="newpw" layoutX="250.0" layoutY="70.0" promptText="new password" />
+                  <Button fx:id="chpw" layoutX="445.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#changepww" text="OK" />
+                  <Label fx:id="labelpw" layoutX="50.0" layoutY="110.0" />
                </children>
             </Pane>
             <Pane layoutX="100.0" layoutY="225.0" prefHeight="150.0" prefWidth="600.0" style="-fx-background-color: #582900;">
                <children>
-                  <TextField fx:id="newemail" layoutX="50.0" layoutY="80.0" promptText="New IDN" />
+                  <TextField fx:id="newemail" layoutX="50.0" layoutY="70.0" promptText="New IDN" />
                   <Label layoutX="50.0" layoutY="30.0" text="Change Email :" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="chemail" layoutX="250.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#changeEmail" text="OK" />
+                  <Button fx:id="chemail" layoutX="250.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#changeEmail" text="OK" />
+                  <Label fx:id="labelemail" layoutX="50.0" layoutY="110.0" />
                </children>
             </Pane>
             <Pane layoutX="100.0" layoutY="410.5" prefHeight="150.0" prefWidth="600.0" style="-fx-background-color: #582900;">
@@ -42,8 +44,9 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="newtel" layoutX="50.0" layoutY="80.0" promptText="New Cellphone number" />
-                  <Button fx:id="chtel" layoutX="250.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#changeTel" text="OK" />
+                  <TextField fx:id="newtel" layoutX="50.0" layoutY="70.0" promptText="New Cellphone number" />
+                  <Button fx:id="chtel" layoutX="250.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#changeTel" text="OK" />
+                  <Label fx:id="labeltel" layoutX="50.0" layoutY="110.0" />
                </children>
             </Pane>
          </children>

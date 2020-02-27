@@ -5,6 +5,7 @@
  */
 package com.esprit.views;
 
+import com.esprit.services.impl.ServiceMail;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,8 +31,10 @@ public class esprit extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         launch(args);
+        
+      //  ServiceMail.SendMail("mohamedamine.naffeti@gmail.com", "hello pi");
     }
     
 }
