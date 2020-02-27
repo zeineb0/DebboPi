@@ -86,7 +86,7 @@ table.setOnMouseClicked(event->{
       
       table.refresh();
         ref();
-      
+     txtNom.setText("");
     }
 
     @FXML

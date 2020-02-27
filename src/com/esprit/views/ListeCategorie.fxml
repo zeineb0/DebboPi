@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ListeCategorieController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ListeCategorieController">
    <children>
-      <TableView fx:id="table" layoutX="96.0" layoutY="182.0" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="table" layoutX="217.0" layoutY="198.0" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="clNom" prefWidth="199.0" text="nom de la catégorie" />
         </columns>
       </TableView>
-      <TextField fx:id="txtNom" layoutX="669.0" layoutY="236.0" />
+      <TextField fx:id="txtNom" layoutX="592.0" layoutY="236.0" />
       <Label layoutX="538.0" layoutY="241.0" text="nom" />
       <Label layoutX="293.0" layoutY="54.0" text="Liste des categories" textFill="#d30f0f">
          <font>
