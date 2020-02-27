@@ -10,7 +10,8 @@ import com.esprit.entities.Entrepot;
 import com.esprit.entities.Produit;
 import com.esprit.services.ICategorieService;
 import com.esprit.services.impl.CategorieController;
-import com.esprit.services.impl.EntrepotController;
+import com.esprit.services.impl.ServiceEntrepot;
+import com.esprit.services.impl.FlickerServiceImpl;
 import com.esprit.services.impl.MouvementController;
 import com.esprit.services.impl.ProduitController;
 import com.esprit.utilities.DataSource;
@@ -33,13 +34,15 @@ public class esprit extends Application {
     @Override
     public void start(Stage stage) throws Exception {
                  
-        Parent root = FXMLLoader.load(getClass().getResource("ListeCategorie.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ListeProduit.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
         
+//        FlickerServiceImpl flickerServiceImpl = new FlickerServiceImpl();
+//        flickerServiceImpl.auth();
         //MouvementController mouvementController = new MouvementController();
 //        // instance catégorie
 //        Categorie c1=new Categorie();
