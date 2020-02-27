@@ -135,6 +135,23 @@ public class GestionContratController implements Initializable {
          
          if ( Contrat_selectionne != null)
          {
+             if(dateF.getValue() == null || dateD.getValue() == null)
+             {
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Les champs ne sont pas corrects");
+                alert.setContentText(" vous devez choisir des dates ");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+                 
+             }
+             else
+             {
+                 
+             
+             
+             
+             
+             
             Date date_debut = Date.valueOf(dateD.getValue());
             Date date_fin = Date.valueOf(dateF.getValue());
          
@@ -159,13 +176,16 @@ public class GestionContratController implements Initializable {
                 if(resultat.get()== ButtonType.OK)
                 {
                     contrat_service.modifierContrat(Contrat_selectionne, date_debut, date_fin);
-                    ref();    
+                    ref();
+                    dateD.setValue(null);
+                    dateF.setValue(null);
                 }
                 else
                 {
                     System.out.println("cancel");
                 }   
             }
+          }
          }
          else
          {
