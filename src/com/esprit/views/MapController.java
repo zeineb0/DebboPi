@@ -63,7 +63,7 @@ public class MapController implements Initializable {
                     // Setting the map center
                     map.setCenter(new LatLng(36.8599390, 10.1909730));
                     // Setting initial zoom value
-                    map.setZoom(10.0);
+                    map.setZoom(7.0);
                             Marker marker = new Marker(map);
 //                            marker.setPosition(ariana);
 //                            performGeocode("az");
