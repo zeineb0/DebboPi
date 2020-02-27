@@ -139,16 +139,16 @@ public class GestionContratController implements Initializable {
             Date date_fin = Date.valueOf(dateF.getValue());
          
           if(date_fin.before(date_debut))
-        {
+            {
             System.out.println(" les valeurs des dates fausses");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Les champs ne sont pas corrects");
             alert.setContentText(" la Date du fin est inférieure à la date du début");
             alert.setHeaderText(null);
             alert.showAndWait();
-        }
+            }
           else
-          {
+            {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation de renouvellement");
             alert.setContentText(" Vous etes sur de vouloir renouveler le contrat");
@@ -165,7 +165,7 @@ public class GestionContratController implements Initializable {
                 {
                     System.out.println("cancel");
                 }   
-          }
+            }
          }
          else
          {
@@ -194,22 +194,22 @@ public class GestionContratController implements Initializable {
         if (Contrat_selectionne != null)
         {
         
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation du suppression");
-        alert.setContentText(" Vous etes sur de vouloir supprimer le contrat");
-        alert.setHeaderText(null);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation du suppression");
+            alert.setContentText(" Vous etes sur de vouloir supprimer le contrat");
+            alert.setHeaderText(null);
         
         
-        Optional<ButtonType> resultat = alert.showAndWait();    
-        if(resultat.get()== ButtonType.OK)
-        {
-            contrat_service.supprimerContrat(Contrat_selectionne);
-            ContratTable.getItems().remove(indexContratSelectionner);
-        }
-        else
-        {
+            Optional<ButtonType> resultat = alert.showAndWait();    
+            if(resultat.get()== ButtonType.OK)
+            {
+                contrat_service.supprimerContrat(Contrat_selectionne);
+                ContratTable.getItems().remove(indexContratSelectionner);
+            }
+            else
+            {
             System.out.println("cancel");
-        }
+            }
         
         }
         

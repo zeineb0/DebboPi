@@ -21,6 +21,7 @@ import java.sql.Statement;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
@@ -34,6 +35,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -117,7 +119,7 @@ public class AjouterContratController implements Initializable {
          else
          {
              
-              contrat_service = new ContratService();
+            contrat_service = new ContratService();
 //        
             date1 = Date.valueOf(dateDeb.getValue());
             date2 = Date.valueOf(dateFin.getValue());
@@ -139,8 +141,8 @@ public class AjouterContratController implements Initializable {
             
             
                     
-        try
-        {
+            try
+            {
             String req = "select id_user , nom , prenom  from utilisateur where nom ='"+nom+"' and prenom ='"+prenom+"' ";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
@@ -150,12 +152,12 @@ public class AjouterContratController implements Initializable {
                     id = rs.getInt("id_user");
                     System.out.println(id);        
                  }
-        }   catch (SQLException ex) {
+            }   catch (SQLException ex) {
             Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
         
-        try
-        {
+            try
+            {
             String req2 = "select id_entrepot from entrepot where entreprise='"+entreprise.getText()+"'";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs2=s.executeQuery(req2);
@@ -166,15 +168,15 @@ public class AjouterContratController implements Initializable {
                 System.out.println(id2);
             }
             
-        }catch(SQLException ex)
-        {
+            }catch(SQLException ex)
+            {
             Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
         
         
         
-         try
-        {
+            try
+            {
             String req = "select email  from utilisateur where nom ='"+nom+"' and prenom ='"+prenom+"' ";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
@@ -184,41 +186,66 @@ public class AjouterContratController implements Initializable {
                     email = rs.getString("email");
                     System.out.println(email);        
                  }
-        }   catch (SQLException ex) {
+            }   catch (SQLException ex) {
             Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
        
       
-        Contrat contrat = new Contrat(date1, date2);
-        Utilisateur user = new Utilisateur();
-        user.setId(id);
-        Entrepot entrepot = new Entrepot();
-        entrepot.setId_entrepot(id2);
+            Contrat contrat = new Contrat(date1, date2);
+            Utilisateur user = new Utilisateur();
+            user.setId(id);
+            Entrepot entrepot = new Entrepot();
+            entrepot.setId_entrepot(id2);
         
         
      
     
-        if(date2.before(date1))
-        {
+            if(date2.before(date1))
+            {
             System.out.println(" les valeurs des dates fausses");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Les champs ne sont pas corrects");
             alert.setContentText(" la Date du fin est inférieure à la date du début");
             alert.setHeaderText(null);
             alert.showAndWait();
-        }
-        else{
-            
-            contrat_service.ajouterContrat(contrat, user, entrepot);
-            MailService.SendMail(email,"Hello Test");
+            }
+            else
+            {
+                
+                
+                
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation de l'ajout du contrat");
+                alert.setContentText(" Vous etes sur de vouloir ajouter le contrat");
+                alert.setHeaderText(null);
+        
+        
+                Optional<ButtonType> resultat = alert.showAndWait();    
+                 if(resultat.get()== ButtonType.OK)
+                {
+                    contrat_service.ajouterContrat(contrat, user, entrepot);
+                    MailService.SendMail(email,"Hello Test");
                       
-            Parent gestion_contrat = FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
-            Scene gestionCV= new Scene(gestion_contrat);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(gestionCV);
-            window.show();
+                    Parent gestion_contrat = FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
+                    Scene gestionCV= new Scene(gestion_contrat);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(gestionCV);
+                    window.show();
+                    
+                    
+                }
+                 else
+                {
+                    System.out.println("cancel");
+                }   
+                
+                
+                
+                
             
-        }
+            
+            
+            }
              
              
              
