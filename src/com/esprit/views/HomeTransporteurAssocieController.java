@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  *
  * @author ASUS
  */
-public class HomeAdminController implements Initializable {
+public class HomeTransporteurAssocieController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -29,12 +29,12 @@ public class HomeAdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
+    }   
     @FXML
-    private void LogOut(MouseEvent event) {
-        
-                try {
+        void logOut(MouseEvent event){
+       
+            
+            try {
                Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
                 stage.close();
@@ -45,6 +45,20 @@ public class HomeAdminController implements Initializable {
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
-    }
     
+}
+         @FXML
+      void goToProfile(MouseEvent event){
+         try {
+              Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.close();
+                
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Profile.fxml")));
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+     }
 }

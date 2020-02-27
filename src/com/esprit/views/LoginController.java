@@ -6,6 +6,7 @@
 package com.esprit.views;
 
 import com.esprit.entities.Session;
+import static com.esprit.entities.Session.getIdSession;
 import com.esprit.utilities.DataSource;
 import java.io.IOException;
 import java.net.URL;
@@ -91,7 +92,7 @@ public class LoginController implements Initializable {
             roleee=rs.getString("role");
            idS=rs.getInt("id_user");
            Session.setIdSession(idS);
-            
+            System.out.println(getIdSession());
             check.setTextFill(Color.GREEN);
             check.setText("Logging Succesfull..Redirecting..");
             return "Success";
@@ -126,7 +127,7 @@ public class LoginController implements Initializable {
                 } catch (IOException ex) {
                     System.err.print(ex.getMessage());
                 } }
-                else {
+                if (roleee.equals("Client")) {
                     try {
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
@@ -140,7 +141,49 @@ public class LoginController implements Initializable {
                     System.err.print(ex.getMessage());
                 }
                 }
-              System.out.println(idS);
+                if (roleee.equals("TransporteurLibre")){
+                             try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeTransporteurLibre.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException ex) {
+                    System.err.print(ex.getMessage());
+                }
+                    
+                }
+              if (roleee.equals("TransporteurAssocie")) {
+                                               try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeTransporteurAssocie.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException ex) {
+                    System.err.print(ex.getMessage());
+                }
+              }
+              if (roleee.equals("Fournisseur")){
+                                                                 try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeFournisseur.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException ex) {
+                    System.err.print(ex.getMessage());
+                }
+              }
             }
         }
         if (event.getSource() == register) {

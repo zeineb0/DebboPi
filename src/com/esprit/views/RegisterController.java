@@ -85,13 +85,13 @@ public class RegisterController implements Initializable {
     
     
     @FXML
-    public void register() throws SQLException{
+    public void register(MouseEvent event) throws SQLException{
  
         Connection con = DataSource.getInstance().getConnection();
         
         
         if(radioF.isSelected()){
-            leRole="Fournissueur";
+            leRole="Fournisseur";
         }
         if(radioC.isSelected()){
             leRole="Client";
@@ -103,9 +103,6 @@ public class RegisterController implements Initializable {
             leRole="TransporteurLibre";
         }
         
-        
-        
-        
         String req ="INSERT INTO `utilisateur` (`id_user`, `nom`, `prenom`, `cin`, `date`, `role`, `tel`, `longitude_user`, `altitude_user`, `email`, `password`, `disponniblite`, `nbr_maxComm`, `FK_id_produit`) VALUES (NULL, '"+prenom.getText()+"', '"+nom.getText()+"', '"+cin.getText()+"', '"+date.getText()+"', '"+leRole+"', '"+tel.getText()+"', NULL, NULL, '"+email.getText()+"', '"+DigestUtils.shaHex(password.getText())+"', '', NULL, NULL); ";
         ps = con.prepareStatement(req);
         ps.executeUpdate();
@@ -113,9 +110,82 @@ public class RegisterController implements Initializable {
         
         
         
-    }
-    
-    
+        
+        
+                 if (leRole.equals("admin")) {
+                
+                try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeAdmin.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException ex) {
+                    System.err.print(ex.getMessage());
+                } }
+                if (leRole.equals("Client")) {
+                    try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeClient.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException ex) {
+                    System.err.print(ex.getMessage());
+                }
+                }
+                if (leRole.equals("TransporteurLibre")){
+                             try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeTransporteurLibre.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException ex) {
+                    System.err.print(ex.getMessage());
+                }
+                    
+                }
+              if (leRole.equals("TransporteurAssocie")) {
+                                               try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeTransporteurAssocie.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException ex) {
+                    System.err.print(ex.getMessage());
+                }
+              }
+              if (leRole.equals("Fournisseur")){
+                                                                 try {
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeFournisseur.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException ex) {
+                    System.err.print(ex.getMessage());
+                }
+              }
+        
+        
+         }
     
     
     
@@ -124,7 +194,7 @@ public class RegisterController implements Initializable {
      * @param event
      */
     @FXML
-    public void goToLogin(MouseEvent event){
+     void goToLogin(MouseEvent event){
        
             
             try {
