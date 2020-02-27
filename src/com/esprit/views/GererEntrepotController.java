@@ -13,6 +13,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import static java.util.Collections.list;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,8 +28,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -89,6 +93,7 @@ int id;
      * Initializes the controller class.
      */
     utilisateur u = new utilisateur();
+    private Label prixLocation;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
@@ -116,6 +121,8 @@ int id;
         } catch (Exception ex) {
             System.out.println("com.esprit.views.AjouterEntrepotController.initialize()");
         }
+        
+         
     
         table.setOnMouseClicked(event->{
         //pour modifier un produit il faut faire deux click
@@ -126,16 +133,31 @@ int id;
  
                 @Override
                       public void handle(ActionEvent event) {
-                        try 
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation de suppression");
+                alert.setContentText(" Voulez-vous supprimer cet entrepot");
+                alert.setHeaderText(null);
+        
+        
+                Optional<ButtonType> resultat = alert.showAndWait();    
+                if(resultat.get()== ButtonType.OK)
+                {   try 
                         {serviceEntrepot.delete(id);
+                        
                             ref();} 
                         catch (SQLException ex) 
                         {System.out.println(".handle()");}
                       }
-                
+                                       
+
+                else
+                {
+                    System.out.println("cancel");
+                }
+                      }       
                  }); 
                   
-              
+                
         }
                
     
@@ -155,14 +177,19 @@ int id;
                   Double num3 = EntrepotSelectionner1.getPrix_location();
                   String c= Double.toString(num3);
                   pri.setText(c);
-
-
-      
+                                                             
                 modifier.setOnAction(new EventHandler<ActionEvent>() {
  
                    
                 @Override
                       public void handle(ActionEvent event) {
+                 if(numfisc.getText().equals("")||adresse.getText().equals("")||entrep1.getText().equals("")||etat1.getValue().toString().equals("")||quanmax.getText().equals(""))
+                 {Alert alert = new Alert(Alert.AlertType.ERROR);
+                   alert.setTitle("Modifier Entrepot");
+                   alert.setHeaderText(null);
+                   alert.setContentText("Les champs doivent etre rempli");
+                   alert.showAndWait();}
+                 else{
                         try {
                   Entrepot e = new Entrepot();
 
@@ -171,24 +198,44 @@ int id;
                   int quantite = Integer.parseInt(quanmax.getText());
                   String et=etat1.getValue();
                   Double pri1= Double.parseDouble(pri.getText());
-                  String entreprise = entrep.getText();
+                  
+                  e.setPrix_location(pri1);
+                  
                   e.setAdresse_entrepot(ad);
                   e.setNum_fiscale(num_fiscale);
                   e.setQuantite_max(quantite);
                   e.setEtat(et);
-                  e.setPrix_location(pri1);
-                  e.setEntreprise(entreprise);
+                  e.setEntreprise( entrep1.getText());
                   e.setId_entrepot(id);
-                  serviceEntrepot.update(e);
-                    ref();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation de modification");
+                alert.setContentText("Voulez-vous modifier cet entrepot ");
+                alert.setHeaderText(null);
+        
+        
+                Optional<ButtonType> resultat = alert.showAndWait();    
+                if(resultat.get()== ButtonType.OK)
+                {
+                                      serviceEntrepot.update(e);
+                                      adresse.setText("");
+                                      numfisc.setText("");
+                                       quanmax.setText("");
+                                      etat1.setValue(null);
+                                      entrep1.setText("");
+                                      pri.setText("");
+                                    ref();
+}
+                else
+                {
+                    System.out.println("cancel");
+                }
                                 }
                  
       
         catch (SQLException ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
-                  
-                      }
+                      }}
               });
                         }
                         });
@@ -203,69 +250,9 @@ int id;
         } catch (SQLException ex) {
             System.out.println("com.esprit.views.EspaceFournisseurController.ref()");        }
     }          
-       
-        private void addButtonToTable() {
-        TableColumn<Entrepot, Void> colBtn = new TableColumn("Gestion des entrepots");
-
-        Callback<TableColumn<Entrepot, Void>, TableCell<Entrepot, Void>> cellFactory = new Callback<TableColumn<Entrepot, Void>, TableCell<Entrepot, Void>>() {
-            public TableCell<Entrepot, Void> call(final TableColumn<Entrepot, Void> param) {
-                final TableCell<Entrepot, Void> cell = new TableCell<Entrepot, Void>() {
-                    private final Button btn = new Button("Modifier");
-                    {
-                            btn.setOnAction((ActionEvent event) -> {
-                            Entrepot entrepot = getTableView().getItems().get(getIndex());
-                            System.out.println("selectedData: " + entrepot);
-                        });
-                    }
-
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(btn);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-        colBtn.setCellFactory(cellFactory);
-
-        table.getColumns().add(colBtn);
-
-    }
-    private void onClick(ActionEvent event) throws IOException {
-//         Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
-//
-//           Scene ListeE = new Scene(liste);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        window.setScene(ListeE);
-//        window.show();
-    }  
- 
-      
-     
-    @FXML
-    private void onClick3(ActionEvent event) throws IOException {
-        Parent liste = FXMLLoader.load(getClass().getResource("espaceFournisseur.fxml"));
-        Scene ListeE = new Scene(liste);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(ListeE);
-        window.show();
-    }
-//        Parent root = FXMLLoader.load(getClass().getResource("afficherEntrepot.fxml"));
-//
-//        Scene scene = new Scene(root);
-//        Stage primaryStage = new Stage();
-//        primaryStage.setTitle("Liste des entrepots");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-
-    @FXML
-    private void onClick(Event event) throws IOException {
-        Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
+        @FXML
+    private void onClick1(ActionEvent event) throws IOException {
+     Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
 
            Scene ListeE = new Scene(liste);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -273,8 +260,50 @@ int id;
         window.show();
     }
 
-    @FXML
-    private void onClick1(ActionEvent event) {
+//    private void onClick(ActionEvent event) throws IOException {
+//         Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
+//
+//           Scene ListeE = new Scene(liste);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(ListeE);
+//        window.show();
+//    }  
+ 
+      
+     
+//    private void onClick3(ActionEvent event) throws IOException {
+//        Parent liste = FXMLLoader.load(getClass().getResource("gererEntrepot.fxml"));
+//        Scene ListeE = new Scene(liste);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(ListeE);
+//        window.show();
+//    }
+////        Parent root = FXMLLoader.load(getClass().getResource("afficherEntrepot.fxml"));
+//
+//        Scene scene = new Scene(root);
+//        Stage primaryStage = new Stage();
+//        primaryStage.setTitle("Liste des entrepots");
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+
+//    private void onClick(Event event) throws IOException {
+//        //Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
+//
+//           Scene ListeE = new Scene(liste);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        window.setScene(ListeE);
+//        window.show();
+//    }
+
+   
+
+
+   
+
+    
+       
+    
+
     }
 
     
@@ -283,6 +312,6 @@ int id;
 
     
 
-    }
+    
     
 

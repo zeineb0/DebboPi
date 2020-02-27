@@ -43,12 +43,7 @@
          </font>
       </Button>
       <ComboBox fx:id="etat" layoutX="315.0" layoutY="383.0" prefHeight="30.0" prefWidth="200.0" />
-      <AnchorPane prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: B22222;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Button layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick3" prefHeight="40.0" prefWidth="180.0" text="Afficher Entrepot" />
-            <Button layoutX="206.0" layoutY="15.0" mnemonicParsing="false" onAction="#onClick" prefHeight="40.0" prefWidth="180.0" text="Ajouter Entrepot" />
-         </children>
-      </AnchorPane>
+      <AnchorPane prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: B22222;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Label layoutX="100.0" layoutY="429.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Entreprise">
          <font>
             <Font size="22.0" />
@@ -61,10 +56,10 @@
          </font>
       </Label>
       <TextField fx:id="prix" layoutX="314.0" layoutY="476.0" prefHeight="30.0" prefWidth="200.0" />
-      <Label fx:id="erreur" layoutX="530.0" layoutY="278.0" prefHeight="25.0" prefWidth="150.0" text="Numero fiscale existe deja" textFill="#e30000" underline="true">
+      <Button layoutX="457.0" layoutY="524.0" mnemonicParsing="false" onAction="#retourVersAffichage" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: CD5C5C;" text="Retour">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font size="24.0" />
          </font>
-      </Label>
+      </Button>
    </children>
 </AnchorPane>

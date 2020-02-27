@@ -16,10 +16,32 @@ public class LocationDetail {
     public LocationDetail() {
     }
 
+    public LocationDetail(int id_location, Date date_deb_location, Date date_fin_location, double prix_location, int quantite_max, String adresse_entrepot, String entreprise, String nom, String prenom, int FK_id_entrepot) {
+  this.id_location = id_location;
+        this.date_deb_location = date_deb_location;
+        this.date_fin_location = date_fin_location;
+        this.prix_location = prix_location;
+        this.quantite_max = quantite_max;
+        this.adresse_entrepot = adresse_entrepot;
+        this.entreprise = entreprise;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
+    public String getEntreprise() {
+        return entreprise;
+    }
+
+    public void setEntreprise(String entreprise) {
+        this.entreprise = entreprise;
+    }
+
     @Override
     public String toString() {
-        return "LocationDetail{" + "id_location=" + id_location + ", date_deb_location=" + date_deb_location + ", date_fin_location=" + date_fin_location + ", prix_location=" + prix_location + ", quantite_max=" + quantite_max + ", adresse_entrepot=" + adresse_entrepot + ", nom=" + nom + ", prenom=" + prenom + ", FK_id_entrepot=" + FK_id_entrepot + ", FK_id_user=" + FK_id_user + '}';
+        return "LocationDetail{" + "id_location=" + id_location + ", date_deb_location=" + date_deb_location + ", date_fin_location=" + date_fin_location + ", prix_location=" + prix_location + ", quantite_max=" + quantite_max + ", adresse_entrepot=" + adresse_entrepot + ", entreprise=" + entreprise + ", nom=" + nom + ", prenom=" + prenom + ", FK_id_entrepot=" + FK_id_entrepot + ", FK_id_user=" + FK_id_user + '}';
     }
+
+   
 
     public LocationDetail(int id_location, Date date_deb_location, Date date_fin_location, double prix_location, int quantite_max, String adresse_entrepot, String nom, String prenom) {
         this.id_location = id_location;
@@ -37,6 +59,7 @@ public class LocationDetail {
                double prix_location ;
                int quantite_max ;
                String adresse_entrepot;
+               String entreprise;
                String nom;
                String prenom;
                int FK_id_entrepot;

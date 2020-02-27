@@ -10,11 +10,21 @@ import com.esprit.entities.Location;
 import com.esprit.entities.LocationDetail;
 import com.esprit.services.impl.ServiceEntrepot;
 import com.esprit.services.impl.ServiceLocation;
+import com.esprit.utilities.DataSource;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.mysql.jdbc.PreparedStatement;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -87,7 +97,12 @@ public class ListeDesLocationController implements Initializable {
     private Button modifier;
     Date datefin;
     Date datdeb;
-
+    @FXML
+    private TableColumn<LocationDetail, String> entreprise;
+    private final Connection con=DataSource.getInstance().getConnection();
+    private Statement ste;
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -103,6 +118,7 @@ public class ListeDesLocationController implements Initializable {
             prix.setCellValueFactory(new PropertyValueFactory<>("prix_location"));
             quan.setCellValueFactory(new PropertyValueFactory<>("quantite_max"));
             adr.setCellValueFactory(new PropertyValueFactory<>("adresse_entrepot"));
+            entreprise.setCellValueFactory(new PropertyValueFactory<>("entreprise"));
             nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
             prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
             table.setItems(datalist);
@@ -196,6 +212,7 @@ public class ListeDesLocationController implements Initializable {
                  id= locationSel.getId_location();  
                   try 
                         {serviceLocation.delete(id);
+                            System.out.println(locationSel.getFK_id_entrepot());
             serviceLocation.modifierEtatEntrepotALouer(locationSel.getFK_id_entrepot());
                         ref();} 
                         catch (SQLException ex) 
@@ -234,8 +251,80 @@ public class ListeDesLocationController implements Initializable {
 
     }
     }
+//public void pdf() 
+//    {
+//       
+//            String file_name ="Bureau//jawher.pdf";
+//            Document document = new Document();
+//            //file_name.setReadable(true,false);
+//            PdfWriter.getInstance(document, new FileOutputStream(file_name));
+//            document.open();
+////            ste=con.createStatement();
+////    ResultSet rs=ste.executeQuery("SELECT id_location , date_deb_location , date_fin_location, l.prix_location ,"
+////            + " e.quantite_max , e.adresse ,e.entreprise, u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user");
+//             table.setOnMouseClicked((MouseEvent event)->{
+//        //pour modifier un produit il faut faire deux click
+//            if (event.getClickCount() == 2) {
+//                
+//            
+//            
+//             LocationDetail EntrepotSelectionner = table.getItems().get(table.getSelectionModel().getSelectedIndex());
+//                Paragraph para=new Paragraph(" Nom: " +EntrepotSelectionner.getNom() + "\n Prenom : " +EntrepotSelectionner.getPrenom() + "\n Adresse : " + EntrepotSelectionner.getAdresse_entrepot()+" \n Date debut de location " + EntrepotSelectionner.getDate_deb_location()
+//                        +"\n Date de fin de location: "+EntrepotSelectionner.getDate_fin_location() +"\n Prix de location: "+EntrepotSelectionner.getPrix_location()
+//                +"\n Quantité maximale d'entrepot: "+EntrepotSelectionner.getQuantite_max());
+//                try {
+//                    document.add(para);
+//                } catch (DocumentException ex) {
+//                    Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                try {
+//                    document.add(new Paragraph(" "));
+//                } catch (DocumentException ex) {
+//                    Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            
+//            document.close();}
+//             });
+//             
+//}
 
+    @FXML
+    private void PDF(ActionEvent event) throws DocumentException, FileNotFoundException {
+        String file_name ="C:\\Users\\asus\\Desktop\\jawher.pdf";
+            Document document = new Document();
+            //file_name.setReadable(true,false);
+            PdfWriter.getInstance(document, new FileOutputStream(file_name));
+            document.open();
+//            ste=con.createStatement();
+//    ResultSet rs=ste.executeQuery("SELECT id_location , date_deb_location , date_fin_location, l.prix_location ,"
+//            + " e.quantite_max , e.adresse ,e.entreprise, u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user");
+             table.setOnMouseClicked((MouseEvent event1)->{
+        //pour modifier un produit il faut faire deux click
+            if (event1.getClickCount() == 2) {
+                
+            
+            
+                
+                    LocationDetail EntrepotSelectionner = table.getItems().get(table.getSelectionModel().getSelectedIndex());
+                    Paragraph para=new Paragraph(" Nom: " +EntrepotSelectionner.getNom() + "\n Prenom : " +EntrepotSelectionner.getPrenom() + "\n Adresse : " + EntrepotSelectionner.getAdresse_entrepot()+" \n Date debut de location " + EntrepotSelectionner.getDate_deb_location()
+                            +"\n Date de fin de location: "+EntrepotSelectionner.getDate_fin_location() +"\n Prix de location: "+EntrepotSelectionner.getPrix_location()
+                            +"\n Quantité maximale d'entrepot: "+EntrepotSelectionner.getQuantite_max());
+                    try {
+                    document.add(para);
 
-  
-  
+                    document.add(new Paragraph(" "));
+                    
+                    
+//                    document.close();
+                } catch (DocumentException ex) {
+                    Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 }
+             });
+             
+    }
+}
+
+  
+  
+

@@ -27,17 +27,17 @@
          </columns>
       </TableView>
       <TextField fx:id="prix1" layoutX="272.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" />
-      <Label layoutX="101.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="prix">
+      <Label layoutX="101.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" text="prix">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="101.0" layoutY="348.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="Date debut location">
+      <Label layoutX="101.0" layoutY="348.0" prefHeight="30.0" prefWidth="150.0" text="Date debut location">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="101.0" layoutY="386.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: DCDCDC;" text="Date fin location">
+      <Label layoutX="101.0" layoutY="386.0" prefHeight="30.0" prefWidth="150.0" text="Date fin location">
          <font>
             <Font size="15.0" />
          </font>

@@ -69,6 +69,8 @@ private Entrepot EntrepotSelectionner = new Entrepot();
     private Label erreur;
     @FXML
     private TextField prix1;
+    @FXML
+    private Label erreur1;
     /**
      * Initializes the controller class.
      */
@@ -89,7 +91,8 @@ private Entrepot EntrepotSelectionner = new Entrepot();
             entrep.setCellValueFactory(new PropertyValueFactory<>("entreprise"));
             prix.setCellValueFactory(new PropertyValueFactory<>("prix_location"));
 //            idfour.setCellValueFactory(new PropertyValueFactory<>("fk_id_fournisseur"));
-            
+            erreur.setVisible(false);
+            erreur1.setVisible(false);
             table.setItems(datalist);
       
         } catch (SQLException ex) {
@@ -111,8 +114,10 @@ private Entrepot EntrepotSelectionner = new Entrepot();
                         {String p = serviceLocation.calculPrix(pri,date1, date2 ).toString();
                         prix1.setText(p);
                         }
-                    else
+                else if (date1.before(date))
                          {erreur.setVisible(true);}
+                else  if (date2.before(date1))
+                         {erreur1.setVisible(true);}
                
                   
                  

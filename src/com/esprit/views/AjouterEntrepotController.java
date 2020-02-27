@@ -10,6 +10,7 @@ import com.esprit.services.impl.ServiceEntrepot;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -46,7 +49,6 @@ public class AjouterEntrepotController implements Initializable {
 ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
     @FXML
     private TextField prix;
-    @FXML
     private Label erreur;
    
 
@@ -67,6 +69,13 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
 
     @FXML
     private void ajouterEntrepot(ActionEvent event) {
+        if(numfisc.getText().equals("")||adresse.getText().equals("")||entrep.getText().equals(""))
+        {Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ajout Entrepot");
+            alert.setHeaderText(null);
+            alert.setContentText("Les champs doivent etre rempli");
+            alert.showAndWait();}
+        else{
         try{
         String ad = adresse.getText();
         int num_fiscale = Integer.parseInt(numfisc.getText());
@@ -82,41 +91,37 @@ ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
         e.setEtat(etat.getValue());
         e.setPrix_location(pr);
         e.setEntreprise(entreprise);
-        
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation d'ajout");
+                alert.setContentText("Voulez-vous ajouter cet entrepot ");
+                alert.setHeaderText(null);
+                Optional<ButtonType> resultat = alert.showAndWait();    
+                if(resultat.get()== ButtonType.OK)
+                {
+                                serviceEntrepot.ajouter(e);
+                                adresse.setText("");
+                                numfisc.setText("");
+                                quanmax.setText("");
+                                prix.setText("");
+                                entrep.setText("");
+                }
+                else
+                {
+                    System.out.println("cancel");
+                }
            
-        serviceEntrepot.ajouter(e);
             } catch (SQLException ex) {
                 System.out.println("com.esprit.views.AjouterEntrepotController.onClick()");
             }
-            
+        }
         }
 
-        @FXML
-    private void onClick(ActionEvent event) throws IOException {
-         Parent liste = FXMLLoader.load(getClass().getResource("ajouterEntrepot.fxml"));
-
-           Scene ListeE = new Scene(liste);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(ListeE);
-        window.show();
-    }  
-  
-    
     @FXML
-    private void onClick2(ActionEvent event) throws IOException {
-        Parent liste = FXMLLoader.load(getClass().getResource("modifierEntrepot.fxml"));
-        Scene ListeE = new Scene(liste);
+    private void retourVersAffichage(ActionEvent event) throws IOException {
+     Parent list = FXMLLoader.load(getClass().getResource("gererEntrepot.fxml"));
+        Scene listE= new Scene(list);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(ListeE);
-        window.show();
-    }
-
-    @FXML
-    private void onClick3(ActionEvent event) throws IOException {
-        Parent liste = FXMLLoader.load(getClass().getResource("espaceFournisseur.fxml"));
-        Scene ListeE = new Scene(liste);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(ListeE);
+        window.setScene(listE);
         window.show();
     }
         

@@ -148,7 +148,7 @@ try {
     List<LocationDetail> locationsDetails=new ArrayList<>();
     ste=con.createStatement();
     ResultSet rs=ste.executeQuery("SELECT id_location , date_deb_location , date_fin_location, l.prix_location ,"
-            + " e.quantite_max , e.adresse , u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user" );
+            + " e.quantite_max , e.adresse ,e.entreprise, u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user" );
      while (rs.next()) {                
                int id_location=rs.getInt(1);
                Date date_deb_location = rs.getDate(2);
@@ -156,16 +156,18 @@ try {
                double prix_location = rs.getDouble(4);
                int quantite_max = rs.getInt(5);
                String adresse_entrepot=rs.getString(6);
-               String nom=rs.getString(7);
-               String prenom=rs.getString(8);
-                  int FK_id_entrepot = rs.getInt(9);
+               String entreprise=rs.getString(7);
+               
+               String nom=rs.getString(8);
+               String prenom=rs.getString(9);
+                  int FK_id_entrepot = rs.getInt(10);
 
 //               int FK_id_user = rs.getInt(10);
                
      
              
                
-    LocationDetail l = new LocationDetail(id_location, date_deb_location, date_fin_location, prix_location, quantite_max, adresse_entrepot, nom, prenom, FK_id_entrepot);
+    LocationDetail l = new LocationDetail(id_location, date_deb_location, date_fin_location, prix_location, quantite_max, adresse_entrepot,entreprise, nom, prenom, FK_id_entrepot);
     locationsDetails.add(l);
      } 
     return locationsDetails;
@@ -177,9 +179,9 @@ public Double calculPrix (Double prix,Date datedeb, Date datefin)
         double prix1;
          System.out.println(prix);
         final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24; 
-
-        return prix1= ((prix/31)*(datefin.getTime()-datedeb.getTime()))/ (MILLISECONDS_PER_DAY);
-
+        
+        return prix1= ((prix/31)*(datefin.getTime()-datedeb.getTime()+1))/ (MILLISECONDS_PER_DAY);
+        
 
 }
 
@@ -207,5 +209,72 @@ public Double calculPrix (Double prix,Date datedeb, Date datefin)
            
   
     }
+    
+    
+    
+//public List<Facture> afficherByreference(String n) {
+//        List<Facture> myList = new ArrayList<Facture>();
+//        try {
+//
+//            String requete2 = "SELECT * FROM facture WHERE reference LIKE '%" + n + "%'";
+//            Statement st = cnx.createStatement();
+//            ResultSet rs = st.executeQuery(requete2);
+//
+//            while (rs.next()) {
+//                Facture u = new Facture();
+//                u.setId_facture(rs.getInt(1));
+//                u.setReference(rs.getString(2));
+//                u.setId_achat(rs.getInt(3));
+//                u.setClient_name(rs.getString(4));
+//                u.setClient_type(rs.getString(5));
+//                u.setType_facture(rs.getString(6));
+//                u.setStatut_facture(rs.getString(7));
+//                u.setTotalHT(rs.getFloat(8));
+//                u.setTotalTTC(rs.getFloat(9));
+//                u.setEcheance(rs.getString(10));
+//                u.setDelivery(rs.getInt(11));
+//  
+//
+//                myList.add(u);
+//            }
+//
+//        } catch (SQLException ex) {
+//            System.err.println(ex.getMessage());
+//        }
+//        return myList;
+//    }  
+//     
+//      public List<Facture> afficherByClient_name( String n) {
+//        List<Facture> myList = new ArrayList<Facture>();
+//        try {
+//
+//            String requete2 = "SELECT * FROM facture WHERE client_name LIKE '%" + n + "%'";
+//            Statement st = cnx.createStatement();
+//            ResultSet rs = st.executeQuery(requete2);
+//
+//            while (rs.next()) {
+//                Facture u = new Facture();
+//                u.setId_facture(rs.getInt(1));
+//                u.setReference(rs.getString(2));
+//                u.setId_achat(rs.getInt(3));
+//                u.setClient_name(rs.getString(4));
+//                u.setClient_type(rs.getString(5));
+//                u.setType_facture(rs.getString(6));
+//                u.setStatut_facture(rs.getString(7));
+//                u.setTotalHT(rs.getFloat(8));
+//                u.setTotalTTC(rs.getFloat(9));
+//                u.setEcheance(rs.getString(10));
+//                u.setDelivery(rs.getInt(11));
+//  
+//                   myList.add(u);
+//            }
+//
+//        } catch (SQLException ex) {
+//            System.err.println(ex.getMessage());
+//        }
+//        return myList;
+//    }
+
+
 
 }
