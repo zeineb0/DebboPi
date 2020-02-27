@@ -5,6 +5,7 @@
  */
 package com.esprit.views;
 
+import com.esprit.entities.affdetails;
 import com.teamdev.jxmaps.ControlPosition;
 import com.teamdev.jxmaps.GeocoderCallback;
 import com.teamdev.jxmaps.GeocoderRequest;
@@ -64,9 +65,9 @@ public class MapController implements Initializable {
                     map.setCenter(new LatLng(36.8599390, 10.1909730));
                     // Setting initial zoom value
                     map.setZoom(7.0);
-                            Marker marker = new Marker(map);
-//                            marker.setPosition(ariana);
-//                            performGeocode("az");
+                    Marker marker = new Marker(map);
+                    performGeocode(AffichageController.dest);
+                   // marker.setPosition(value);
 
                 }
             }
@@ -77,5 +78,29 @@ public class MapController implements Initializable {
         
         
     }    
-    
+        private void performGeocode(String text) {
+        // Getting the associated map object
+        Map map = mapView.getMap();
+        Marker mark = new Marker(map);
+        // Creating a geocode request
+        GeocoderRequest request = new GeocoderRequest();
+        // Setting address to the geocode request
+        request.setAddress(text);
+
+        // Geocoding position by the entered address
+        mapView.getServices().getGeocoder().geocode(request, new GeocoderCallback(map) {
+            @Override
+            public void onComplete(GeocoderResult[] results, GeocoderStatus status) {
+                // Checking operation status
+                if ((status == GeocoderStatus.OK) && (results.length > 0)) {
+                    // Getting the first result
+                    GeocoderResult result = results[0];
+                    // Getting a location of the result
+                    LatLng location = result.getGeometry().getLocation();
+                    // Setting the map center to result location
+                    mark.setPosition(location);
+                }
+            }
+        });
+    }
 }

@@ -32,14 +32,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class showmapController implements Initializable {
-
     @FXML
     private MapView mapView;
-    
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {  
-               mapView.setOnMapReadyHandler(new MapReadyHandler() {
+            mapView.setOnMapReadyHandler(new MapReadyHandler() {
             @Override
             public void onMapReady(MapStatus status) {  
                 // Check if the map is loaded correctly

@@ -18,9 +18,6 @@ import javafx.stage.Stage;
 
 
 
-
-
-
 public class MainAffichage extends Application {
     
     @Override

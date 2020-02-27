@@ -173,24 +173,24 @@ public class StatistiquesController implements Initializable {
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-//             Timeline Updater = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {  
-//       @Override  
-//       public void handle(ActionEvent event) {  
-//             series.getData().clear();  
-//            String req ="select "+arg1+","+arg2+" from mouvement_du_stock where nature_mouvement='"+nature+"' order by "+arg1;
-//           try {
-//               while (res.next()){
-//                   series.getData().add(new XYChart.Data<String,Integer>(res.getString(1),res.getInt(2)));
-//               }
-//           } catch (SQLException ex) {
-//           }
-//           
-//       }
-//   
-//             }));
-//            Updater.setCycleCount(Timeline.INDEFINITE);  
-//            Updater.play();  
-//            barchart.getData().add(series);  
+             Timeline Updater = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {  
+       @Override  
+       public void handle(ActionEvent event) {  
+             series.getData().clear();  
+            String req ="select "+arg1+","+arg2+" from mouvement_du_stock where nature_mouvement='"+nature+"' order by "+arg1;
+           try {
+               while (res.next()){
+                   series.getData().add(new XYChart.Data<String,Integer>(res.getString(1),res.getInt(2)));
+               }
+           } catch (SQLException ex) {
+           }
+           
+       }
+   
+             }));
+            Updater.setCycleCount(Timeline.INDEFINITE);  
+            Updater.play();  
+            barchart.getData().add(series);  
             
              }
         

@@ -4,6 +4,7 @@ import com.esprit.entities.Livraison;
 import com.esprit.entities.affdetails;
 import com.esprit.services.impl.ServiceLivraison;
 import com.esprit.utilities.DataSource;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -83,9 +84,9 @@ public class AffichageController implements Initializable {
     @FXML
     private ImageView icon;
    
-
+    public static String dest;
     
-   
+   affdetails affselectionne =new affdetails();
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -294,15 +295,24 @@ public class AffichageController implements Initializable {
     } 
           
     private void addButtonToTable() {
-        TableColumn<affdetails, Void> colBtn = new TableColumn("Details");
+        TableColumn<affdetails, Void> colBtn = new TableColumn("MAP");
 
         Callback<TableColumn<affdetails, Void>, TableCell<affdetails, Void>> cellFactory = new Callback<TableColumn<affdetails, Void>, TableCell<affdetails, Void>>() {
             public TableCell<affdetails, Void> call(final TableColumn<affdetails, Void> param) {
                 final TableCell<affdetails, Void> cell = new TableCell<affdetails, Void>() {
-
                     private final Button btn = new Button("Localisation");
-
                     {
+                        tableaff.setOnMouseClicked((event) -> {
+                            
+affselectionne = tableaff.getItems().get(tableaff.getSelectionModel().getSelectedIndex());
+                  //System.out.println("Produit selectionnner"+ProduitSelectionner);
+                  //indexProduitSelectionner=table.getSelectionModel().getSelectedIndex();
+                  
+                  dest = affselectionne.getAdresse();
+                            System.out.println(dest);
+                  
+                        
+                        });
                         btn.setOnAction((ActionEvent event) ->{
                             try {
                                 Parent root2 = FXMLLoader.load(getClass().getResource("Map.fxml"));
@@ -344,7 +354,6 @@ public class AffichageController implements Initializable {
         };
 
         colBtn.setCellFactory(cellFactory);
-
         tableaff.getColumns().add(colBtn);
 
     }

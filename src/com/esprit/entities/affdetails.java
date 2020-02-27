@@ -38,6 +38,9 @@ public class affdetails {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public affdetails() {
+    }
+
     public String getAdresse() {
         return adresse;
     }
