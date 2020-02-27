@@ -135,9 +135,21 @@ public class AjouterContratController implements Initializable {
             
             String np = nomp.getText();
             String[] currencies = np.split(" ");
+            
+            if(currencies.length<2)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Les champs ne sont pas corrects");
+                alert.setContentText(" vous devez saisir le nom et le prenom ");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+            }else
+            {
+                nom=currencies[0];
+                prenom=currencies[1];
+            
         
-            nom=currencies[0];
-            prenom=currencies[1];
+           
             
             
                     
@@ -251,6 +263,7 @@ public class AjouterContratController implements Initializable {
              
              
             System.out.println("m3obin");
+            }
          }
         
      
