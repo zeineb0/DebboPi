@@ -10,7 +10,7 @@ import com.esprit.entities.Entrepot;
 import com.esprit.entities.MouvementStock;
 import com.esprit.entities.Produit;
 import com.esprit.services.impl.CategorieController;
-import com.esprit.services.impl.EntrepotController;
+import com.esprit.services.impl.ServiceEntrepot;
 import com.esprit.services.impl.MouvementController;
 import com.esprit.services.impl.ProduitController;
 import java.net.URL;
@@ -73,7 +73,7 @@ public class MvtStockController implements Initializable {
     
      private int indexProduitSelectionner;
   
-    EntrepotController entrepotController = new EntrepotController();
+    ServiceEntrepot entrepotController = new ServiceEntrepot();
     List<Entrepot> entrepots = new ArrayList<>();
     
     MouvementController mouvementController = new MouvementController();
