@@ -60,26 +60,13 @@ public class showmapController implements Initializable {
                         // Setting the map center
                         map.setCenter(new LatLng(36.8599390, 10.1909730));
                         // Setting initial zoom value
-                        map.setZoom(10.0);
+                        map.setZoom(7.0);
                         Connection con = DataSource.getInstance().getConnection();
                         ResultSet res = con.createStatement().executeQuery("select adresse_livraison from livraison where etat_livraison='NonLivree'");
                         while (res.next()){
-                            performGeocode(res.getString(1));
-//                            if (res.getString(1).equals("Tunis")){
-//                                LatLng tunis = new LatLng(36.794165,10.188961);
-//                                Marker marker = new Marker(map);
-//                                marker.setPosition(tunis);
-//                            }
-//                            if (res.getString(1).equals("Bizerte")){
-//                                LatLng Bizerte = new LatLng(37.266130,9.869328);
-//                                Marker marker = new Marker(map);
-//                                marker.setPosition(Bizerte);
-//                            }
-                            
+                            performGeocode(res.getString(1));                          
                         }
-//                            LatLng ariana = new LatLng(36.8599390, 10.1909730);
-//                            Marker marker = new Marker(map);
-//                            marker.setPosition(ariana);
+
                     } catch (SQLException ex) {
                         System.out.println(ex.getMessage());
                     }
