@@ -89,7 +89,7 @@ public class LoginController implements Initializable {
             return "Error";
         } else {
            
-            roleee=rs.getString("role");
+           roleee=rs.getString("role");
            idS=rs.getInt("id_user");
            Session.setIdSession(idS);
             System.out.println(getIdSession());
