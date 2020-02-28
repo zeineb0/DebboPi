@@ -14,24 +14,24 @@
             <Font size="35.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="382.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Etat">
+      <Label layoutX="100.0" layoutY="382.0" prefHeight="30.0" prefWidth="200.0" text="Etat">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <TextField fx:id="quanmax" layoutX="315.0" layoutY="330.0" prefHeight="30.0" prefWidth="200.0" />
-      <Label layoutX="100.0" layoutY="330.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Quantite max">
+      <Label layoutX="100.0" layoutY="330.0" prefHeight="30.0" prefWidth="200.0" text="Quantite max">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="220.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Adresse entrepot">
+      <Label layoutX="100.0" layoutY="220.0" prefHeight="30.0" prefWidth="200.0" text="Adresse entrepot">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <TextField fx:id="adresse" layoutX="315.0" layoutY="221.0" prefHeight="30.0" prefWidth="200.0" />
-      <Label layoutX="100.0" layoutY="274.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Numero fiscale">
+      <Label layoutX="100.0" layoutY="274.0" prefHeight="30.0" prefWidth="200.0" text="Numero fiscale">
          <font>
             <Font size="22.0" />
          </font>
@@ -44,13 +44,13 @@
       </Button>
       <ComboBox fx:id="etat" layoutX="315.0" layoutY="383.0" prefHeight="30.0" prefWidth="200.0" />
       <AnchorPane prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: B22222;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label layoutX="100.0" layoutY="429.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Entreprise">
+      <Label layoutX="100.0" layoutY="429.0" prefHeight="30.0" prefWidth="200.0" text="Entreprise">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <TextField fx:id="entrep" layoutX="314.0" layoutY="431.0" prefHeight="30.0" prefWidth="200.0" />
-      <Label layoutX="100.0" layoutY="475.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: DCDCDC;" text="Prix location">
+      <Label layoutX="100.0" layoutY="475.0" prefHeight="30.0" prefWidth="200.0" text="Prix location">
          <font>
             <Font size="22.0" />
          </font>

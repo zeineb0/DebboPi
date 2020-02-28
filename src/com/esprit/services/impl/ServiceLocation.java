@@ -10,6 +10,15 @@ import com.esprit.entities.Location;
 import com.esprit.entities.LocationDetail;
 import com.esprit.services.IServiceLocation;
 import com.esprit.utilities.DataSource;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,6 +28,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -96,10 +107,11 @@ public class ServiceLocation implements IServiceLocation<Location>{
     {
         try {
 
-            String req="UPDATE `entrepot` SET`etat`=\"A Louer\" WHERE `id_entrepot` = ?";
+            String req="UPDATE `entrepot` SET`etat`=? WHERE entrepot.`id_entrepot` = ?";
             PreparedStatement ps= DataSource.getInstance().getConnection().prepareStatement(req);
             
-            ps.setInt(1,id);
+            ps.setString(1, "A Louer");
+            ps.setInt(2,id);
             
 
             ps.executeUpdate();
@@ -148,7 +160,7 @@ try {
     List<LocationDetail> locationsDetails=new ArrayList<>();
     ste=con.createStatement();
     ResultSet rs=ste.executeQuery("SELECT id_location , date_deb_location , date_fin_location, l.prix_location ,"
-            + " e.quantite_max , e.adresse ,e.entreprise, u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user" );
+            + " e.quantite_max , e.adresse ,e.entreprise, u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user and etat= \"Loué\"" );
      while (rs.next()) {                
                int id_location=rs.getInt(1);
                Date date_deb_location = rs.getDate(2);
@@ -160,14 +172,15 @@ try {
                
                String nom=rs.getString(8);
                String prenom=rs.getString(9);
-                  int FK_id_entrepot = rs.getInt(10);
-
-//               int FK_id_user = rs.getInt(10);
+               int FK_id_entrepot = rs.getInt(10);
+         System.out.println(FK_id_entrepot);
+           //  int FK_id_user = rs.getInt(11);
                
      
              
                
     LocationDetail l = new LocationDetail(id_location, date_deb_location, date_fin_location, prix_location, quantite_max, adresse_entrepot,entreprise, nom, prenom, FK_id_entrepot);
+         System.out.println(l.toString());
     locationsDetails.add(l);
      } 
     return locationsDetails;
@@ -184,7 +197,36 @@ public Double calculPrix (Double prix,Date datedeb, Date datefin)
         
 
 }
-
+public void pdf(int id) throws FileNotFoundException, DocumentException, BadElementException, IOException
+    {
+        try {
+            String file_name ="C:\\Users\\asus\\Desktop\\pdf\\walid.pdf";
+            Document document = new Document();
+            //file_name.setReadable(true,false);
+            PdfWriter.getInstance(document, new FileOutputStream(file_name));
+            document.open();
+            ste=con.createStatement();
+            ResultSet rs =ste.executeQuery("SELECT id_location , date_deb_location , date_fin_location, l.prix_location ,  e.quantite_max , e.adresse ,e.entreprise, u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user and l.id_location="+id+ "");
+           
+            
+            while (rs.next()) { 
+                Paragraph para=new Paragraph((" Nom: " +rs.getString(8) + "\n Prenom : " + rs.getString(9)+ "\n Entreprise : " + rs.getString(7)+ "\n Adresse : " + rs.getString(6)+" \n Date debut de location " + rs.getDate(2)
+                            +"\n Date de fin de location: "+rs.getDate(3) +"\n Prix de location: "+rs.getDouble(4)
+                            +"\n Quantité maximale d'entrepot: "+rs.getDouble(5)));
+                document.add(para);
+                document.add(Image.getInstance("C:\\Users\\asus\\Desktop\\pdf\\logo.png"));
+                document.add(new Paragraph(" "));
+                 document.add(new Paragraph(" "));
+            }
+            document.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceLocation.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(ServiceLocation.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ServiceLocation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 
 
 

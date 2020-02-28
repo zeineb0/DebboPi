@@ -12,6 +12,18 @@ import java.sql.Date;
  * @author asus
  */
 public class LocationDetail {
+         int id_location;
+               Date date_deb_location ;
+               Date date_fin_location ;
+               double prix_location ;
+               int quantite_max ;
+               String adresse_entrepot;
+               String entreprise;
+               String nom;
+               String prenom;
+               int FK_id_entrepot;
+               int FK_id_user;
+
 
     public LocationDetail() {
     }
@@ -26,6 +38,8 @@ public class LocationDetail {
         this.entreprise = entreprise;
         this.nom = nom;
         this.prenom = prenom;
+        this.FK_id_entrepot=FK_id_entrepot;
+        
     }
 
     public String getEntreprise() {
@@ -53,17 +67,6 @@ public class LocationDetail {
         this.nom = nom;
         this.prenom = prenom;
     }
-     int id_location;
-               Date date_deb_location ;
-               Date date_fin_location ;
-               double prix_location ;
-               int quantite_max ;
-               String adresse_entrepot;
-               String entreprise;
-               String nom;
-               String prenom;
-               int FK_id_entrepot;
-               int FK_id_user;
 
     public int getId_location() {
         return id_location;

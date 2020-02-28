@@ -88,7 +88,7 @@ int id;
     private TextField entrep1;
     @FXML
     private TextField pri;
-    //public Observablelist<Entrepot> data= FXCollections.observableArrayList();
+//public Observablelist<Entrepot> data= FXCollections.observableArrayList();
     /**
      * Initializes the controller class.
      */

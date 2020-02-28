@@ -102,8 +102,11 @@ private Entrepot EntrepotSelectionner = new Entrepot();
           table.setOnMouseClicked((MouseEvent event)->{
         //pour modifier un produit il faut faire deux click
             if (event.getClickCount() == 2) {
+                
                 EntrepotSelectionner=table.getItems().get(table.getSelectionModel().getSelectedIndex());
+                //System.out.println(EntrepotSelectionner);
                 idA=EntrepotSelectionner.getId_entrepot();
+                //System.out.println(idA);
                 pri=EntrepotSelectionner.getPrix_location();
                 //String id = Double.toString(idA);
                 //idEnt.setText(id);
@@ -144,6 +147,7 @@ private Entrepot EntrepotSelectionner = new Entrepot();
             l.setPrix_location(Double.parseDouble(prix1.getText()));
         
          l.setFK_id_entrepot(idA);
+            System.out.println(l);
         serviceLocation.ajouter(l);
         serviceLocation.modifierEtatEntrepotALoue(EntrepotSelectionner.getId_entrepot());
             ref();

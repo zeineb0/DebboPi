@@ -13,15 +13,15 @@
    <children>
       <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="800.0">
          <children>
-            <Label layoutX="18.0" layoutY="34.0" prefHeight="51.0" prefWidth="425.0" style="-fx-background-color: ;" text="Liste des locations" textFill="FIREBRICK">
+            <Label prefHeight="51.0" prefWidth="425.0" style="-fx-background-color: ;" text="Liste des locations" textFill="FIREBRICK">
                <font>
                   <Font size="35.0" />
                </font>
             </Label>
-            <TableView fx:id="table" layoutX="7.0" layoutY="85.0" prefHeight="247.0" prefWidth="789.0">
+            <TableView fx:id="table" layoutX="7.0" layoutY="98.0" prefHeight="247.0" prefWidth="789.0">
                <columns>
-                  <TableColumn fx:id="dateDeb" prefWidth="124.0" text="Date debut location" />
-                  <TableColumn fx:id="dateFin" prefWidth="113.0" text="Date fin location" />
+                  <TableColumn fx:id="dateDeb" prefWidth="118.0" text="Date debut location" />
+                  <TableColumn fx:id="dateFin" prefWidth="119.0" text="Date fin location" />
                   <TableColumn fx:id="prix" minWidth="0.0" prefWidth="84.0" text="Prix location" />
                   <TableColumn fx:id="quan" prefWidth="81.0" text="Quatite max" />
                   <TableColumn fx:id="adr" prefWidth="101.0" text="adresse entrepot" />
@@ -31,17 +31,17 @@
                </columns>
             </TableView>
             <TextField fx:id="prix1" editable="false" layoutX="272.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" />
-            <Label layoutX="101.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ddd;" text="prix">
+            <Label layoutX="101.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" text="prix">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="101.0" layoutY="348.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ddd;" text="Date debut location">
+            <Label layoutX="101.0" layoutY="348.0" prefHeight="30.0" prefWidth="150.0" text="Date debut location">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="101.0" layoutY="386.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #ddd;" text="Date fin location">
+            <Label layoutX="101.0" layoutY="386.0" prefHeight="30.0" prefWidth="150.0" text="Date fin location">
                <font>
                   <Font size="15.0" />
                </font>
@@ -73,11 +73,12 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button layoutX="641.0" layoutY="547.0" mnemonicParsing="false" onAction="#PDF" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Generer PDF">
+            <Button fx:id="PDF" layoutX="641.0" layoutY="547.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" style="-fx-background-color: CD5C5C;" text="Generer PDF">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
+            <TextField fx:id="rech" layoutX="402.0" layoutY="45.0" onKeyTyped="#smartsearch" prefHeight="30.0" prefWidth="365.0" />
          </children>
       </AnchorPane>
    </children>

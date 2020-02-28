@@ -11,6 +11,7 @@ import com.esprit.entities.LocationDetail;
 import com.esprit.services.impl.ServiceEntrepot;
 import com.esprit.services.impl.ServiceLocation;
 import com.esprit.utilities.DataSource;
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -31,6 +32,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -87,6 +90,7 @@ public class ListeDesLocationController implements Initializable {
     ServiceLocation serviceLocation = new ServiceLocation();
     Location locationSelectionner = new Location();
     LocationDetail locationSel = new LocationDetail();
+    LocationDetail locationSelsupp = new LocationDetail();
     @FXML
     private TableColumn<LocationDetail, String> prenom;
     @FXML
@@ -101,6 +105,11 @@ public class ListeDesLocationController implements Initializable {
     private TableColumn<LocationDetail, String> entreprise;
     private final Connection con=DataSource.getInstance().getConnection();
     private Statement ste;
+    @FXML
+    private Button PDF;
+    @FXML
+    private TextField rech;
+    
     
     
     /**
@@ -110,9 +119,9 @@ public class ListeDesLocationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
           try {
             ArrayList<LocationDetail> locationsDetails = (ArrayList<LocationDetail>) serviceLocation.readAl1();
-                
+              System.out.println(locationsDetails.isEmpty());
             datalist = FXCollections.observableArrayList(locationsDetails);
-            
+           
             dateDeb.setCellValueFactory(new PropertyValueFactory<>("date_deb_location"));
             dateFin.setCellValueFactory(new PropertyValueFactory<>("date_fin_location"));
             prix.setCellValueFactory(new PropertyValueFactory<>("prix_location"));
@@ -122,6 +131,7 @@ public class ListeDesLocationController implements Initializable {
             nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
             prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
             table.setItems(datalist);
+            
             erreur.setVisible(false);
             erreur1.setVisible(false);
       
@@ -129,12 +139,35 @@ public class ListeDesLocationController implements Initializable {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
           
+          
           table.setOnMouseClicked(event->{
               locationSel=table.getItems().get(table.getSelectionModel().getSelectedIndex());
+              System.out.println(locationSel.getId_location());
+              System.out.println(locationSel.getFK_id_entrepot());
               datdeb=locationSel.getDate_deb_location();
                datDeb.setValue(datdeb.toLocalDate());
                datFin.setValue(null);
                prix1.setText("");
+               PDF.setOnAction(new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+
+                      try {
+                          serviceLocation.pdf(locationSel.getId_location());
+                          System.out.println(locationSel.getId_location());
+                      } catch (FileNotFoundException ex) {
+                          Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
+                      } catch (DocumentException ex) {
+                          Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
+                      
+                      } catch (IOException ex) {
+                          Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+ }
+              }
+               
+               );
+              
                });
                
                    
@@ -172,6 +205,8 @@ public class ListeDesLocationController implements Initializable {
         else
         {   locationSel =table.getItems().get(table.getSelectionModel().getSelectedIndex());
             id= locationSel.getId_location(); 
+            id1=locationSel.getFK_id_entrepot();
+            System.out.println(id1);
             datefin=Date.valueOf(datFin.getValue());
                  if(datefin.toString().equals("")) 
                  {
@@ -202,26 +237,37 @@ public class ListeDesLocationController implements Initializable {
     @FXML
     private void SuppLocation(ActionEvent event) {
           if(table.getSelectionModel().getSelectedIndex()==-1)
-                {
-                    System.out.println("selectionner de la table location");
+                {   
+
+                   System.out.println("selectionner de la table location");
 
                 }
            else
         {
-                 locationSel =table.getItems().get(table.getSelectionModel().getSelectedIndex());
-                 id= locationSel.getId_location();  
-                  try 
-                        {serviceLocation.delete(id);
-                            System.out.println(locationSel.getFK_id_entrepot());
-            serviceLocation.modifierEtatEntrepotALouer(locationSel.getFK_id_entrepot());
+            
+                 locationSelsupp =table.getItems().get(table.getSelectionModel().getSelectedIndex());
+                 System.out.println(locationSelsupp.getDate_fin_location());
+                 id= locationSelsupp.getId_location();  
+                 System.out.println(locationSelsupp.getFK_id_entrepot());
+                 System.out.println(id);
+                  
+                         try 
+                        { int  id2=locationSelsupp.getFK_id_entrepot();
+                        System.out.println(id2);
+                           serviceLocation.delete(id);
+                           
+            serviceLocation.modifierEtatEntrepotALouer(id2);
                         ref();} 
                         catch (SQLException ex) 
                         {System.out.println(".handle()");}
                       
-
+             
         }
     }
 
+    
+    
+    
     @FXML
     private void getDate(ActionEvent event) throws SQLException {
                 System.out.println("oui");
@@ -251,80 +297,40 @@ public class ListeDesLocationController implements Initializable {
 
     }
     }
-//public void pdf() 
-//    {
-//       
-//            String file_name ="Bureau//jawher.pdf";
-//            Document document = new Document();
-//            //file_name.setReadable(true,false);
-//            PdfWriter.getInstance(document, new FileOutputStream(file_name));
-//            document.open();
-////            ste=con.createStatement();
-////    ResultSet rs=ste.executeQuery("SELECT id_location , date_deb_location , date_fin_location, l.prix_location ,"
-////            + " e.quantite_max , e.adresse ,e.entreprise, u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user");
-//             table.setOnMouseClicked((MouseEvent event)->{
-//        //pour modifier un produit il faut faire deux click
-//            if (event.getClickCount() == 2) {
-//                
-//            
-//            
-//             LocationDetail EntrepotSelectionner = table.getItems().get(table.getSelectionModel().getSelectedIndex());
-//                Paragraph para=new Paragraph(" Nom: " +EntrepotSelectionner.getNom() + "\n Prenom : " +EntrepotSelectionner.getPrenom() + "\n Adresse : " + EntrepotSelectionner.getAdresse_entrepot()+" \n Date debut de location " + EntrepotSelectionner.getDate_deb_location()
-//                        +"\n Date de fin de location: "+EntrepotSelectionner.getDate_fin_location() +"\n Prix de location: "+EntrepotSelectionner.getPrix_location()
-//                +"\n Quantité maximale d'entrepot: "+EntrepotSelectionner.getQuantite_max());
-//                try {
-//                    document.add(para);
-//                } catch (DocumentException ex) {
-//                    Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                try {
-//                    document.add(new Paragraph(" "));
-//                } catch (DocumentException ex) {
-//                    Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            
-//            document.close();}
-//             });
-//             
-//}
 
+
+    
     @FXML
-    private void PDF(ActionEvent event) throws DocumentException, FileNotFoundException {
-        String file_name ="C:\\Users\\asus\\Desktop\\jawher.pdf";
-            Document document = new Document();
-            //file_name.setReadable(true,false);
-            PdfWriter.getInstance(document, new FileOutputStream(file_name));
-            document.open();
-//            ste=con.createStatement();
-//    ResultSet rs=ste.executeQuery("SELECT id_location , date_deb_location , date_fin_location, l.prix_location ,"
-//            + " e.quantite_max , e.adresse ,e.entreprise, u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user");
-             table.setOnMouseClicked((MouseEvent event1)->{
-        //pour modifier un produit il faut faire deux click
-            if (event1.getClickCount() == 2) {
-                
-            
-            
-                
-                    LocationDetail EntrepotSelectionner = table.getItems().get(table.getSelectionModel().getSelectedIndex());
-                    Paragraph para=new Paragraph(" Nom: " +EntrepotSelectionner.getNom() + "\n Prenom : " +EntrepotSelectionner.getPrenom() + "\n Adresse : " + EntrepotSelectionner.getAdresse_entrepot()+" \n Date debut de location " + EntrepotSelectionner.getDate_deb_location()
-                            +"\n Date de fin de location: "+EntrepotSelectionner.getDate_fin_location() +"\n Prix de location: "+EntrepotSelectionner.getPrix_location()
-                            +"\n Quantité maximale d'entrepot: "+EntrepotSelectionner.getQuantite_max());
-                    try {
-                    document.add(para);
-
-                    document.add(new Paragraph(" "));
-                    
-                    
-//                    document.close();
-                } catch (DocumentException ex) {
-                    Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-}
-             });
-             
+    public void smartsearch(){ 
+                           FilteredList<LocationDetail> filteredData2 = new FilteredList<>(datalist, b -> true);
+        		// tbadél l predicate te3 l filtre selon tabdil l filtre
+		rech.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData2.setPredicate(affdetails -> {
+				// ken l filtre (searchbox) feragh n'affichi kol chay			
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+                                // n9arén l predicate beli éna ktébtou selon date w etat
+				String lowerCaseFilter = newValue.toLowerCase();
+				if (affdetails.getEntreprise().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; 
+				}
+				     else  
+				    	 return false; 
+			});
+		});
+        		// n7ot FilteredList f SortedList. 
+		SortedList<LocationDetail> sortedData = new SortedList<>(filteredData2);
+		
+		// n9arén e sortedlist b tableview
+		sortedData.comparatorProperty().bind(table.comparatorProperty());
+		
+		//n'ajouti tawa sortedlist l héya resultat te3 l filtre f tableview mte3i
+		table.setItems(sortedData);
+        
     }
+    
 }
-
   
   
 

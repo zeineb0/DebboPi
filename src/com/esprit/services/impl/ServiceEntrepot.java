@@ -24,7 +24,7 @@ import java.util.List;
  * @author asus
  */
 public class ServiceEntrepot implements IService<Entrepot> {
-
+int id_session = 2;
     private final Connection con;
     private Statement ste;
     
@@ -79,7 +79,7 @@ public class ServiceEntrepot implements IService<Entrepot> {
     pre.setDouble(6, e.getPrix_location());
     //if (utilisateur.getRole().equals("fournisseur"))
       
-    pre.setInt(7,utilisateur.getId());
+    //pre.setInt(7,utilisateur.getId());
     pre.setInt(7, e.getFk_id_fournisseur());
     
     pre.executeUpdate(); 
@@ -151,7 +151,7 @@ public class ServiceEntrepot implements IService<Entrepot> {
     public List<Entrepot> readAll() throws SQLException {
     List<Entrepot> entrepots=new ArrayList<>();
     ste=con.createStatement();
-    ResultSet rs=ste.executeQuery("select * from entrepot ");
+    ResultSet rs=ste.executeQuery("SELECT * FROM `entrepot` WHERE `fk_id_user`= "+id_session +"");
      while (rs.next()) {                
                int id_entrepot=rs.getInt(1);
                String adresse_entrepot=rs.getString(2);
