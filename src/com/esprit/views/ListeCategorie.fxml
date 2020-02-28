@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ListeCategorieController">
+   <children>
+      <TableView fx:id="table" layoutX="217.0" layoutY="198.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="clNom" prefWidth="199.0" text="nom de la catégorie" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtNom" layoutX="592.0" layoutY="236.0" />
+      <Label layoutX="538.0" layoutY="241.0" text="nom" />
+      <Label layoutX="293.0" layoutY="54.0" text="Liste des categories" textFill="#d30f0f">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnA" layoutX="207.0" layoutY="476.0" mnemonicParsing="false" onAction="#onClickAjouter" text="Ajouter" />
+      <Button fx:id="btnM" layoutX="358.0" layoutY="476.0" mnemonicParsing="false" onAction="#onClickModif" text="Modifier" />
+      <Button fx:id="btnS" layoutX="525.0" layoutY="476.0" mnemonicParsing="false" onAction="#onClickSupprimer" text="Supprimer" />
+      <Button fx:id="btnAn" layoutX="702.0" layoutY="476.0" mnemonicParsing="false" onAction="#onClickAnnuler" text="Annuler" />
+   </children>
+</AnchorPane>

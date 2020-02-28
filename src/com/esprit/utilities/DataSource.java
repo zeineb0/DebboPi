@@ -18,19 +18,20 @@ import java.sql.SQLException;
 public class DataSource {
     
     private static DataSource data;
-    private String url = "jdbc:mysql://localhost:3306/debbov1";
+    private String url = "jdbc:mysql://localhost:3306/debbofinale";
+
     private String username = "root";
     private String pasword = "";
     private Connection con;
 
     public DataSource() {
         try {
-            con = (Connection) DriverManager.getConnection(url, username, pasword);
-            System.out.println("Class DataSource : connexion etablie");
+            con = (Connection)DriverManager.getConnection(url, username, pasword);
+            System.out.println("connexion etablie");
 
         } catch (SQLException e) {
 
-            System.out.println("Class DataSource :  Erreur de Connexion ");
+            System.out.println("Erreur de Connexion ");
             System.out.println(e);
         }
     }
