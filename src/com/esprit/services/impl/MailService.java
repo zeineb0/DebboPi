@@ -57,7 +57,7 @@ public class MailService {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(MyEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Contrat Detail ");
+            message.setSubject("debbo");
             message.setText(corps);
             return message;
         } catch (Exception ex) {

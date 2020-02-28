@@ -15,13 +15,16 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -31,11 +34,22 @@ import javafx.stage.Stage;
  */
 public class HomeClientController implements Initializable {
 
+    @FXML
+    private AnchorPane anchorPane;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+           try {
+            AnchorPane pane= FXMLLoader.load(getClass().getResource("panier.fxml"));
+           anchorPane.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         try {
             // TODO
 
@@ -43,6 +57,7 @@ public class HomeClientController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(HomeClientController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }    
     
      
@@ -103,4 +118,18 @@ public class HomeClientController implements Initializable {
             }
           
      }
+
+    @FXML
+    private void loadProduit(ActionEvent event) {
+         try {
+            AnchorPane pane= FXMLLoader.load(getClass().getResource("selectProduits.fxml"));
+            anchorPane.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void panier(ActionEvent event) {
+    }
 }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMouseClicked="#goToProfile" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.HomeClientController">
+<AnchorPane id="AnchorPane" onMouseClicked="#goToProfile" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.HomeClientController">
  <children>
         <AnchorPane prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #582900;">
          <children>
@@ -21,14 +21,15 @@
       </AnchorPane>
         <AnchorPane layoutY="50.0" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #C8AD7F;">
          <children>
-            <Button layoutX="17.0" layoutY="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Produits" textFill="WHITE">
+            <Button layoutX="17.0" layoutY="50.0" mnemonicParsing="false" onAction="#loadProduit" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Produits" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Button layoutX="17.0" layoutY="146.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Panier" textFill="WHITE">
+            <Button layoutX="17.0" layoutY="146.0" mnemonicParsing="false" onAction="#panier" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Panier" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
          </children></AnchorPane>
+      <AnchorPane fx:id="anchorPane" layoutX="200.0" layoutY="50.0" prefHeight="650.0" prefWidth="800.0" />
     </children>
 </AnchorPane>

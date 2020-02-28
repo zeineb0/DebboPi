@@ -15,6 +15,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,6 +33,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -121,11 +124,14 @@ public class GestionContratController implements Initializable {
     @FXML
     private void onClickAdd(ActionEvent event) throws IOException {
         
-        Parent ajouter_contrat = FXMLLoader.load(getClass().getResource("AjouterContrat.fxml"));
+        Parent ajouter_contrat = FXMLLoader.load(getClass().getResource("HomeFournisseur.fxml"));
         Scene ajouterCV= new Scene(ajouter_contrat);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(ajouterCV);
+        HomeFournisseurController h = new HomeFournisseurController();
+        h.addContrat();
         window.show();
+        
     }
 
     @FXML

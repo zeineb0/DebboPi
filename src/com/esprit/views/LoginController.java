@@ -25,10 +25,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.apache.commons.codec.digest.DigestUtils;
+import static sun.plugin.javascript.navig.JSType.Image;
 
 /**
  * FXML Controller class
@@ -49,6 +52,10 @@ public class LoginController implements Initializable {
     private Label register;
     @FXML
     private Label check;
+    @FXML
+    private ImageView im;
+    @FXML
+    private ImageView LOGO;
    
 
     /**
@@ -60,7 +67,10 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+    Image ima=new Image("background.jpg");
+    im.setImage(ima);
+    ima=new Image("logo-debbo.png");
+    LOGO.setImage(ima);
         // TODO
     }
 
