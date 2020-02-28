@@ -31,10 +31,13 @@ import javafx.stage.Stage;
  */
 public class esprit extends Application {
     
+    
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
                  
-        Parent root = FXMLLoader.load(getClass().getResource("ListeProduit.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MvtStock.fxml"));
         
         Scene scene = new Scene(root);
         
