@@ -10,7 +10,7 @@ import com.esprit.entities.Contrat;
 import com.esprit.entities.ContratDetail;
 import com.esprit.entities.Entrepot;
 import com.esprit.entities.Livraison;
-import com.esprit.entities.Utilisateur;
+import com.esprit.entities.User;
 import com.esprit.utilities.DataSource;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -31,7 +31,7 @@ public class ContratService implements IContratService {
     
     
     @Override
-    public void ajouterContrat (Contrat contrat,Utilisateur user,Entrepot entrepot) 
+    public void ajouterContrat (Contrat contrat,User user,Entrepot entrepot) 
     {
         
             String req="INSERT INTO `debo_base`.`contrat` (`date_deb`, `date_fin`, `FK_id_user`, `FK_id_entrepot`) VALUES (?, ?, ?, ?);";
@@ -131,7 +131,7 @@ public class ContratService implements IContratService {
         return contrat_list;
     }
     
-     public List<ContratDetail> afficherContratTransporteur(Utilisateur user)
+     public List<ContratDetail> afficherContratTransporteur(User user)
      {
           List<ContratDetail> contrat_list = new ArrayList<>();
        
@@ -192,42 +192,42 @@ public class ContratService implements IContratService {
     }
      
      
-    @Override
-     public List<Utilisateur> afficherTransporteurLibre()
-    {
-       
-        List<Utilisateur> transporteur_list = new ArrayList<>();
-       
-       
-        try {
-            String req="SELECT * FROM utilisateur where role='TransporteurLibre'";
-            Statement s=DataSource.getInstance().getConnection().createStatement();
-            ResultSet rs=s.executeQuery(req);
-            while(rs.next())
-            {
-                
-            Utilisateur transporteur = new Utilisateur();
-            transporteur.setId(rs.getInt("id_user"));
-            transporteur.setNom(rs.getString("nom"));
-            transporteur.setPrenom(rs.getString("prenom"));
-            transporteur.setCin(rs.getLong("cin"));
-            transporteur.setDate(rs.getDate("date"));
-            transporteur.setRole(rs.getString("role"));
-            transporteur.setTelephone(rs.getLong("tel"));
-            transporteur.setEmail(rs.getString("email"));
-            transporteur.setPassword(rs.getString("password"));
-            transporteur.setDisponibilite(rs.getInt("disponniblite"));
-            transporteur.setNombre_max_commande(rs.getInt("nbr_maxComm"));
-                   
-            if(transporteur.getDisponibilite()<transporteur.getNombre_max_commande())
-                   transporteur_list.add(transporteur);
-            
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return transporteur_list;
-    }
+//    @Override
+//     public List<User> afficherTransporteurLibre()
+//    {
+//       
+//        List<User> transporteur_list = new ArrayList<>();
+//       
+//       
+//        try {
+//            String req="SELECT * FROM utilisateur where role='TransporteurLibre'";
+//            Statement s=DataSource.getInstance().getConnection().createStatement();
+//            ResultSet rs=s.executeQuery(req);
+//            while(rs.next())
+////            {
+////                
+////            User transporteur = new User();
+////            transporteur.setId(rs.getInt("id_user"));
+////            transporteur.setNom(rs.getString("nom"));
+////            transporteur.setPrenom(rs.getString("prenom"));
+////            transporteur.setCin(rs.getLong("cin"));
+////            transporteur.setDate(rs.getDate("date"));
+////            transporteur.setRole(rs.getString("role"));
+////            transporteur.setTelephone(rs.getLong("tel"));
+////            transporteur.setEmail(rs.getString("email"));
+////            transporteur.setPassword(rs.getString("password"));
+////            transporteur.setDisponibilite(rs.getInt("disponniblite"));
+////            transporteur.setNombre_max_commande(rs.getInt("nbr_maxComm"));
+////                   
+////            if(transporteur.getDisponibilite()<transporteur.getNombre_max_commande())
+////                   transporteur_list.add(transporteur);
+////            
+////            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return transporteur_list;
+//    }
      
      
      
@@ -269,7 +269,7 @@ public class ContratService implements IContratService {
     
     
     @Override
-     public List<Livraison> afficherLivraisonParTransporteurNonLivree(Utilisateur u)
+     public List<Livraison> afficherLivraisonParTransporteurNonLivree(User u)
     {
        
         List<Livraison> livraison_list = new ArrayList<>();
@@ -303,7 +303,7 @@ public class ContratService implements IContratService {
      
      
      
-     public List<Livraison> afficherLivraisonParTransporteurLivree(Utilisateur u)
+     public List<Livraison> afficherLivraisonParTransporteurLivree(User u)
     {
        
         List<Livraison> livraison_list = new ArrayList<>();

@@ -8,7 +8,7 @@ package com.esprit.views;
 import com.esprit.entities.Contrat;
 import com.esprit.entities.ContratDetail;
 import com.esprit.entities.Entrepot;
-import com.esprit.entities.Utilisateur;
+import com.esprit.entities.User;
 import com.esprit.services.impl.ContratService;
 import com.esprit.services.impl.MailService;
 import com.esprit.utilities.DataSource;
@@ -204,7 +204,7 @@ public class AjouterContratController implements Initializable {
        
       
             Contrat contrat = new Contrat(date1, date2);
-            Utilisateur user = new Utilisateur();
+            User user = new User();
             user.setId(id);
             Entrepot entrepot = new Entrepot();
             entrepot.setId_entrepot(id2);

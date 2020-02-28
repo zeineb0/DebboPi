@@ -7,7 +7,7 @@ package com.esprit.views;
 
 import com.esprit.entities.ContratDetail;
 import com.esprit.entities.Livraison;
-import com.esprit.entities.Utilisateur;
+import com.esprit.entities.User;
 import com.esprit.services.impl.ContratService;
 import java.io.IOException;
 import java.net.URL;
@@ -66,7 +66,7 @@ public class ContratListeController implements Initializable {
         
         ContratService contrat_service = new ContratService();
         
-         Utilisateur transporteur1 = new Utilisateur();
+         User transporteur1 = new User();
          transporteur1.setId(1);
         ArrayList<ContratDetail> liste_contrat=(ArrayList<ContratDetail>) contrat_service.afficherContratTransporteur(transporteur1);
         data_list = FXCollections.observableArrayList(liste_contrat);

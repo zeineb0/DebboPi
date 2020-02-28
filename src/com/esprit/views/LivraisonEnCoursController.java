@@ -6,7 +6,7 @@
 package com.esprit.views;
 
 import com.esprit.entities.Livraison;
-import com.esprit.entities.Utilisateur;
+import com.esprit.entities.User;
 import com.esprit.services.impl.ContratService;
 import java.io.IOException;
 import java.net.URL;
@@ -72,7 +72,7 @@ public class LivraisonEnCoursController implements Initializable {
     @FXML
     private TableColumn<Livraison, Void> colBtn;
     private ContratService contrat_service;
-    private Utilisateur transporteur1 = new Utilisateur();
+    private User transporteur1 = new User();
     @FXML
     private TextField filtreAdresse;
 
