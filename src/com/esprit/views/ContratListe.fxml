@@ -8,38 +8,38 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ContratListeController">
+<AnchorPane id="AnchorPane" prefHeight="607.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ContratListeController">
    <children>
-      <Button fx:id="cnt" layoutX="19.0" layoutY="460.0" mnemonicParsing="false" onAction="#OnClickContrat" prefHeight="39.0" prefWidth="143.0" text="Contrat" />
-      <Button fx:id="liv" layoutX="19.0" layoutY="322.0" mnemonicParsing="false" onAction="#OnClickLivraison" prefHeight="39.0" prefWidth="143.0" text="Vos livraisons" />
-      <MenuBar layoutX="-2.0" prefHeight="39.0" prefWidth="1089.0">
-         <menus>
-            <Menu mnemonicParsing="false" text="File">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-      <TableView fx:id="ContratTable" layoutX="181.0" layoutY="39.0" prefHeight="523.0" prefWidth="833.0">
+      <TableView fx:id="ContratTable" layoutX="169.0" layoutY="31.0" prefHeight="518.0" prefWidth="802.0">
          <columns>
-            <TableColumn fx:id="date_debut" prefWidth="162.0" text="Date Début" />
-            <TableColumn fx:id="date_fin" prefWidth="155.0" text="Date Fin" />
-            <TableColumn fx:id="nom" prefWidth="170.0" text="Nom Transporteur" />
-            <TableColumn fx:id="prenom" prefWidth="173.0" text="Prenom Transporteur" />
-            <TableColumn fx:id="Entreprise" prefWidth="170.0" text="L'entrepot" />
+            <TableColumn fx:id="date_debut" prefWidth="140.0" text="Date Début" />
+            <TableColumn fx:id="date_fin" prefWidth="140.0" text="Date Fin" />
+            <TableColumn fx:id="nom" prefWidth="180.0" text="Nom Transporteur" />
+            <TableColumn fx:id="prenom" prefWidth="180.0" text="Prenom Transporteur" />
+            <TableColumn fx:id="Entreprise" prefWidth="160.0" text="L'entrepot" />
          </columns>
       </TableView>
-      <Button fx:id="list_liv" layoutX="20.0" layoutY="391.0" mnemonicParsing="false" onAction="#OnClickListeLivraison" prefHeight="39.0" prefWidth="143.0" text="Livraison en cours" />
+      <Button fx:id="list_liv" layoutX="15.0" layoutY="384.0" mnemonicParsing="false" onAction="#OnClickListeLivraison" prefHeight="39.0" prefWidth="143.0" text="Livraison en cours" />
+      <Button fx:id="liv" layoutX="17.0" layoutY="314.0" mnemonicParsing="false" onAction="#OnClickLivraison" prefHeight="39.0" prefWidth="143.0" text="Vos livraisons" />
+      <Button fx:id="cnt" layoutX="14.0" layoutY="453.0" mnemonicParsing="false" onAction="#OnClickContrat" prefHeight="39.0" prefWidth="143.0" text="Contrat" />
+      <MenuBar layoutX="1.0" prefHeight="32.0" prefWidth="1080.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

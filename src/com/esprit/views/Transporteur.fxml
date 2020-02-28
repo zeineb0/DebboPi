@@ -44,7 +44,7 @@
         </columns>
       </TableView>
       <Button fx:id="list_liv" layoutX="15.0" layoutY="384.0" mnemonicParsing="false" onAction="#OnClickListeLivraison" prefHeight="39.0" prefWidth="146.0" text="Livraison en cours" />
-      <TextField fx:id="filtreAdresse" layoutX="11.0" layoutY="154.0" onKeyTyped="#searchAdresse" prefHeight="31.0" prefWidth="146.0" />
-      <Label layoutX="2.0" layoutY="120.0" text="Rechercher par adresse :" />
+      <TextField fx:id="filtreAdresse" layoutX="16.0" layoutY="137.0" onKeyTyped="#searchAdresse" prefHeight="31.0" prefWidth="146.0" />
+      <Label layoutX="7.0" layoutY="99.0" text="Rechercher par adresse :" />
    </children>
 </AnchorPane>

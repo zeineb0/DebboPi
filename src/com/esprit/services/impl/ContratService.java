@@ -200,7 +200,7 @@ public class ContratService implements IContratService {
        
        
         try {
-            String req="SELECT * FROM utilisateur where role='transporteur'";
+            String req="SELECT * FROM utilisateur where role='TransporteurLibre'";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
             while(rs.next())
@@ -339,7 +339,7 @@ public class ContratService implements IContratService {
      public List<String> getNomPrenom(){
         List<String> maliste = new ArrayList<String>();
         try {
-            String req="SELECT nom , prenom  FROM utilisateur where role='transporteur' ";
+            String req="SELECT nom , prenom  FROM utilisateur where role='TransporteurLibre' ";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
             while(rs.next())
