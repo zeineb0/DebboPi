@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.GestionContratController">
+   <children>
+      <TableView fx:id="ContratTable" layoutX="147.0" layoutY="30.0" prefHeight="495.0" prefWidth="785.0">
+         <columns>
+            <TableColumn fx:id="date_debut" prefWidth="162.0" text="Date Début" />
+            <TableColumn fx:id="date_fin" prefWidth="129.0" text="Date Fin" />
+            <TableColumn fx:id="nom" prefWidth="164.0" text="Nom Transporteur" />
+            <TableColumn fx:id="prenom" prefWidth="177.0" text="Prenom Transporteur" />
+            <TableColumn fx:id="Entreprise" prefWidth="152.0" text="L'entrepot" />
+         </columns>
+      </TableView>
+      <Button fx:id="addC" layoutX="8.0" layoutY="280.0" mnemonicParsing="false" onAction="#onClickAdd" prefHeight="51.0" prefWidth="129.0" text="Ajouter Contrat" />
+      <MenuBar layoutX="-1.0" layoutY="-2.0" prefHeight="32.0" prefWidth="942.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <DatePicker fx:id="dateD" layoutX="258.0" layoutY="559.0" />
+      <DatePicker fx:id="dateF" layoutX="259.0" layoutY="601.0" />
+      <Label layoutX="123.0" layoutY="564.0" text="Date Debut :" />
+      <Label layoutX="123.0" layoutY="606.0" text="Date Fin :" />
+      <Button fx:id="updC" layoutX="739.0" layoutY="574.0" mnemonicParsing="false" onAction="#onClickUpdate" prefHeight="31.0" prefWidth="110.0" text="Renouveler" />
+      <Button fx:id="delC" layoutX="576.0" layoutY="575.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="31.0" prefWidth="110.0" text="Supprimer" />
+   </children>
+</AnchorPane>

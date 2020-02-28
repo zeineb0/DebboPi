@@ -18,8 +18,8 @@ import java.sql.SQLException;
 public class DataSource {
     
     private static DataSource data;
-    private String url = "jdbc:mysql://localhost:3306/debbofinale";
 
+    private String url = "jdbc:mysql://localhost:3306/debbofinale";
 
 
     private String username = "root";

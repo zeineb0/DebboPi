@@ -5,11 +5,8 @@
  */
 package com.esprit.entities;
 
-import java.io.InputStream;
-
 /**
  *
-<<<<<<< HEAD:src/com/esprit/entities/Entrepot.java
  * @author asus
  */
 public class Entrepot {
@@ -157,9 +154,19 @@ this.adresse_entrepot = adresse_entrepot;
             return false;
         }
         return true;
-    }}
+    }
 
     
 
 
     
+
+ 
+    
+
+    
+ 
+    
+   
+    
+}
