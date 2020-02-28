@@ -6,7 +6,6 @@
 package com.esprit.views;
 
 import com.esprit.entities.Entrepot;
-import com.esprit.entities.utilisateur;
 import com.esprit.services.impl.ServiceEntrepot;
 import java.io.IOException;
 import java.net.URL;
@@ -73,6 +72,7 @@ public class GererEntrepotController implements Initializable {
 
 int id;
     @FXML
+    
     private Button supp;
     @FXML
     private Button modifier;
@@ -92,7 +92,6 @@ int id;
     /**
      * Initializes the controller class.
      */
-    utilisateur u = new utilisateur();
     private Label prixLocation;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -110,7 +109,7 @@ int id;
            // addButtonToTable();
             table.setItems(datalist);
       
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
                 ObservableList<String> list;
@@ -247,7 +246,7 @@ int id;
         try {
             table.getItems().clear();
             table.getItems().addAll(serviceEntrepot.readAll());
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             System.out.println("com.esprit.views.EspaceFournisseurController.ref()");        }
     }          
         @FXML

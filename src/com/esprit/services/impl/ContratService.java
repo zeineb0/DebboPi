@@ -284,12 +284,12 @@ public class ContratService implements IContratService {
                 
             Livraison livraison = new Livraison();
             livraison.setId_livraison(rs.getInt("id_livraison"));
-            livraison.setDate(rs.getDate("date_livraison"));
-            livraison.setAdresse_livaison(rs.getString("adresse_livraison"));
+            livraison.setDate_livraison(rs.getDate("date_livraison"));
+            livraison.setAdresse_livraison(rs.getString("adresse_livraison"));
             livraison.setEtat_livraison(rs.getString("etat_livraison"));
             livraison.setAcceptation(rs.getString("acceptation"));
-            livraison.setId_commande(rs.getInt("FK_id_commande"));
-            livraison.setId_user(rs.getInt("FK_id_user"));
+            livraison.setFK_id_commande(rs.getInt("FK_id_commande"));
+            livraison.setFK_id_user(rs.getInt("FK_id_user"));
                    
                    livraison_list.add(livraison);
             
@@ -318,12 +318,12 @@ public class ContratService implements IContratService {
                 
             Livraison livraison = new Livraison();
             livraison.setId_livraison(rs.getInt("id_livraison"));
-            livraison.setDate(rs.getDate("date_livraison"));
-            livraison.setAdresse_livaison(rs.getString("adresse_livraison"));
+            livraison.setDate_livraison(rs.getDate("date_livraison"));
+            livraison.setAdresse_livraison(rs.getString("adresse_livraison"));
             livraison.setEtat_livraison(rs.getString("etat_livraison"));
             livraison.setAcceptation(rs.getString("acceptation"));
-            livraison.setId_commande(rs.getInt("FK_id_commande"));
-            livraison.setId_user(rs.getInt("FK_id_user"));
+            livraison.setFK_id_commande(rs.getInt("FK_id_commande"));
+            livraison.setFK_id_user(rs.getInt("FK_id_user"));
                    
                    livraison_list.add(livraison);
             

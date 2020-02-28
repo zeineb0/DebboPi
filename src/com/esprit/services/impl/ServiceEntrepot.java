@@ -8,7 +8,6 @@ package com.esprit.services.impl;
 
 
 import com.esprit.entities.Entrepot;
-import com.esprit.entities.utilisateur;
 import com.esprit.services.IService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
@@ -18,6 +17,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,7 +34,6 @@ int id_session = 2;
 
     }
 
-    utilisateur utilisateur = new utilisateur();
 
     @Override
     public void ajouter(Entrepot e) throws SQLException {
@@ -148,10 +148,13 @@ int id_session = 2;
     }
 
     @Override
-    public List<Entrepot> readAll() throws SQLException {
+    public List<Entrepot> readAll() {
     List<Entrepot> entrepots=new ArrayList<>();
-    ste=con.createStatement();
-    ResultSet rs=ste.executeQuery("SELECT * FROM `entrepot` WHERE `fk_id_user`= "+id_session +"");
+    try {
+        ste=con.createStatement();
+        
+        
+         ResultSet rs=ste.executeQuery("SELECT * FROM `entrepot` WHERE `fk_id_user`= "+id_session +"");
      while (rs.next()) {                
                int id_entrepot=rs.getInt(1);
                String adresse_entrepot=rs.getString(2);
@@ -163,8 +166,13 @@ int id_session = 2;
                int fk_id_fournisseur=rs.getInt(8);
                Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, prix_location, entreprise,fk_id_fournisseur);
      entrepots.add(e);
+     } 
+    } catch (SQLException ex) {
+        Logger.getLogger(ServiceEntrepot.class.getName()).log(Level.SEVERE, null, ex);
+    }
+   
         
-     }
+     
     return entrepots;
     }
 
