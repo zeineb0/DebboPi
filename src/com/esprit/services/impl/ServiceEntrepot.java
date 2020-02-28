@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.esprit.services.impl;
 
+
 import com.esprit.entities.Entrepot;
-import com.esprit.services.IEntrepotService;
+import com.esprit.entities.utilisateur;
+import com.esprit.services.IService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,39 +18,81 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author Zeineb_yahiaoui
+ * @author asus
  */
-public class ServiceEntrepot implements IEntrepotService{
- Connection conn = DataSource.getInstance().getConnection();
-    private ResultSet rs;
-    private PreparedStatement ps;
-        private Statement ste;
+public class ServiceEntrepot implements IService<Entrepot> {
+int id_session = 2;
+    private final Connection con;
+    private Statement ste;
+    
+    public ServiceEntrepot() {
+    con = DataSource.getInstance().getConnection();
+
+    }
+
+    utilisateur utilisateur = new utilisateur();
 
     @Override
     public void ajouter(Entrepot e) throws SQLException {
-    try{
-    PreparedStatement pre=conn.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`,`fk_id_user`) VALUES ( ?, ?, ?, ?, ?,?);");
+    try{    
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`,`prix_location`,`fk_id_user`) VALUES ( ?, ?, ?, ?, ?,?,?);");
     pre.setString(1, e.getAdresse_entrepot());
     pre.setInt(2, e.getNum_fiscale());
+//        double numR1 = 0;
+//   
+//    ste=con.createStatement();
+//    ResultSet r1=ste.executeQuery("SELECT  `num_fiscale`  FROM  `entrepot` WHERE  `num_fiscale` =  '"+numR1+"' ");
+//     int numR0 = 0;
+//
+//    try {
+//        while (r1.next()) {
+//             int nbp = 0;
+//
+//             numR0 =r1.getInt("numR");
+//            nbp++;   
+//        } 
+//        if(numR1==numR0){
+//            System.out.println("numR exists! : " +numR0 );
+//             } 
+// 
+//        else { 
+//            System.out.println("numR is not existing ");
+//                pre.setInt(2, e.getNum_fiscale());
+//
+//              }
+// 
+//       
+// 
+//      } catch (SQLException e1) {
+//        e1.printStackTrace();
+//        System.out.println("error validation numR: "+e1);
+// 
+//    } 
+ 
+
     pre.setInt(3, e.getQuantite_max());
     pre.setString(4, e.getEtat());
     pre.setString(5, e.getEntreprise());
-    pre.setInt(6, e.getFk_id_fournisseur());
-    pre.executeUpdate();
+    pre.setDouble(6, e.getPrix_location());
+    //if (utilisateur.getRole().equals("fournisseur"))
+      
+    //pre.setInt(7,utilisateur.getId());
+    pre.setInt(7, e.getFk_id_fournisseur());
+    
+    pre.executeUpdate(); 
     }
     catch(SQLException ex)
     {System.out.println("com.esprit.services.impl.ServiceEntrepot.ajouter()");
     }
     }
+
     @Override
     public void delete(int nb) throws SQLException {
      try{
-       PreparedStatement pre = conn.prepareStatement("DELETE FROM `entrepot` WHERE `id_entrepot`= ?");
+       PreparedStatement pre = con.prepareStatement("DELETE FROM `entrepot` WHERE `id_entrepot`= ?");
        pre.setInt(1, nb);
        pre.executeUpdate();
        System.out.println( "l'entrepot qui a l'id :" +nb + " est supprimé.");
@@ -55,48 +100,73 @@ public class ServiceEntrepot implements IEntrepotService{
      catch(SQLException ex)
      {System.out.println("com.esprit.services.impl.ServiceEntrepot.delete()");
      }
+       
+
     }
+    
     @Override
-    public void update(Entrepot e) throws SQLException {
-    try {
-            PreparedStatement ps=conn.prepareStatement("UPDATE `entrepot` SET `adresse`=?,`num_fiscale`=?,`quantite_max`=?,`etat`=?,`entreprise`=? ,`fk_id_user`=? WHERE `id_entrepot`=?;");
+    public int update(Entrepot e) throws SQLException {
+    int st=0;
+        try {
+            PreparedStatement ps=con.prepareStatement("UPDATE `entrepot` SET `adresse`=?,`num_fiscale`=?,`quantite_max`=?,`etat`=?,`prix_location`= ? ,`entreprise`=?  WHERE `id_entrepot`=?;");
             ps.setString(1, e.getAdresse_entrepot());
             ps.setInt(2, e.getNum_fiscale());
             ps.setInt(3,  e.getQuantite_max());
             ps.setString(4, e.getEtat());
-            ps.setString(5, e.getEntreprise());
-            ps.setInt(6, e.getFk_id_fournisseur());
+            ps.setDouble(5,e.getPrix_location());
+            ps.setString(6, e.getEntreprise());
             ps.setInt(7, e.getId_entrepot());
-            ps.executeUpdate();
-            System.out.println(e.getId_entrepot()+ " updated.");
+            int nb= e.getId_entrepot();
+            
+            st = ps.executeUpdate();
+            System.out.println("entrepot" +nb);
         } catch (SQLException ex) {
                System.out.println("com.esprit.services.impl.ServiceEntrepot.update()");
         }
+        return st;
     }
-    @Override
-    public List<Entrepot> readAll() {
-        List<Entrepot> entrepots = new ArrayList<>();
-       String req = "SELECT * FROM `entrepot` WHERE 1";
-        
+    public Entrepot getEntrepotId(int id) throws SQLException
+    { Entrepot e = new Entrepot();
         try {
-            ps = conn.prepareStatement(req);
-             rs = ps.executeQuery();
-         while (rs.next()) {
-             Entrepot e = new Entrepot();
-              e.setId_entrepot(rs.getInt("id_entrepot"));
-                                   e.setAdresse_entrepot(rs.getString("adresse"));
-                                   e.setNum_fiscale(rs.getInt("num_fiscale"));
-                                   e.setQuantite_max(rs.getInt("quantite_max"));
-                                   e.setEtat(rs.getString("etat"));
-                                   e.setEntreprise(rs.getString("entreprise"));
-             entrepots.add(e);
-         }
+           PreparedStatement ps=con.prepareStatement("select * from entrepot WHERE `id_entrepot`=?;");
+           ps.setInt(1, id);
+           ResultSet rs=ps.executeQuery();
+           while(rs.next())
+           {e.setId_entrepot(rs.getInt(1));
+            e.setAdresse_entrepot(rs.getString(2));
+            e.setNum_fiscale(rs.getInt(3));
+            e.setQuantite_max(rs.getInt(4));
+            e.setEtat(rs.getString(5));
+            e.setEntreprise(rs.getString(6));
+            
+           }
+           
+           }
+        catch (SQLException ex) {
+               System.out.println("com.esprit.services.impl.ServiceEntrepot.getEntrepotId()");}
+       return e;        
+    }
+
+    @Override
+    public List<Entrepot> readAll() throws SQLException {
+    List<Entrepot> entrepots=new ArrayList<>();
+    ste=con.createStatement();
+    ResultSet rs=ste.executeQuery("SELECT * FROM `entrepot` WHERE `fk_id_user`= "+id_session +"");
+     while (rs.next()) {                
+               int id_entrepot=rs.getInt(1);
+               String adresse_entrepot=rs.getString(2);
+               int num_fiscale=rs.getInt(3);
+               int quantite_max=rs.getInt(4);
+               String etat = rs.getString(5);
+               Double prix_location=rs.getDouble(6);
+               String entreprise=rs.getString(7);
+               int fk_id_fournisseur=rs.getInt(8);
+               Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, prix_location, entreprise,fk_id_fournisseur);
+     entrepots.add(e);
         
-     } catch (SQLException ex) {
-     
-         System.out.println("erreur");
      }
-        System.out.println(entrepots);
-     return entrepots;
+    return entrepots;
+    }
+
    
-}}
+}

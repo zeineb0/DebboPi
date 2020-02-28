@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.GererLocationController">
+   <children>
+      <Label layoutX="18.0" layoutY="34.0" prefHeight="51.0" prefWidth="425.0" style="-fx-background-color: ;" text="Liste des Entrepots à louer" textFill="FIREBRICK">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="7.0" layoutY="85.0" prefHeight="247.0" prefWidth="575.0">
+         <columns>
+            <TableColumn fx:id="adre" prefWidth="112.0" text="Adresse Entrepot" />
+            <TableColumn fx:id="num" prefWidth="111.0" text="Numero fiscale" />
+            <TableColumn fx:id="quant" minWidth="0.0" prefWidth="109.0" text="Quantité max" />
+            <TableColumn fx:id="etat" prefWidth="54.0" text="Etat" />
+            <TableColumn fx:id="entrep" prefWidth="94.0" text="Entreprise" />
+            <TableColumn fx:id="prix" prefWidth="94.0" text="Prix location" />
+         </columns>
+      </TableView>
+      <TextField fx:id="prix1" layoutX="272.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" />
+      <Label layoutX="101.0" layoutY="427.0" prefHeight="30.0" prefWidth="150.0" text="prix">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="101.0" layoutY="348.0" prefHeight="30.0" prefWidth="150.0" text="Date debut location">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="101.0" layoutY="386.0" prefHeight="30.0" prefWidth="150.0" text="Date fin location">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="206.0" layoutY="547.0" mnemonicParsing="false" onAction="#ajouterLocation" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: CD5C5C;" text="Ajouter location">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="dateDeb" layoutX="273.0" layoutY="351.0" />
+      <DatePicker fx:id="dateFin" layoutX="273.0" layoutY="389.0" />
+      <Label fx:id="erreur" layoutX="468.0" layoutY="351.0" prefHeight="25.0" prefWidth="133.0" text="Verifie la date debut " textFill="#e30000" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button layoutX="377.0" layoutY="547.0" mnemonicParsing="false" onAction="#listerLocation" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: CD5C5C;" text="Lister location">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="erreur1" layoutX="468.0" layoutY="389.0" prefHeight="25.0" prefWidth="121.0" text="Verifie la date fin " textFill="#e30000" underline="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

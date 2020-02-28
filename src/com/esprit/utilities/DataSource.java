@@ -20,11 +20,12 @@ public class DataSource {
     private static DataSource data;
     private String url = "jdbc:mysql://localhost:3306/debbofinale";
 
+
     private String username = "root";
     private String pasword = "";
     private Connection con;
 
-    public DataSource() {
+    private DataSource() {
         try {
             con = (Connection)DriverManager.getConnection(url, username, pasword);
             System.out.println("connexion etablie");
@@ -32,21 +33,11 @@ public class DataSource {
         } catch (SQLException e) {
 
             System.out.println("Erreur de Connexion ");
+            System.out.println("Class DataSource :  Erreur de Connexion ");
             System.out.println(e);
         }
     }
-  
-    public static Connection conDB() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/debbov1", "root", "");
-            return con ;
-        } catch (Exception ex) {
-           return null;
-        }
-        
-    }
-    
+
     public Connection getConnection() {
         return con;
 
