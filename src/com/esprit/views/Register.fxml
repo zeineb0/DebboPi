@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.RegisterController">
+   <children>
+      <Pane layoutX="-1.0" layoutY="-45.0" prefHeight="75.0" prefWidth="610.0" style="-fx-background-color: #582900;">
+         <children>
+            <Label layoutX="8.0" layoutY="53.0" text="Register" textFill="#fffefe" />
+         </children>
+      </Pane>
+      <TextField fx:id="nom" layoutX="32.0" layoutY="157.0" promptText="Nom" />
+      <TextField fx:id="prenom" layoutX="32.0" layoutY="233.0" promptText="Prénom" />
+      <TextField fx:id="cin" layoutX="32.0" layoutY="305.0" promptText="CIN" />
+      <TextField fx:id="date" layoutX="257.0" layoutY="305.0" promptText="Date de naissance" />
+      <TextField fx:id="tel" layoutX="440.0" layoutY="157.0" promptText="Numéro de Telephone" />
+      <TextField fx:id="email" layoutX="257.0" layoutY="157.0" promptText="Email" />
+      <PasswordField fx:id="password" layoutX="257.0" layoutY="233.0" promptText="Password" />
+      <Label layoutX="32.0" layoutY="130.0" text="Last name :" />
+      <Label layoutX="32.0" layoutY="201.0" text="Name :" />
+      <Label layoutX="32.0" layoutY="272.0" text="IDN :" />
+      <Label layoutX="257.0" layoutY="130.0" text="Email :" />
+      <Label layoutX="257.0" layoutY="201.0" text="Password :" />
+      <Label layoutX="440.0" layoutY="201.0" text="Role :" />
+      <Label layoutX="440.0" layoutY="130.0" text="Cellphone Number :" />
+      <Label layoutX="257.0" layoutY="272.0" text="Date of birth (YYYY-MM-DD) :" />
+      <Button fx:id="btnRegister" alignment="CENTER" layoutX="440.0" layoutY="353.0" mnemonicParsing="false" onMouseClicked="#register" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #582900;" text="Register" textFill="#f8f3f3" />
+      <Label fx:id="login" alignment="CENTER" layoutX="32.0" layoutY="357.0" onMouseClicked="#goToLogin" prefHeight="17.0" prefWidth="275.0" style="-fx-background-color: #582900;" text="Already have an account ? Login" textFill="#f8f6f6" />
+      <ImageView fitHeight="67.0" fitWidth="67.0" layoutX="255.0" layoutY="30.0">
+         <image>
+            <Image url="@../../../../../../../Desktop/83913586_793136547871997_1473366231422599168_n.png" />
+         </image>
+      </ImageView>
+      <RadioButton fx:id="radioF" layoutX="440.0" layoutY="225.0" mnemonicParsing="false" text="Fournisseur">
+         <toggleGroup>
+            <ToggleGroup fx:id="roless" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioC" layoutX="440.0" layoutY="250.0" mnemonicParsing="false" text="Client" toggleGroup="$roless" />
+      <RadioButton fx:id="radiotl" layoutX="440.0" layoutY="272.0" mnemonicParsing="false" text="Transporteur Libre" toggleGroup="$roless" />
+      <RadioButton fx:id="radiota" layoutX="440.0" layoutY="297.0" mnemonicParsing="false" text="Transporteur Associé" toggleGroup="$roless" />
+   </children>
+</AnchorPane>

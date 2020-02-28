@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ProfileController">
+   <children>
+      <Pane layoutX="100.0" layoutY="100.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #C8AD7F;">
+         <children>
+            <Pane layoutX="100.0" layoutY="37.5" prefHeight="150.0" prefWidth="600.0" style="-fx-background-color: #582900;">
+               <children>
+                  <Label layoutX="50.0" layoutY="30.0" text="Change password :" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="oldpw" layoutX="50.0" layoutY="70.0" promptText="old password" />
+                  <PasswordField fx:id="newpw" layoutX="250.0" layoutY="70.0" promptText="new password" />
+                  <Button fx:id="chpw" layoutX="445.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#changepww" text="OK" />
+                  <Label fx:id="labelpw" layoutX="50.0" layoutY="110.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="100.0" layoutY="225.0" prefHeight="150.0" prefWidth="600.0" style="-fx-background-color: #582900;">
+               <children>
+                  <TextField fx:id="newemail" layoutX="50.0" layoutY="70.0" promptText="New IDN" />
+                  <Label layoutX="50.0" layoutY="30.0" text="Change Email :" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="chemail" layoutX="250.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#changeEmail" text="OK" />
+                  <Label fx:id="labelemail" layoutX="50.0" layoutY="110.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="100.0" layoutY="410.5" prefHeight="150.0" prefWidth="600.0" style="-fx-background-color: #582900;">
+               <children>
+                  <Label layoutX="50.0" layoutY="30.0" text="Change Cellphone number :" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="newtel" layoutX="50.0" layoutY="70.0" promptText="New Cellphone number" />
+                  <Button fx:id="chtel" layoutX="250.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#changeTel" text="OK" />
+                  <Label fx:id="labeltel" layoutX="50.0" layoutY="110.0" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #582900;">
+         <children>
+            <Label layoutX="10.0" onMouseClicked="#goToAcceuil" prefHeight="50.0" prefWidth="200.0" text=" Acceuil" textFill="#fcf7f7">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

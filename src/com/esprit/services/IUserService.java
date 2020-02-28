@@ -5,10 +5,17 @@
  */
 package com.esprit.services;
 
+import com.esprit.entities.User;
+import java.sql.SQLException;
+
 /**
  *
  * @author Zeineb_yahiaoui
  */
-public interface test {
+public interface IUserService {
     
+    public void changerMdp(User u ,String amdp,String nmdp)throws SQLException;
+    public void supprimerUser(User u) throws SQLException;
+    
+  
 }
