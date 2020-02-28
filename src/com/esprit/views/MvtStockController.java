@@ -102,6 +102,11 @@ public class MvtStockController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         erreur.setVisible(false);
+        txt.setDisable(true);
+        txt1.setDisable(true);
+        txt2.setDisable(true);
+        txt3.setDisable(true);
+        
         categories= categorieController.listCategorie();
         produits=produitController.listeProduit();
         entrepots=entrepotController.readAll();
