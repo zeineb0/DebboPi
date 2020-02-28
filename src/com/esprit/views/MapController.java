@@ -20,6 +20,8 @@ import com.teamdev.jxmaps.MapStatus;
 import com.teamdev.jxmaps.MapTypeControlOptions;
 import com.teamdev.jxmaps.MapViewOptions;
 import com.teamdev.jxmaps.Marker;
+import com.teamdev.jxmaps.StreetViewLayout;
+import com.teamdev.jxmaps.TrafficLayer;
 import com.teamdev.jxmaps.javafx.MapView;
 import java.net.URL;
 import java.sql.Connection;
@@ -81,6 +83,7 @@ public class MapController implements Initializable {
         private void performGeocode(String text) {
         // Getting the associated map object
         Map map = mapView.getMap();
+        
         Marker mark = new Marker(map);
         // Creating a geocode request
         GeocoderRequest request = new GeocoderRequest();
@@ -99,6 +102,14 @@ public class MapController implements Initializable {
                     LatLng location = result.getGeometry().getLocation();
                     // Setting the map center to result location
                     mark.setPosition(location);
+                    final InfoWindow window = new InfoWindow(map);
+                    window.setContent("Im here!");
+                    window.open(map, mark);
+                    new TrafficLayer(map);
+                    MapViewOptions options = new MapViewOptions();
+                    options.streetViewLayout().setPosition(StreetViewLayout.Position.RIGHT);
+                    options.streetViewLayout().setSize(300);
+                    MapView view = new MapView(options);
                 }
             }
         });

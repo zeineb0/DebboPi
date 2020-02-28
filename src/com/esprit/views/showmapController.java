@@ -11,6 +11,7 @@ import com.teamdev.jxmaps.GeocoderCallback;
 import com.teamdev.jxmaps.GeocoderRequest;
 import com.teamdev.jxmaps.GeocoderResult;
 import com.teamdev.jxmaps.GeocoderStatus;
+import com.teamdev.jxmaps.InfoWindow;
 import com.teamdev.jxmaps.LatLng;
 import com.teamdev.jxmaps.Map;
 import com.teamdev.jxmaps.MapOptions;
@@ -61,7 +62,7 @@ public class showmapController implements Initializable {
                         Connection con = DataSource.getInstance().getConnection();
                         ResultSet res = con.createStatement().executeQuery("select adresse_livraison from livraison where etat_livraison='NonLivree'");
                         while (res.next()){
-                            performGeocode(res.getString(1));                          
+                            performGeocode(res.getString(1));     
                         }
 
                     } catch (SQLException ex) {
@@ -93,6 +94,9 @@ public class showmapController implements Initializable {
                     LatLng location = result.getGeometry().getLocation();
                     // Setting the map center to result location
                     mark.setPosition(location);
+                    final InfoWindow window = new InfoWindow(map);
+                    window.setContent("Im Waiting");
+                    window.open(map, mark);
                 }
             }
         });
