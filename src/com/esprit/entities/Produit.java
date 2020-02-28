@@ -5,6 +5,9 @@
  */
 package com.esprit.entities;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author Zeineb_yahiaoui
@@ -21,8 +24,15 @@ private int id;
     private Entrepot entrepot;
     private int quantite;
 
-    public Produit() {
-    }
+    
+    
+
+    
+  
+
+
+    
+    
 
     public int getQuantite() {
         return quantite;

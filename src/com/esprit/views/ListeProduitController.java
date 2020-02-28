@@ -101,8 +101,10 @@ public class ListeProduitController implements Initializable {
     @FXML
     private Button btnImage;
     List<String> lstFiles;
-    private ImageView imgViwer;
 String urli;
+    @FXML
+    private ImageView imgViwer;
+    private TableColumn<Produit, ImageView> clImage;
     /**
      * Initializes the controller class.
      */
@@ -143,7 +145,7 @@ String urli;
                   //activer les Buttons 
                   reverseButtonModif(false);
                   reverseButtonAjout(true);
-                  reverseButtonSupp(true);
+                  reverseButtonSupp(false);
                   reverseButtonAnnuler(false);
                   setInvisible(true);
 
@@ -158,8 +160,8 @@ String urli;
                  // System.out.println(ProduitSelectionner.getEntrepot());
                   cmbC.setValue(ProduitSelectionner.getCategorie());
                   comboEntrepot.setValue(ProduitSelectionner.getEntrepot());
-                  ProduitSelectionner.setImage(urli);
-                  
+                  Image image = new Image(ProduitSelectionner.getImage());
+                  imgViwer.setImage(image);
               }
                     });}
     
@@ -207,6 +209,7 @@ String urli;
        ProduitSelectionner.setEntrepot(comboEntrepot.getValue());
         System.out.println(comboEntrepot.getValue());
         //System.out.println(ProduitSelectionner);
+       ProduitSelectionner.setImage(urli);
        produitController.modiferProduit(ProduitSelectionner);
         ref();
     }
@@ -222,19 +225,20 @@ String urli;
     @FXML
     private void onClickSupp(ActionEvent event) {
         
-         btnSupp.setOnMouseClicked((event2) -> {
-            
-
-                
                 reverseButtonModif(true);
                 reverseButtonAjout(true);
                 reverseButtonAnnuler(false);
                 reverseButtonSupp(false);
-                
+ 
+           
+                 if (ProduitSelectionner != null) {
+                                   
          produitController.supprimerProduit(ProduitSelectionner);
          table.getItems().remove(indexProduitSelectionner);
-         
-        });
+             
+                
+        }
+ 
 
     }
 
@@ -278,8 +282,8 @@ String urli;
         p.setCategorie(c);
         Entrepot e = comboEntrepot.getValue();
         p.setEntrepot(e);
+        p.setImage(urli);
         produitController.ajouterProduit(p);  
-        //p.setImage("https://farm66.staticflickr.com/65535/49592964566_49db46f2b1_z.jpg");
          }
         
       ref();
@@ -304,11 +308,11 @@ String urli;
         if (f != null) {
             
             InputStream targetStream = new FileInputStream(f);
-            String urli = flickr.savePhoto(targetStream, "FirstImage");
+             urli = flickr.savePhoto(targetStream, "FirstImage");
             System.out.println("************   " +urli);
             //pour afficher l'image 
             Image image = new Image(urli);
-            imgViwer.setImage(image);
+         imgViwer.setImage(image);
             
         }
 

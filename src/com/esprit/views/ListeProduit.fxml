@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -16,7 +17,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <TableView fx:id="table" layoutX="212.0" layoutY="387.0" prefHeight="200.0" prefWidth="421.0">
+      <TableView fx:id="table" layoutX="77.0" layoutY="388.0" prefHeight="200.0" prefWidth="413.0">
         <columns>
           <TableColumn fx:id="clLib" prefWidth="119.0" text="LIBELLE" />
           <TableColumn fx:id="clPrix" prefWidth="92.0" text="PRIX" />
@@ -42,5 +43,6 @@
       <Button fx:id="btnAj" layoutX="265.0" layoutY="645.0" mnemonicParsing="false" onAction="#onClickAjouter" text="Ajouter" />
       <ComboBox fx:id="comboEntrepot" layoutX="370.0" layoutY="325.0" prefWidth="150.0" promptText="entrepot" />
       <Button fx:id="btnImage" layoutX="377.0" layoutY="645.0" mnemonicParsing="false" onAction="#onClickChooseImage" text="Upload image" />
+      <ImageView fx:id="imgViwer" fitHeight="150.0" fitWidth="200.0" layoutX="165.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
