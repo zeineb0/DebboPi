@@ -196,6 +196,7 @@ public class ProfileController implements Initializable {
                 } catch (IOException ex) {
                     System.err.print(ex.getMessage());
                 }
+                                                                 System.out.println("***");
               }
 
         
