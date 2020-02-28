@@ -7,6 +7,7 @@ package com.esprit.views;
 
 import com.esprit.entities.Session;
 import static com.esprit.entities.Session.getIdSession;
+import com.esprit.entities.User;
 import com.esprit.utilities.DataSource;
 import java.io.IOException;
 import java.net.URL;
@@ -63,6 +64,8 @@ public class LoginController implements Initializable {
         // TODO
     }
 
+     
+    
     PreparedStatement ps = null;
     ResultSet rs = null;
     String roleee="";
@@ -92,6 +95,8 @@ public class LoginController implements Initializable {
            roleee=rs.getString("role");
            idS=rs.getInt("id_user");
            Session.setIdSession(idS);
+           
+           
             System.out.println(getIdSession());
             check.setTextFill(Color.GREEN);
             check.setText("Logging Succesfull..Redirecting..");
@@ -198,6 +203,8 @@ public class LoginController implements Initializable {
                 } catch (IOException ex) {
                     System.err.print(ex.getMessage());
                 }
+           
+                                                                 
               }
             }
         }
@@ -223,5 +230,7 @@ public class LoginController implements Initializable {
     }
 
  
+    
+    
 
 }
