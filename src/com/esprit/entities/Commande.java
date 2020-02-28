@@ -5,76 +5,112 @@
  */
 package com.esprit.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
- * @author Dell
+ * @author ghazi
  */
 public class Commande {
     
-    private int id;
-    private Date date_debut,date_fin;
-    private double montant;
-    private int id_user;
-
-    public Commande() {
-    }
+    private int idCommande;
+    private Date dateCommande;
+    private Date dateExp;
+    private String listProduit;
+    private float montant;
+    private String Type_paiement;
+    private int idClient;
+    private int nbrProduit;
     
     
+    public Commande(){};
 
-    public Commande(int id, Date date_debut, Date date_fin, double montant, int id_user) {
-        this.id = id;
-        this.date_debut = date_debut;
-        this.date_fin = date_fin;
+    public Commande(Date dateCommande, Date dateExp, String listProduit, float montant, String Type_paiement, int idClient, int nbrProduit) {
+        this.dateCommande = dateCommande;
+        this.dateExp = dateExp;
+        this.listProduit = listProduit;
         this.montant = montant;
-        this.id_user = id_user;
+        this.Type_paiement = Type_paiement;
+        this.idClient = idClient;
+        this.nbrProduit = nbrProduit;
+    }
+    
+    public Commande(int idCommande, Date dateCommande, Date dateExp, String listProduit, float montant, String Type_paiement, int idClient, int nbrProduit) {
+        this.idCommande = idCommande;
+        this.dateCommande = dateCommande;
+        this.dateExp = dateExp;
+        this.listProduit = listProduit;
+        this.montant = montant;
+        this.Type_paiement = Type_paiement;
+        this.idClient = idClient;
+        this.nbrProduit = nbrProduit;
     }
 
-    public int getId() {
-        return id;
+ 
+    public int getIdCommande() {
+        return idCommande;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCommande(int idCommande) {
+        this.idCommande = idCommande;
     }
 
-    public Date getDate_debut() {
-        return date_debut;
+    public Date getDateCommande() {
+        return dateCommande;
     }
 
-    public void setDate_debut(Date date_debut) {
-        this.date_debut = date_debut;
+    public void setDateCommande(Date dateCommande) {
+        this.dateCommande = dateCommande;
     }
 
-    public Date getDate_fin() {
-        return date_fin;
+    public Date getDateExp() {
+        return dateExp;
     }
 
-    public void setDate_fin(Date date_fin) {
-        this.date_fin = date_fin;
+    public void setDateExp(Date dateExp) {
+        this.dateExp = dateExp;
     }
 
-    public double getMontant() {
+    public String getListProduit() {
+        return listProduit;
+    }
+
+    public void setListProduit(String listProduit) {
+        this.listProduit = listProduit;
+    }
+
+    public float getMontant() {
         return montant;
     }
 
-    public void setMontant(double montant) {
+    public void setMontant(float montant) {
         this.montant = montant;
     }
 
-    public int getId_user() {
-        return id_user;
+    public String getType_paiement() {
+        return Type_paiement;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setType_paiement(String Type_paiement) {
+        this.Type_paiement = Type_paiement;
     }
 
-    @Override
-    public String toString() {
-        return "Commande{" + "id=" + id + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", montant=" + montant + ", id_user=" + id_user + '}';
+    public int getIdClient() {
+        return idClient;
     }
+
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
+    }
+
+    public int getNbrProduit() {
+        return nbrProduit;
+    }
+
+    public void setNbrProduit(int nbrPrdouit) {
+        this.nbrProduit = nbrPrdouit;
+    }
+   
     
     
     
