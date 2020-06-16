@@ -191,44 +191,44 @@ public class ContratService implements IContratService {
         }
     }
      
-     
-//    @Override
-//     public List<User> afficherTransporteurLibre()
-//    {
-//       
-//        List<User> transporteur_list = new ArrayList<>();
-//       
-//       
-//        try {
-//            String req="SELECT * FROM utilisateur where role='TransporteurLibre'";
-//            Statement s=DataSource.getInstance().getConnection().createStatement();
-//            ResultSet rs=s.executeQuery(req);
-//            while(rs.next())
-////            {
-////                
-////            User transporteur = new User();
-////            transporteur.setId(rs.getInt("id_user"));
-////            transporteur.setNom(rs.getString("nom"));
-////            transporteur.setPrenom(rs.getString("prenom"));
-////            transporteur.setCin(rs.getLong("cin"));
-////            transporteur.setDate(rs.getDate("date"));
-////            transporteur.setRole(rs.getString("role"));
-////            transporteur.setTelephone(rs.getLong("tel"));
-////            transporteur.setEmail(rs.getString("email"));
-////            transporteur.setPassword(rs.getString("password"));
-////            transporteur.setDisponibilite(rs.getInt("disponniblite"));
-////            transporteur.setNombre_max_commande(rs.getInt("nbr_maxComm"));
-////                   
-////            if(transporteur.getDisponibilite()<transporteur.getNombre_max_commande())
-////                   transporteur_list.add(transporteur);
-////            
-////            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return transporteur_list;
-//    }
-     
+     /*
+    @Override
+     public List<User> afficherTransporteurLibre()
+    {
+       
+        List<User> transporteur_list = new ArrayList<>();
+       
+       
+        try {
+            String req="SELECT * FROM utilisateur where role='TransporteurLibre'";
+            Statement s=DataSource.getInstance().getConnection().createStatement();
+            ResultSet rs=s.executeQuery(req);
+            while(rs.next())
+            {
+                
+            User transporteur = new User();
+            transporteur.setId(rs.getInt("id_user"));
+            transporteur.setNom(rs.getString("nom"));
+            transporteur.setPrenom(rs.getString("prenom"));
+            transporteur.setCin(rs.getLong("cin"));
+            transporteur.setDate(rs.getDate("date"));
+            transporteur.setRole(rs.getString("role"));
+            transporteur.setTelephone(rs.getLong("tel"));
+            transporteur.setEmail(rs.getString("email"));
+            transporteur.setPassword(rs.getString("password"));
+            transporteur.setDisponibilite(rs.getInt("disponniblite"));
+            transporteur.setNombre_max_commande(rs.getInt("nbr_maxComm"));
+                   
+            if(transporteur.getDisponibilite()<transporteur.getNombre_max_commande())
+                   transporteur_list.add(transporteur);
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return transporteur_list;
+    }
+     */
      
      
     @Override
@@ -353,6 +353,11 @@ public class ContratService implements IContratService {
             Logger.getLogger(ContratService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return maliste;
+    }
+
+    @Override
+    public List<User> afficherTransporteurLibre() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
         

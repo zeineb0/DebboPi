@@ -207,6 +207,9 @@ public class MvtStockController implements Initializable {
      
         //ProduitSelectionner.setQuantite(qte);
         mouvementController.ajouterMouvement(mvt);
+        txtQ.setText("");
+        date.setValue(null);
+        chE.setSelected(false);
     }
    
 }

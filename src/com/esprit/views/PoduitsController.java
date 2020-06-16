@@ -38,15 +38,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
-
 /**
  * FXML Controller class
  *
- * @author ghazi
+ * @author Zeineb_yahiaoui
  */
-public class SelectProduitsController implements Initializable {
-
-    @FXML
+public class PoduitsController implements Initializable {
+ @FXML
     private ComboBox<String> ComboBoxCat;
     
     @FXML
@@ -75,11 +73,10 @@ public class SelectProduitsController implements Initializable {
         }
         Count.setText(p.getNbrProduit()+"");
         listProduits=p.getListProduit();
-        Image image= new Image("/com.esprit.images/13335.png");
+         Image image= new Image("13335.png");
         imagePanier.setImage(image);
-        image = new Image("/com.esprit.images/logo-debbo.png");
-        LogoApp.setImage(image);
-        ComboBoxCat.getItems().add("Toutes categories");
+        image = new Image("logo-debbo.png");
+        LogoApp.setImage(image);ComboBoxCat.getItems().add("Toutes categories");
         Connection cnx=DataSource.getInstance().getConnection();
         String req="SELECT * FROM `categories`";
         PreparedStatement pst;
@@ -120,7 +117,7 @@ public class SelectProduitsController implements Initializable {
              x.setTranslateY(25);
              x.setTranslateX(25);
         GridPane grp= new GridPane();
-         ImageView im = new ImageView("logo-debbo.png");
+         ImageView im = new ImageView("/com.esprit.images/logo-debbo.png");
          im.setFitHeight(50);
          im.setFitWidth(50);
          grp.add(im, 0, 0);

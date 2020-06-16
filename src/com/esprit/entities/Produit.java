@@ -23,16 +23,16 @@ private int id;
     private Categorie categorie;
     private Entrepot entrepot;
     private int quantite;
+    private boolean promotion;
 
-    
-    
+    public boolean isPromotion() {
+        return promotion;
+    }
 
-    
-  
+    public void setPromotion(boolean promotion) {
+        this.promotion = promotion;
+    }
 
-
-    
-    
 
     public int getQuantite() {
         return quantite;

@@ -43,7 +43,8 @@ public class HomeClientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
            try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("panier.fxml"));
+            AnchorPane pane= FXMLLoader.load(getClass().getResource("Poduits.fxml"));
+               System.out.println("nice");
            anchorPane.getChildren().setAll(pane);
        } catch (IOException ex) {
            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);

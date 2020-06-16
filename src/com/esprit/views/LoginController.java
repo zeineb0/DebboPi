@@ -9,7 +9,11 @@ import com.esprit.entities.Session;
 import static com.esprit.entities.Session.getIdSession;
 import com.esprit.entities.User;
 import com.esprit.utilities.DataSource;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,6 +35,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.IOUtils;
+import org.json.JSONObject;
 import static sun.plugin.javascript.navig.JSType.Image;
 
 /**
@@ -88,15 +94,93 @@ public class LoginController implements Initializable {
         String usr = email.getText();
         String pw = password.getText();
 
-        //Query
-        String req = "SELECT * FROM utilisateur Where email = ? and password ='"+DigestUtils.shaHex(pw)+"'";
+
+        
+        
+         
+              
+                try {
+            
+        
+        
+            String query_url = "http://localhost/DebboWeb/web/app_dev.php/forum/logg";
+           String json = "{\n" +
+"    \"username\": \""+email.getText()+"\",\n" +
+"    \"password\": \""+password.getText()+"\"\n" +
+"}";
+           URL url = new URL(query_url);
+           HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+           conn.setConnectTimeout(5000);
+           conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+           conn.setDoOutput(true);
+           conn.setDoInput(true);
+           conn.setRequestMethod("POST");
+           OutputStream os = conn.getOutputStream();
+           os.write(json.getBytes("UTF-8"));
+           os.close(); 
+           // read the response
+           InputStream in = new BufferedInputStream(conn.getInputStream());
+           String result = IOUtils.toString(in, "UTF-8");
+           System.out.println(result);
+           System.out.println("result after Reading JSON Response");
+           JSONObject myResponse = new JSONObject(result);
+
+           in.close();
+           conn.disconnect();
+        
+            System.out.println("1");
+
+                               
+                   //Query
+        String req = "SELECT * FROM `utilisateur` WHERE `username` LIKE '"+email.getText()+"'";
 
         ps = con.prepareStatement(req);
-        ps.setString(1, usr);
-        //ps.setString(2, pw);
+        
+      
         rs = ps.executeQuery();
+        
+        if (rs.next()){
+            
+           roleee=rs.getString("role");
+                  System.out.println("2");
+           idS=rs.getInt("id_user");
+           
+           Session.setIdSession(idS);
+           
+           
+            System.out.println(getIdSession());
+            
+            System.out.println(roleee);
+            
+            check.setTextFill(Color.GREEN);
+            check.setText("Logging Succesfull..Redirecting..");
+            return "Success";
+            
+        }
+        else{
+            
+            System.out.println("sar prb  +++++++++");
+            check.setTextFill(Color.TOMATO);
+            check.setText("Wrong Email/password");
+            
+            return "Error";
+        }
 
-        if (!rs.next()) {
+            
+        } 
+                catch (Exception e) {
+                    System.out.println("sar prb ************** +++++++++");
+            check.setTextFill(Color.TOMATO);
+            check.setText("Wrong Email/password");
+            
+            return "Error";
+        }
+ 
+         
+         
+        
+
+   /*     if (!rs.next()) {
             check.setTextFill(Color.TOMATO);
             check.setText("Wrong Email/password");
             return "Error";
@@ -112,7 +196,7 @@ public class LoginController implements Initializable {
             check.setText("Logging Succesfull..Redirecting..");
             return "Success";
 
-        }
+        }*/
 
     }
      @FXML
@@ -156,7 +240,8 @@ public class LoginController implements Initializable {
 
                 } catch (IOException ex) {
                     System.err.print(ex.getMessage());
-                } }
+                }
+                }
                 if (roleee.equals("Client")) {
                     try {
                     Node node = (Node) event.getSource();

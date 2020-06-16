@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.PoduitsController">
+   <children>
+      <Button layoutX="706.0" layoutY="63.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #f12; -fx-background-radius: 8px;" text="logout" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="ComboBoxCat" layoutX="195.0" layoutY="112.0" onAction="#ChangeValue" prefHeight="25.0" prefWidth="291.0" promptText="Choix de catégorie..." />
+      <ScrollPane fx:id="scrollPane" layoutX="60.0" layoutY="159.0" prefHeight="450.0" prefWidth="700.0" />
+      <ImageView fx:id="LogoApp" fitHeight="75.0" fitWidth="75.0" layoutX="24.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imagePanier" fitHeight="30.0" fitWidth="30.0" layoutX="691.0" layoutY="110.0" onMouseClicked="#AccederPanier" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="Count" alignment="CENTER" contentDisplay="CENTER" layoutX="703.0" layoutY="104.0" prefHeight="17.0" prefWidth="30.0" style="-fx-text-alignment: center;" text="0" textAlignment="JUSTIFY" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

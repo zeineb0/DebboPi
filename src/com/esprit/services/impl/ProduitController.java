@@ -50,7 +50,7 @@ public class ProduitController implements IProduitService{
             ps.setInt(5,0);
             ps.setString(6,produit.getImage());
             ps.setInt(7,produit.getCategorie().getId());
-            ps.setInt(8,produit.getEntrepot().getId_entrepot());
+            ps.setInt(8,produit.getCategorie().getEntrepot().getId_entrepot());
             ps.execute();
             System.out.println("produit ajouté");
             
