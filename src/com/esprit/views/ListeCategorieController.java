@@ -15,10 +15,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -45,6 +47,14 @@ public class ListeCategorieController implements Initializable {
     private List<Categorie> categories= new ArrayList<>();
 private Categorie categorieSelectionner= new Categorie();
 private  int indexCategorieSelectionner;
+    @FXML
+    private Label labelprofile;
+    @FXML
+    private Button catégorie;
+    @FXML
+    private Button produit;
+    @FXML
+    private Button mvt;
     /**
      * Initializes the controller class.
      */
@@ -131,5 +141,10 @@ table.setOnMouseClicked(event->{
       @FXML
     private void onClickAnnuler(ActionEvent event) {
     }
+
+    @FXML
+    private void S(MouseEvent event) {
+    }
+
     
 }

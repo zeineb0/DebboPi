@@ -291,7 +291,7 @@ public class LoginController implements Initializable {
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
 
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ListeProduit.fxml")));
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ListeCategorie.fxml")));
                     stage.setScene(scene);
                     stage.show();
 

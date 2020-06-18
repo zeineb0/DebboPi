@@ -282,6 +282,7 @@ String urli;
         p.setPrix(prix);
         p.setReference(ref);
         p.setMarque(marque);
+        p.setQuantite(Integer.valueOf(txt31.getText()));
         Categorie c=cmbC.getValue();
         p.setCategorie(c);
         Entrepot e = comboEntrepot.getValue();

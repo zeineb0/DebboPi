@@ -14,12 +14,12 @@
          <children>
             <AnchorPane prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #582900;">
                <children>
-                  <Label fx:id="labelprofile" layoutX="58.0" onMouseClicked="#cc" prefHeight="50.0" prefWidth="179.0" text="Name du User" textFill="#fffdfd">
+                  <Label fx:id="labelprofile" layoutX="58.0" onMouseClicked="#S" prefHeight="50.0" prefWidth="179.0" text="Name du User" textFill="#fffdfd">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="911.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="27.0" prefWidth="80.0" text="Logout">
+                  <Button layoutX="911.0" layoutY="11.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="80.0" text="Logout">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
