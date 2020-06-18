@@ -16,10 +16,10 @@ public class Entrepot {
     int quantite_max;
     String etat;
     String entreprise;
-    Double prix_location;
+    Float prix_location;
     int fk_id_fournisseur;
 
-    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, String etat,double prix_location, String entreprise,int fk_id_fournisseur) {
+    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, String etat,Float prix_location, String entreprise,int fk_id_fournisseur) {
         this.id_entrepot = id_entrepot;
         this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
@@ -30,7 +30,7 @@ public class Entrepot {
         this.fk_id_fournisseur= fk_id_fournisseur;
     }
 
-    public Entrepot(String adresse_entrepot, int num_fiscale, int quantite_max, String etat, double prix_location, String entreprise) {
+    public Entrepot(String adresse_entrepot, int num_fiscale, int quantite_max, String etat, Float prix_location, String entreprise) {
 this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
         this.quantite_max = quantite_max;
@@ -41,15 +41,15 @@ this.adresse_entrepot = adresse_entrepot;
 
 
 
-    public Double getPrix_location() {
+    public Float getPrix_location() {
         return prix_location;
     }
 
-    public void setPrix_location(Double prix_location) {
+    public void setPrix_location(Float prix_location) {
         this.prix_location = prix_location;
     }
 
-    public Entrepot(String adresse_entrepot, int num_fiscale, int quantite_max, String etat, String entreprise,double prix_location, int fk_id_fournisseur) {
+    public Entrepot(String adresse_entrepot, int num_fiscale, int quantite_max, String etat, String entreprise,Float prix_location, int fk_id_fournisseur) {
         this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;
         this.quantite_max = quantite_max;
@@ -62,7 +62,7 @@ this.adresse_entrepot = adresse_entrepot;
     public Entrepot() {
     }
 
-    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, String etat,Double prix_location, String entreprise) {
+    public Entrepot(int id_entrepot, String adresse_entrepot, int num_fiscale, int quantite_max, String etat,Float prix_location, String entreprise) {
         this.id_entrepot = id_entrepot;
         this.adresse_entrepot = adresse_entrepot;
         this.num_fiscale = num_fiscale;

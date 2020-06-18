@@ -57,9 +57,9 @@ public class GererLocationController implements Initializable {
     ServiceLocation serviceLocation = new ServiceLocation();
 private Entrepot EntrepotSelectionner = new Entrepot();
  public int idA;
- public double pri;
+ public float pri;
     @FXML
-    private TableColumn<Entrepot, Double> prix;
+    private TableColumn<Entrepot, Float> prix;
     @FXML
     private DatePicker dateDeb;
     @FXML
@@ -144,7 +144,7 @@ private Entrepot EntrepotSelectionner = new Entrepot();
             l.setDate_deb_location(date1);
             l.setDate_fin_location(date2);
             
-            l.setPrix_location(Double.parseDouble(prix1.getText()));
+            l.setPrix_location(Float.parseFloat(prix1.getText()));
         
          l.setFK_id_entrepot(idA);
             System.out.println(l);

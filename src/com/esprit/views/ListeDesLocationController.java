@@ -69,7 +69,7 @@ public class ListeDesLocationController implements Initializable {
     @FXML
     private TableColumn<LocationDetail, Date> dateFin;
     @FXML
-    private TableColumn<LocationDetail,Double> prix;
+    private TableColumn<LocationDetail,Float> prix;
     @FXML
     private TableColumn<LocationDetail, Integer> quan;
     @FXML
@@ -153,7 +153,14 @@ public class ListeDesLocationController implements Initializable {
                   public void handle(ActionEvent event) {
 
                       try {
-                          serviceLocation.pdf(locationSel.getId_location());
+                          try {
+                             
+                              serviceLocation.pdf(locationSel.getId_location());
+                          } catch (BadElementException ex) {
+                              Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
+                          } catch (SQLException ex) {
+                              Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
+                          }
                           System.out.println(locationSel.getId_location());
                       } catch (FileNotFoundException ex) {
                           Logger.getLogger(ListeDesLocationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -216,7 +223,7 @@ public class ListeDesLocationController implements Initializable {
                  {Location l = new Location();
                    try {
                  
-                  double p1=Double.parseDouble(prix1.getText());
+                  float p1=Float.parseFloat(prix1.getText());
                   l.setDate_fin_location(datefin);
                   l.setPrix_location(p1);
                   l.setId_location(id);
@@ -284,7 +291,7 @@ public class ListeDesLocationController implements Initializable {
          int id_Ent= serviceLocation.getIDEntrepot(id_l);
             System.out.println("hhh"+id_Ent);
         try {
-                         double prixLoca = serviceLocation.getPrix(id_Ent);
+                         float prixLoca = serviceLocation.getPrix(id_Ent);
                          System.out.println(prixLoca);
                          datdeb=Date.valueOf(datDeb.getValue());
                          datefin=Date.valueOf(datFin.getValue());

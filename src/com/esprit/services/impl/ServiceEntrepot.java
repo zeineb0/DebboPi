@@ -76,7 +76,7 @@ int id_session = 2;
     pre.setInt(3, e.getQuantite_max());
     pre.setString(4, e.getEtat());
     pre.setString(5, e.getEntreprise());
-    pre.setDouble(6, e.getPrix_location());
+    pre.setFloat(6, e.getPrix_location());
     //if (utilisateur.getRole().equals("fournisseur"))
       
     //pre.setInt(7,utilisateur.getId());
@@ -113,7 +113,7 @@ int id_session = 2;
             ps.setInt(2, e.getNum_fiscale());
             ps.setInt(3,  e.getQuantite_max());
             ps.setString(4, e.getEtat());
-            ps.setDouble(5,e.getPrix_location());
+            ps.setFloat(5,e.getPrix_location());
             ps.setString(6, e.getEntreprise());
             ps.setInt(7, e.getId_entrepot());
             int nb= e.getId_entrepot();
@@ -158,7 +158,7 @@ int id_session = 2;
                int num_fiscale=rs.getInt(3);
                int quantite_max=rs.getInt(4);
                String etat = rs.getString(5);
-               Double prix_location=rs.getDouble(6);
+               Float prix_location=rs.getFloat(6);
                String entreprise=rs.getString(7);
                int fk_id_fournisseur=rs.getInt(8);
                Entrepot e =new Entrepot(id_entrepot, adresse_entrepot, num_fiscale, quantite_max, etat, prix_location, entreprise,fk_id_fournisseur);

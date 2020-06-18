@@ -67,7 +67,7 @@ public class GererEntrepotController implements Initializable {
     ObservableList<Entrepot> datalist;
     ServiceEntrepot serviceEntrepot = new ServiceEntrepot();
     @FXML
-    private TableColumn<Entrepot, Double> prix;
+    private TableColumn<Entrepot, Float> prix;
     private Entrepot EntrepotSelectionner = new Entrepot();
     private Entrepot EntrepotSelectionner1 = new Entrepot();
 
@@ -113,6 +113,8 @@ int id;
         } catch (SQLException ex) {
              System.out.println("com.esprit.views.AfficherEntrepotController.onClick()");
         }
+        
+        
                 ObservableList<String> list;
 
          try {
@@ -174,8 +176,8 @@ int id;
                   quanmax.setText(b);
                   etat1.setValue(EntrepotSelectionner1.getEtat());
                   entrep1.setText(EntrepotSelectionner1.getEntreprise());
-                  Double num3 = EntrepotSelectionner1.getPrix_location();
-                  String c= Double.toString(num3);
+                  Float num3 = EntrepotSelectionner1.getPrix_location();
+                  String c= Float.toString(num3);
                   pri.setText(c);
                                                              
                 modifier.setOnAction(new EventHandler<ActionEvent>() {
@@ -197,7 +199,7 @@ int id;
                   int num_fiscale = Integer.parseInt(numfisc.getText());
                   int quantite = Integer.parseInt(quanmax.getText());
                   String et=etat1.getValue();
-                  Double pri1= Double.parseDouble(pri.getText());
+                  Float pri1= Float.parseFloat(pri.getText());
                   
                   e.setPrix_location(pri1);
                   

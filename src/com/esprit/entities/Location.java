@@ -15,11 +15,11 @@ public class Location {
     int id_location;
     Date date_deb_location;
     Date date_fin_location;
-    double prix_location;
+    Float prix_location;
     int FK_id_entrepot;
     int FK_id_user;
 
-    public Location(int id_location, Date date_deb_location,Date date_fin_location, double prix_location, int FK_id_entrepot, int FK_id_user) {
+    public Location(int id_location, Date date_deb_location,Date date_fin_location, Float prix_location, int FK_id_entrepot, int FK_id_user) {
         this.id_location = id_location;
         this.date_deb_location= date_deb_location;
         this.date_fin_location = date_fin_location;
@@ -27,7 +27,7 @@ public class Location {
         this.FK_id_entrepot = FK_id_entrepot;
         this.FK_id_user = FK_id_user;
     }
-    public Location(Date date_deb_location,Date date_fin_location,double prix_location, int FK_id_entrepot, int FK_id_user) {
+    public Location(Date date_deb_location,Date date_fin_location,Float prix_location, int FK_id_entrepot, int FK_id_user) {
         this.date_deb_location = date_deb_location;
         this.date_fin_location = date_fin_location;
         this.prix_location = prix_location;
@@ -62,11 +62,11 @@ public class Location {
         this.date_fin_location = date_fin_location;
     }
 
-    public double getPrix_location() {
+    public Float getPrix_location() {
         return prix_location;
     }
 
-    public void setPrix_location(double prix_location) {
+    public void setPrix_location(Float prix_location) {
         this.prix_location = prix_location;
     }
 

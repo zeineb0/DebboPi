@@ -19,7 +19,7 @@ public class esprit extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("gererLocation.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("listeDesLocation.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

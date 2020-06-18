@@ -11,8 +11,11 @@ import com.esprit.entities.LocationDetail;
 import com.esprit.services.IServiceLocation;
 import com.esprit.utilities.DataSource;
 import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -38,7 +41,16 @@ import java.util.logging.Logger;
 public class ServiceLocation implements IServiceLocation<Location>{
     private final Connection con;
     private Statement ste;
-    
+     
+    private static String FILE = "C:\\Users\\asus\\Desktop\\Jar Files\\FirstPdf.pdf";
+   // Des autre parametres te3 el foont ect ..
+    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+            Font.BOLD);
+    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+            Font.BOLD);
+    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.BOLD);
+    Paragraph para=new Paragraph();
     public ServiceLocation() {
     con = DataSource.getInstance().getConnection();
 
@@ -50,7 +62,7 @@ public class ServiceLocation implements IServiceLocation<Location>{
     pre.setInt(1, l.getId_location());
     pre.setDate(2, l.getDate_deb_location());
     pre.setDate(3, l.getDate_fin_location());
-    pre.setDouble(4, l.getPrix_location());
+    pre.setFloat(4, l.getPrix_location());
     pre.setInt(5, l.getFK_id_entrepot());
     pre.setInt(6, l.getFK_id_user());
     pre.executeUpdate(); 
@@ -75,15 +87,15 @@ public class ServiceLocation implements IServiceLocation<Location>{
        
        
     }
-    public Double getPrix(int id) throws SQLException {
-            double prix1 =0;
+    public Float getPrix(int id) throws SQLException {
+            float prix1 =0;
 
         
        PreparedStatement pre = con.prepareStatement("SELECT `prix_location` FROM `entrepot` WHERE `id_entrepot` = ?");
        pre.setInt(1, id);
        ResultSet r =pre.executeQuery();
        while (r.next())
-               {prix1=r.getDouble("prix_location");}
+               {prix1=r.getFloat("prix_location");}
         return  prix1; 
  
     }
@@ -126,7 +138,7 @@ public class ServiceLocation implements IServiceLocation<Location>{
 try {
             PreparedStatement pre=con.prepareStatement("UPDATE `location` SET `date_fin_location`=?,`prix_location`=? WHERE `id_location`=?;");
             pre.setDate(1, l.getDate_fin_location());
-            pre.setDouble(2, l.getPrix_location());
+            pre.setFloat(2, l.getPrix_location());
             pre.setInt(3, l.getId_location());
             pre.executeUpdate();
             System.out.println("la loc num"+ l.getId_location()+ " updated.");
@@ -145,7 +157,7 @@ try {
                int num_fiscale=rs.getInt(3);
                int quantite_max=rs.getInt(4);
                String etat = rs.getString(5);
-               double prix_location=rs.getDouble(6);
+               Float prix_location=rs.getFloat(6);
                String entreprise=rs.getString(7);
              
                int fk_id_fournisseur=rs.getInt(8);
@@ -165,7 +177,7 @@ try {
                int id_location=rs.getInt(1);
                Date date_deb_location = rs.getDate(2);
                Date date_fin_location = rs.getDate(3);
-               double prix_location = rs.getDouble(4);
+               Float prix_location = rs.getFloat(4);
                int quantite_max = rs.getInt(5);
                String adresse_entrepot=rs.getString(6);
                String entreprise=rs.getString(7);
@@ -187,9 +199,9 @@ try {
     }
   
 
-public Double calculPrix (Double prix,Date datedeb, Date datefin)
+public Float calculPrix (Float prix,Date datedeb, Date datefin)
 { 
-        double prix1;
+        Float prix1;
          System.out.println(prix);
         final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24; 
         
@@ -197,44 +209,55 @@ public Double calculPrix (Double prix,Date datedeb, Date datefin)
         
 
 }
-public void pdf(int id) throws FileNotFoundException, DocumentException, BadElementException, IOException
+public void pdf(int id) throws FileNotFoundException, DocumentException, BadElementException, IOException, SQLException
     {
-        try {
-            String file_name ="C:\\Users\\asus\\Desktop\\pdf\\walid.pdf";
+       
+            String file_name ="C:\\Users\\asus\\Desktop\\pdf\\Contrat.pdf";
             Document document = new Document();
             //file_name.setReadable(true,false);
             PdfWriter.getInstance(document, new FileOutputStream(file_name));
+             try {
             document.open();
+             Image img = Image.getInstance ("C:\\Users\\asus\\Desktop\\2 semestre\\PIDEV\\Image\\debbo.png");
+        img.scalePercent(4);
+        para.add (img);
+        addEmptyLine(para, 0);
+        para.add(new Paragraph("                Report generated by: " + System.getProperty("user.name") + ", " + new java.util.Date(),
+                smallBold));
+        addEmptyLine(para, 4);
+        // Lets write a big header
+        para.add(new Paragraph("Contrat de location", catFont));
+
+        addEmptyLine(para, 2);
+        
             ste=con.createStatement();
             ResultSet rs =ste.executeQuery("SELECT id_location , date_deb_location , date_fin_location, l.prix_location ,  e.quantite_max , e.adresse ,e.entreprise, u.nom, u.prenom ,FK_id_entrepot from `location` l INNER join entrepot e INNER join utilisateur u where l.FK_id_entrepot = e.id_entrepot and u.id_user= e.fk_id_user and l.id_location="+id+ "");
            
-            
+
             while (rs.next()) { 
-                Paragraph para=new Paragraph((" Nom: " +rs.getString(8) + "\n Prenom : " + rs.getString(9)+ "\n Entreprise : " + rs.getString(7)+ "\n Adresse : " + rs.getString(6)+" \n Date debut de location " + rs.getDate(2)
-                            +"\n Date de fin de location: "+rs.getDate(3) +"\n Prix de location: "+rs.getDouble(4)
-                            +"\n Quantité maximale d'entrepot: "+rs.getDouble(5)));
-                document.add(para);
-                document.add(Image.getInstance("C:\\Users\\asus\\Desktop\\pdf\\logo.png"));
-                document.add(new Paragraph(" "));
-                 document.add(new Paragraph(" "));
-            }
-            document.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ServiceLocation.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DocumentException ex) {
-            Logger.getLogger(ServiceLocation.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ServiceLocation.class.getName()).log(Level.SEVERE, null, ex);
-        }
+               para.add(new Paragraph ((" Nom: " +rs.getString(8) + "\n Prenom : " + rs.getString(9)+ "\n Entreprise : " + rs.getString(7)+ "\n Adresse : " + rs.getString(6)+" \n Date debut de location " + rs.getDate(2)
+                            +"\n Date de fin de location: "+rs.getDate(3) +"\n Prix de location: "+rs.getFloat(4)
+                            +"\n Quantité maximale d'entrepot: "+rs.getFloat(5))));
+                document.add(para); 
+                                 addEmptyLine(para, 5);
+
+               }
+        
+
+
+       
+
+            document.close();}
+            catch(SQLException ex)
+                    {}
+            
 }
 
 
 
 
-    @Override
-    public List<Location> readAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+   
     public int getIDEntrepot(int id) throws SQLException {
             int idEn=0;
        PreparedStatement pre = con.prepareStatement("SELECT FK_id_entrepot FROM `location` WHERE `id_location` = ?");
@@ -245,77 +268,27 @@ public void pdf(int id) throws FileNotFoundException, DocumentException, BadElem
              {idEn=r.getInt("FK_id_entrepot");}
 
         return  idEn; 
-    
-   
-       
-           
+         
   
     }
+
+    @Override
+    public List<Location> readAll() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     private  void addMetaData(Document document) {
+        document.addTitle("Contrat");
+        document.addSubject("Using iText");
+        document.addKeywords("Java, PDF, iText");
+        document.addAuthor("Fatma Hammami");
+        document.addCreator("Fatma Hammami");
+    }
+     private  void addEmptyLine(Paragraph paragraph, int number) {
+        for (int i = 0; i < number; i++) {
+            paragraph.add(new Paragraph(" "));
+        }
+    }
     
-    
-    
-//public List<Facture> afficherByreference(String n) {
-//        List<Facture> myList = new ArrayList<Facture>();
-//        try {
-//
-//            String requete2 = "SELECT * FROM facture WHERE reference LIKE '%" + n + "%'";
-//            Statement st = cnx.createStatement();
-//            ResultSet rs = st.executeQuery(requete2);
-//
-//            while (rs.next()) {
-//                Facture u = new Facture();
-//                u.setId_facture(rs.getInt(1));
-//                u.setReference(rs.getString(2));
-//                u.setId_achat(rs.getInt(3));
-//                u.setClient_name(rs.getString(4));
-//                u.setClient_type(rs.getString(5));
-//                u.setType_facture(rs.getString(6));
-//                u.setStatut_facture(rs.getString(7));
-//                u.setTotalHT(rs.getFloat(8));
-//                u.setTotalTTC(rs.getFloat(9));
-//                u.setEcheance(rs.getString(10));
-//                u.setDelivery(rs.getInt(11));
-//  
-//
-//                myList.add(u);
-//            }
-//
-//        } catch (SQLException ex) {
-//            System.err.println(ex.getMessage());
-//        }
-//        return myList;
-//    }  
-//     
-//      public List<Facture> afficherByClient_name( String n) {
-//        List<Facture> myList = new ArrayList<Facture>();
-//        try {
-//
-//            String requete2 = "SELECT * FROM facture WHERE client_name LIKE '%" + n + "%'";
-//            Statement st = cnx.createStatement();
-//            ResultSet rs = st.executeQuery(requete2);
-//
-//            while (rs.next()) {
-//                Facture u = new Facture();
-//                u.setId_facture(rs.getInt(1));
-//                u.setReference(rs.getString(2));
-//                u.setId_achat(rs.getInt(3));
-//                u.setClient_name(rs.getString(4));
-//                u.setClient_type(rs.getString(5));
-//                u.setType_facture(rs.getString(6));
-//                u.setStatut_facture(rs.getString(7));
-//                u.setTotalHT(rs.getFloat(8));
-//                u.setTotalTTC(rs.getFloat(9));
-//                u.setEcheance(rs.getString(10));
-//                u.setDelivery(rs.getInt(11));
-//  
-//                   myList.add(u);
-//            }
-//
-//        } catch (SQLException ex) {
-//            System.err.println(ex.getMessage());
-//        }
-//        return myList;
-//    }
 
 
 
