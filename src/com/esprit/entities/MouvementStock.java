@@ -19,9 +19,18 @@ public class MouvementStock {
       private Produit p;
     private Categorie c;
     private Entrepot e;
+    private User u;
     
     
     public MouvementStock() {
+    }
+
+    public User getU() {
+        return u;
+    }
+
+    public void setU(User u) {
+        this.u = u;
     }
 
     public int getId() {

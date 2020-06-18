@@ -7,6 +7,7 @@ package com.esprit.services.impl;
 
 import com.esprit.entities.MouvementStock;
 import com.esprit.entities.Produit;
+import com.esprit.entities.Session;
 import com.esprit.services.IMouvementService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
@@ -37,14 +38,16 @@ public class MouvementController implements IMouvementService{
                 + "`nature_mouvement`, "
                 + "`date_mouv`, "
                 + "`FK_id_produit`, "
-                + "`FK_id_entrepot`)"
-                + " VALUES (?,?,?,?)";
+                + "`FK_id_entrepot`,"
+                + "`id_user`)"
+                + " VALUES (?,?,?,?,?)";
         try {
         ps=conn.prepareStatement(req);
          ps.setString(1,m.getNatureDuStock());
          ps.setDate(2,m.getDateMouv());
          ps.setInt(3,m.getP().getId());
          ps.setInt(4,m.getE().getId_entrepot());
+         ps.setInt(5,Session.getIdSession());
         ps.execute();
             System.out.println("mvt bien ajouté");
             } catch (SQLException ex) {

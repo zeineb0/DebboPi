@@ -7,6 +7,7 @@ package com.esprit.services.impl;
 
 import com.esprit.entities.Categorie;
 import com.esprit.entities.Produit;
+import com.esprit.entities.Session;
 import com.esprit.services.ICategorieService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
@@ -56,10 +57,16 @@ Connection conn = DataSource.getInstance().getConnection();
     @Override
     public void ajouterCategorie(Categorie c)  {
 
-        String req = "INSERT INTO `categories`( `nom`) VALUES (?)";
+        String req = "INSERT INTO `categories`("
+                + " `nom`, "
+                + "`id_user`, "
+                + "`FK_id_entrepot`) "
+                + " VALUES (?,?,?)";
     try {
         ps=conn.prepareStatement(req);
          ps.setString(1,c.getNom());
+         ps.setInt(2,Session.getIdSession());
+         ps.setInt(1,c.getEntrepot().getId_entrepot());
         ps.execute();
     } catch (SQLException ex) {
         Logger.getLogger(CategorieController.class.getName()).log(Level.SEVERE, null, ex);

@@ -119,8 +119,8 @@ this.adresse_entrepot = adresse_entrepot;
 
     @Override
     public String toString() {
-        return "Entrepot{" + "id_entrepot=" + id_entrepot + ", adresse_entrepot=" + adresse_entrepot + ", num_fiscale=" + num_fiscale + ", quantite_max=" + quantite_max + ", etat=" + etat + ", entreprise=" + entreprise + '}';
-    }
+        return entreprise;
+                }
 
    
 

@@ -34,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -94,6 +95,8 @@ public class MvtStockController implements Initializable {
     private TableColumn<MouvementStock, Integer> clQte;
     @FXML
     private Label erreur;
+    @FXML
+    private ImageView imgViwer;
 
     /**
      * Initializes the controller class.

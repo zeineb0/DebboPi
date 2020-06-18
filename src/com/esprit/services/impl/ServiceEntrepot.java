@@ -8,6 +8,7 @@ package com.esprit.services.impl;
 
 
 import com.esprit.entities.Entrepot;
+import com.esprit.entities.Session;
 import com.esprit.services.IService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
@@ -38,7 +39,7 @@ int id_session = 2;
     @Override
     public void ajouter(Entrepot e) throws SQLException {
     try{    
-    PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`,`prix_location`,`fk_id_user`) VALUES ( ?, ?, ?, ?, ?,?,?);");
+    PreparedStatement pre=con.prepareStatement("INSERT INTO `entrepot` (`adresse`, `num_fiscale`, `quantite_max`, `etat`, `entreprise`,`prix_location`,`id_user`) VALUES ( ?, ?, ?, ?, ?,?,?);");
     pre.setString(1, e.getAdresse_entrepot());
     pre.setInt(2, e.getNum_fiscale());
 //        double numR1 = 0;
@@ -80,7 +81,7 @@ int id_session = 2;
     //if (utilisateur.getRole().equals("fournisseur"))
       
     //pre.setInt(7,utilisateur.getId());
-    pre.setInt(7, e.getFk_id_fournisseur());
+    pre.setInt(7, Session.getIdSession());
     
     pre.executeUpdate(); 
     }
@@ -154,7 +155,7 @@ int id_session = 2;
         ste=con.createStatement();
         
         
-         ResultSet rs=ste.executeQuery("SELECT * FROM `entrepot` WHERE `fk_id_user`= "+id_session +"");
+         ResultSet rs=ste.executeQuery("SELECT * FROM `entrepot` WHERE `id_user`= "+Session.getIdSession());
      while (rs.next()) {                
                int id_entrepot=rs.getInt(1);
                String adresse_entrepot=rs.getString(2);

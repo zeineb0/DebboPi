@@ -18,6 +18,7 @@ public class Categorie {
     private int id;
     private String nom;
         private Entrepot entrepot;
+    private User u;
 
     //une categorie peut avoir plusieurs produits
     private List<Produit> listProduit =new ArrayList<>();
@@ -25,6 +26,14 @@ public class Categorie {
     public Categorie(int id, String nom) {
         this.id = id;
         this.nom = nom;
+    }
+
+    public User getU() {
+        return u;
+    }
+
+    public void setU(User u) {
+        this.u = u;
     }
 
     public Entrepot getEntrepot() {

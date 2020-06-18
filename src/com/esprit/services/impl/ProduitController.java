@@ -6,8 +6,10 @@
 package com.esprit.services.impl;
 
 import com.esprit.entities.Categorie;
+import com.esprit.entities.User;
 import com.esprit.entities.Entrepot;
 import com.esprit.entities.Produit;
+import com.esprit.entities.Session;
 import com.esprit.services.IProduitService;
 import com.esprit.utilities.DataSource;
 import java.sql.Connection;
@@ -39,7 +41,9 @@ public class ProduitController implements IProduitService{
                 + " `quantite`,"
                 + " `image`,"
                 + " `FK_id_categorie`,"
-                + " `FK_id_entrepot`) VALUES (?,?,?,?,?,?,?,?)";
+                + " `FK_id_entrepot`,"
+                + " `id_user`)"
+                + " VALUES (?,?,?,?,?,?,?,?,?)";
                 
         try {
              ps = conn.prepareStatement(req);
@@ -47,10 +51,11 @@ public class ProduitController implements IProduitService{
             ps.setInt(2,produit.getReference());
             ps.setString(3,produit.getMarque());
             ps.setDouble(4,produit.getPrix());
-            ps.setInt(5,0);
+            ps.setInt(5,produit.getQuantite());
             ps.setString(6,produit.getImage());
             ps.setInt(7,produit.getCategorie().getId());
             ps.setInt(8,produit.getCategorie().getEntrepot().getId_entrepot());
+            ps.setInt(9,Session.getIdSession());
             ps.execute();
             System.out.println("produit ajouté");
             
@@ -81,10 +86,11 @@ public class ProduitController implements IProduitService{
     @Override
     public void consulterProduit(String nom){
         Produit p=new Produit();
-        String req= "SELECT * FROM `produit` WHERE `libelle`=?";
+        String req= "SELECT * FROM `produit` WHERE `libelle`=? and `id_user`=?";
         try {
         ps=conn.prepareStatement(req);
         ps.setString(1,nom);
+        ps.setInt(2,Session.getIdSession());
         rs=ps.executeQuery();
         
          while (rs.next()) 
@@ -95,6 +101,7 @@ public class ProduitController implements IProduitService{
                    p.setPrix(rs.getDouble("prix"));
                    p.setReference(rs.getInt("reference"));
                    p.setMarque(rs.getString("marque"));
+                   p.setQuantite(rs.getInt("quantite"));
                    System.out.println(p);
                }
         }
@@ -156,12 +163,13 @@ public class ProduitController implements IProduitService{
     @Override
     public List<Produit> listeProduit() {
               List<Produit> produits = new ArrayList<>();
-        String req = "SELECT * FROM `produit`";
+        String req = "SELECT * FROM `produit` where `id_user`= ?";
         
         try {
             ps = conn.prepareStatement(req);
+            ps.setInt(1, Session.getIdSession());
              rs = ps.executeQuery();
-           
+
                while (rs.next()) 
                {
                    Produit p=new Produit();

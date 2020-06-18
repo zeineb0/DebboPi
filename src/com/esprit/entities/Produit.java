@@ -24,6 +24,16 @@ private int id;
     private Entrepot entrepot;
     private int quantite;
     private boolean promotion;
+        private User u;
+
+    public User getU() {
+        return u;
+    }
+
+    public void setU(User u) {
+        this.u = u;
+    }
+
 
     public boolean isPromotion() {
         return promotion;

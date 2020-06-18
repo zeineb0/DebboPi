@@ -105,6 +105,10 @@ String urli;
     @FXML
     private ImageView imgViwer;
     private TableColumn<Produit, ImageView> clImage;
+    @FXML
+    private TextField txt31;
+    @FXML
+    private Label mar1;
     /**
      * Initializes the controller class.
      */
