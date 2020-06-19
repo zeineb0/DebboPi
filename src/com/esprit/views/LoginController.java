@@ -262,7 +262,7 @@ public class LoginController implements Initializable {
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
 
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeTransporteurLibre.fxml")));
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeTransporteurAssocie.fxml")));
                     stage.setScene(scene);
                     stage.show();
 
@@ -291,7 +291,7 @@ public class LoginController implements Initializable {
                     Stage stage = (Stage) node.getScene().getWindow();
                     stage.close();
 
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ListeCategorie.fxml")));
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomeFournisseur.fxml")));
                     stage.setScene(scene);
                     stage.show();
 

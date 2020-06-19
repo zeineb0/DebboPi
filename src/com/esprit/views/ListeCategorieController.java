@@ -47,14 +47,6 @@ public class ListeCategorieController implements Initializable {
     private List<Categorie> categories= new ArrayList<>();
 private Categorie categorieSelectionner= new Categorie();
 private  int indexCategorieSelectionner;
-    @FXML
-    private Label labelprofile;
-    @FXML
-    private Button catégorie;
-    @FXML
-    private Button produit;
-    @FXML
-    private Button mvt;
     /**
      * Initializes the controller class.
      */
@@ -137,14 +129,12 @@ table.setOnMouseClicked(event->{
         btnS.setDisable(etat);
         btnAn.setDisable(etat);
     }
-     
-      @FXML
-    private void onClickAnnuler(ActionEvent event) {
-    }
 
     @FXML
-    private void S(MouseEvent event) {
+    private void onClickAnnuler(ActionEvent event) {
     }
+     
+
 
     
 }
