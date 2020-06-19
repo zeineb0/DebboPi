@@ -34,7 +34,7 @@ public class ContratService implements IContratService {
     public void ajouterContrat (Contrat contrat,User user,Entrepot entrepot) 
     {
         
-            String req="INSERT INTO `debo_base`.`contrat` (`date_deb`, `date_fin`, `FK_id_user`, `FK_id_entrepot`) VALUES (?, ?, ?, ?);";
+            String req="INSERT INTO `dbwebfinale`.`contrat` (`date_deb`, `date_fin`, `FK_id_user`, `FK_id_entrepot`,salaire) VALUES (?, ?, ?, ?,1600);";
             PreparedStatement ps;
         try {
             
@@ -101,7 +101,8 @@ public class ContratService implements IContratService {
        
        
         try {
-            String req="SELECT  date_deb , date_fin , u.id_user, u.nom , u.prenom , e.id_entrepot , e.entreprise FROM `contrat` c INNER JOIN utilisateur u on u.id_user=c.FK_id_user INNER JOIN entrepot e on c.FK_id_entrepot='"+entrepot.getId_entrepot()+"'";
+            System.out.println(entrepot.getId_entrepot());
+            String req="SELECT  date_deb , date_fin , u.id_user, u.nom , u.prenom , e.id_entrepot , e.entreprise FROM `contrat` c INNER JOIN utilisateur u on u.id_user=c.FK_id_user INNER JOIN entrepot e on e.id_entrepot=c.FK_id_entrepot";
             Statement s=DataSource.getInstance().getConnection().createStatement();
             ResultSet rs=s.executeQuery(req);
             while(rs.next())

@@ -6,6 +6,7 @@
 package com.esprit.views;
 
 import com.esprit.entities.Livraison;
+import com.esprit.entities.Session;
 import com.esprit.entities.User;
 import com.esprit.services.impl.ContratService;
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class TransporteurController implements Initializable {
          ContratService contrat_service = new ContratService();
         
         User transporteur1 = new User();
-        transporteur1.setId(1);
+        transporteur1.setId(Session.getIdSession());
         ArrayList<Livraison> list_livraison=(ArrayList<Livraison>) contrat_service.afficherLivraisonParTransporteurLivree(transporteur1);
          
          data_list = FXCollections.observableArrayList(list_livraison);

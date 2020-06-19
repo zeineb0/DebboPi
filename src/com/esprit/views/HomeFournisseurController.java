@@ -90,7 +90,7 @@ public class HomeFournisseurController implements Initializable {
     }
     
     @FXML
-    void logOut(MouseEvent event){
+    void logOut(ActionEvent event){
        
             
             try {
@@ -282,7 +282,6 @@ public class HomeFournisseurController implements Initializable {
         }
     }
 
-    @FXML
     private void loadAjoutLocation(ActionEvent event) {
         try {
             Parent pane= FXMLLoader.load(getClass().getResource("ajouterLocation.fxml"));
@@ -302,6 +301,32 @@ public class HomeFournisseurController implements Initializable {
        } catch (IOException ex) {
            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+     void goToContrat(ActionEvent event) {
+
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("AjouterContrat.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    
+    private void goToAjouterContrat(ActionEvent event) {
+         try {
+            Parent pane= FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }

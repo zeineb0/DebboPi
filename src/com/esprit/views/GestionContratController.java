@@ -81,7 +81,7 @@ public class GestionContratController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         
-        entrepot.setId_entrepot(3);
+        entrepot.setId_entrepot(1);
         
         ArrayList<ContratDetail> liste_contrat=(ArrayList<ContratDetail>) contrat_service.afficherContratEntrepot(entrepot);
         

@@ -36,8 +36,6 @@ import javafx.stage.Stage;
 public class HomeClientController implements Initializable {
 
     @FXML
-    private AnchorPane anchorPane;
-    @FXML
     private AnchorPane anchorLoad;
 
    
@@ -90,7 +88,7 @@ public class HomeClientController implements Initializable {
     
     
         @FXML
-     void logOut(MouseEvent event){
+     void logOut(ActionEvent event){
        
             
             try {
@@ -147,5 +145,20 @@ public class HomeClientController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(HomeClientController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void goToPanier(ActionEvent event) {
+          try {
+            Parent pane= FXMLLoader.load(getClass().getResource("Panier.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void goToProfile(MouseEvent event) {
     }
 }

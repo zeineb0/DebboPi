@@ -190,15 +190,6 @@ public class PoduitsController implements Initializable {
     }    
 
   
-    @FXML
-    private void AccederPanier(MouseEvent event) throws IOException {
-        Parent panier = FXMLLoader.load(getClass().getResource("Panier.fxml"));
-        Scene PanierV= new Scene(panier);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(PanierV);
-        window.show();
-    }
-
     public int getQuantity(String ch)
     {
            
@@ -301,7 +292,8 @@ public class PoduitsController implements Initializable {
                 System.out.println(id_p);
             id_p=id_p.substring(id_p.indexOf("'")+1, id_p.lastIndexOf("'"));
             listProduits+=number.getText()+"."+id_p+"-";
-            Panier p2= new Panier( 1, listProduits, count, 'i');
+            Panier p2= new Panier( 1,listProduits, count, 'v');
+            
             }
             else
             System.out.println(listProduits);
@@ -319,11 +311,5 @@ public class PoduitsController implements Initializable {
         scrollPane.setContent(flow);
     }
 
-    @FXML
-    private void logout(ActionEvent event) {
-    }
-    
-   
-
-                  
+     
 }

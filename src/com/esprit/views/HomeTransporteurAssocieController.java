@@ -47,7 +47,7 @@ public class HomeTransporteurAssocieController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
  try {
-            Parent pane= FXMLLoader.load(getClass().getResource("Profile.fxml"));
+            Parent pane= FXMLLoader.load(getClass().getResource("LivraisonEnCours.fxml"));
                System.out.println("nice");
            anchorLoad.getChildren().setAll(pane);
        } catch (IOException ex) {
@@ -85,7 +85,7 @@ public class HomeTransporteurAssocieController implements Initializable {
     
     
     @FXML
-        void logOut(MouseEvent event){
+        void logOut(ActionEvent event){
        
             
             try {
@@ -108,25 +108,14 @@ public class HomeTransporteurAssocieController implements Initializable {
                 Stage stage = (Stage) node.getScene().getWindow();
                 stage.close();
                 
-                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Profile.fxml")));
+                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("LivraisonEnCours.fxml")));
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
      }
-       @FXML
-    void goToContrat(ActionEvent event) {
-
- try {
-            Parent pane= FXMLLoader.load(getClass().getResource("AjouterContrat.fxml"));
-               System.out.println("nice");
-           anchorLoad.getChildren().setAll(pane);
-       } catch (IOException ex) {
-           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
+      
 
     @FXML
     void goToLivraisionEnCours(ActionEvent event) {
@@ -153,4 +142,5 @@ public class HomeTransporteurAssocieController implements Initializable {
         }
         
     }
+
 }

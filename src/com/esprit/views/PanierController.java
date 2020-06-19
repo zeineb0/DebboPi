@@ -8,6 +8,7 @@ package com.esprit.views;
 import com.esprit.entities.Commande;
 import com.esprit.entities.ListPanier;
 import com.esprit.entities.Panier;
+import com.esprit.entities.Session;
 import com.esprit.services.impl.ServiceCommande;
 import com.esprit.services.impl.ServicePanier;
 import com.esprit.utilities.DataSource;
@@ -118,12 +119,12 @@ public class PanierController implements Initializable {
 
     @FXML
     private void PasserCommande(MouseEvent event) throws SQLException{
-        ServicePanier sp= new ServicePanier();
+         ServicePanier sp= new ServicePanier();
         ServiceCommande sc= new ServiceCommande();
-        Panier p=sp.getPannier(1);
+        Panier p=sp.getPannier(Session.idSession);
         Date d= new Date(LocalDate.now().getYear(), LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth());
         Date dexp= new Date(LocalDate.now().plusDays(30).getYear(), LocalDate.now().plusDays(30).getMonthValue(), LocalDate.now().plusDays(30).getDayOfMonth());
-        Commande c=new Commande(d,dexp, p.getListProduit(),Float.parseFloat(BoxTotal.getText()) , "carte", p.getId_client(),p.getNbrProduit());
+        Commande c=new Commande(d,dexp, p.getListProduit(),Float.parseFloat(BoxTotal.getText()) , "carte", Session.getIdSession(),p.getNbrProduit());
        sc.addCommande(c);
        p.setEtatPanier('v');
        p.setListProduit("");
@@ -131,7 +132,6 @@ public class PanierController implements Initializable {
        sp.updatePannier(p);
     }
 
-    @FXML
     private void retour(ActionEvent event) throws IOException {
         Parent panier = FXMLLoader.load(getClass().getResource("Poduits.fxml"));
         Scene PanierV= new Scene(panier);

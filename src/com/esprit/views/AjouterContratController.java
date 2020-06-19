@@ -50,8 +50,6 @@ public class AjouterContratController implements Initializable {
 
     @FXML
     private Button addC;
-    @FXML
-    private Button gestC;
     
     private String nom;
     private String prenom;
@@ -70,6 +68,8 @@ public class AjouterContratController implements Initializable {
     @FXML
     private TextField nomp;
     private Date date1,date2;
+    @FXML
+    private TextField salaire;
     
     
     
@@ -130,6 +130,7 @@ public class AjouterContratController implements Initializable {
             contrat_detail.setNom(nom);
             contrat_detail.setPrenom(prenom);
             contrat_detail.setEntreprise(entreprise.getText());
+            
         
             System.out.println(contrat_detail);
             
@@ -286,7 +287,6 @@ public class AjouterContratController implements Initializable {
         
     }
 
-    @FXML
     private void onClickGestion(ActionEvent event) throws IOException {
         
         Parent gestion_contrat = FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
