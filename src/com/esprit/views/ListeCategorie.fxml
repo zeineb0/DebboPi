@@ -8,60 +8,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ListeCategorieController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ListeCategorieController">
    <children>
-      <AnchorPane id="AnchorPane" layoutY="-2.0" prefHeight="800.0" prefWidth="1000.0">
-         <children>
-            <AnchorPane prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #582900;">
-               <children>
-                  <Label fx:id="labelprofile" layoutX="58.0" onMouseClicked="#S" prefHeight="50.0" prefWidth="179.0" text="Name du User" textFill="#fffdfd">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="911.0" layoutY="11.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="80.0" text="Logout">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutY="50.0" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #C8AD7F;">
-               <children>
-                  <Button fx:id="catégorie" layoutX="17.0" layoutY="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Catégorie" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="produit" layoutX="17.0" layoutY="146.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Produit" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="mvt" layoutX="17.0" layoutY="242.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Mouvement du stock" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <Label layoutX="360.0" layoutY="88.0" text="Liste des categories" textFill="#d30f0f">
-               <font>
-                  <Font size="48.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <TableView fx:id="table" layoutX="217.0" layoutY="198.0" prefHeight="200.0" prefWidth="200.0">
+      <Label layoutX="235.0" layoutY="48.0" text="Liste des categories" textFill="#d30f0f">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <TableView fx:id="table" layoutX="134.0" layoutY="178.0" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="clNom" prefWidth="199.0" text="nom de la catégorie" />
         </columns>
       </TableView>
-      <TextField fx:id="txtNom" layoutX="592.0" layoutY="236.0" />
-      <Label layoutX="538.0" layoutY="241.0" text="nom" />
-      <Button fx:id="btnA" layoutX="207.0" layoutY="476.0" mnemonicParsing="false" onAction="#onClickAjouter" text="Ajouter" />
-      <Button fx:id="btnM" layoutX="358.0" layoutY="476.0" mnemonicParsing="false" onAction="#onClickModif" text="Modifier" />
-      <Button fx:id="btnS" layoutX="525.0" layoutY="476.0" mnemonicParsing="false" onAction="#onClickSupprimer" text="Supprimer" />
-      <Button fx:id="btnAn" layoutX="702.0" layoutY="476.0" mnemonicParsing="false" onAction="#onClickAnnuler" text="Annuler" />
+      <TextField fx:id="txtNom" layoutX="509.0" layoutY="216.0" />
+      <Label layoutX="455.0" layoutY="221.0" text="nom" />
+      <Button fx:id="btnA" layoutX="124.0" layoutY="456.0" mnemonicParsing="false" onAction="#onClickAjouter" text="Ajouter" />
+      <Button fx:id="btnM" layoutX="275.0" layoutY="456.0" mnemonicParsing="false" onAction="#onClickModif" text="Modifier" />
+      <Button fx:id="btnS" layoutX="442.0" layoutY="456.0" mnemonicParsing="false" onAction="#onClickSupprimer" text="Supprimer" />
+      <Button fx:id="btnAn" layoutX="619.0" layoutY="456.0" mnemonicParsing="false" onAction="#onClickAnnuler" text="Annuler" />
    </children>
 </AnchorPane>

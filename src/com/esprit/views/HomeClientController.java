@@ -20,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -36,16 +37,19 @@ public class HomeClientController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
+    @FXML
+    private AnchorPane anchorLoad;
 
+   
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
            try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("Poduits.fxml"));
+            Parent pane= FXMLLoader.load(getClass().getResource("Poduits.fxml"));
                System.out.println("nice");
-           anchorPane.getChildren().setAll(pane);
+           anchorLoad.getChildren().setAll(pane);
        } catch (IOException ex) {
            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,35 +106,46 @@ public class HomeClientController implements Initializable {
             }
     
     }
-     @FXML
-      void goToProfile(MouseEvent event){
-           
-         try {
-             System.out.println(getIdSession());
-               Node node = (Node) event.getSource();
-                Stage stage = (Stage) node.getScene().getWindow();
-                stage.close();
-                
-                Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Profile.fxml")));
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-          
-     }
+ 
 
-    @FXML
-    private void loadProduit(ActionEvent event) {
-         try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("selectProduits.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+     @FXML
+    void goToProfile(ActionEvent event) {
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("Profile.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        try {
+            // TODO
+
+            setLabelProfileClient();
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeClientController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void panier(ActionEvent event) {
+    void goToProduits(ActionEvent event) {
+
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("Poduits.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        try {
+            // TODO
+
+            setLabelProfileClient();
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeClientController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

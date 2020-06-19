@@ -67,7 +67,7 @@ public class PoduitsController implements Initializable {
          Panier p=new Panier();
         ServicePanier sp= new ServicePanier();
         try {
-            p=sp.getPannier(1);
+            p=sp.getPannier(5);
         } catch (SQLException ex) {
             Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -117,10 +117,10 @@ public class PoduitsController implements Initializable {
              x.setTranslateY(25);
              x.setTranslateX(25);
         GridPane grp= new GridPane();
-         ImageView im = new ImageView("/com.esprit.images/logo-debbo.png");
+       /*ImageView im = new ImageView("/com.esprit.images/logo-debbo.png");
          im.setFitHeight(50);
          im.setFitWidth(50);
-         grp.add(im, 0, 0);
+         grp.add(im, 0, 0);*/
         label= new Label(id_produit+"");
         label.setVisible(false);
         grp.add(label, 0, 0);
@@ -164,7 +164,7 @@ public class PoduitsController implements Initializable {
             String id_p=grp.getChildren().get(1)+"";
             id_p=id_p.substring(id_p.indexOf("'")+1, id_p.lastIndexOf("'"));
             listProduits+=number.getText()+"."+id_p+"-";
-            Panier p2= new Panier( 1, listProduits, count, 'p');
+            Panier p2= new Panier( 5, listProduits, count, 'i');
              
         try {
             sp.updatePannier(p2);
@@ -254,10 +254,10 @@ public class PoduitsController implements Initializable {
              x.setTranslateY(25);
              x.setTranslateX(25);
         GridPane grp= new GridPane();
-        ImageView im = new ImageView("/com.esprit.images/logo-debbo.png");
+       /* ImageView im = new ImageView("/com.esprit.images/logo-debbo.png");
         im.setFitHeight(50);
         im.setFitWidth(50);
-        grp.add(im, 0, 0);
+        grp.add(im, 0, 0);*/
         label= new Label(id_produit+"");
         label.setVisible(false);
         grp.add(label, 0, 0);
@@ -294,20 +294,21 @@ public class PoduitsController implements Initializable {
         btn.setOnAction(((event2) -> {
             if(!number.getText().equals("0"))
             {
-            int count=getQuantity(Count.getText());
+             int count=getQuantity(Count.getText());
             count++;
             Count.setText(""+count);
             String id_p=grp.getChildren().get(1)+"";
+                System.out.println(id_p);
             id_p=id_p.substring(id_p.indexOf("'")+1, id_p.lastIndexOf("'"));
             listProduits+=number.getText()+"."+id_p+"-";
-            System.out.println(listProduits);
+            Panier p2= new Panier( 1, listProduits, count, 'i');
             }
             else
             System.out.println(listProduits);
         }));
         grp.add(btn, 0, 200);
         x.getChildren().add(grp);
-        flow.getChildren().add(x);
+        flow.getChildren().add(x);          
         }
         } catch (SQLException ex) {
         Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);

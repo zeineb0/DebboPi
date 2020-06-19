@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMouseClicked="#logOut" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.HomeFournisseurController">
+<AnchorPane id="AnchorPane" onMouseClicked="#logOut" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.HomeFournisseurController">
      <children>
         <AnchorPane onMouseClicked="#logOut" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #582900;">
          <children>
@@ -21,15 +21,15 @@
       </AnchorPane>
         <AnchorPane layoutY="50.0" prefHeight="750.0" prefWidth="200.0" style="-fx-background-color: #C8AD7F;">
          <children>
-            <Button layoutX="17.0" layoutY="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Gestion entrepot" textFill="WHITE">
+            <Button layoutX="17.0" layoutY="50.0" mnemonicParsing="false" onAction="#LoadEntropot" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Gestion entrepot" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Button layoutX="17.0" layoutY="146.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Gestion Location" textFill="WHITE">
+            <Button layoutX="17.0" layoutY="146.0" mnemonicParsing="false" onAction="#loadLocation" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Gestion Location" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Button layoutX="17.0" layoutY="238.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Livraison" textFill="WHITE">
+            <Button layoutX="17.0" layoutY="238.0" mnemonicParsing="false" onAction="#loadLivraison" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Livraison" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
@@ -38,27 +38,28 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="17.0" layoutY="325.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Statistiques" textFill="WHITE">
+            <Button layoutX="17.0" layoutY="325.0" mnemonicParsing="false" onAction="#loadStat" prefHeight="50.0" prefWidth="167.0" style="-fx-background-color: #582900;" text="Statistiques" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Label layoutX="37.0" layoutY="463.0" text="Catégotie" textFill="WHITE">
+            <Button layoutX="32.0" layoutY="453.0" mnemonicParsing="false" onAction="#categorie" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #582900;" text="Catégorie" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
-            </Label>
-            <Label layoutX="37.0" layoutY="500.0" text="Produit" textFill="WHITE">
+            </Button>
+            <Button layoutX="32.0" layoutY="483.0" mnemonicParsing="false" onAction="#produit" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #582900;" text="Produit" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
-            </Label>
-            <Label layoutX="37.0" layoutY="537.0" text="Mouvement du stock" textFill="WHITE">
+            </Button>
+            <Button layoutX="32.0" layoutY="517.0" mnemonicParsing="false" onAction="#mvtStock" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: #582900;" text="Mvt de Stock" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
-            </Label>
+            </Button>
          </children></AnchorPane>
+      <AnchorPane fx:id="anchorLoad" layoutX="200.0" layoutY="50.0" prefHeight="750.0" prefWidth="801.0" />
     </children>
     
     

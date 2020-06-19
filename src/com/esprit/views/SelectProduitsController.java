@@ -120,7 +120,7 @@ public class SelectProduitsController implements Initializable {
              x.setTranslateY(25);
              x.setTranslateX(25);
         GridPane grp= new GridPane();
-         ImageView im = new ImageView("logo-debbo.png");
+         ImageView im = new ImageView("/com.esprit.images/logo-debbo.png");
          im.setFitHeight(50);
          im.setFitWidth(50);
          grp.add(im, 0, 0);
@@ -319,10 +319,6 @@ public class SelectProduitsController implements Initializable {
        
         
         scrollPane.setContent(flow);
-    }
-
-    @FXML
-    private void logout(ActionEvent event) {
     }
     
    

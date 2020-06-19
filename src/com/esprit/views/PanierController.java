@@ -11,7 +11,6 @@ import com.esprit.entities.Panier;
 import com.esprit.services.impl.ServiceCommande;
 import com.esprit.services.impl.ServicePanier;
 import com.esprit.utilities.DataSource;
-import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -39,7 +38,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -78,7 +76,7 @@ public class PanierController implements Initializable {
         ServicePanier sp= new ServicePanier();
         
         try {
-            Panier p=sp.getPannier(1);
+            Panier p=sp.getPannier(5);
             String listProduit=p.getListProduit();
             for(int i=0;i<p.getNbrProduit();i++)
             {   String ch= listProduit.substring(0,listProduit.indexOf("."));
@@ -135,7 +133,7 @@ public class PanierController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
-        Parent panier = FXMLLoader.load(getClass().getResource("selectProduits.fxml"));
+        Parent panier = FXMLLoader.load(getClass().getResource("Poduits.fxml"));
         Scene PanierV= new Scene(panier);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(PanierV);

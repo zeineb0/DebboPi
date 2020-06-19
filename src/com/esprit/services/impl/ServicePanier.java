@@ -89,10 +89,11 @@ public class ServicePanier {
       PreparedStatement pst = cnx.prepareStatement(req);
       ResultSet rst=pst.executeQuery(req);
       Panier p=null;
+            System.out.println(id_client);
       while(rst.next())
       {
-          
-          p = new Panier(rst.getInt(1),id_client , rst.getString(2),rst.getInt(3) , rst.getString(4).charAt(0));
+         
+          p = new Panier(rst.getInt(1),id_client , rst.getString(3),rst.getInt(4) , rst.getString(5).charAt(0));
       }
       return p;
     }

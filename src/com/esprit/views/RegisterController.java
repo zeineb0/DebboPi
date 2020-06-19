@@ -75,7 +75,7 @@ public class RegisterController implements Initializable {
     }    
     
     String leRole="";
-    
+    String role="";
     
     PreparedStatement ps = null;
    
@@ -92,18 +92,22 @@ public class RegisterController implements Initializable {
         
         if(radioF.isSelected()){
             leRole="Fournisseur";
+            role="ROLE_PROPRIETAIRE";
         }
         if(radioC.isSelected()){
             leRole="Client";
+            role="ROLE_CLIENT";
         }
         if(radiota.isSelected()){
             leRole="TransporteurAssocie";
+            role="ROLE_TRANSPORTEUR";
         }
         if(radiotl.isSelected()){
             leRole="TransporteurLibre";
+            role="ROLE_TRANSPORTEUR";
         }
         
-        String req ="INSERT INTO `utilisateur` (`id_user`, `nom`, `prenom`, `cin`, `date`, `role`, `tel`, `longitude_user`, `altitude_user`, `email`, `password`, `disponniblite`, `nbr_maxComm`, `FK_id_produit`) VALUES (NULL, '"+prenom.getText()+"', '"+nom.getText()+"', '"+cin.getText()+"', '"+date.getText()+"', '"+leRole+"', '"+tel.getText()+"', NULL, NULL, '"+email.getText()+"', '"+DigestUtils.shaHex(password.getText())+"', '', NULL, NULL); ";
+        String req ="INSERT INTO `utilisateur` (`id_user`, `nom`, `prenom`,`username`,`username_canonical`, `cin`, `date`, `role`, `tel`, `longitude_user`, `altitude_user`, `email`,`email_canonical`, `password`, `disponniblite`, `nbr_maxComm`,`enabled`,roles) VALUES (NULL, '"+prenom.getText()+"', '"+nom.getText()+"','ghazihc','ghazihc', '"+cin.getText()+"', '"+date.getText()+"', '"+leRole+"', '"+tel.getText()+"', NULL, NULL, '"+email.getText()+"','"+email.getText()+"', '"+DigestUtils.shaHex(password.getText())+"', '', NULL,1,'a:1:{i:0;s:11:\""+role+"\";}'); ";
         ps = con.prepareStatement(req);
         ps.executeUpdate();
         

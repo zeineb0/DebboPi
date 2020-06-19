@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.views.ProfileController">
    <children>
-      <Pane layoutX="100.0" layoutY="100.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #C8AD7F;">
+      <Pane layoutY="50.0" prefHeight="651.0" prefWidth="800.0" style="-fx-background-color: #C8AD7F;">
          <children>
             <Pane layoutX="100.0" layoutY="37.5" prefHeight="150.0" prefWidth="600.0" style="-fx-background-color: #582900;">
                <children>

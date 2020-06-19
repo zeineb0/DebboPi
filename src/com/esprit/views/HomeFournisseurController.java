@@ -41,6 +41,8 @@ public class HomeFournisseurController implements Initializable {
     private BorderPane trial;
     @FXML
     private AnchorPane anchorPane;
+        @FXML
+    private AnchorPane anchorLoad;
 
     /**
      * Initializes the controller class.
@@ -48,12 +50,16 @@ public class HomeFournisseurController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("gererLocation.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+     
+        
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("gererLocation.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
         try {
             setLabelProfileFournisseur();
@@ -145,97 +151,126 @@ public class HomeFournisseurController implements Initializable {
 
     @FXML
     private void loadStat(ActionEvent event) {
-        try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("Statistiques.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+       
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("Statistiques.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
     }
 
     @FXML
     private void loadLivraison(ActionEvent event) {
-        try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("Affichage.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+      
+        
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("Affichage.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
 
     @FXML
     private void LoadEntropot(ActionEvent event) {
-        try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("gererEntrepot.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+      
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("gererEntrepot.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
 
     @FXML
     private void loadLocation(ActionEvent event) {
-          try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("gererLocation.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+      
+        
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("gererLocation.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
 
     @FXML
     private void loadContrat(ActionEvent event) {
-       try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+     
+       
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("GestionContrat.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
     public void addContrat()
     {
-         try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("AjouterContrat.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+        
+         
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("AjouterContrat.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     
-    
+   
+
     @FXML
-    private void produit(ActionEvent event) {
-        try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("ListeProduit.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+    private void categorie(ActionEvent  event) {
+       
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("ListeCategorie.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+
+   
+    @FXML
+    void mvtStock(ActionEvent event) {
+   
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("MvtStock.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @FXML
-    private void categorie(ActionEvent event) {
-        try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("ListeCategorie.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void mvtStock(ActionEvent event) {
-        try {
-            AnchorPane pane= FXMLLoader.load(getClass().getResource("MvtStock.fxml"));
-            anchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+    void produit(ActionEvent event) {
+     
+ try {
+            Parent pane= FXMLLoader.load(getClass().getResource("ListeProduit.fxml"));
+               System.out.println("nice");
+           anchorLoad.getChildren().setAll(pane);
+       } catch (IOException ex) {
+           Logger.getLogger(HomeFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
